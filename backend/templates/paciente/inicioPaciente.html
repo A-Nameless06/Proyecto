@@ -32,7 +32,9 @@
                     <strong>Juan Pérez</strong>
                     <span>ID: #44892-PT</span>
                 </div>
-                <button class="btn-cerrar"><i class="fa-solid fa-right-from-bracket"></i></button>
+                <button class="btn-cerrar" type="button" onclick="cerrarSesion()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
             </div>
         </aside>
 
@@ -121,6 +123,6 @@
             </div>
         </main>
     </div>
-
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>

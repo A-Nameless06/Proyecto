@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
+    /* Variables Globales del Sistema */
     --azul-principal: #1a73e8;
     --azul-claro: #e8f0fe;
     --texto-oscuro: #202124;
@@ -18,6 +19,10 @@ body {
     background-color: var(--fondo-gris);
     color: var(--texto-oscuro);
 }
+
+/* =========================================
+   1. ESTILOS DEL DASHBOARD (Menú lateral y tarjetas)
+   ========================================= */
 
 .contenedor-app {
     display: grid;
@@ -52,7 +57,7 @@ body {
 .navegacion-principal {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Esto empuja el perfil del usuario hacia abajo */
+    flex-grow: 1;
 }
 
 .item-menu {
@@ -83,7 +88,6 @@ body {
     margin: 15px 24px;
 }
 
-/* Perfil inferior en la barra lateral */
 .perfil-usuario-inferior {
     padding: 20px 24px;
     display: flex;
@@ -138,7 +142,6 @@ body {
     font-size: 14px;
 }
 
-/* Icono de campana */
 .notificaciones {
     background: white;
     width: 35px;
@@ -200,14 +203,13 @@ body {
     background: #1557b0;
 }
 
-/* --- GRID DASHBOARD (La estructura central) --- */
+/* --- GRID DASHBOARD --- */
 .cuadricula-dashboard {
     display: grid;
-    grid-template-columns: 1fr 300px; /* Columna izquierda grande, derecha pequeña */
+    grid-template-columns: 1fr 300px; 
     gap: 30px;
 }
 
-/* Tarjetas de Resumen (Confirmadas, Pendientes, etc.) */
 .fila-resumen {
     display: flex;
     gap: 20px;
@@ -235,7 +237,6 @@ body {
     border-radius: 10px;
 }
 
-/* Colores para los iconos de resumen */
 .azul { color: var(--azul-principal); background: var(--azul-claro); }
 .naranja { color: var(--naranja-alerta); background: #fef7e0; }
 .verde { color: var(--verde-exito); background: #e6f4ea; }
@@ -473,4 +474,618 @@ body {
 
 .btn-editar-perfil:hover {
     background: #d2e3fc;
+}
+
+/* =========================================
+   2. ESTILOS DE LA PÁGINA "COMPROBANTE DE CITA"
+   (Integrados con las variables del sistema)
+   ========================================= */
+
+/* Encabezado Superior (Fuera del Dashboard) */
+.header-comprobante {
+    background-color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borde);
+}
+
+.logo-portal {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: var(--azul-principal);
+    font-size: 1.2rem;
+}
+
+.logo-portal .material-icons {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.header-comprobante nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.header-comprobante nav a {
+    text-decoration: none;
+    color: var(--texto-gris);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.header-comprobante nav a.active {
+    color: var(--azul-principal);
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header-actions .material-icons {
+    color: var(--texto-gris);
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 35px;
+    height: 35px;
+    background-color: var(--fondo-gris);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--texto-oscuro);
+    font-weight: bold;
+}
+
+/* Contenedor Principal del Comprobante */
+.main-comprobante {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Sección del Título y Botones */
+.title-folio-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 30px;
+}
+
+.title-folio-section h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.title-folio-section .folio {
+    color: var(--texto-gris);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.receipt-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-receipt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--texto-oscuro);
+    border: 1px solid var(--borde);
+}
+
+.btn-primary {
+    background-color: var(--azul-principal);
+    color: white;
+    border: none;
+}
+
+/* Tarjeta Blanca del Comprobante */
+.receipt-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 40px;
+    margin-bottom: 30px;
+    border: 1px solid var(--borde);
+}
+
+/* Encabezado interno de la Tarjeta */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--borde);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.calendar-icon-container {
+    background-color: var(--azul-principal);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.receipt-main-title {
+    color: var(--azul-principal);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.receipt-sub-title {
+    color: var(--texto-gris);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.header-right {
+    text-align: right;
+}
+
+.folio-label {
+    display: inline-block;
+    background-color: var(--azul-principal);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.folio-number-big {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--texto-oscuro);
+}
+
+/* Bloques de Datos Internos */
+.data-label {
+    color: var(--texto-gris);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.data-value {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--texto-oscuro);
+    margin: 0;
+}
+
+.row-patient-date {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 25px;
+}
+
+.patient-info, .date-time-info {
+    flex: 1;
+}
+
+.patient-id {
+    color: var(--texto-gris);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.date-time-detailed {
+    color: var(--azul-principal);
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.row-details {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.detail-item {
+    flex: 1;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+}
+
+.detail-item .material-icons {
+    color: var(--azul-principal);
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+/* Línea de Pago */
+.row-payment {
+    background-color: var(--azul-claro);
+    border: 1px solid #d0e0ec;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.payment-info-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.payment-icon-container {
+    background-color: white;
+    color: var(--azul-principal);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.payment-main-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    color: var(--texto-oscuro);
+}
+
+.payment-sub-title {
+    color: var(--texto-gris);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.payment-amount {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: right;
+    color: var(--texto-oscuro);
+}
+
+.payment-status-pending {
+    color: var(--naranja-alerta);
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.dot-pending {
+    height: 6px;
+    width: 6px;
+    background-color: var(--naranja-alerta);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Información Importante */
+.row-important-info {
+    background-color: var(--fondo-gris);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-header-container .material-icons {
+    color: var(--azul-principal);
+    font-size: 1.3rem;
+}
+
+.info-main-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    color: var(--texto-oscuro);
+}
+
+.important-points {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.point-item {
+    flex: 1;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--texto-gris);
+}
+
+.point-item .material-icons {
+    color: var(--azul-principal);
+    font-size: 1rem;
+    margin-top: 3px;
+}
+
+.point-title {
+    font-weight: 600;
+    color: var(--texto-oscuro);
+}
+
+/* Pie de la Tarjeta */
+.card-footer {
+    border-top: 1px solid var(--borde);
+    margin-top: 25px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--texto-gris);
+}
+
+.barcode {
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: var(--texto-oscuro);
+    letter-spacing: 2px;
+}
+
+/* Botón de Volver */
+.back-button-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: transparent;
+    color: var(--texto-oscuro);
+    border: 1px solid var(--borde);
+    transition: 0.2s;
+}
+
+.btn-outline:hover {
+    background-color: var(--borde);
+}
+
+/* Footer Global */
+.footer-comprobante {
+    text-align: center;
+    padding: 20px;
+    color: var(--texto-gris);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--borde);
+}
+
+/* 3. ESTILOS DE LA PÁGINA HISTORIAL MÉDICO */
+
+/* Barra de Filtros */
+.barra-filtros {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.btn-filtro {
+    background: white;
+    border: 1px solid var(--borde);
+    color: var(--texto-gris);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.btn-filtro:hover {
+    background: var(--fondo-gris);
+    color: var(--texto-oscuro);
+}
+
+.btn-filtro.activo {
+    background: var(--azul-principal);
+    color: white;
+    border-color: var(--azul-principal);
+    box-shadow: 0 4px 10px rgba(26, 115, 232, 0.2);
+}
+
+/* Lista del Historial */
+.lista-historial {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-historial {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 25px 0;
+    border-bottom: 1px solid var(--borde);
+    transition: background 0.2s ease;
+}
+
+.item-historial:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Bloque de Fecha */
+.fecha-historial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.fecha-historial .dia {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--texto-oscuro);
+    line-height: 1;
+}
+
+.fecha-historial .mes {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azul-principal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.fecha-historial .anio {
+    font-size: 11px;
+    color: var(--texto-gris);
+}
+
+/* Icono redondo */
+.icono-tipo-cita {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+/* Cuerpo del Detalle */
+.detalle-historial {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.detalle-historial h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--texto-oscuro);
+}
+
+.detalle-historial p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--texto-gris);
+    line-height: 1.5;
+}
+
+.detalle-historial p strong {
+    color: var(--texto-oscuro);
+}
+
+/* Etiquetas pequeñas (Tags) */
+.etiquetas-registro {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tag-receta { background: #fef7e0; color: var(--naranja-alerta); }
+.tag-ok { background: #e6f4ea; color: var(--verde-exito); }
+.tag-lab { background: var(--azul-claro); color: var(--azul-principal); }
+
+/* Botones de acción derecha */
+.acciones-historial {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 130px;
+}
+
+.btn-accion-historial {
+    background: white;
+    border: 1px solid var(--borde);
+    color: var(--texto-oscuro);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-accion-historial:hover {
+    background: var(--fondo-gris);
+}
+
+.btn-accion-historial.principal {
+    background: var(--azul-principal);
+    color: white;
+    border-color: var(--azul-principal);
+}
+
+.btn-accion-historial.principal:hover {
+    background: #1557b0;
 }

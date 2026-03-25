@@ -79,6 +79,15 @@ body {
     color: var(--azul-medico);
     text-decoration: none;
 }
+.enlace-olvido > a{
+    color: #1e88e5;
+    text-decoration: none;
+}
+
+.enlace-olvido > a:hover, a:active{
+    color: rgb(1, 45, 83);
+}
+
 
 .contenedor-password {
     position: relative;
@@ -112,6 +121,15 @@ body {
 .enlace-registro {
     margin-top: 20px;
     font-size: 14px;
+}
+
+.enlace-registro > a{
+    color: #1e88e5;
+    text-decoration: none;
+}
+
+.enlace-registro > a:hover, a:active{
+    color: rgb(1, 45, 83);
 }
 
 .pie-seguridad {

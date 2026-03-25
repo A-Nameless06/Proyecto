@@ -16,7 +16,7 @@ def create_app():
 
     @app.route("/")
     def index():
-        return {"mensaje": "API Hospital (BD falsa)"}
+        return render_template("RASA/index.html")
 
     @app.errorhandler(404)
     def pagina_no_encontrada(error):

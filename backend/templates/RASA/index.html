@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Centro Medico R.A.S.A - Excelencia en Salud</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#311300",
+                        "tertiary-container": "#ba5b00",
+                        "on-surface-variant": "#414752",
+                        "surface": "#f7f9fc",
+                        "inverse-primary": "#a5c8ff",
+                        "tertiary": "#944700",
+                        "on-tertiary-container": "#fffeff",
+                        "on-secondary-container": "#425b7f",
+                        "inverse-surface": "#2d3133",
+                        "secondary-container": "#bad3fd",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#001c3a",
+                        "surface-tint": "#005faf",
+                        "outline-variant": "#c1c6d4",
+                        "on-tertiary-fixed-variant": "#733600",
+                        "on-primary-fixed-variant": "#004786",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e0e3e6",
+                        "tertiary-fixed-dim": "#ffb688",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eceef1",
+                        "surface-container-high": "#e6e8eb",
+                        "on-background": "#191c1e",
+                        "on-primary-container": "#fffdff",
+                        "outline": "#717783",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-dim": "#d8dadd",
+                        "secondary": "#475f84",
+                        "on-surface": "#191c1e",
+                        "primary-fixed": "#d4e3ff",
+                        "surface-container-low": "#f2f4f7",
+                        "surface-bright": "#f7f9fc",
+                        "primary-fixed-dim": "#a5c8ff",
+                        "surface-variant": "#e0e3e6",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffdbc7",
+                        "primary": "#005dac",
+                        "on-secondary-fixed-variant": "#2f486a",
+                        "secondary-fixed": "#d4e3ff",
+                        "secondary-fixed-dim": "#afc8f1",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eff1f4",
+                        "background": "#f7f9fc",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#1976d2"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom External CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- Barra de navegacion -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+            <div class="text-2xl font-bold tracking-tighter text-blue-800 dark:text-blue-300 font-headline">
+                Centro Medico R.A.S.A
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="text-blue-700 font-bold border-b-2 border-blue-600 font-label text-sm tracking-tight transition-all" href="#servicios">Servicios</a>
+                <a class="text-slate-600 hover:text-blue-600 transition-colors font-label text-sm tracking-tight" href="#especialidades">Especialidades</a>
+                <a class="text-slate-600 hover:text-blue-600 transition-colors font-label text-sm tracking-tight" href="#doctores">Doctores</a>
+                <a class="text-slate-600 hover:text-blue-600 transition-colors font-label text-sm tracking-tight" href="#contacto">Contacto</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="hidden sm:block px-6 py-2.5 rounded-full bg-surface-container-highest text-on-surface font-semibold text-sm hover:scale-105 transition-transform duration-200" onclick="inicioSesion()">
+                    Iniciar Sesión
+                </button>
+                <button class="px-6 py-2.5 rounded-full bg-primary text-on-primary font-semibold text-sm hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary/20" onclick="crearCuenta()">
+                    Registrarse
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-[921px] flex items-center pt-20 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover opacity-15 grayscale" data-alt="Modern clinical environment with soft blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPB9Q0_pp6yLGe73uXNxsGcPMrjXjPOpW3yo85_Bu_isRvf60taRJC1RC9f9sgMknjIKmG829Jlj9JYopuQQslu7u56oN8ERK3mNQbIHRTqA7yqef6Qb1H_1mN41KvdAoYJg3nLqRNOXI26PAe49MOeyN-KQIQD-ebtS9-XZY51p67cmHbHigvcRfxEc-u-mdJKbCAb39zUfLZFdOk0g7guPxJEBAHnqwAUcQpkO1bfX8QaA8c563mH3OODISk4JIpCpzc-iuD9A">
+                <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold tracking-widest uppercase">
+                        Excelencia Médica Garantizada
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold font-headline leading-[1.1] tracking-tight text-on-surface">
+                        Cuidamos de tu Salud con <span class="text-primary">Excelencia</span>
+                    </h1>
+                    <p class="text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                        Atención médica especializada con la tecnología más avanzada y un equipo humano comprometido con tu bienestar integral.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button class="px-8 py-4 rounded-full bg-primary text-on-primary font-bold text-lg hover:scale-105 transition-transform shadow-xl shadow-primary/30 flex items-center gap-2">
+                            <span class="material-symbols-outlined">calendar_today</span>
+                            <a href="auth/registro">Agendar Cita</a>
+                        </button>
+                        <button class="px-8 py-4 rounded-full bg-white text-primary border border-outline-variant font-bold text-lg hover:bg-surface-container-low transition-colors">
+                            Ver Especialidades
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl rotate-3 bg-white p-4">
+                        <img class="w-full h-full object-cover rounded-2xl" data-alt="Experienced doctor consulting with a patient smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpYaKGmPqWoMjnvkjEaXURrI3FO7TjgAPfzoniIaMur8Jk-q9Jd7wDAgd8XuFhmnN-u9P9X8_iquMB7a4OLWPTXOiOeWUGYESztNkFk5fLg87IkxemYCwXxajKANRrUujRuhc5EnlqFlA9j47dJJ9nwunwuMZ7PWnW-ZlgPv0KbrbNYSze0Vu9K_g-5hFl6lI4-pfZvmrMwz_Ka5UjXrpnw3RO1axtAkkjdNIGbV4h8UB8pmPok53zdvzqXL9_iLOoGtLfcxLvgQ">
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl max-w-xs -rotate-3">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                            </div>
+                            <div class="font-headline font-bold text-sm">Tecnología Certificada</div>
+                        </div>
+                        <p class="text-xs text-on-surface-variant">Equipos de última generación para diagnósticos precisos y rápidos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Bento Grid -->
+        <section class="py-32 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="text-center mb-20 space-y-4">
+                    <h2 class="text-4xl font-extrabold font-headline tracking-tight">¿Por qué elegirnos?</h2>
+                    <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">Combinamos calidez humana con precisión clínica para ofrecerte la mejor experiencia hospitalaria.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-surface-container-lowest p-10 rounded-3xl flex flex-col justify-between transition-transform hover:-translate-y-2">
+                        <div class="space-y-6">
+                            <div class="w-14 h-14 rounded-2xl bg-error-container text-error flex items-center justify-center">
+                                <span class="material-symbols-outlined text-3xl">emergency</span>
+                            </div>
+                            <h3 class="text-2xl font-bold font-headline">Urgencias 24/7</h3>
+                            <p class="text-on-surface-variant leading-relaxed">Personal altamente capacitado listo para atender cualquier emergencia en cualquier momento.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-primary text-on-primary p-10 rounded-3xl flex flex-col justify-between md:scale-110 shadow-2xl shadow-primary/20">
+                        <div class="space-y-6">
+                            <div class="w-14 h-14 rounded-2xl bg-white/20 text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined text-3xl">stethoscope</span>
+                            </div>
+                            <h3 class="text-2xl font-bold font-headline">Especialistas Top</h3>
+                            <p class="text-white/80 leading-relaxed">Contamos con los médicos más destacados en cada área, con trayectoria internacional certificada.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-surface-container-lowest p-10 rounded-3xl flex flex-col justify-between transition-transform hover:-translate-y-2">
+                        <div class="space-y-6">
+                            <div class="w-14 h-14 rounded-2xl bg-secondary-container text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined text-3xl">apartment</span>
+                            </div>
+                            <h3 class="text-2xl font-bold font-headline">Instalaciones Modernas</h3>
+                            <p class="text-on-surface-variant leading-relaxed">Espacios diseñados para tu comodidad, cumpliendo con los más altos estándares de higiene y seguridad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="py-32 bg-surface overflow-hidden" id="servicios">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+                    <div class="space-y-4">
+                        <h2 class="text-4xl font-extrabold font-headline tracking-tight">Nuestros Servicios Médicos</h2>
+                        <p class="text-on-surface-variant text-lg">Cuidado integral para cada etapa de tu vida.</p>
+                    </div>
+                    <a class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all" href="#">
+                        Explorar todos los servicios
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Service Card 1 -->
+                    <div class="group bg-surface-container-lowest p-8 rounded-3xl transition-all hover:bg-primary hover:text-on-primary">
+                        <div class="w-12 h-12 mb-6 text-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-4xl">child_care</span>
+                        </div>
+                        <h4 class="text-xl font-bold font-headline mb-3">Pediatría</h4>
+                        <p class="text-sm text-on-surface-variant group-hover:text-white/80 transition-colors">Cuidado especializado para los más pequeños, desde el nacimiento hasta la adolescencia.</p>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="group bg-surface-container-lowest p-8 rounded-3xl transition-all hover:bg-primary hover:text-on-primary">
+                        <div class="w-12 h-12 mb-6 text-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-4xl">favorite</span>
+                        </div>
+                        <h4 class="text-xl font-bold font-headline mb-3">Cardiología</h4>
+                        <p class="text-sm text-on-surface-variant group-hover:text-white/80 transition-colors">Prevención y tratamiento de enfermedades cardiovasculares con tecnología de punta.</p>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="group bg-surface-container-lowest p-8 rounded-3xl transition-all hover:bg-primary hover:text-on-primary">
+                        <div class="w-12 h-12 mb-6 text-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-4xl">skeleton</span>
+                        </div>
+                        <h4 class="text-xl font-bold font-headline mb-3">Traumatología</h4>
+                        <p class="text-sm text-on-surface-variant group-hover:text-white/80 transition-colors">Recuperación de lesiones óseas y musculares con especialistas de élite.</p>
+                    </div>
+                    <!-- Service Card 4 -->
+                    <div class="group bg-surface-container-lowest p-8 rounded-3xl transition-all hover:bg-primary hover:text-on-primary">
+                        <div class="w-12 h-12 mb-6 text-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-4xl">psychiatry</span>
+                        </div>
+                        <h4 class="text-xl font-bold font-headline mb-3">Neurología</h4>
+                        <p class="text-sm text-on-surface-variant group-hover:text-white/80 transition-colors">Estudio y tratamiento de trastornos del sistema nervioso central y periférico.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-8">
+            <div class="max-w-6xl mx-auto bg-primary-container rounded-[3rem] p-12 md:p-20 relative overflow-hidden flex flex-col items-center text-center">
+                <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                    <img class="w-full h-full object-cover" data-alt="Abstract blue gradient pattern background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuuXRYxy5tv9DPLRLriSJwFG8ZMDsYpMx1J9R55O_IYCS2vSTuto75P_mTOFdtuYs1ahdiC8kKJpBA_L-qYBtqW9YMCIc50JRREV_ZWBEJ4LtKpM5HKk9boZaBdbs67HOTanmohrUQUYx4TUGacbbXaGW-LmjRtBm0MJCaZ3Fb7jaUw9CQb8Tg74z4Kk2nFfboMOSLd8FoJMPt62xdKB068GkW2URqrmTP9Aa60ygi6xXXTrgm8vWHjR_xnbqCS6moz9DXf1LdKw">
+                </div>
+                <div class="relative z-10 space-y-8 max-w-3xl">
+                    <h2 class="text-4xl md:text-5xl font-extrabold font-headline text-on-primary-container leading-tight">
+                        Toma el Control de tu Salud desde el Portal del Paciente
+                    </h2>
+                    <p class="text-lg text-on-primary-container/80">
+                        Accede a tus resultados, agenda citas rápidamente y mantén tu historial médico digital siempre a la mano.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                        <button class="px-10 py-4 rounded-full bg-white text-primary font-bold text-lg hover:scale-105 transition-transform shadow-xl">
+                            Crear mi cuenta gratis
+                        </button>
+                        <button class="px-10 py-4 rounded-full border-2 border-white/30 text-white font-bold text-lg hover:bg-white/10 transition-colors">
+                            Más información
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-100 dark:bg-slate-950 py-12 px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+            <div class="space-y-6">
+                <div class="text-xl font-bold text-slate-800 dark:text-slate-200 font-headline">
+                    Centro Medico R.A.S.A
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Comprometidos con la salud de nuestra comunidad a través de la innovación y la excelencia médica.
+                </p>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Enlaces Rápidos</h5>
+                <ul class="space-y-3">
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="#">Portal del Paciente</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="#">Urgencias</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="#">Blog de Salud</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Legal</h5>
+                <ul class="space-y-3">
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="#">Privacidad</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="#">Términos de Servicio</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Contacto</h5>
+                <p class="text-slate-500 text-sm">
+                    Av. Principal Salud #123<br>
+                    Ciudad de México, México<br>
+                    Tel: +52 (55) 1234-5678
+                </p>
+                <div class="flex gap-4">
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">public</span>
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">medical_services</span>
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">share</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 text-center">
+            <p class="text-slate-500 text-xs font-label">© 2024 Centro Medico R.A.S.A. El Santuario Clínico.</p>
+        </div>
+    </footer>
+
+    <!-- Glass Bar (Quick Book) -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-md">
+        <div class="glass-nav rounded-full px-6 py-4 shadow-2xl flex items-center justify-between border border-white/20">
+            <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span class="text-sm font-bold text-primary">Citas Disponibles Hoy</span>
+            </div>
+            <button class="bg-primary text-on-primary px-5 py-2 rounded-full text-xs font-bold hover:scale-105 transition-transform">
+                Reserva Rápida
+            </button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
