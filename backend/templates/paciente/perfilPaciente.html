@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Paciente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="contenedor-logo-nav">
+            <div class="logo">
+                <i class="fa-solid fa-briefcase-medical"></i> Centro Medico R.A.S.A
+            </div>
+            <nav class="enlaces-nav">
+                <a href="#">Panel</a>
+                <a href="#">Citas</a>
+                <a href="#">Historial</a>
+            </nav>
+        </div>
+        <div class="acciones-encabezado">
+            <div class="avatar-usuario activo" title="Mi Perfil">J</div>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        <div class="ancho-completo">
+            <div class="migas-pan">
+                Panel <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 4px;"></i> <span class="actual">Mi Perfil</span>
+            </div>
+            <h1 class="titulo-seccion">Configuración de Perfil</h1>
+            <p class="subtitulo-seccion">Administra tus datos personales.</p>
+
+            <div class="layout-perfil">
+                
+                <aside class="perfil-sidebar">
+                    <div class="tarjeta-perfil-resumen">
+                        <div class="avatar-grande">J</div>
+                        <h2 class="nombre-perfil">Juan Perez</h2>
+                        <p class="tipo-usuario">Paciente</p>
+                        
+                        <div class="info-rapida-perfil">
+                            <div class="item-info-rapida">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <div>
+                                    <span class="etiqueta">Citas Previas</span>
+                                    <span class="valor">12</span>
+                                </div>
+                            </div>
+                            <div class="item-info-rapida">
+                                <i class="fa-solid fa-droplet" style="color: #dc3545;"></i>
+                                <div>
+                                    <span class="etiqueta">Tipo de Sangre</span>
+                                    <span class="valor">O+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="perfil-contenido">
+                    
+                    <section class="tarjeta-formulario">
+                        <div class="cabecera-tarjeta">
+                            <h3><i class="fa-regular fa-id-card"></i> Datos Personales</h3>
+                            <button id="btn-editar-datos" class="btn-secundario"><i class="fa-solid fa-pen"></i> Editar</button>
+                        </div>
+                        
+                        <form id="form-datos-personales" action="/actualizar-perfil" method="POST">
+                            <div class="rejilla-formulario">
+                                <div class="grupo-input">
+                                    <label for="nombre">Nombre Completo</label>
+                                    <input type="text" id="nombre" name="nombre" value="Juan" readonly>
+                                </div>
+                                <div class="grupo-input">
+                                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="2000-05-15" readonly>
+                                </div>
+                                <div class="grupo-input">
+                                    <label for="correo">Correo Electrónico</label>
+                                    <input type="email" id="correo" name="correo" value="juanPerez@gmail.com" readonly>
+                                </div>
+                                <div class="grupo-input">
+                                    <label for="telefono">Número de Teléfono</label>
+                                    <input type="tel" id="telefono" name="telefono" value="55 1234 5678" readonly>
+                                </div>
+                                <div class="grupo-input ancho-completo">
+                                    <label for="direccion">Dirección</label>
+                                    <input type="text" id="direccion" name="direccion" value="xxxx" readonly>
+                                </div>
+                            </div>
+                            <div id="acciones-edicion" class="acciones-formulario oculto">
+                                <button type="button" id="btn-cancelar-edicion" class="btn-cancelar">Cancelar</button>
+                                <button type="submit" class="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+</body>
+</html>

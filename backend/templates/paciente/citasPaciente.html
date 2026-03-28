@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Nueva Cita</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="contenedor-logo-nav">
+            <div class="logo"><i class="fa-solid fa-briefcase-medical"></i> Centro Medico R.A.S.A</div>
+            <nav class="enlaces-nav">
+                <a href="inicioPaciente.html">Panel</a>
+                <a href="#" class="activo">Citas</a>
+                <a href="historialPaciente.html">Historial</a>
+            </nav>
+        </div>
+
+            <div class="avatar-usuario" title="Mi Perfil">S</div>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        
+        <div class="columna-izquierda">
+            <div class="migas-pan">
+                Panel <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 4px;"></i> <span class="actual">Nueva Cita</span>
+            </div>
+            <h1 class="titulo-seccion">Agendar Nueva Cita</h1>
+            <p class="subtitulo-seccion">Reserva una consulta con nuestros expertos médicos en pocos pasos.</p>
+
+            <div class="contenedor-pasos">
+                <div class="paso completado" data-paso="1">
+                    <div class="icono-paso"><i class="fa-solid fa-shapes"></i></div>
+                    <span class="texto-paso">Especialidad</span>
+                </div>
+                <div class="linea-conectora activa"></div>
+                
+                <div class="paso completado" data-paso="2">
+                    <div class="icono-paso"><i class="fa-solid fa-user-doctor"></i></div>
+                    <span class="texto-paso">Doctor</span>
+                </div>
+                <div class="linea-conectora activa"></div>
+                
+                <div class="paso activo" data-paso="3">
+                    <div class="icono-paso"><i class="fa-regular fa-calendar"></i></div>
+                    <span class="texto-paso">Fecha y Hora</span>
+                </div>
+            </div>
+
+            <div id="vista-paso-1" class="seccion-paso oculto">
+                <div class="cabecera-paso-actual">
+                    <div class="titulo-paso-actual"><span class="numero-paso-actual">1</span> Selecciona la Especialidad</div>
+                    <span class="texto-contador-pasos">Paso 1 de 3</span>
+                </div>
+                <p>Aquí irá tu catálogo o tarjetas de especialidades...</p>
+            </div>
+
+            <div id="vista-paso-2" class="seccion-paso oculto">
+                <div class="cabecera-paso-actual">
+                    <div class="titulo-paso-actual"><span class="numero-paso-actual">2</span> Elige a tu Doctor</div>
+                    <span class="texto-contador-pasos">Paso 2 de 3</span>
+                </div>
+                <p>Aquí irá tu lista de doctores filtrada por especialidad...</p>
+            </div>
+
+            <div id="vista-paso-3" class="seccion-paso">
+                <div class="cabecera-paso-actual">
+                    <div class="titulo-paso-actual"><span class="numero-paso-actual">3</span> Selecciona Fecha y Hora</div>
+                    <span class="texto-contador-pasos">Paso 3 de 3</span>
+                </div>
+
+                <div class="rejilla-fecha-hora">
+                    <div class="tarjeta-calendario">
+                        <div class="controles-calendario">
+                            <span>Octubre 2023</span>
+                            <div class="botones-calendario">
+                                <button><i class="fa-solid fa-chevron-left"></i></button>
+                                <button><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="dias-semana">
+                            <span>LUN</span><span>MAR</span><span>MIE</span><span>JUE</span><span>VIE</span><span>SAB</span><span>DOM</span>
+                        </div>
+                        <div class="cuadricula-dias">
+                            <div class="dia inactivo">25</div><div class="dia inactivo">26</div><div class="dia inactivo">27</div>
+                            <div class="dia inactivo">28</div><div class="dia inactivo">29</div><div class="dia inactivo">30</div>
+                            <div class="dia">1</div><div class="dia">2</div><div class="dia">3</div>
+                            <div class="dia">4</div><div class="dia">5</div><div class="dia">6</div>
+                            <div class="dia">7</div><div class="dia">8</div><div class="dia">9</div>
+                            <div class="dia">10</div><div class="dia seleccionado">11</div><div class="dia">12</div>
+                            <div class="dia">13</div><div class="dia">14</div><div class="dia">15</div>
+                            <div class="dia">16</div><div class="dia">17</div><div class="dia">18</div>
+                            <div class="dia">19</div><div class="dia">20</div><div class="dia">21</div>
+                            <div class="dia">22</div>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-horarios">
+                        <h3 class="titulo-horarios">Horarios Disponibles</h3>
+                        
+                        <div class="subtitulo-horarios">Sesiones de Mañana</div>
+                        <div class="rejilla-botones-hora">
+                            <button class="boton-hora">09:00 AM</button>
+                            <button class="boton-hora seleccionado">10:30 AM</button>
+                            <button class="boton-hora">11:15 AM</button>
+                            <button class="boton-hora deshabilitado">11:45 AM</button>
+                        </div>
+
+                        <div class="subtitulo-horarios">Sesiones de Tarde</div>
+                        <div class="rejilla-botones-hora">
+                            <button class="boton-hora">02:00 PM</button>
+                            <button class="boton-hora">03:30 PM</button>
+                            <button class="boton-hora">04:15 PM</button>
+                            <button class="boton-hora">05:00 PM</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rejilla-tarjetas-seleccion">
+                    <div class="tarjeta-seleccion">
+                        <div class="icono-tarjeta-seleccion"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <div class="info-tarjeta-seleccion">
+                            <p class="etiqueta">Especialidad</p>
+                            <h4>Cardiología</h4>
+                        </div>
+                        <i class="fa-solid fa-circle-check icono-check"></i>
+                    </div>
+                    <div class="tarjeta-seleccion">
+                        <div class="foto-doctor"></div>
+                        <div class="info-tarjeta-seleccion">
+                            <p class="etiqueta">Doctor</p>
+                            <h4>Dra. Sarah Jenkins</h4>
+                        </div>
+                        <i class="fa-solid fa-circle-check icono-check"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="columna-derecha">
+            <div class="tarjeta-resumen-final">
+                <div class="cabecera-resumen-final">
+                    <h3>Resumen de la Cita</h3>
+                    <p>Revisa los detalles de tu reserva</p>
+                </div>
+                <div class="cuerpo-resumen-final">
+                    <div class="fila-total">
+                        <span>Monto Total</span>
+                        <span class="texto-total-azul">$141.75</span>
+                    </div>
+                    <button class="btn-confirmar"><i class="fa-regular fa-circle-check"></i> Confirmar Cita</button>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
