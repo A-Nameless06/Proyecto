@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Directorio de Doctores | Centro Medico R.A.S.A</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+        extend: {
+            colors: {
+            "surface-bright": "#f7f9fc",
+            "surface-container": "#eceef1",
+            "secondary-fixed-dim": "#afc8f1",
+            "error": "#ba1a1a",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#d4e3ff",
+            "on-secondary-fixed-variant": "#2f486a",
+            "on-tertiary-container": "#fffeff",
+            "on-tertiary": "#ffffff",
+            "surface": "#f7f9fc",
+            "surface-dim": "#d8dadd",
+            "primary-fixed": "#d4e3ff",
+            "error-container": "#ffdad6",
+            "outline": "#717783",
+            "on-surface": "#191c1e",
+            "inverse-surface": "#2d3133",
+            "surface-container-highest": "#e0e3e6",
+            "on-primary-fixed": "#001c3a",
+            "primary-container": "#1976d2",
+            "on-background": "#191c1e",
+            "surface-container-low": "#f2f4f7",
+            "inverse-on-surface": "#eff1f4",
+            "tertiary-fixed": "#ffdbc7",
+            "tertiary": "#944700",
+            "on-secondary-container": "#425b7f",
+            "surface-tint": "#005faf",
+            "primary": "#005dac",
+            "tertiary-fixed-dim": "#ffb688",
+            "secondary-container": "#bad3fd",
+            "on-error": "#ffffff",
+            "tertiary-container": "#ba5b00",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "on-surface-variant": "#414752",
+            "on-primary-fixed-variant": "#004786",
+            "inverse-primary": "#a5c8ff",
+            "surface-container-high": "#e6e8eb",
+            "primary-fixed-dim": "#a5c8ff",
+            "surface-variant": "#e0e3e6",
+            "on-primary": "#ffffff",
+            "outline-variant": "#c1c6d4",
+            "on-primary-container": "#fffdff",
+            "on-tertiary-fixed-variant": "#733600",
+            "on-secondary-fixed": "#001c3a",
+            "secondary": "#475f84",
+            "on-tertiary-fixed": "#311300",
+            "background": "#f7f9fc"
+            },
+            fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            },
+        },
+    }
+    </script>
+    <style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .glass-nav {
+        background: rgba(247, 249, 252, 0.8);
+        backdrop-filter: blur(20px);
+    }
+
+    .asymmetric-grid-item:nth-child(even) {
+        margin-top: 3rem;
+    }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+
+<body class="bg-surface font-body text-on-surface antialiased">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm">
+        <div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+        <div class="text-2xl font-bold tracking-tighter text-blue-800 font-headline"><button onclick="inicio()"> Centro Medico R.A.S.A </button></div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-slate-600 hover:text-blue-600 transition-colors font-manrope tracking-tight text-sm font-semibold" href="/">Servicios</a>
+            <a class="text-slate-600 hover:text-blue-600 transition-colors font-manrope tracking-tight text-sm font-semibold" href="especialidades">Especialidades</a>
+            <a class="text-blue-700 border-b-2 border-blue-700 pb-1 font-manrope tracking-tight text-sm font-semibold" href="doctores">Doctores</a>
+            <a class="text-slate-600 hover:text-blue-600 transition-colors font-manrope tracking-tight text-sm font-semibold" href="contacto">Contacto</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface font-semibold text-sm hover:scale-105 transition-transform duration-200 active:opacity-80" onclick="inicioSesion()">Iniciar Sesión</button>
+            <button class="px-6 py-2 rounded-full bg-primary text-on-primary font-semibold text-sm hover:scale-105 transition-transform duration-200 active:opacity-80" onclick="crearCuenta()">Registrarse</button>
+        </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24">
+    <!-- Hero Section -->
+    <header class="max-w-7xl mx-auto px-8 mb-24">
+        <div class="max-w-3xl">
+            <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">Excelencia Médica</span>
+            <h1 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tight text-on-surface mb-6">Nuestros Especialistas</h1>
+            <p class="text-lg text-on-surface-variant leading-relaxed">Conozca al equipo de profesionales dedicados a su bienestar. Médicos certificados con trayectoria internacional en un entorno diseñado para su tranquilidad.</p>
+        </div>
+    </header>
+
+    <!-- Search & Filter Bar -->
+    <section class="max-w-7xl mx-auto px-8 mb-16">
+        <div class="bg-surface-container-low p-6 rounded-full flex flex-col md:flex-row items-center gap-6">
+            <div class="relative flex-grow w-full">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+            <input class="w-full pl-12 pr-4 py-3 bg-surface-container-lowest rounded-full border-none focus:ring-2 focus:ring-primary focus:ring-opacity-20 transition-all text-sm" placeholder="Buscar por nombre o especialidad..." type="text">
+            </div>
+            <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto no-scrollbar pb-2 md:pb-0">
+            <button class="whitespace-nowrap px-6 py-2 rounded-full bg-primary text-on-primary text-sm font-semibold">Todos</button>
+            <button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-colors text-sm font-medium">Cardiología</button>
+            <button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-colors text-sm font-medium">Neurología</button>
+            <button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-colors text-sm font-medium">Pediatría</button>
+            <button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-colors text-sm font-medium">Dermatología</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Grid -->
+    <section class="max-w-7xl mx-auto px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+            <!-- Doctor Card 1 -->
+            <div class="group">
+            <div class="relative mb-8">
+                <div class="aspect-[4/5] rounded-[3rem] overflow-hidden bg-surface-container-high shadow-xl shadow-primary/5">
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="professional portrait of a senior male doctor with grey hair in a clean clinical setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC10ptK02k84fWnHPGnaZVaB4gFBhY62FqnZbiaC8-hjgXxsaMD5GwYWYjUT27QOtbnAooUKSX_DJgGY55P4dP37mi4iUOPl9RVvkm0yBM-fx73Ak4vLRsdD_YqsgXTmVUUC_AtR5K_aQf7K6gaB02bCbcZWvETl5RgUDuGif3_Sf_7ClS4cvcWS4uGkC5V-W92D1WJCRcmXKy9I2b3D9M07ShlNFjlSBBL3CIz5yu3zloBMzZcCHqu4b7AEhoRipKVXIeaKg8YDg">
+                </div>
+                <div class="absolute -bottom-4 -right-4 bg-tertiary-container text-on-tertiary-container px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Top Rated</div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface">Dr. Alejandro Varela</h3>
+                    <p class="text-primary font-semibold text-sm">Cardiología Intervencionista</p>
+                </div>
+                <span class="flex items-center gap-1 text-tertiary font-bold text-sm">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    4.9
+                </span>
+                </div>
+                <div class="flex items-center gap-4 text-on-surface-variant text-sm">
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">history</span>
+                    15 años de exp.
+                </span>
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">location_on</span>
+                    Piso 4, Cons. 402
+                </span>
+                </div>
+                <button class="w-full mt-6 py-4 rounded-full bg-primary text-on-primary font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/10" onclick="crearCuenta()">Agendar Cita</button>
+            </div>
+            </div>
+
+        <!-- Doctor Card 2 -->
+        <div class="group asymmetric-grid-item">
+            <div class="relative mb-8">
+                <div class="aspect-[4/5] rounded-[3rem] overflow-hidden bg-surface-container-high shadow-xl shadow-primary/5">
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="portrait of a confident female doctor with short dark hair wearing a white lab coat in a bright modern medical office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_xzRPuiYEUmq8Q7voS_1SAcjh_F16UkB-7FYU1nEpkom-A_DIrOosYqtkTWJzioi_z0iEpEvwvxE7OmBULKD3E8Afg2hXFVhh5_G6MrHEBp61TyCT5SAEHujqy7VlJr9vjs_clXJ12JklIyS6WrfWNbcZXemCRpfldjkwJTN05tUlMmEVMHv1MwEbI6si5bl3hX3lYxKngggt6v_nw2EwR6qgrOgKDbrp0jp5HpiVosNsbiccAY9P2H_55UdZZqBY4FrNU-JeoA">
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface">Dra. Elena Santamaría</h3>
+                    <p class="text-primary font-semibold text-sm">Neurología Clínica</p>
+                </div>
+                <span class="flex items-center gap-1 text-tertiary font-bold text-sm">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    5.0
+                </span>
+                </div>
+                <div class="flex items-center gap-4 text-on-surface-variant text-sm">
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">history</span>
+                    12 años de exp.
+                </span>
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">location_on</span>
+                    Piso 2, Cons. 215
+                </span>
+                </div>
+                <button class="w-full mt-6 py-4 rounded-full bg-primary text-on-primary font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/10" onclick="crearCuenta()">Agendar Cita</button>
+            </div>
+        </div>
+
+        <!-- Doctor Card 3 -->
+        <div class="group">
+            <div class="relative mb-8">
+                <div class="aspect-[4/5] rounded-[3rem] overflow-hidden bg-surface-container-high shadow-xl shadow-primary/5">
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="portrait of a friendly middle-aged male doctor smiling with a stethoscope around his neck in a soft lit clinic environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHeGZnc8uEJziHvpH-_F1y7-SNzmwn9MxawRT-PUqyyXIWXFKEbcVCbGatWMClxf5Xfwj4dL-97k9YcwAgYDD3Uimd_cz_ImKfpCzudkVWWqUxGqJA1vA_sJ__cM87looqMAewka1NHk67c2f9X3y9NeM7RUVsvDKtllYC2o-d_qwZcAIU-wKhkfVyfBqhakIM__YXELTguv5pv7_lJQfLcJMa0pd391gG1OZpQLIdf6rqLXcLED5V_1YGAc8dDTyg5L69SolquA">
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface">Dr. Roberto Solano</h3>
+                    <p class="text-primary font-semibold text-sm">Pediatría Integral</p>
+                </div>
+                <span class="flex items-center gap-1 text-tertiary font-bold text-sm">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    4.8
+                </span>
+                </div>
+                <div class="flex items-center gap-4 text-on-surface-variant text-sm">
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">history</span>
+                    20 años de exp.
+                </span>
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">location_on</span>
+                    Piso 3, Cons. 308
+                </span>
+                </div>
+                <button class="w-full mt-6 py-4 rounded-full bg-primary text-on-primary font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/10" onclick="crearCuenta()">Agendar Cita</button>
+            </div>
+        </div>
+
+        <!-- Doctor Card 4 -->
+        <div class="group">
+            <div class="relative mb-8">
+                <div class="aspect-[4/5] rounded-[3rem] overflow-hidden bg-surface-container-high shadow-xl shadow-primary/5">
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="portrait of a focused female medical specialist in a clean white laboratory environment with clinical blue accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvR8uVVaoKrDFtzDhI_avHLRJ0h5_Sjz9cdxCcSRx2wZ9jPThAeRjPelVgOWsoZVnIBl77Y-013OtR73vHOwB_2UmDcK7qc3KX6vOnQvDXa52u536rNvP98FHDPaioOhcCviVydVB0G6olziX__sLVQ6Ug_KLtZgkYSFPmlQr0KAJjieGqhQdtKW2-Al64QiQq5uov-v4r4o0xn-vLv6PGgGyNd0ZS-EuD3uiP2I6jrSqBE41mip5un24u5x63x1gAE-_FmD5v1A">
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface">Dra. Claudia Méndez</h3>
+                    <p class="text-primary font-semibold text-sm">Dermatología Estética</p>
+                </div>
+                <span class="flex items-center gap-1 text-tertiary font-bold text-sm">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    4.9
+                </span>
+                </div>
+                <div class="flex items-center gap-4 text-on-surface-variant text-sm">
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">history</span>
+                    8 años de exp.
+                </span>
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">location_on</span>
+                    Piso 1, Cons. 105
+                </span>
+                </div>
+                <button class="w-full mt-6 py-4 rounded-full bg-primary text-on-primary font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/10" onclick="crearCuenta()">Agendar Cita</button>
+            </div>
+        </div>
+
+        <!-- Doctor Card 5 -->
+        <div class="group asymmetric-grid-item">
+            <div class="relative mb-8">
+                <div class="aspect-[4/5] rounded-[3rem] overflow-hidden bg-surface-container-high shadow-xl shadow-primary/5">
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="young male doctor with glasses and medical attire in a bright contemporary clinic background with natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCADJG0E52Taweny-uoto14zTZcbfIlWmwgGItgI1EcqVlNR6w4hbLlxRuBYfQORr3KgVfgXGh5glHHRR-wNOpkWd7gIbtFBevcSCDbXXt9zIaUPN9V0grCv4L0qiWRB5sJUgjX13e56iYAxAWrsaB45qgjWJmoBMfU99I-5fdGuqWAxXXb85HIu8V71aouh0SZJhnNNmIHkTmFpObCZsq0qJVzUXF2i1gOYitjFMY4PuXJg-bKYCyssa4OekqYnR7WwdvoPVdqfQ">
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface">Dr. Julian Ortega</h3>
+                    <p class="text-primary font-semibold text-sm">Medicina Interna</p>
+                </div>
+                <span class="flex items-center gap-1 text-tertiary font-bold text-sm">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    4.7
+                </span>
+                </div>
+                <div class="flex items-center gap-4 text-on-surface-variant text-sm">
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">history</span>
+                    10 años de exp.
+                </span>
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">location_on</span>
+                    Piso 2, Cons. 220
+                </span>
+                </div>
+                <button class="w-full mt-6 py-4 rounded-full bg-primary text-on-primary font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/10" onclick="crearCuenta()">Agendar Cita</button>
+            </div>
+        </div>
+
+        <!-- Doctor Card 6 -->
+        <div class="group">
+            <div class="relative mb-8">
+                <div class="aspect-[4/5] rounded-[3rem] overflow-hidden bg-surface-container-high shadow-xl shadow-primary/5">
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="portrait of a serene female doctor in a light blue medical uniform in a high-end minimalist hospital environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBukr1mmA3bVE7qtHRe-a5mZPnZLxBL_SiZQPxFa2FLCVNoYJSZLwPy9CNUu_EB9O7atGnWYHDJ80MW7GEQxA29cTMUW1i0SbXVUUoS0Gs6oWoLiUC74s3HWlYbTe694sFiJwAUX0aNvyodRjs_FVTV_UWmT-qie6SrN4yi92eAm8WfVVEBUTU1YI0ZAd_NaA-3IdFYXdDxH8FbU-oaUIUP-xCBiMSP0OxyxMTxhgH3s0LJjFOJc7smQMLg_sO9KpiX2RqMszFtNg">
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-headline text-2xl font-bold text-on-surface">Dra. Isabela Ruiz</h3>
+                    <p class="text-primary font-semibold text-sm">Ginecología y Obstetricia</p>
+                </div>
+                <span class="flex items-center gap-1 text-tertiary font-bold text-sm">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    4.9
+                </span>
+                </div>
+                <div class="flex items-center gap-4 text-on-surface-variant text-sm">
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">history</span>
+                    18 años de exp.
+                </span>
+                <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">location_on</span>
+                    Piso 5, Cons. 510
+                </span>
+                </div>
+                <button class="w-full mt-6 py-4 rounded-full bg-primary text-on-primary font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/10" onclick="crearCuenta()">Agendar Cita</button>
+            </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-100 dark:bg-slate-950 py-12 px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+            <div class="space-y-6">
+                <div class="text-xl font-bold text-slate-800 dark:text-slate-200 font-headline">
+                    Centro Medico R.A.S.A
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Comprometidos con la salud de nuestra comunidad a través de la innovación y la excelencia médica.
+                </p>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Enlaces Rápidos</h5>
+                <ul class="space-y-3">
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="auth/login">Portal del Paciente</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="/">inicio</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="doctores">doctores</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="especialidades">especialidad</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="contacto">contacto</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Legal</h5>
+                <ul class="space-y-3">
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="privacidad">Términos de Servicio</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="soporte">Soporte</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Contacto</h5>
+                <p class="text-slate-500 text-sm">
+                    Av. Principal Salud #123<br>
+                    Ciudad de México, México<br>
+                    Tel: +52 (55) 1234-5678
+                </p>
+                <div class="flex gap-4">
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">public</span>
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">medical_services</span>
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">share</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 text-center">
+            <p class="text-slate-500 text-xs font-label">© 2026 Centro Medico R.A.S.A. El Santuario Clínico.</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+
+</html>

@@ -9,3 +9,14 @@ function inicioSesion(){
 function crearCuenta(){
     window.location.href = "auth/registro";
 }
+
+function inicio(){
+    window.location.href = "/";
+}
+
+function doctores(){
+    window.location.href = "/doctores"
+}
+function privacidad(){
+    window.location.href = "/privacidad"
+}

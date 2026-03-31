@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Especialidades | Centro Medico R.A.S.A</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+        extend: {
+            colors: {
+            "surface-bright": "#f7f9fc",
+            "surface-container": "#eceef1",
+            "secondary-fixed-dim": "#afc8f1",
+            "error": "#ba1a1a",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#d4e3ff",
+            "on-secondary-fixed-variant": "#2f486a",
+            "on-tertiary-container": "#fffeff",
+            "on-tertiary": "#ffffff",
+            "surface": "#f7f9fc",
+            "surface-dim": "#d8dadd",
+            "primary-fixed": "#d4e3ff",
+            "error-container": "#ffdad6",
+            "outline": "#717783",
+            "on-surface": "#191c1e",
+            "inverse-surface": "#2d3133",
+            "surface-container-highest": "#e0e3e6",
+            "on-primary-fixed": "#001c3a",
+            "primary-container": "#1976d2",
+            "on-background": "#191c1e",
+            "surface-container-low": "#f2f4f7",
+            "inverse-on-surface": "#eff1f4",
+            "tertiary-fixed": "#ffdbc7",
+            "tertiary": "#944700",
+            "on-secondary-container": "#425b7f",
+            "surface-tint": "#005faf",
+            "primary": "#005dac",
+            "tertiary-fixed-dim": "#ffb688",
+            "secondary-container": "#bad3fd",
+            "on-error": "#ffffff",
+            "tertiary-container": "#ba5b00",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "on-surface-variant": "#414752",
+            "on-primary-fixed-variant": "#004786",
+            "inverse-primary": "#a5c8ff",
+            "surface-container-high": "#e6e8eb",
+            "primary-fixed-dim": "#a5c8ff",
+            "surface-variant": "#e0e3e6",
+            "on-primary": "#ffffff",
+            "outline-variant": "#c1c6d4",
+            "on-primary-container": "#fffdff",
+            "on-tertiary-fixed-variant": "#733600",
+            "on-secondary-fixed": "#001c3a",
+            "secondary": "#475f84",
+            "on-tertiary-fixed": "#311300",
+            "background": "#f7f9fc"
+            },
+            fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            },
+        },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-nav {
+        background: rgba(247, 249, 252, 0.8);
+        backdrop-filter: blur(20px);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+        display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm">
+        <nav class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+        <div class="text-2xl font-bold tracking-tighter text-blue-800 font-headline">
+            <button onclick="inicio()"> Centro Medico R.A.S.A </button>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="font-manrope tracking-tight text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors" href="/">Servicios</a>
+            <a class="font-manrope tracking-tight text-sm font-semibold text-blue-700 border-b-2 border-blue-700 pb-1" href="especialidades">Especialidades</a>
+            <a class="font-manrope tracking-tight text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors" href="doctores">Doctores</a>
+            <a class="font-manrope tracking-tight text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors" href="contacto">Contacto</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="font-manrope tracking-tight text-sm font-semibold px-4 py-2 rounded-full bg-surface-container-highest text-on-surface hover:scale-105 transition-all active:opacity-80">Iniciar Sesión</button>
+            <button class="font-manrope tracking-tight text-sm font-semibold px-6 py-2 rounded-full bg-primary text-on-primary hover:scale-105 transition-all active:opacity-80 shadow-md">Registrarse</button>
+        </div>
+        </nav>
+    </header>
+
+    <main class="pt-32 pb-24">
+        <!-- Hero Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-24">
+        <div class="max-w-3xl">
+            <span class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wider text-tertiary bg-tertiary-fixed rounded-full">
+            Excelencia Médica
+            </span>
+            <h1 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter text-on-surface mb-8 leading-[1.1]">
+            Especialidades <br><span class="text-primary">Centradas en Ti.</span>
+            </h1>
+            <p class="text-xl text-on-surface-variant leading-relaxed mb-12">
+            En el Centro Médico R.A.S.A., combinamos tecnología de vanguardia con un trato humano excepcional. Descubre nuestra red de especialistas dedicados a tu bienestar integral.
+            </p>
+            <div class="relative w-full max-w-xl h-[400px] rounded-3xl overflow-hidden bg-surface-container-low group">
+            <img alt="Interior del centro médico" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Interior of a modern high-end medical center with natural lighting large windows soft plants and clean architectural lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJXmVqn9AL0vDntPPhK0jUeo4rQqMHMTQIOuc_m8j0oQL53TZI14j3T549DQy4XPA7kq2WjojP_UEic9e7gNO5fcV2Z2_im6vx2pQdYfoJ10MMHaZ_oMcCakx7HisJ_Ba4lPqF2Zabco-yp_y7xLT13a-wxDlFneSV1LQCx_LOjznlFCtswH7isXrvP6S4cbSyag1KPuj_39ex5hlJrFZDA8bMZPs2vdKNuV3gyMoWKixuBkP7hAv2HM1KnnasMK8ZNhWzb4jJYw">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Specialties Bento Grid -->
+        <section class="max-w-7xl mx-auto px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cardiology -->
+            <div class="group bg-surface-container-lowest rounded-[2rem] p-8 flex flex-col justify-between hover:shadow-[0_20px_40px_rgba(0,93,172,0.06)] transition-all duration-500 border border-transparent hover:border-outline-variant/15">
+            <div>
+                <div class="w-14 h-14 bg-primary-container/10 rounded-2xl flex items-center justify-center mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl" data-icon="cardiology">cardiology</span>
+                </div>
+                <h3 class="font-headline text-2xl font-bold mb-4">Cardiología</h3>
+                <p class="text-on-surface-variant leading-relaxed mb-8">Cuidado avanzado del corazón con diagnóstico por imagen y tratamientos mínimamente invasivos.</p>
+            </div>
+            <button class="w-full py-4 px-6 rounded-full bg-surface-container-highest text-on-surface font-semibold flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-on-primary transition-colors" onclick="doctores()">
+                Ver Doctores
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+            </div>
+
+            <!-- Pediatrics -->
+            <div class="group bg-surface-container-lowest rounded-[2rem] p-8 flex flex-col justify-between hover:shadow-[0_20px_40px_rgba(0,93,172,0.06)] transition-all duration-500 border border-transparent hover:border-outline-variant/15">
+            <div>
+                <div class="w-14 h-14 bg-primary-container/10 rounded-2xl flex items-center justify-center mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl" data-icon="child_care">child_care</span>
+                </div>
+                <h3 class="font-headline text-2xl font-bold mb-4">Pediatría</h3>
+                <p class="text-on-surface-variant leading-relaxed mb-8">Atención integral para el crecimiento y desarrollo saludable de los más pequeños de la familia.</p>
+            </div>
+            <button class="w-full py-4 px-6 rounded-full bg-surface-container-highest text-on-surface font-semibold flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-on-primary transition-colors" onclick="doctores()">
+                Ver Doctores
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+            </div>
+
+            <!-- Neurology -->
+            <div class="group bg-surface-container-lowest rounded-[2rem] p-8 flex flex-col justify-between hover:shadow-[0_20px_40px_rgba(0,93,172,0.06)] transition-all duration-500 border border-transparent hover:border-outline-variant/15">
+            <div>
+                <div class="w-14 h-14 bg-primary-container/10 rounded-2xl flex items-center justify-center mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl" data-icon="neurology">neurology</span>
+                </div>
+                <h3 class="font-headline text-2xl font-bold mb-4">Neurología</h3>
+                <p class="text-on-surface-variant leading-relaxed mb-8">Especialistas en trastornos del sistema nervioso, epilepsia y manejo avanzado del dolor.</p>
+            </div>
+            <button class="w-full py-4 px-6 rounded-full bg-surface-container-highest text-on-surface font-semibold flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-on-primary transition-colors" onclick="doctores()">
+                Ver Doctores
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+            </div>
+
+            <!-- Traumatology -->
+            <div class="group bg-surface-container-lowest rounded-[2rem] p-8 flex flex-col justify-between hover:shadow-[0_20px_40px_rgba(0,93,172,0.06)] transition-all duration-500 border border-transparent hover:border-outline-variant/15">
+            <div>
+                <div class="w-14 h-14 bg-primary-container/10 rounded-2xl flex items-center justify-center mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl" data-icon="orthopedics">orthopedics</span>
+                </div>
+                <h3 class="font-headline text-2xl font-bold mb-4">Traumatología</h3>
+                <p class="text-on-surface-variant leading-relaxed mb-8">Recuperación de la movilidad mediante ortopedia avanzada y rehabilitación deportiva personalizada.</p>
+            </div>
+            <button class="w-full py-4 px-6 rounded-full bg-surface-container-highest text-on-surface font-semibold flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-on-primary transition-colors" onclick="doctores()">
+                Ver Doctores
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+            </div>
+
+            <!-- Oncology -->
+            <div class="group bg-surface-container-lowest rounded-[2rem] p-8 flex flex-col justify-between hover:shadow-[0_20px_40px_rgba(0,93,172,0.06)] transition-all duration-500 border border-transparent hover:border-outline-variant/15">
+            <div>
+                <div class="w-14 h-14 bg-primary-container/10 rounded-2xl flex items-center justify-center mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl" data-icon="medical_services">medical_services</span>
+                </div>
+                <h3 class="font-headline text-2xl font-bold mb-4">Oncología</h3>
+                <p class="text-on-surface-variant leading-relaxed mb-8">Tratamientos oncológicos de precisión con un enfoque holístico y soporte emocional continuo.</p>
+            </div>
+            <button class="w-full py-4 px-6 rounded-full bg-surface-container-highest text-on-surface font-semibold flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-on-primary transition-colors" onclick="doctores()">
+                Ver Doctores
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+            </div>
+
+            <!-- Dermatology -->
+            <div class="group bg-surface-container-lowest rounded-[2rem] p-8 flex flex-col justify-between hover:shadow-[0_20px_40px_rgba(0,93,172,0.06)] transition-all duration-500 border border-transparent hover:border-outline-variant/15">
+            <div>
+                <div class="w-14 h-14 bg-primary-container/10 rounded-2xl flex items-center justify-center mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl" data-icon="dermatology">dermatology</span>
+                </div>
+                <h3 class="font-headline text-2xl font-bold mb-4">Dermatología</h3>
+                <p class="text-on-surface-variant leading-relaxed mb-8">Cuidado experto de la piel, desde dermatología clínica hasta procedimientos estéticos avanzados.</p>
+            </div>
+            <button class="w-full py-4 px-6 rounded-full bg-surface-container-highest text-on-surface font-semibold flex items-center justify-center gap-2 group-hover:bg-primary group-hover:text-on-primary transition-colors" onclick="doctores()">
+                Ver Doctores
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+            </div>
+        </div>
+        </section>
+
+        <!-- Featured Section with Asymmetry -->
+        <section class="mt-24 bg-surface-container-low py-32">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+            <div class="absolute -top-12 -left-12 w-64 h-64 bg-primary-container/5 rounded-full blur-3xl"></div>
+            <img alt="Dra. Elena Martinez" class="w-full h-[600px] object-cover rounded-[4rem] shadow-xl relative z-10" data-alt="Modern professional portrait of a female doctor in her 40s smiling with soft lighting in a high-end medical office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaogQBcY8KOZhdvOIQ2UWeiUMwZOQHVTLe9fKxS5SWP1Byg6EWzNiqfXoJbJgWAYLdS6Hy1WOR2HNLPzjy-R_wTi7p8GijR5kJq_dwTtQVGPmbYJP9D484_WpDp-U1oRf5WS3FVZOhDgLtIHK6kN7sttAnGwRrqjmSSOWNOzAZbvYJWhwFcTgW1rA5awLu543UHFavPo5AjeayadA3E3i4Xy1AVK1mPIUOdtL-j0OEqsJpmyAhOVaDRpDkxoTDXAOiDuxVtfxkzg">
+            </div>
+            <div>
+            <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-8 leading-tight">Nuestra Metodología<br>Es Tu Seguridad</h2>
+            <div class="space-y-12">
+                <div class="flex gap-6">
+                <div class="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-primary" data-icon="microscope">magnification_small</span>
+                </div>
+                <div>
+                    <h4 class="font-headline text-xl font-bold mb-2">Diagnóstico Preciso</h4>
+                    <p class="text-on-surface-variant">Utilizamos tecnología de última generación para asegurar la exactitud de cada evaluación.</p>
+                </div>
+                </div>
+                <div class="flex gap-6">
+                <div class="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+                </div>
+                <div>
+                    <h4 class="font-headline text-xl font-bold mb-2">Enfoque Multidisciplinario</h4>
+                    <p class="text-on-surface-variant">Nuestros especialistas colaboran estrechamente para ofrecerte planes de tratamiento integrales.</p>
+                </div>
+                </div>
+                <div class="flex gap-6">
+                <div class="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-primary" data-icon="health_and_safety">health_and_safety</span>
+                </div>
+                <div>
+                    <h4 class="font-headline text-xl font-bold mb-2">Seguimiento Post-Consulta</h4>
+                    <p class="text-on-surface-variant">Tu salud no termina al salir del consultorio. Mantenemos un canal abierto para tu recuperación.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-100 dark:bg-slate-950 py-12 px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+            <div class="space-y-6">
+                <div class="text-xl font-bold text-slate-800 dark:text-slate-200 font-headline">
+                    Centro Medico R.A.S.A
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Comprometidos con la salud de nuestra comunidad a través de la innovación y la excelencia médica.
+                </p>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Enlaces Rápidos</h5>
+                <ul class="space-y-3">
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="auth/login">Portal del Paciente</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="/">inicio</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="doctores">doctores</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="especialidades">especialidad</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="contacto">contacto</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Legal</h5>
+                <ul class="space-y-3">
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="privacidad">Términos de Servicio</a></li>
+                    <li><a class="text-slate-500 hover:text-blue-500 text-sm transition-colors" href="soporte">Soporte</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h5 class="font-bold text-slate-800 dark:text-slate-200">Contacto</h5>
+                <p class="text-slate-500 text-sm">
+                    Av. Principal Salud #123<br>
+                    Ciudad de México, México<br>
+                    Tel: +52 (55) 1234-5678
+                </p>
+                <div class="flex gap-4">
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">public</span>
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">medical_services</span>
+                    <span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">share</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 text-center">
+            <p class="text-slate-500 text-xs font-label">© 2026 Centro Medico R.A.S.A. El Santuario Clínico.</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+
+</html>

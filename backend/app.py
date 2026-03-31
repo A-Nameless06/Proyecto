@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect
 from routes.auth import auth_bp
 from routes.citas import citas_bp
 from routes.dashboard import dashboard_bp
+from routes.index import index_bp
 from datetime import timedelta
 from utils.decorador import login_requerido, rol_requerido
 
@@ -13,6 +14,7 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(citas_bp)
     app.register_blueprint(dashboard_bp)
+    app.register_blueprint(index_bp)
 
     @app.route("/")
     def index():
