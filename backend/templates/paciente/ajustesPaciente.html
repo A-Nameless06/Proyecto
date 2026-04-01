@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes de Cuenta - Centro Médico R.A.S.A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion">
+        <div class="marca">
+            <i class="fa-solid fa-briefcase-medical icono-marca"></i>
+            <strong>Centro Médico<br>R.A.S.A</strong>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="inicioPaciente.html">Panel</a></li>
+            <li><a href="citasPaciente.html">Citas</a></li>
+            <li><a href="historialPaciente.html">Historial</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <i class="fa-solid fa-bell icono-accion"></i>
+            <i class="fa-solid fa-gear icono-accion activo-icono"></i>
+            <div class="info-usuario">
+                <strong>Juan Perez</strong>
+                <span>ID: P-99824021</span>
+            </div>
+            <a href="perfilPaciente.html" style="text-decoration: none;">
+                <div class="avatar fondo-naranja">J</div>
+            </a>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        <div class="ancho-completo">
+            <div class="migas-pan">
+                Panel <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 4px;"></i> <span class="actual">Ajustes</span>
+            </div>
+            <h1 class="titulo-seccion">Configuración de la Cuenta</h1>
+            <p class="subtitulo-seccion">Administra tus preferencias de notificaciones y comunicación.</p>
+
+            <div class="layout-ajustes">
+                
+                <aside class="sidebar-ajustes tarjeta-base">
+                    <ul class="menu-ajustes-lista">
+                        <li>
+                            <button class="btn-ajuste activo">
+                                <i class="fa-regular fa-bell"></i> Notificaciones
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn-ajuste">
+                                <i class="fa-solid fa-globe"></i> Idioma y Región
+                            </button>
+                        </li>
+                    </ul>
+                </aside>
+
+                <div class="contenido-ajustes">
+                    
+                    <section class="tarjeta-base seccion-ajuste">
+                        <div class="cabecera-ajuste">
+                            <h3>Preferencias de Notificaciones</h3>
+                            <p>Elige cómo y cuándo quieres que te contactemos.</p>
+                        </div>
+                        
+                        <div class="lista-opciones-switch">
+                            
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Recordatorios de Citas</strong>
+                                    <span>Recibe un mensaje 24 horas antes de tu consulta médica.</span>
+                                </div>
+                                <label class="interruptor">
+                                    <input type="checkbox" checked>
+                                    <span class="deslizador redondo"></span>
+                                </label>
+                            </div>
+
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Resultados de Laboratorio</strong>
+                                    <span>Te avisaremos por correo cuando tus resultados estén listos.</span>
+                                </div>
+                                <label class="interruptor">
+                                    <input type="checkbox" checked>
+                                    <span class="deslizador redondo"></span>
+                                </label>
+                            </div>
+
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Boletín de Salud y Promociones</strong>
+                                    <span>Información sobre campañas de vacunación y chequeos anuales.</span>
+                                </div>
+                                <label class="interruptor">
+                                    <input type="checkbox">
+                                    <span class="deslizador redondo"></span>
+                                </label>
+                            </div>
+
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Alertas por SMS</strong>
+                                    <span>Recibir notificaciones urgentes o cambios de horario directo a tu teléfono.</span>
+                                </div>
+                                <label class="interruptor">
+                                    <input type="checkbox" checked>
+                                    <span class="deslizador redondo"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

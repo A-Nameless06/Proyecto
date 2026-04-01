@@ -6,24 +6,30 @@
     <title>Agendar Nueva Cita</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <!--Eliminar cuando se termine la ruta-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
 </head>
 <body>
 
-    <header class="encabezado">
-        <div class="contenedor-logo-nav">
-            <div class="logo"><i class="fa-solid fa-briefcase-medical"></i> Centro Medico R.A.S.A</div>
-            <nav class="enlaces-nav">
-                <a href="inicioPaciente.html">Panel</a>
-                <a href="#" class="activo">Citas</a>
-                <a href="historialPaciente.html">Historial</a>
-            </nav>
+    <nav class="barra-navegacion">
+        <div class="marca">
+            <i class="fa-solid fa-briefcase-medical icono-marca"></i>
+            <strong>Centro Médico<br>R.A.S.A</strong>
         </div>
+        
+        <ul class="menu-principal">
+            <li><a href="inicioPaciente.html">Panel</a></li>
+            <li class="activo"><a href="#">Citas</a></li>
+            <li><a href="historialPaciente.html">Expediente</a></li>
+        </ul>
 
-            <div class="avatar-usuario" title="Mi Perfil">S</div>
+        <div class="perfil-usuario">
+            <div class="info-usuario">
+                <strong>Paciente</strong>
+                <span>ID: P-99824021</span>
+            </div>
+            <div class="avatar fondo-naranja">S</div>
         </div>
-    </header>
+    </nav>
 
     <main class="contenedor-principal">
         

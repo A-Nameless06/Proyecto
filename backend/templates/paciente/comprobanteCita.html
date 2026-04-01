@@ -3,154 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprobante de Cita - Portal Médico</title>
-    <link rel="stylesheet" href="style.css"> <!--Eliminar cuando se termine la ruta-->
+    <title>Comprobante de Cita - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: var(--fondo-gris);">
+<body>
 
-    <header class="header-comprobante">
-        <div class="logo-portal">
-            <span class="material-icons">medical_services</span>
-            Centro Medico R.A.S.A
+    <nav class="barra-navegacion">
+        <div class="marca">
+            <span class="material-icons icono-marca">medical_services</span>
+            <strong>Centro Médico<br>R.A.S.A</strong>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#" class="active">Citas</a></li>
-                <li><a href="#">Expediente</a></li>
-                <li><a href="#">Pagos</a></li>
-            </ul>
-        </nav>
-        <div class="header-actions">
-            <span class="material-icons">notifications</span>
-            <span class="material-icons">settings</span>
-            <div class="profile-pic">AT</div>
-        </div>
-    </header>
+        
+        <ul class="menu-principal">
+            <li><a href="#">Inicio</a></li>
+            <li class="activo"><a href="#">Citas</a></li>
+            <li><a href="#">Expediente</a></li>
+        </ul>
 
-    <main class="main-comprobante">
-        <div class="title-folio-section">
+        <div class="perfil-usuario">
+            <div class="info-usuario">
+                <strong>Juan Perez</strong>
+                <span>Paciente | ID: P-99824021</span>
+            </div>
+            <div class="avatar fondo-naranja">JP</div>
+        </div>
+    </nav>
+
+    <main class="principal-comprobante">
+        <div class="seccion-titulo-folio">
             <div>
                 <h1>Comprobante de Cita</h1>
-                <p class="folio">Folio #HOSP-2023-8842</p>
+                <p class="texto-folio">Folio #HOSP-2023-8842</p>
             </div>
-            <div class="receipt-actions">
-                <a href="#" class="btn-receipt btn-primary">
+            <div class="acciones-comprobante">
+                <a href="#" class="btn-primario btn-imprimir">
                     <span class="material-icons">print</span> Imprimir
                 </a>
             </div>
         </div>
 
-        <div class="receipt-card">
-            <div class="card-header">
-                <div class="header-left">
-                    <div class="calendar-icon-container">
+        <div class="tarjeta-comprobante">
+            <div class="cabecera-tarjeta">
+                <div class="cabecera-izquierda">
+                    <div class="contenedor-icono-calendario">
                         <span class="material-icons">calendar_today</span>
                     </div>
                     <div>
-                        <p class="receipt-main-title">COMPROBANTE DE CITA MÉDICA</p>
-                        <p class="receipt-sub-title">Sistema de Gestión Hospitalaria General</p>
+                        <p class="titulo-principal-comprobante">COMPROBANTE DE CITA MÉDICA</p>
+                        <p class="subtitulo-comprobante">Sistema de Gestión Hospitalaria General</p>
                     </div>
                 </div>
-                <div class="header-right">
-                    <span class="folio-label">FOLIO</span>
-                    <p class="folio-number-big">HOSP-2023-8842</p>
+                <div class="cabecera-derecha">
+                    <span class="etiqueta-folio">FOLIO</span>
+                    <p class="numero-folio-grande">HOSP-2023-8842</p>
                 </div>
             </div>
 
-            <div class="card-body">
-                <div class="row-patient-date">
-                    <div class="patient-info">
-                        <p class="data-label">PACIENTE</p>
-                        <p class="data-value">Juan Perez</p>
-                        <p class="patient-id">ID Paciente: P-99824021</p>
+            <div class="cuerpo-tarjeta">
+                <div class="fila-paciente-fecha">
+                    <div class="info-paciente">
+                        <p class="etiqueta-dato">PACIENTE</p>
+                        <p class="valor-dato">Juan Perez</p>
+                        <p class="id-paciente">ID Paciente: P-99824021</p>
                     </div>
-                    <div class="date-time-info">
-                        <p class="data-label">FECHA Y HORARIO</p>
-                        <p class="data-value">Lunes, 24 Oct, 2023</p>
-                        <p class="date-time-detailed">10:30 AM — 11:15 AM</p>
+                    <div class="info-fecha-hora">
+                        <p class="etiqueta-dato">FECHA Y HORARIO</p>
+                        <p class="valor-dato">Lunes, 24 Oct, 2023</p>
+                        <p class="fecha-hora-detallada">10:30 AM — 11:15 AM</p>
                     </div>
                 </div>
 
-                <div class="row-details">
-                    <div class="detail-item">
+                <div class="fila-detalles">
+                    <div class="item-detalle">
                         <span class="material-icons">face</span>
                         <div>
-                            <p class="data-label">DOCTOR</p>
-                            <p class="data-value">Dra. Maria Perez</p>
+                            <p class="etiqueta-dato">DOCTOR</p>
+                            <p class="valor-dato">Dra. Maria Perez</p>
                         </div>
                     </div>
-                    <div class="detail-item">
+                    <div class="item-detalle">
                         <span class="material-icons">cardiology</span>
                         <div>
-                            <p class="data-label">ESPECIALIDAD</p>
-                            <p class="data-value">Departamento de<br>Cardiología</p>
+                            <p class="etiqueta-dato">ESPECIALIDAD</p>
+                            <p class="valor-dato">Departamento de<br>Cardiología</p>
                         </div>
                     </div>
-                    <div class="detail-item">
+                    <div class="item-detalle">
                         <span class="material-icons">room</span>
                         <div>
-                            <p class="data-label">CONSULTORIO</p>
-                            <p class="data-value">Sala 402, 4to Piso</p>
+                            <p class="etiqueta-dato">CONSULTORIO</p>
+                            <p class="valor-dato">Sala 402, 4to Piso</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="row-payment">
-                    <div class="payment-info-container">
-                        <div class="payment-icon-container">
+                <div class="fila-pago">
+                    <div class="contenedor-info-pago">
+                        <div class="contenedor-icono-pago">
                             <span class="material-icons">payments</span>
                         </div>
                         <div>
-                            <p class="payment-main-title">Línea de Pago</p>
-                            <p class="payment-sub-title">Cuota por consulta de especialidad</p>
+                            <p class="titulo-principal-pago">Línea de Pago</p>
+                            <p class="subtitulo-pago">Cuota por consulta de especialidad</p>
                         </div>
                     </div>
-                    <div>
-                        <p class="payment-amount">$1,200.00 MXN</p>
-                        <p class="payment-status-pending"><span class="dot-pending"></span> PENDIENTE EN CAJA</p>
+                    <div class="resumen-monto">
+                        <p class="monto-pago">$1,200.00 MXN</p>
+                        <p class="estado-pago-pendiente"><span class="punto-pendiente"></span> PENDIENTE EN CAJA</p>
                     </div>
                 </div>
 
-                <div class="row-important-info">
-                    <div class="info-header-container">
+                <div class="fila-info-importante">
+                    <div class="contenedor-cabecera-info">
                         <span class="material-icons">info</span>
-                        <p class="info-main-title">Información Importante</p>
+                        <p class="titulo-principal-info">Información Importante</p>
                     </div>
-                    <div class="important-points">
-                        <div class="point-item">
+                    <div class="puntos-importantes">
+                        <div class="item-punto">
                             <span class="material-icons">history_toggle_off</span>
                             <div>
-                                <span class="point-title">Límite de Pago (24 hrs):</span> Para garantizar su lugar, el pago debe realizarse al menos 24 horas antes del horario programado de su cita.
+                                <span class="titulo-punto">Límite de Pago (24 hrs):</span> Para garantizar su lugar, el pago debe realizarse al menos 24 horas antes del horario programado de su cita.
                             </div>
                         </div>
-                        <div class="point-item">
+                        <div class="item-punto">
                             <span class="material-icons">cancel_schedule_send</span>
                             <div>
-                                <span class="point-title">Política de Cancelación:</span> Las cancelaciones con menos de 24 horas de antelación estarán sujetas a un cargo administrativo de $250.00 MXN.
+                                <span class="titulo-punto">Política de Cancelación:</span> Las cancelaciones con menos de 24 horas de antelación estarán sujetas a un cargo administrativo de $250.00 MXN.
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card-footer">
+            <div class="pie-tarjeta">
                 <div>
-                    DOCUMENTO GENERADO EL: 20 DE OCT, 2023 A LAS 09:12 AM
+                    DOCUMENTO GENERADO EL: 20 DE OCT, 2026 A LAS 09:12 AM
                     <p style="margin-top: 5px; font-style: italic;">Documento Digital Oficial del Sistema de Salud</p>
                 </div>
-                <div class="barcode">*HOSP-2023-8842*</div>
+                <div class="codigo-barras">*HOSP-2023-8842*</div>
             </div>
         </div>
 
-        <div class="back-button-container">
-            <a href="#" class="btn-outline"><span class="material-icons">arrow_back</span> Volver al Tablero</a>
+        <div class="contenedor-boton-volver">
+            <a href="#" class="btn-contorno"><span class="material-icons">arrow_back</span> Volver al Tablero</a>
         </div>
     </main>
 
-    <footer class="footer-comprobante">
+    <footer class="pie-pagina-comprobante">
         © 2023 Sistema de Gestión Hospitalaria. Todos los derechos reservados.
     </footer>
 
