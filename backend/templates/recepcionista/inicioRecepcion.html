@@ -3,243 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recepción - Centro Médico R.A.S.A</title>
-    <!-- Importamos la fuente moderna desde el CSS, pero los iconos van aquí -->
+    <title>Panel Administrativo - R.A.S.A</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           VARIABLES GLOBALES (TU ROOT EXACTO)
+           ========================================================================== */
+        :root {
+            --primario: #2563eb;          
+            --primario-hover: #1d4ed8;
+            --primario-suave: #eff6ff;    
+            --fondo-app: #f8fafc;         
+            --superficie: #ffffff;        
+            --texto-principal: #0f172a;   
+            --texto-secundario: #64748b;  
+            --borde-suave: #e2e8f0;       
+            --exito: #10b981;
+            --alerta: #f59e0b;
+            --rojo: #ef4444;
+            --sombra-tarjeta: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* BODY EN BLOQUE NORMAL (ESTO ARREGLA EL TRASLAPE) */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--fondo-app);
+            color: var(--texto-principal);
+            display: block; /* Forzamos bloque, nada de flex aquí */
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           BARRA LATERAL (TU CSS INTACTO)
+           ========================================================================== */
+        .barra-lateral {
+            background: white;
+            border-right: 1px solid var(--borde-suave);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            width: 260px; /* Ancho fijo */
+            position: fixed; /* Fija a la izquierda */
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            padding: 0 24px 30px;
+            color: var(--texto-principal);
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i { color: var(--primario); font-size: 20px; }
+
+        .navegacion-principal { display: flex; flex-direction: column; flex-grow: 1; }
+
+        .item-menu {
+            padding: 12px 24px;
+            text-decoration: none;
+            color: var(--texto-secundario);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+            transition: 0.2s;
+            margin: 4px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .item-menu:hover { background-color: var(--fondo-app); }
+        .item-menu.activo { background-color: var(--primario-suave); color: var(--primario); }
+
+        .separador { height: 1px; background: var(--borde-suave); margin: 15px 24px; }
+
+        .perfil-usuario-inferior {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid var(--borde-suave);
+            margin-top: auto;
+        }
+
+        .info-user { display: flex; flex-direction: column; font-size: 13px; }
+        .info-user strong { color: var(--texto-principal); }
+        .info-user span { color: var(--texto-secundario); font-size: 11px; }
+
+        .btn-cerrar {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: var(--texto-secundario);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* ==========================================================================
+           CONTENIDO PRINCIPAL (EL TRUCO DEL MARGEN)
+           ========================================================================== */
+        .contenido-principal {
+            display: block;
+            margin-left: 260px; /* EMPUJA EL CONTENIDO EL ANCHO EXACTO DE LA BARRA */
+            width: calc(100% - 260px); /* Previene desbordamiento */
+            min-height: 100vh;
+        }
+
+        .area-trabajo {
+            padding: 40px;
+            max-width: 1300px;
+            margin: 0 auto; /* Centra el contenido en pantallas gigantes */
+        }
+
+        /* Título */
+        .header-dashboard { margin-bottom: 32px; }
+        .header-dashboard h1 { font-size: 28px; font-weight: 800; color: var(--texto-principal); margin-bottom: 8px; }
+        .header-dashboard p { font-size: 14px; color: var(--texto-secundario); font-weight: 500; }
+
+        /* Tarjetas KPI */
+        .grid-kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .tarjeta-kpi {
+            background: var(--superficie);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--borde-suave);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            box-shadow: var(--sombra-tarjeta);
+        }
+
+        .info-kpi { display: flex; flex-direction: column; }
+        .info-kpi span:first-child { font-size: 13px; color: var(--texto-secundario); font-weight: 600; margin-bottom: 8px; }
+        .info-kpi strong { font-size: 32px; font-weight: 800; color: var(--texto-principal); line-height: 1; margin-bottom: 12px; }
+
+        .tendencia { font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+        .tendencia.positiva { color: var(--exito); }
+        .tendencia.neutra { color: var(--alerta); }
+        .tendencia.negativa { color: var(--rojo); }
+
+        .icono-kpi {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+        .icono-kpi.azul { background: var(--primario-suave); color: var(--primario); }
+        .icono-kpi.naranja { background: #fef3c7; color: var(--alerta); }
+        .icono-kpi.verde { background: #d1fae5; color: var(--exito); }
+
+        /* Layout Inferior (Tabla y Lateral) */
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+        }
+
+        .tarjeta-panel {
+            background: var(--superficie);
+            border-radius: 16px;
+            border: 1px solid var(--borde-suave);
+            padding: 24px;
+            box-shadow: var(--sombra-tarjeta);
+            margin-bottom: 24px;
+        }
+
+        .cabecera-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--borde-suave);
+        }
+
+        .cabecera-panel h3, .tarjeta-panel h3 { font-size: 16px; font-weight: 800; color: var(--texto-principal); margin: 0; }
+        .btn-enlace { background: transparent; border: none; color: var(--primario); font-size: 13px; font-weight: 700; cursor: pointer; }
+
+        /* Tabla de Citas */
+        .tabla-admin { width: 100%; border-collapse: collapse; }
+        .tabla-admin th { text-align: left; font-size: 10px; color: var(--texto-secundario); text-transform: uppercase; font-weight: 800; padding-bottom: 12px; letter-spacing: 0.5px; }
+        .tabla-admin td { padding: 16px 0; border-bottom: 1px solid var(--borde-suave); font-size: 14px; }
+        .tabla-admin tr:last-child td { border-bottom: none; padding-bottom: 0; }
+        
+        .paciente-info { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--texto-principal); }
+        .avatar-letra { width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 12px; font-weight: 800; }
+        
+        .texto-secundario { color: var(--texto-secundario); }
+
+        .badge { font-size: 10px; font-weight: 800; padding: 6px 12px; border-radius: 20px; letter-spacing: 0.5px; }
+        .badge-verde { background: #d1fae5; color: #065f46; }
+        .badge-naranja { background: #fef3c7; color: #92400e; }
+        .badge-gris { background: #f1f5f9; color: #475569; }
+
+        .btn-opciones { background: transparent; border: none; color: var(--texto-secundario); cursor: pointer; font-size: 16px; }
+
+        /* Accesos Rápidos */
+        .grid-acciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-accion-cuadro {
+            background: #f8fafc;
+            border: 1px solid transparent;
+            padding: 24px 16px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-accion-cuadro i { font-size: 24px; color: var(--texto-principal); }
+        .btn-accion-cuadro span { font-size: 10px; font-weight: 800; color: var(--texto-secundario); }
+
+        .btn-accion-cuadro:hover { background: var(--primario-suave); border-color: var(--primario); }
+        .btn-accion-cuadro:hover i, .btn-accion-cuadro:hover span { color: var(--primario); }
+
+        /* Estadísticas Oscuras */
+        .tarjeta-panel.oscura { background: #0f172a; color: white; border: none; }
+        .tarjeta-panel.oscura h3 { color: white; margin-bottom: 4px; }
+        .tarjeta-panel.oscura p { font-size: 13px; color: #94a3b8; margin-bottom: 24px; }
+
+        .item-barra { margin-bottom: 16px; }
+        .item-barra:last-child { margin-bottom: 0; }
+        .barra-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+        .barra-fondo { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .barra-progreso { height: 100%; border-radius: 4px; }
+        .barra-progreso.bg-azul { background-color: var(--primario); }
+        .barra-progreso.bg-verde { background-color: var(--exito); }
+        .barra-progreso.bg-naranja { background-color: var(--alerta); }
+    </style>
 </head>
 <body>
 
-    <div class="contenedor-app">
+    <aside class="barra-lateral">
+        <div class="logo">
+            <i class="fa-solid fa-user-doctor"></i> 
+            <div>
+                Portal Médico<br>R.A.S.A
+            </div>
+        </div>
         
-        <!-- BARRA LATERAL (Elegante y limpia) -->
-        <aside class="barra-lateral">
-            <div class="logo">
-                <i class="fa-solid fa-hospital-user"></i> R.A.S.A
+        <nav class="navegacion-principal">
+            <div class="item-menu activo"><i class="fa-solid fa-stethoscope"></i> Mi Consultorio</div>
+            <div class="item-menu"><i class="fa-solid fa-user-group"></i> Pacientes</div>
+            <div class="item-menu"><i class="fa-solid fa-calendar-check"></i> Agenda Diaria</div>
+            <div class="item-menu"><i class="fa-solid fa-file-waveform"></i> Resultados de Lab</div>
+            <div class="separador"></div>
+            <div class="item-menu"><i class="fa-solid fa-gear"></i> Ajustes</div>
+        </nav>
+
+        <div class="perfil-usuario-inferior">
+            <div class="info-user">
+                <strong>Dr. Roberto Sánchez</strong>
+                <span>Cardiología | ID: #MED-092</span>
             </div>
+            <button class="btn-cerrar"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+    </aside>
+
+    <main class="contenido-principal">
+        <div class="area-trabajo">
             
-            <nav class="navegacion-principal">
-                <a href="#" class="item-menu activo"><i class="fa-solid fa-desktop"></i> Recepción</a>
-                <a href="#" class="item-menu"><i class="fa-solid fa-calendar-days"></i> Agenda General</a>
-                <a href="#" class="item-menu"><i class="fa-solid fa-users"></i> Pacientes</a>
-                <a href="#" class="item-menu"><i class="fa-solid fa-credit-card"></i> Pagos y Caja</a>
-                <a href="#" class="item-menu"><i class="fa-solid fa-user-doctor"></i> Médicos</a>
-                
-                <div class="separador"></div>
-                
-                <a href="#" class="item-menu"><i class="fa-solid fa-gear"></i> Ajustes</a>
-            </nav>
-
-            <div class="perfil-usuario-inferior">
-                <div class="info-user">
-                    <strong>Ana Martínez</strong>
-                    <span>Recepción Matutina</span>
-                </div>
-                    <button class="btn-salir" title="Cerrar sesión">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </button>
+            <div class="header-dashboard">
+                <h1>Panel Administrativo</h1>
+                <p>Ala Hospitalaria A • Viernes, 27 de Oct, 2023</p>
             </div>
-        </aside>
 
-        <!-- CONTENIDO PRINCIPAL -->
-        <main class="contenido-principal">
-            
-            <header class="encabezado-admin">
-                <div class="fecha-actual">
-                    <i class="fa-regular fa-calendar" style="margin-right: 8px;"></i> Miércoles, 1 de Abril
+            <div class="grid-kpis">
+                <div class="tarjeta-kpi">
+                    <div class="info-kpi">
+                        <span>Pacientes Activos</span>
+                        <strong>12</strong>
+                        <span class="tendencia positiva"><i class="fa-solid fa-arrow-trend-up"></i> +2% sobre el promedio</span>
+                    </div>
+                    <div class="icono-kpi azul"><i class="fa-solid fa-user-doctor"></i></div>
                 </div>
                 
-                <div class="barra-busqueda-global">
-                    <i class="fa-solid fa-magnifying-glass" style="color: var(--texto-secundario);"></i>
-                    <input type="text" placeholder="Buscar paciente, médico o folio...">
+                <div class="tarjeta-kpi">
+                    <div class="info-kpi">
+                        <span>Pacientes en Espera</span>
+                        <strong>8</strong>
+                        <span class="tendencia neutra"><i class="fa-regular fa-hourglass-half"></i> Espera prom: 14m</span>
+                    </div>
+                    <div class="icono-kpi naranja"><i class="fa-solid fa-users"></i></div>
                 </div>
-            </header>
 
-            <section class="seccion-bienvenida">
-                <div class="texto-saludo">
-                    <h1>Panel de Recepción</h1>
-                    <p>Tienes 18 citas programadas para hoy. 5 pacientes en clínica.</p>
-                </div>
-                
-                <div style="display: flex; gap: 16px;">
-                    <button class="btn-secundario-admin"><i class="fa-solid fa-cash-register"></i> Registrar Pago</button>
-                    <button class="btn-accion-principal"><i class="fa-solid fa-user-check"></i> Nuevo Check-in</button>
-                </div>
-            </section>
-
-            <!-- KPIs (Métricas Rápidas) -->
-            <div class="fila-resumen">
-                <div class="tarjeta-contador">
-                    <i class="fa-solid fa-calendar-check azul"></i>
-                    <div><span>Citas del Día</span><strong>18</strong></div>
-                </div>
-                <div class="tarjeta-contador">
-                    <i class="fa-solid fa-users naranja"></i>
-                    <div><span>En Sala</span><strong>5</strong></div>
-                </div>
-                <div class="tarjeta-contador">
-                    <i class="fa-solid fa-stopwatch verde"></i>
-                    <div><span>Espera Media</span><strong>12m</strong></div>
-                </div>
-                <div class="tarjeta-contador">
-                    <i class="fa-solid fa-calendar-xmark" style="color: #ef4444; background: #fee2e2;"></i>
-                    <div><span>Cancelaciones</span><strong>2</strong></div>
+                <div class="tarjeta-kpi">
+                    <div class="info-kpi">
+                        <span>Citas Totales</span>
+                        <strong>45</strong>
+                        <span class="tendencia negativa"><i class="fa-solid fa-arrow-trend-down"></i> -3% vs ayer</span>
+                    </div>
+                    <div class="icono-kpi verde"><i class="fa-regular fa-calendar-check"></i></div>
                 </div>
             </div>
 
-            <!-- CUADRÍCULA INFERIOR (2 Columnas) -->
-            <div class="cuadricula-admin">
-                
-                <!-- Columna Izquierda: Citas del Día -->
-                <section class="tarjeta-panel">
-                    <div class="cabecera-bloque">
-                        <h3>Citas del Día</h3>
-                        <div class="filtros-rapidos">
-                            <button class="btn-filtro-mini activo">Todos</button>
-                            <button class="btn-filtro-mini">Pendientes</button>
-                            <button class="btn-filtro-mini">En Clínica</button>
-                        </div>
+            <div class="dashboard-layout">
+                <div class="tarjeta-panel">
+                    <div class="cabecera-panel">
+                        <h3>Agenda de Citas • Hoy</h3>
+                        <button class="btn-enlace">Ver Todo</button>
                     </div>
-
-                    <div class="lista-citas">
-                        <!-- Cita 1 -->
-                        <div class="fila-cita-admin">
-                            <div class="hora-admin">10:00 AM</div>
-                            <div class="info-cruce">
-                                <strong>Ana García</strong>
-                                <span class="detalle-sub">Dra. Sarah Smith • Cardiología</span>
-                            </div>
-                            <span class="estado-admin en-espera">EN ESPERA</span>
-                            <button class="btn-opciones-mini"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                        </div>
-
-                        <!-- Cita 2 -->
-                        <div class="fila-cita-admin">
-                            <div class="hora-admin">10:15 AM</div>
-                            <div class="info-cruce">
-                                <strong>Luis Torres</strong>
-                                <span class="detalle-sub">Lab Central • Resultados</span>
-                            </div>
-                            <span class="estado-admin pago-pendiente">PAGO PENDIENTE</span>
-                            <button class="btn-opciones-mini"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                        </div>
-
-                        <!-- Cita 3 -->
-                        <div class="fila-cita-admin">
-                            <div class="hora-admin">10:30 AM</div>
-                            <div class="info-cruce">
-                                <strong>Juan Pérez</strong>
-                                <span class="detalle-sub">Dr. Roberto Sánchez • Seguimiento</span>
-                            </div>
-                            <span class="estado-admin por-llegar">POR LLEGAR</span>
-                            <button class="btn-opciones-mini"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                        </div>
-
-                        <!-- Cita 4 -->
-                        <div class="fila-cita-admin">
-                            <div class="hora-admin">11:00 AM</div>
-                            <div class="info-cruce">
-                                <strong>María López</strong>
-                                <span class="detalle-sub">Dra. Elena Gómez • Consulta General</span>
-                            </div>
-                            <span class="estado-admin en-consulta">EN CONSULTA</span>
-                            <button class="btn-opciones-mini"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                        </div>
-
-                        <!-- Cita 5 (Urgente) -->
-                        <div class="fila-cita-admin fila-urgente">
-                            <div class="hora-admin">11:15 AM</div>
-                            <div class="info-cruce">
-                                <strong>Carlos Ruiz</strong>
-                                <span class="detalle-sub">Dr. Roberto Sánchez • Chequeo</span>
-                                <span class="texto-alerta"><i class="fa-solid fa-triangle-exclamation"></i> Reporta dolor</span>
-                            </div>
-                            <span class="estado-admin por-llegar">POR LLEGAR</span>
-                            <button class="btn-opciones-mini"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                        </div>
-                        
-                        <!-- Cita 6 -->
-                        <div class="fila-cita-admin">
-                            <div class="hora-admin">11:45 AM</div>
-                            <div class="info-cruce">
-                                <strong>Sofía Vargas</strong>
-                                <span class="detalle-sub">Dra. Carmen Silva • Nutrición</span>
-                            </div>
-                            <span class="estado-admin completada">COMPLETADA</span>
-                            <button class="btn-opciones-mini"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Columna Derecha: Sala de Espera y Médicos -->
-                <aside style="display: flex; flex-direction: column; gap: 24px;">
                     
-                    <!-- Sala de Espera -->
-                    <div class="tarjeta-sala-espera">
-                        <div class="cabecera-bloque" style="margin-bottom: 16px;">
-                            <h3><i class="fa-solid fa-couch" style="color: var(--texto-secundario); margin-right: 8px;"></i> En Sala</h3>
-                        </div>
-                        
-                        <div class="item-espera">
-                            <div class="tiempo-badge normal">15 min</div>
-                            <div class="info-espera">
-                                <strong>Ana García</strong>
-                                <span>Espera a Dra. Sarah S.</span>
-                            </div>
-                        </div>
+                    <table class="tabla-admin">
+                        <thead>
+                            <tr>
+                                <th>PACIENTE</th>
+                                <th>DOCTOR</th>
+                                <th>HORA</th>
+                                <th>ESTADO</th>
+                                <th>ACCIÓN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="paciente-info">
+                                        <div class="avatar-letra" style="background: var(--primario-suave); color: var(--primario);">JM</div>
+                                        <span>James Miller</span>
+                                    </div>
+                                </td>
+                                <td class="texto-secundario">Dra. Sarah Smith</td>
+                                <td><strong>10:30 AM</strong></td>
+                                <td><span class="badge badge-verde">LLEGÓ</span></td>
+                                <td><button class="btn-opciones"><i class="fa-solid fa-ellipsis"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="paciente-info">
+                                        <div class="avatar-letra" style="background: #f3e8ff; color: #9333ea;">EL</div>
+                                        <span>Emily Logan</span>
+                                    </div>
+                                </td>
+                                <td class="texto-secundario">Dr. Robert Chen</td>
+                                <td><strong>11:15 AM</strong></td>
+                                <td><span class="badge badge-naranja">EN ESPERA</span></td>
+                                <td><button class="btn-opciones"><i class="fa-solid fa-ellipsis"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="paciente-info">
+                                        <div class="avatar-letra" style="background: #fce7f3; color: #db2777;">KA</div>
+                                        <span>Kevin Adams</span>
+                                    </div>
+                                </td>
+                                <td class="texto-secundario">Dra. Lisa Wong</td>
+                                <td><strong>11:45 AM</strong></td>
+                                <td><span class="badge badge-gris">PROGRAMADA</span></td>
+                                <td><button class="btn-opciones"><i class="fa-solid fa-ellipsis"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <div class="item-espera">
-                            <div class="tiempo-badge alerta">25 min</div>
-                            <div class="info-espera">
-                                <strong>Luis Torres</strong>
-                                <span>Espera pago en caja</span>
-                            </div>
-                        </div>
-
-                        <div class="item-espera">
-                            <div class="tiempo-badge nuevo">5 min</div>
-                            <div class="info-espera">
-                                <strong>Sofía Vargas</strong>
-                                <span>Espera laboratorios</span>
-                            </div>
+                <div class="col-lateral">
+                    <div class="tarjeta-panel">
+                        <h3 style="margin-bottom: 20px;">Acciones Rápidas</h3>
+                        <div class="grid-acciones">
+                            <button class="btn-accion-cuadro">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <span>NUEVO PACIENTE</span>
+                            </button>
+                            <button class="btn-accion-cuadro">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                                <span>FACTURACIÓN</span>
+                            </button>
+                            <button class="btn-accion-cuadro">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                                <span>CHECK-IN</span>
+                            </button>
+                            <button class="btn-accion-cuadro">
+                                <i class="fa-solid fa-print"></i>
+                                <span>IMPRIMIR TICKET</span>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Estado de Médicos -->
-                    <div class="tarjeta-sala-espera">
-                        <div class="cabecera-bloque" style="margin-bottom: 16px;">
-                            <h3><i class="fa-solid fa-user-doctor" style="color: var(--texto-secundario); margin-right: 8px;"></i> Médicos</h3>
-                        </div>
-                        
-                        <div class="item-medico">
-                            <img src="https://ui-avatars.com/api/?name=Sarah+Smith&background=f1f5f9&color=0f172a" alt="Doc">
-                            <div class="info-medico">
-                                <strong>Dra. Sarah Smith</strong>
-                                <span class="punto-estado ocupado"><i class="fa-solid fa-circle"></i> En Consulta</span>
+                    <div class="tarjeta-panel oscura">
+                        <h3>Estadísticas de Oficina</h3>
+                        <p>Ocupación en tiempo real</p>
+                        <div class="barras-ocupacion">
+                            <div class="item-barra">
+                                <div class="barra-header"><span>Sala General</span><span>85%</span></div>
+                                <div class="barra-fondo"><div class="barra-progreso bg-azul" style="width: 85%"></div></div>
                             </div>
-                        </div>
-
-                        <div class="item-medico">
-                            <img src="https://ui-avatars.com/api/?name=Roberto+Sanchez&background=f1f5f9&color=0f172a" alt="Doc">
-                            <div class="info-medico">
-                                <strong>Dr. Roberto Sánchez</strong>
-                                <span class="punto-estado libre"><i class="fa-solid fa-circle"></i> Disponible</span>
+                            <div class="item-barra">
+                                <div class="barra-header"><span>Ala de Emergencias</span><span>42%</span></div>
+                                <div class="barra-fondo"><div class="barra-progreso bg-verde" style="width: 42%"></div></div>
                             </div>
-                        </div>
-
-                        <div class="item-medico">
-                            <img src="https://ui-avatars.com/api/?name=Elena+Gomez&background=f1f5f9&color=0f172a" alt="Doc">
-                            <div class="info-medico">
-                                <strong>Dra. Elena Gómez</strong>
-                                <span class="punto-estado descanso"><i class="fa-solid fa-circle"></i> En Descanso</span>
+                            <div class="item-barra">
+                                <div class="barra-header"><span>Consultorios</span><span>92%</span></div>
+                                <div class="barra-fondo"><div class="barra-progreso bg-naranja" style="width: 92%"></div></div>
                             </div>
                         </div>
                     </div>
-
-                </aside>
+                </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
 </body>
 </html>

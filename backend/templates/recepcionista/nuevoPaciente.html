@@ -9,116 +9,115 @@
 </head>
 <body>
 
+    <!-- NAVBAR IGUAL A LA IMAGEN -->
     <nav class="barra-navegacion minimalista">
-    
-    <div class="marca">
-        <i class="fa-solid fa-hospital-user icono-marca"></i>
-        <div class="texto-marca">
-            <strong>Centro Médico</strong>
-            <strong>R.A.S.A</strong>
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico R.A.S.A</strong>
+            </div>
         </div>
-    </div>
-    
-    <ul class="menu-principal">
-        <li><a href="recepcion.html">Recepción</a></li>
-        <li class="activo"><a href="#">Citas</a></li>
-        <li><a href="#">Pacientes</a></li>
-    </ul>
+        
+        <ul class="menu-principal">
+            <li><a href="#">Recepción</a></li>
+            <li><a href="#">Citas</a></li>
+            <li><a href="doctores.html">Doctores</a></li>
+            <li class="activo"><a href="pacientes.html">Pacientes</a></li>
+        </ul>
 
-    <div class="perfil-usuario">
-        <div class="info-usuario-texto flat">
-            <span><strong>Ana Martínez</strong> | Recepción</span>
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
         </div>
-    </div>
-
-</nav>
+    </nav>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="contenido-principal">
+    <main class="contenedor-layout">
         
-        <!-- Migas de pan centradas -->
-        <div class="fila-acciones">
+        <!-- HEADER DE PÁGINA (Migas y botón volver) -->
+        <div class="header-pagina">
             <div class="migas-pan">
-                Inicio <span class="separador-migas">/</span> Pacientes <span class="separador-migas">/</span> <span>Nuevo Registro</span>
+                Recepción > Pacientes > <strong>Registrar Paciente</strong>
             </div>
+            <a href="pacientes.html" class="btn-volver-header">
+                <i class="fa-solid fa-arrow-left"></i> <u>Volver</u>
+            </a>
         </div>
-        
-        <!-- Encabezado centrado -->
-        <header class="encabezado-pagina">
-            <div>
-                <h1 class="titulo-pagina">Registro de Nuevo Paciente</h1>
-                <p class="texto-folio">Complete la información inicial para crear el expediente médico.</p>
-            </div>
-        </header>
 
-        <!-- Formulario -->
-        <form action="#" method="POST" class="tarjeta-formulario-centrada">
+        <!-- TARJETA DEL FORMULARIO (Estilo ancho) -->
+        <div class="tarjeta-formulario-ancha">
             
-            <div class="seccion-formulario">
-                <h3 class="titulo-seccion-form"><i class="fa-solid fa-user"></i> Datos Generales</h3>
+            <!-- Cabecera interna de la tarjeta -->
+            <div class="cabecera-tarjeta">
+                <h2 class="titulo-azul"><i class="fa-solid fa-user-injured"></i> Registro de Paciente</h2>
+                <span class="subtitulo-gris">Complete la información inicial para crear el expediente médico.</span>
+            </div>
+
+            <!-- Formulario -->
+            <form action="#" method="POST">
                 
-                <div class="grupo-input">
-                    <label for="nombre_paciente">Nombre Completo del Paciente *</label>
-                    <input type="text" id="nombre_paciente" name="nombre_paciente" class="input-form" placeholder="Ej. Juan Pérez García" required>
+                <div class="grid-formulario-2">
+                    
+                    <div class="grupo-campo">
+                        <label>NOMBRE COMPLETO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Ej. Juan Pérez García" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>TELÉFONO DE CONTACTO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" placeholder="Ej. 55-1234-5678" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>CURP</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-id-card"></i>
+                            <input type="text" placeholder="18 caracteres">
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>FECHA DE NACIMIENTO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-calendar-day"></i>
+                            <input type="date">
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>TIPO DE SANGRE</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-droplet"></i>
+                            <select>
+                                <option value="" disabled selected>Seleccione grupo sanguíneo</option>
+                                <option value="O+">O+</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="Desconocido">Desconocido</option>
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
 
-            <hr class="separador-formulario">
+                <hr class="linea-divisora">
 
-            <div class="seccion-formulario">
-                <h3 class="titulo-seccion-form"><i class="fa-solid fa-notes-medical"></i> Perfil Médico Inicial</h3>
-                
-                <!-- Fila de 3 columnas para Biometría -->
-                <div class="grid-form-3">
-                    <div class="grupo-input">
-                        <label for="tipo_sangre">Tipo de Sangre</label>
-                        <select id="tipo_sangre" name="tipo_sangre" class="input-form">
-                            <option value="" disabled selected>Seleccione...</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                            <option value="Desconocido">Desconocido</option>
-                        </select>
-                    </div>
-
-                    <div class="grupo-input">
-                        <label for="peso">Peso (kg)</label>
-                        <input type="number" step="0.1" id="peso" name="peso" class="input-form" placeholder="Ej. 75.5">
-                    </div>
-
-                    <div class="grupo-input">
-                        <label for="estatura">Estatura (m)</label>
-                        <input type="number" step="0.01" id="estatura" name="estatura" class="input-form" placeholder="Ej. 1.75">
-                    </div>
+                <!-- Botones finales (Alineados a la derecha como en la foto) -->
+                <div class="fila-botones-form">
+                    <button type="reset" class="btn-limpiar">Limpiar Formulario</button>
+                    <button type="submit" class="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar Paciente</button>
                 </div>
 
-                <!-- Fila de 2 columnas para Antecedentes -->
-                <div class="grid-form-2" style="margin-top: 20px;">
-                    <div class="grupo-input">
-                        <label for="alergias">Alergias</label>
-                        <textarea id="alergias" name="alergias" class="input-form area-texto" placeholder="Especifique alergias a medicamentos, alimentos, etc. (Escriba 'Ninguna' si no aplica)"></textarea>
-                    </div>
-
-                    <div class="grupo-input">
-                        <label for="padecimientos">Padecimientos Previos crónicos</label>
-                        <textarea id="padecimientos" name="padecimientos" class="input-form area-texto" placeholder="Ej. Hipertensión, Diabetes, Asma..."></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Botones de Acción -->
-            <div class="acciones-formulario">
-                <button type="button" class="btn-secundario-admin">Cancelar</button>
-                <button type="submit" class="btn-accion-principal"><i class="fa-solid fa-floppy-disk"></i> Guardar Expediente</button>
-            </div>
-
-        </form>
-
+            </form>
+        </div>
     </main>
 
 </body>

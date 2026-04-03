@@ -1,158 +1,143 @@
-/* ==========================================================================
-   ESTILOS GLOBALES - TEMA STARTUP (R.A.S.A)
-   ========================================================================== */
+/* ESTILOS ESPECÍFICOS DEL PANEL DE RECEPCIÓN */
 
 /* 1. Tipografía moderna importada de Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* 2. Paleta de colores */
+/* 2. Paleta de colores nivel "Startup" */
 :root {
-    /* Azules vibrantes (Botones y enlaces activos) */
-    --primario: #2563eb;          
+    --primario: #2563eb;          /* Azul vibrante moderno */
     --primario-hover: #1d4ed8;
-    --primario-suave: #eff6ff;    
-    
-    /* Grises y Fondos */
-    --fondo-app: #f8fafc;         
-    --superficie: #ffffff;        
-    --texto-principal: #0f172a;   
-    --texto-secundario: #64748b;  
-    --borde-suave: #e2e8f0;       
-    
-    /* Estados (Semántica) */
+    --primario-suave: #eff6ff;    /* Fondo para elementos activos */
+    --fondo-app: #f8fafc;         /* Gris azulado muy elegante para el fondo */
+    --superficie: #ffffff;        /* Blanco puro para las tarjetas */
+    --texto-principal: #0f172a;   /* Azul marino casi negro, mejor que el negro puro */
+    --texto-secundario: #64748b;  /* Gris moderno para subtítulos */
+    --borde-suave: #e2e8f0;       /* Líneas divisorias casi invisibles */
     --exito: #10b981;
     --alerta: #f59e0b;
-    --rojo: #ef4444;
     
-    /* Sombras modernas (Multicapa) */
+    /* El secreto moderno: Sombras multicapa muy suaves */
     --sombra-tarjeta: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
     --sombra-boton: 0 4px 14px 0 rgba(37, 99, 235, 0.3);
 }
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
+    margin: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--fondo-app);
     color: var(--texto-principal);
-    -webkit-font-smoothing: antialiased; 
-    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; /* Hace que la fuente se vea más nítida */
 }
 
-/* ==========================================================================
-   BARRA DE NAVEGACIÓN SUPERIOR (TOP NAV)
-   ========================================================================== */
-.barra-navegacion {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.contenedor-app {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+}
+
+/* --- BARRA LATERAL (Elegante y limpia) --- */
+.barra-lateral {
     background-color: var(--superficie);
-    padding: 12px 48px;
-    border-bottom: 1px solid var(--borde-suave);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    border-right: 1px solid var(--borde-suave);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
 }
 
-.barra-navegacion .marca {
+.logo {
+    padding: 10px 16px 40px;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--texto-principal);
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 14px;
-    line-height: 1.2;
-    color: var(--texto-principal);
+    letter-spacing: -0.5px;
 }
 
-.barra-navegacion .icono-marca {
-    font-size: 28px;
+.logo i {
     color: var(--primario);
+    font-size: 24px;
 }
 
-.barra-navegacion .menu-principal {
+.navegacion-principal {
     display: flex;
-    list-style: none;
-    gap: 8px;
+    flex-direction: column;
+    gap: 4px; /* Separación sutil entre botones */
+    flex-grow: 1;
 }
 
-.barra-navegacion .menu-principal a {
+.item-menu {
+    padding: 14px 16px;
     text-decoration: none;
     color: var(--texto-secundario);
-    font-weight: 600;
-    font-size: 14.5px;
-    padding: 10px 16px;
-    border-radius: 10px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.barra-navegacion .menu-principal li.activo a, 
-.barra-navegacion .menu-principal a:hover {
-    background-color: var(--primario-suave);
-    color: var(--primario);
-}
-
-.barra-navegacion .perfil-usuario {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding-left: 16px;
-    border-left: 1px solid var(--borde-suave);
+    font-weight: 600;
+    font-size: 14.5px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
 }
 
-.info-user-top { 
-    text-align: right; 
-}
-
-.info-user-top strong { 
-    display: block; 
-    font-size: 14px; 
+.item-menu:hover {
+    background-color: #f1f5f9;
     color: var(--texto-principal);
-    font-weight: 700;
 }
 
-.info-user-top span { 
+.item-menu.activo {
+    background-color: var(--primario);
+    color: white;
+    box-shadow: var(--sombra-boton);
+}
+
+.separador {
+    height: 1px;
+    background: var(--borde-suave);
+    margin: 20px 16px;
+}
+
+.perfil-usuario-inferior {
+    background: var(--fondo-app);
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.perfil-usuario-inferior img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info-user strong {
     display: block;
-    font-size: 12px; 
-    color: var(--texto-secundario); 
+    font-size: 14px;
+    color: var(--texto-principal);
+}
+
+.info-user span {
+    font-size: 12px;
+    color: var(--texto-secundario);
     font-weight: 500;
 }
 
-.btn-salir {
-    background: transparent;
-    border: none;
-    color: var(--texto-secundario);
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.2s;
-    padding: 8px;
-    border-radius: 8px;
-}
-
-.btn-salir:hover {
-    color: var(--rojo);
-    background-color: #fee2e2;
-}
-
-/* ==========================================================================
-   CONTENIDO PRINCIPAL (CENTRALIZADO)
-   ========================================================================== */
+/* --- CONTENIDO PRINCIPAL --- */
 .contenido-principal {
-    max-width: 1400px;
-    margin: 0 auto;
     padding: 40px 48px;
-    min-width: 0;
+    overflow-y: auto;
 }
 
-/* ==========================================================================
-   COMPONENTES REUTILIZABLES (Botones, Buscador, Cabeceras)
-   ========================================================================== */
-.encabezado-admin {
+/* Encabezado */
+.encabezado-simple, .encabezado-admin {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -165,12 +150,13 @@ body {
     color: var(--texto-secundario);
 }
 
+/* Buscador Moderno */
 .barra-busqueda-global {
     display: flex;
     align-items: center;
     background: var(--superficie);
     padding: 12px 24px;
-    border-radius: 100px;
+    border-radius: 100px; /* Bordes totalmente redondos tipo píldora */
     box-shadow: var(--sombra-tarjeta);
     width: 450px;
     border: 1px solid transparent;
@@ -189,9 +175,9 @@ body {
     font-size: 14px;
     font-family: inherit;
     margin-left: 12px;
-    color: var(--texto-principal);
 }
 
+/* Bienvenida */
 .seccion-bienvenida {
     display: flex;
     justify-content: space-between;
@@ -213,22 +199,25 @@ body {
 }
 
 /* Botones Premium */
+
+/* Botón Secundario (Outline) */
 .btn-secundario-admin {
     background-color: var(--superficie); 
     color: var(--primario); 
-    border: 2px solid var(--primario-suave); 
-    padding: 12px 24px; 
+    border: 2px solid var(--primario-suave); /* Borde de 2px visible */
+    padding: 12px 24px; /* Padding unificado */
     border-radius: 12px;
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center; /* Centra el texto y el icono */
     gap: 8px;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     font-family: inherit;
+    min-width: 220px; /* Fuerza a que tenga el mismo ancho */
 }
 
 .btn-secundario-admin:hover {
@@ -237,32 +226,35 @@ body {
     transform: translateY(-2px); 
 }
 
-.btn-accion-principal {
+.btn-secundario-admin i {
+    font-size: 16px;
+}
+
+/* Botón Principal (Sólido) */
+.btn-agendar-cita, .btn-accion-principal {
     background: var(--primario);
     color: white;
-    border: 2px solid transparent; 
-    padding: 12px 24px; 
+    border: 2px solid transparent; /* Borde INVISIBLE para igualar la altura */
+    padding: 12px 24px; /* Padding unificado */
     border-radius: 12px;
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center; /* Centra el texto y el icono */
     gap: 10px;
     box-shadow: var(--sombra-boton);
     transition: all 0.2s ease;
     font-family: inherit;
+    min-width: 220px; /* Fuerza a que tenga el mismo ancho */
 }
 
-.btn-accion-principal:hover {
+.btn-agendar-cita:hover, .btn-accion-principal:hover {
     background: var(--primario-hover);
     transform: translateY(-2px);
 }
 
-/* ==========================================================================
-   MÓDULO 1: DASHBOARD RECEPCIÓN
-   ========================================================================== */
 .fila-resumen {
     display: flex;
     gap: 24px;
@@ -279,7 +271,6 @@ body {
     gap: 20px;
     box-shadow: var(--sombra-tarjeta);
     border: 1px solid var(--borde-suave);
-    min-width: 0;
 }
 
 .tarjeta-contador i {
@@ -290,7 +281,6 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 16px;
-    flex-shrink: 0;
 }
 
 .azul { color: var(--primario); background: var(--primario-suave); }
@@ -303,20 +293,28 @@ body {
     gap: 4px;
 }
 
-.tarjeta-contador span { color: var(--texto-secundario); font-size: 14px; font-weight: 600; }
-.tarjeta-contador strong { font-size: 28px; font-weight: 800; color: var(--texto-principal); }
+.tarjeta-contador span {
+    color: var(--texto-secundario);
+    font-size: 14px;
+    font-weight: 600;
+}
 
-/* Grids Inferiores Recepción */
-.cuadricula-admin {
+.tarjeta-contador strong {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--texto-principal);
+}
+
+.cuadricula-dashboard, .cuadricula-doctor, .cuadricula-admin {
     display: grid;
     grid-template-columns: 1fr 340px;
     gap: 24px;
 }
 
-.tarjeta-panel, .tarjeta-sala-espera {
+.tarjeta-cita-detalle, .tarjeta-destacada, .tarjeta-sala-espera, .tarjeta-panel {
     background: var(--superficie);
     padding: 32px;
-    border-radius: 24px; 
+    border-radius: 24px; /* Curvas amplias y modernas */
     box-shadow: var(--sombra-tarjeta);
     border: 1px solid var(--borde-suave);
 }
@@ -334,53 +332,50 @@ body {
     font-weight: 700;
 }
 
-.filtros-rapidos { display: flex; gap: 8px; background: var(--fondo-app); padding: 4px; border-radius: 12px; }
-.btn-filtro-mini { background: transparent; border: none; padding: 6px 16px; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--texto-secundario); cursor: pointer; transition: 0.2s; }
-.btn-filtro-mini.activo { background: var(--superficie); color: var(--texto-principal); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+/* --- LISTAS INTERNAS --- */
+.fila-cita-admin {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    background: var(--fondo-app);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
 
-/* Listas Internas Citas */
-.fila-cita-admin { display: flex; align-items: center; padding: 16px; margin-bottom: 8px; border-radius: 12px; background: var(--fondo-app); border: 1px solid transparent; transition: all 0.2s ease; }
-.fila-cita-admin:hover { background: white; border-color: var(--borde-suave); box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-.fila-urgente { background-color: #fffbeb; border-color: #fde68a; }
+.fila-cita-admin:hover {
+    background: white;
+    border-color: var(--borde-suave);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
 
-.hora-admin { font-weight: 700; color: var(--primario); min-width: 85px; font-size: 15px; }
-.info-cruce { flex-grow: 1; }
-.info-cruce strong { display: block; font-size: 15px; color: var(--texto-principal); margin-bottom: 2px; }
-.detalle-sub { font-size: 13px; color: var(--texto-secundario); display: block; }
-.texto-alerta { display: block; font-size: 12px; font-weight: 600; color: var(--alerta); margin-top: 4px; }
+.hora-admin {
+    font-weight: 700;
+    color: var(--primario);
+    min-width: 85px;
+    font-size: 15px;
+}
 
-/* Etiquetas Estados Citas */
-.estado-admin { font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 8px; letter-spacing: 0.5px; white-space: nowrap; margin-right: 16px; }
+.info-cruce strong {
+    display: block;
+    font-size: 15px;
+    color: var(--texto-principal);
+    margin-bottom: 2px;
+}
+
+/* Etiquetas */
+.estado-admin {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
 .en-consulta { background: #d1fae5; color: #065f46; }
 .en-espera { background: #fef3c7; color: #92400e; }
 .por-llegar { background: #f1f5f9; color: #475569; }
-.pago-pendiente { background: #fee2e2; color: #b91c1c; }
-.completada { background: var(--superficie); border: 1px solid var(--borde-suave); color: var(--texto-secundario); }
-
-.btn-opciones-mini { background: transparent; border: none; color: var(--texto-secundario); cursor: pointer; font-size: 16px; padding: 4px; }
-
-/* Panel Derecho: Sala Espera */
-.item-espera { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-.item-espera:last-child { margin-bottom: 0; }
-.tiempo-badge { font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 8px; text-align: center; min-width: 65px; }
-.tiempo-badge.normal { background: #fef3c7; color: #92400e; }
-.tiempo-badge.alerta { background: #fee2e2; color: #b91c1c; }
-.tiempo-badge.nuevo { background: #f1f5f9; color: #475569; }
-.info-espera strong { display: block; font-size: 14px; margin-bottom: 2px;}
-.info-espera span { font-size: 12px; color: var(--texto-secundario); }
-
-/* Panel Derecho: Médicos */
-.item-medico { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-.item-medico:last-child { margin-bottom: 0; }
-.item-medico img { width: 44px; height: 44px; border-radius: 50%; }
-.info-medico strong { display: block; font-size: 14px; margin-bottom: 4px; }
-
-.punto-estado { font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-.punto-estado i { font-size: 8px; }
-.ocupado { color: var(--rojo); }
-.libre { color: var(--exito); }
-.descanso { color: var(--alerta); }
-
 
 /* ==========================================================================
    MÓDULO 2: DIRECTORIO DE ESPECIALIDADES
@@ -858,121 +853,260 @@ span.punto-estado.libre { background-color: var(--exito); box-shadow: 0 0 0 3px 
     margin-right: auto;     /* <-- Centrado */
 }
 
-/* Responsive para el comprobante */
-@media (max-width: 768px) {
-    .fila-acciones { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .cabecera-comprobante, .seccion-paciente, .bloque-pago, .pie-comprobante { flex-direction: column; align-items: flex-start; gap: 16px; text-align: left; }
-    .folio-comprobante, .alinear-derecha, .monto-pago { text-align: left; justify-content: flex-start; }
-    .seccion-detalles { grid-template-columns: 1fr; gap: 16px; }
-    .codigo-barras { display: none; } /* Ocultar en móvil para ahorrar espacio */
+/* ==========================================================================
+   LAYOUT GENERAL Y ALINEACIÓN
+   ========================================================================== */
+body {
+    background-color: var(--fondo-app);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--texto-principal);
+}
+
+.contenedor-layout {
+    max-width: 1100px; /* Ancho para que se vea extendido como en la imagen */
+    margin: 40px auto;
+    padding: 0 24px;
 }
 
 /* ==========================================================================
-   MÓDULO: FORMULARIO DE REGISTRO DE PACIENTE
+   HEADER SUPERIOR (MIGAS Y BOTÓN VOLVER)
    ========================================================================== */
+.header-pagina {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
 
-/* Contenedor principal del formulario, centrado */
-.tarjeta-formulario-centrada {
-    background: var(--superficie);
-    border-radius: 24px;
+.migas-pan {
+    font-size: 14px;
+    color: var(--texto-secundario);
+}
+
+.migas-pan strong {
+    color: var(--texto-principal);
+    font-weight: 700;
+}
+
+.btn-volver-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f1f5f9; /* Color sutil como en la imagen */
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    color: var(--texto-secundario);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-volver-header u {
+    text-underline-offset: 3px;
+}
+
+.btn-volver-header:hover {
+    background-color: var(--borde-suave);
+    color: var(--texto-principal);
+}
+
+/* ==========================================================================
+   TARJETA BLANCA PRINCIPAL
+   ========================================================================== */
+.tarjeta-formulario-ancha {
+    background-color: var(--superficie);
+    border-radius: 20px;
+    padding: 40px;
     box-shadow: var(--sombra-tarjeta);
     border: 1px solid var(--borde-suave);
-    padding: 40px;
-    max-width: 800px;       /* <-- Centrado */
-    margin-left: auto;      /* <-- Centrado */
-    margin-right: auto;     /* <-- Centrado */
+}
+
+/* Cabecera interna */
+.cabecera-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 40px;
 }
 
-.seccion-formulario {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.titulo-seccion-form {
-    margin: 0 0 10px 0;
-    font-size: 18px;
-    font-weight: 700;
+.titulo-azul {
     color: var(--primario);
+    font-size: 22px;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    margin: 0;
 }
 
-.separador-formulario {
-    border: none;
-    border-top: 1px solid var(--borde-suave);
-    margin: 30px 0;
+.subtitulo-gris {
+    color: var(--texto-secundario);
+    font-size: 14px;
 }
 
-/* Grids para acomodar inputs en varias columnas */
-.grid-form-3 {
+/* ==========================================================================
+   GRID DEL FORMULARIO Y CAMPOS
+   ========================================================================== */
+.grid-formulario-2 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+    row-gap: 24px;
 }
 
-.grid-form-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-/* Estilos de los inputs */
-.grupo-input {
+.grupo-campo {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.grupo-input label {
-    font-size: 13px;
+/* Labels en mayúsculas como en la foto */
+.grupo-campo label {
+    font-size: 12px;
     font-weight: 700;
     color: var(--texto-secundario);
-    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-.input-form {
+/* Contenedor relativo para el ícono */
+.input-con-icono {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-con-icono i {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+/* El input en sí */
+.input-con-icono input,
+.input-con-icono select {
     width: 100%;
-    padding: 14px 16px;
+    padding: 14px 16px 14px 45px; /* Padding izquierdo ancho para no pisar el ícono */
     border: 1px solid var(--borde-suave);
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 15px;
-    font-family: inherit;
     color: var(--texto-principal);
     background-color: var(--superficie);
     transition: all 0.2s ease;
+    font-family: inherit;
 }
 
-/* Estado Focus (Cuando el usuario hace clic para escribir) */
-.input-form:focus {
+.input-con-icono input:focus,
+.input-con-icono select:focus {
     outline: none;
     border-color: var(--primario);
-    box-shadow: 0 0 0 4px var(--primario-suave);
+    box-shadow: 0 0 0 3px var(--primario-suave);
 }
 
-.input-form::placeholder {
-    color: #94a3b8;
+.input-con-icono input::placeholder {
+    color: #cbd5e1;
 }
 
-/* Áreas de texto (para alergias y padecimientos) */
-.area-texto {
-    resize: vertical;
-    min-height: 100px;
+/* ==========================================================================
+   SEPARADOR Y BOTONES INFERIORES
+   ========================================================================== */
+.linea-divisora {
+    border: none;
+    border-top: 1px solid var(--borde-suave);
+    margin: 40px 0 30px 0;
 }
 
-/* Botones al final del formulario */
-.acciones-formulario {
+.fila-botones-form {
+    display: flex;
+    justify-content: flex-end; /* Los empuja a la derecha */
+    gap: 16px;
+}
+
+/* Botón Gris (Limpiar) */
+.btn-limpiar {
+    background-color: #f1f5f9;
+    color: var(--texto-principal);
+    border: 1px solid var(--borde-suave);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-limpiar:hover {
+    background-color: #e2e8f0;
+}
+
+/* Botón Azul (Guardar) */
+.btn-guardar {
+    background-color: var(--primario);
+    color: var(--superficie);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: var(--sombra-boton);
+}
+
+.btn-guardar:hover {
+    background-color: var(--primario-hover);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   REGISTRO DE NUEVOS DOCTORES
+   ========================================================================== */
+
+.grid-form-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.input-contenedor {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-contenedor i {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8; /* Color gris suave para los iconos */
+    font-size: 16px;
+}
+
+.input-contenedor .input-form {
+    padding-left: 45px; /* Espacio para que el texto no pise el icono */
+}
+
+.fila-botones {
     display: flex;
     justify-content: flex-end;
-    gap: 16px;
-    margin-top: 40px;
-    padding-top: 24px;
-    border-top: 1px solid var(--borde-suave);
+    gap: 12px;
 }
 
+.titulo-seccion-form h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.separador-formulario {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 32px 0;
+}
 
 /* ==========================================================================
    BARRA DE NAVEGACIÓN UNIVERSAL
@@ -1076,5 +1210,191 @@ span.punto-estado.libre { background-color: var(--exito); box-shadow: 0 0 0 3px 
 .btn-salir-mini:hover {
     color: #ef4444; /* Rojo solo al pasar el mouse */
     background-color: #fee2e2;
+}
+
+/* ==========================================================================
+   DIRECTORIO MÉDICO 
+   ========================================================================== */
+
+/* --- Estructura Principal --- */
+.contenido-principal {
+    padding: 40px 48px;
+    max-width: 1400px;
+    margin: 0 auto; /* Centra el contenido en pantallas muy grandes */
+}
+
+.fila-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.migas-pan {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.migas-pan strong {
+    color: #0f172a;
+}
+
+.btn-accion-principal {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-accion-principal:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+/* --- Contenedor de Especialidades --- */
+.contenedor-especialidades {
+    display: flex;
+    flex-direction: column;
+    gap: 32px; /* Espacio entre cada especialidad */
+}
+
+.bloque-especialidad {
+    background: #f8fafc; /* Gris super clarito */
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #f1f5f9;
+}
+
+.titulo-esp {
+    font-size: 18px;
+    color: #0f172a;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+
+.titulo-esp i {
+    color: #2563eb; /* Íconos en azul institucional */
+    font-size: 20px;
+}
+
+/* --- Grid de Tarjetas (Acomodo Automático) --- */
+.grid-personal {
+    display: grid;
+    /* Esto hace la magia: acomoda las tarjetas solas dependiendo del tamaño de la pantalla */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+/* --- Tarjeta Individual del Doctor --- */
+.tarjeta-personal {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    position: relative; /* Necesario para poner el "badge" en la esquina */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta-personal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+/* Textos de la tarjeta */
+.info-p {
+    margin-top: 18px; /* Espacio para que el badge no tape el nombre */
+}
+
+.info-p strong {
+    display: block;
+    font-size: 15px;
+    color: #0f172a;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.info-p p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* --- Badges de Estado (En servicio / Fuera de servicio) --- */
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+}
+
+.en-servicio { 
+    background-color: #ecfdf5; 
+    color: #059669; /* Verde esmeralda */
+}
+
+.fuera-servicio { 
+    background-color: #fef2f2; 
+    color: #dc2626; /* Rojo */
+}
+
+/* --- Estilo Especial para Laboratorio --- */
+.bloque-especialidad.laboratorio {
+    background-color: #eff6ff; /* Azul super clarito */
+    border: 1px dashed #93c5fd; /* Borde punteado azul */
+}
+
+/* --- BUSCADOR DE PACIENTES --- */
+.contenedor-buscador {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 300px;
+    transition: 0.2s;
+}
+
+.contenedor-buscador:focus-within {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.contenedor-buscador i {
+    color: #94a3b8;
+    margin-right: 10px;
+}
+
+.input-buscar {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.input-buscar::placeholder {
+    color: #94a3b8;
 }
 
