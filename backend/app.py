@@ -3,6 +3,10 @@ from routes.auth import auth_bp
 from routes.citas import citas_bp
 from routes.dashboard import dashboard_bp
 from routes.index import index_bp
+from routes.paciente import paciente_bp
+from routes.doctor import doctor_bp
+from routes.recepcionista import recepcion_bp
+from routes.soporte import soporte_bp
 from datetime import timedelta
 from utils.decorador import login_requerido, rol_requerido
 
@@ -15,6 +19,10 @@ def create_app():
     app.register_blueprint(citas_bp)
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(index_bp)
+    app.register_blueprint(paciente_bp)
+    app.register_blueprint(doctor_bp)
+    app.register_blueprint(recepcion_bp)
+    app.register_blueprint(soporte_bp)
 
     @app.route("/")
     def index():

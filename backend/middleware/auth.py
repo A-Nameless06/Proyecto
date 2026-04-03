@@ -4,7 +4,7 @@ from flask import session, jsonify, redirect
 def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        if "id_usuario" not in session:
+        if "usuario_id" not in session:
             return jsonify({"error": "No has iniciado sesión"}), 401
         return func(*args, **kwargs)
     return wrapper

@@ -1089,3 +1089,354 @@ body {
 .btn-accion-historial.principal:hover {
     background: #1557b0;
 }
+
+/* =========================================
+   CitasPaciente
+   ========================================= */
+
+   /* Variables y Estilos Base */
+:root {
+    --azul-primario: #007bff;
+    --azul-secundario: #0056b3;
+    --fondo-pagina: #f8f9fa;
+    --texto-principal: #333333;
+    --texto-secundario: #6c757d;
+    --fondo-tarjeta: #ffffff;
+    --color-borde: #e9ecef;
+    --fondo-info: #f0f7ff;
+    --fuente-principal: 'Poppins', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--fondo-pagina);
+    color: var(--texto-principal);
+    line-height: 1.5;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; font-family: inherit; }
+
+/* --- CLASE CLAVE PARA OCULTAR VISTAS --- */
+.oculto { display: none !important; }
+
+/* Navegación Superior */
+.encabezado {
+    background-color: var(--fondo-tarjeta);
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-borde);
+}
+.contenedor-logo-nav { display: flex; align-items: center; gap: 40px; }
+.logo { font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.logo i { color: var(--azul-primario); }
+.enlaces-nav { display: flex; gap: 24px; font-size: 0.9rem; font-weight: 500; color: var(--texto-secundario); }
+.enlace-nav.activo { color: var(--azul-primario); }
+.acciones-encabezado { display: flex; align-items: center; gap: 24px; }
+.avatar-usuario { width: 40px; height: 40px; border-radius: 50%; background-color: #ffe0b2; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #e65100; }
+
+/* Layout Principal */
+.contenedor-principal { max-width: 1400px; margin: 0 auto; padding: 32px; display: flex; gap: 32px; align-items: flex-start; }
+.columna-izquierda { flex: 1; }
+.columna-derecha { width: 380px; position: sticky; top: 32px; }
+
+/* Textos Superiores */
+.migas-pan { font-size: 0.85rem; color: var(--texto-secundario); margin-bottom: 8px; }
+.migas-pan span.actual { color: var(--azul-primario); font-weight: 500; }
+.titulo-seccion { font-size: 2rem; font-weight: 700; margin-bottom: 4px; }
+.subtitulo-seccion { color: var(--texto-secundario); font-size: 0.95rem; margin-bottom: 32px; }
+
+/* Indicador de Pasos */
+.contenedor-pasos { background-color: var(--fondo-tarjeta); border-radius: 12px; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+.paso { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 2; cursor: pointer; transition: transform 0.2s; }
+.paso:hover { transform: translateY(-2px); }
+.icono-paso { width: 40px; height: 40px; border-radius: 50%; background-color: var(--fondo-pagina); color: var(--texto-secundario); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; border: 2px solid var(--color-borde); transition: all 0.3s;}
+.texto-paso { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--texto-secundario); }
+.paso.completado .icono-paso, .paso.activo .icono-paso { background-color: var(--azul-primario); color: white; border-color: var(--azul-primario); }
+.paso.activo .icono-paso { background-color: white; color: var(--azul-primario); }
+.paso.completado .texto-paso, .paso.activo .texto-paso { color: var(--azul-primario); }
+.linea-conectora { flex: 1; height: 2px; background-color: var(--color-borde); margin: 0 -20px; margin-top: -20px; z-index: 1; transition: background-color 0.3s; }
+.linea-conectora.activa { background-color: var(--azul-primario); }
+
+/* Vistas de Fecha y Hora */
+.cabecera-paso-actual { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.titulo-paso-actual { font-size: 1.25rem; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+.numero-paso-actual { background-color: var(--fondo-info); color: var(--azul-primario); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 0.9rem; }
+.texto-contador-pasos { color: var(--texto-secundario); font-size: 0.9rem; }
+.rejilla-fecha-hora { display: flex; gap: 24px; }
+.tarjeta-calendario, .tarjeta-horarios { background-color: var(--fondo-tarjeta); border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); border: 1px solid var(--color-borde); }
+.tarjeta-calendario { flex: 1; }
+.tarjeta-horarios { width: 340px; }
+
+/* Calendario */
+.controles-calendario { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; font-weight: 600; }
+.botones-calendario button { background: none; border: 1px solid var(--color-borde); padding: 4px 12px; border-radius: 6px; color: var(--texto-secundario); }
+.dias-semana { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.75rem; color: var(--texto-secundario); margin-bottom: 12px; }
+.cuadricula-dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; text-align: center; }
+.dia { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem; cursor: pointer; color: var(--texto-principal); transition: all 0.2s;}
+.dia.inactivo { color: var(--color-borde); pointer-events: none; }
+.dia:hover:not(.inactivo) { background-color: var(--fondo-pagina); }
+.dia.seleccionado { background-color: var(--azul-primario); color: white; font-weight: 600; }
+
+/* Horarios */
+.titulo-horarios { font-weight: 600; margin-bottom: 16px; }
+.subtitulo-horarios { font-size: 0.75rem; color: var(--texto-secundario); text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+.rejilla-botones-hora { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+.boton-hora { padding: 10px; border: 1px solid var(--color-borde); border-radius: 8px; background: none; font-weight: 500; color: var(--texto-principal); transition: all 0.2s; }
+.boton-hora:hover { border-color: var(--azul-primario); }
+.boton-hora.seleccionado { border-color: var(--azul-primario); color: var(--azul-primario); background-color: var(--fondo-info); }
+.boton-hora.deshabilitado { color: var(--color-borde); background-color: #fafafa; pointer-events: none; }
+
+/* Tarjetas Inferiores */
+.rejilla-tarjetas-seleccion { display: flex; gap: 24px; margin-top: 24px; }
+.tarjeta-seleccion { flex: 1; background-color: var(--fondo-tarjeta); border: 1px solid var(--color-borde); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 16px; position: relative; }
+.icono-tarjeta-seleccion { width: 50px; height: 50px; border-radius: 8px; background-color: var(--fondo-info); color: var(--azul-primario); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.foto-doctor { width: 50px; height: 50px; border-radius: 8px; background-color: #ccc; }
+.info-tarjeta-seleccion p.etiqueta { font-size: 0.7rem; color: var(--texto-secundario); text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+.info-tarjeta-seleccion h4 { font-size: 1rem; margin-bottom: 2px; }
+.icono-check { position: absolute; top: 16px; right: 16px; color: var(--azul-primario); }
+
+/* Barra Lateral (Resumen) */
+.tarjeta-resumen-final { background-color: var(--fondo-tarjeta); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid var(--color-borde); }
+.cabecera-resumen-final { background-color: var(--azul-primario); color: white; padding: 24px; }
+.cuerpo-resumen-final { padding: 24px; }
+.fila-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin-bottom: 24px; }
+.texto-total-azul { color: var(--azul-primario); }
+.btn-confirmar { width: 100%; background-color: var(--azul-primario); color: white; padding: 14px; border-radius: 8px; font-weight: 600; display: flex; justify-content: center; align-items: center; gap: 8px; }
+.btn-confirmar:hover { background-color: var(--azul-secundario); }
+
+
+
+   /* ==========================================================================
+   4. ESTILOS: PERFIL DEL PACIENTE 
+   ========================================================================== */
+.layout-perfil {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.perfil-sidebar { width: 320px; }
+.perfil-contenido { flex: 1; }
+
+/* Tarjeta Resumen (Sidebar Perfil) */
+.tarjeta-perfil-resumen {
+    background-color: var(--fondo-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.avatar-grande {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ffe0b2;
+    color: #e65100;
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+    border: 4px solid var(--fondo-pagina);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.nombre-perfil { font-size: 1.5rem; margin-bottom: 4px; color: var(--texto-principal); }
+.tipo-usuario { color: var(--texto-secundario); font-size: 0.9rem; margin-bottom: 24px; }
+
+.info-rapida-perfil {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-top: 1px solid var(--color-borde);
+    padding-top: 24px;
+    text-align: left;
+}
+
+.item-info-rapida { display: flex; align-items: center; gap: 16px; }
+.item-info-rapida i { font-size: 1.5rem; color: var(--azul-primario); width: 24px; text-align: center; }
+.item-info-rapida .etiqueta { 
+    display: block; 
+    font-size: 0.75rem; 
+    color: var(--texto-secundario); 
+    text-transform: uppercase; 
+    font-weight: 600; 
+}
+.item-info-rapida .valor { display: block; font-weight: 600; font-size: 0.95rem; }
+
+/* Formularios de Perfil */
+.tarjeta-formulario {
+    background-color: var(--fondo-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.cabecera-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 16px;
+}
+
+.cabecera-tarjeta h3 { font-size: 1.25rem; display: flex; align-items: center; gap: 12px; }
+.cabecera-tarjeta h3 i { color: var(--azul-primario); }
+
+.rejilla-formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.grupo-input.ancho-completo { grid-column: 1 / -1; }
+
+.grupo-input label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--texto-secundario);
+    margin-bottom: 8px;
+}
+
+.grupo-input input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-family: var(--fuente-principal);
+    font-size: 0.95rem;
+    color: var(--texto-principal);
+    background-color: var(--fondo-pagina);
+    transition: border-color 0.2s;
+}
+
+.grupo-input input:focus {
+    outline: none;
+    border-color: var(--azul-primario);
+    background-color: #fff;
+}
+
+/* Estado de los inputs cuando están en modo "solo lectura" */
+.grupo-input input[readonly] {
+    background-color: transparent;
+    border-color: transparent;
+    padding-left: 0;
+    color: var(--texto-secundario);
+    font-weight: 500;
+}
+
+/* Botones de acción */
+.acciones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-borde);
+}
+
+.btn-secundario {
+    background-color: transparent;
+    border: 1px solid var(--color-borde);
+    color: var(--texto-principal);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.btn-secundario:hover { 
+    border-color: var(--texto-secundario); 
+    background-color: var(--fondo-pagina); 
+}
+
+.btn-cancelar {
+    background-color: transparent;
+    color: var(--texto-secundario);
+    padding: 12px 24px;
+    font-weight: 500;
+}
+.btn-cancelar:hover { color: var(--texto-principal); }
+
+.btn-guardar {
+    background-color: var(--azul-primario);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+.btn-guardar:hover { background-color: var(--azul-secundario); }
+
+/* =========================================
+   CitasPaciente
+   Para que funcione la navegacion agrega esto
+   document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- LÓGICA DE NAVEGACIÓN ENTRE PASOS ---
+    const botonesPasos = document.querySelectorAll('.paso');
+    const vistas = document.querySelectorAll('.seccion-paso');
+
+    botonesPasos.forEach(boton => {
+        boton.addEventListener('click', () => {
+            // 1. Obtener el número del paso seleccionado (1, 2 o 3)
+            const numeroPaso = boton.getAttribute('data-paso');
+
+            // 2. Actualizar estilos de los botones superiores
+            botonesPasos.forEach(p => p.classList.remove('activo'));
+            boton.classList.add('activo');
+
+            // Opcional: Podrías marcar como 'completado' los pasos anteriores aquí
+
+            // 3. Ocultar todas las vistas
+            vistas.forEach(vista => vista.classList.add('oculto'));
+
+            // 4. Mostrar solo la vista seleccionada
+            const vistaAMostrar = document.getElementById(`vista-paso-${numeroPaso}`);
+            if(vistaAMostrar) {
+                vistaAMostrar.classList.remove('oculto');
+            }
+        });
+    });
+
+    // --- LÓGICA DEL CALENDARIO (Días) ---
+    const diasCalendario = document.querySelectorAll('.dia:not(.inactivo)');
+    
+    diasCalendario.forEach(dia => {
+        dia.addEventListener('click', function() {
+            // Quitar clase 'seleccionado' al día anterior
+            document.querySelector('.dia.seleccionado')?.classList.remove('seleccionado');
+            
+            // Agregar 'seleccionado' al día actual
+            this.classList.add('seleccionado');
+        });
+    });
+
+    // --- LÓGICA DE HORARIOS ---
+    const botonesHora = document.querySelectorAll('.boton-hora:not(.deshabilitado)');
+    
+    botonesHora.forEach(botonHora => {
+        botonHora.addEventListener('click', function() {
+            // Quitar selección a la hora anterior
+            document.querySelector('.boton-hora.seleccionado')?.classList.remove('seleccionado');
+            
+            // Seleccionar nueva hora
+            this.classList.add('seleccionado');
+        });
+    });
+
+});
+   ========================================= */
