@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Historial Médico - Centro Médico R.A.S.A</title>
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Asumo que aquí pones tu CSS específico del paciente -->
+    <link rel="stylesheet" href="style_paciente.css">
 </head>
 <body>
 
@@ -20,111 +22,107 @@
             <li class="activo"><a href="/paciente/historial">Historial</a></li>
         </ul>
 
-        <div class="perfil-usuario">
-            <i class="fa-solid fa-bell icono-accion"></i>
-            <i class="fa-solid fa-gear icono-accion"></i>
-            <div class="info-usuario">
-                <strong>Paciente</strong>
-                <span>ID: P-99824021</span>
-            </div>
-            <a href="perfilPaciente.html" style="text-decoration: none;">
-                <div class="avatar fondo-naranja" title="Mi Perfil">S</div>
-            </a>
+    <div class="perfil-usuario">
+        
+        <div class="info-usuario-texto flat">
+            <span><strong>Juan Pérez</strong> | ID: P-99824021</span>
         </div>
-    </nav>
+        
+    </div>
+    
+</nav>
 
     <main class="contenedor-principal" style="flex-direction: column;">
         
         <header class="encabezado-simple" style="width: 100%;">
-            <div class="migas-pan">Inicio > <strong>Historial Médico</strong></div>
-            </header>
+            <div class="migas-pan">Inicio > <strong>Bitácora de Citas</strong></div>
+        </header>
 
         <section class="seccion-bienvenida" style="width: 100%;">
             <div class="texto-saludo">
                 <h1>Tu Expediente y Consultas</h1>
-                <p>Revisa el registro de tus visitas médicas, diagnósticos y resultados de laboratorio.</p>
+                <p>Revisa el registro de tus visitas médicas, folios, estatus y recetas emitidas.</p>
             </div>
         </section>
 
         <div class="barra-filtros">
             <button class="btn-filtro activo">Todas</button>
-            <button class="btn-filtro">Consultas Generales</button>
-            <button class="btn-filtro">Especialidad</button>
-            <button class="btn-filtro">Laboratorios</button>
+            <button class="btn-filtro">Atendidas</button>
+            <button class="btn-filtro">No Asistió</button>
+            <button class="btn-filtro">Con Receta</button>
         </div>
 
         <div class="tarjeta-panel" style="width: 100%; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
             <div class="lista-historial">
-    <div class="item-historial">
-        <div class="fecha-historial">
-            <span class="h-dia">15</span><span class="h-mes">OCT</span><span class="h-anio">2023</span>
-        </div>
-        <div class="icono-tipo-cita azul"><i class="fa-solid fa-heart-pulse"></i></div>
-        <div class="detalle-historial">
-            <h3>Consulta de Cardiología</h3>
-            <p><strong>Dra. Sarah Smith</strong> • Presión arterial estable, se ajustó dosis de Lisinopril.</p>
-            <div class="etiquetas-registro">
-                <span class="tag tag-receta"><i class="fa-solid fa-pills"></i> Receta Emitida</span>
-                <span class="tag tag-ok"><i class="fa-solid fa-check"></i> Completada</span>
-            </div>
-        </div>
-        <div class="acciones-historial">
-            <a href="comprobanteCita.html" class="btn-accion-historial"><i class="fa-solid fa-file-invoice"></i> Ver Recibo</a>
-        </div>
-    </div>
+                
+                <!-- CITA 1: ATENDIDA Y CON RECETA -->
+                <div class="item-historial">
+                    <div class="fecha-historial">
+                        <span class="h-dia">15</span><span class="h-mes">OCT</span><span class="h-anio">2026</span>
+                        <span class="h-hora">10:30 AM</span>
+                    </div>
+                    <div class="icono-tipo-cita azul"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="detalle-historial">
+                        <div class="cabecera-detalle">
+                            <h3>Cardiología</h3>
+                            <span class="texto-folio">Folio Cita: #CIT-8842</span>
+                        </div>
+                        <p><strong>Dra. Sarah Smith</strong> • Consultorio 402, Ala Norte</p>
+                        <div class="etiquetas-registro">
+                            <span class="tag tag-ok"><i class="fa-solid fa-check-circle"></i> Atendida</span>
+                            <span class="tag tag-receta"><i class="fa-solid fa-file-prescription"></i> Folio Receta: #REC-1092</span>
+                        </div>
+                    </div>
+                    <div class="acciones-historial">
+                        <a href="comprobanteCita.html" class="btn-accion-historial"><i class="fa-solid fa-file-invoice"></i> Ver Recibo</a>
+                    </div>
+                </div>
 
-    <div class="item-historial">
-        <div class="fecha-historial">
-            <span class="h-dia">28</span><span class="h-mes">SEP</span><span class="h-anio">2023</span>
-        </div>
-        <div class="icono-tipo-cita verde"><i class="fa-solid fa-flask"></i></div>
-        <div class="detalle-historial">
-            <h3>Análisis de Laboratorio</h3>
-            <p><strong>Lab Central R.A.S.A</strong> • Química Sanguínea de 27 elementos y Biometría Hemática.</p>
-            <div class="etiquetas-registro">
-                <span class="tag tag-ok"><i class="fa-solid fa-file-pdf"></i> Resultados Listos</span>
-            </div>
-        </div>
-        <div class="acciones-historial">
-            <a href="#" class="btn-accion-historial"><i class="fa-solid fa-download"></i> Descargar PDF</a>
-        </div>
-    </div>
+                <!-- CITA 2: ATENDIDA SIN RECETA (Ej. Laboratorio/Chequeo) -->
+                <div class="item-historial">
+                    <div class="fecha-historial">
+                        <span class="h-dia">28</span><span class="h-mes">SEP</span><span class="h-anio">2026</span>
+                        <span class="h-hora">08:00 AM</span>
+                    </div>
+                    <div class="icono-tipo-cita verde"><i class="fa-solid fa-flask"></i></div>
+                    <div class="detalle-historial">
+                        <div class="cabecera-detalle">
+                            <h3>Laboratorio y Análisis</h3>
+                            <span class="texto-folio">Folio Cita: #CIT-8199</span>
+                        </div>
+                        <p><strong>Dr. Roberto Sánchez</strong> • Laboratorio Central, PB</p>
+                        <div class="etiquetas-registro">
+                            <span class="tag tag-ok"><i class="fa-solid fa-check-circle"></i> Atendida</span>
+                        </div>
+                    </div>
+                    <div class="acciones-historial">
+                        <a href="#" class="btn-accion-historial"><i class="fa-solid fa-file-pdf"></i> Resultados</a>
+                    </div>
+                </div>
 
-    <div class="item-historial">
-        <div class="fecha-historial">
-            <span class="h-dia">10</span><span class="h-mes">AGO</span><span class="h-anio">2023</span>
-        </div>
-        <div class="icono-tipo-cita naranja"><i class="fa-solid fa-stethoscope"></i></div>
-        <div class="detalle-historial">
-            <h3>Consulta General (Chequeo Anual)</h3>
-            <p><strong>Dr. Carlos Rivera</strong> • Paciente asintomático. Se solicitan laboratorios de rutina para revisión general.</p>
-            <div class="etiquetas-registro">
-                <span class="tag tag-ok"><i class="fa-solid fa-check"></i> Completada</span>
-            </div>
-        </div>
-        <div class="acciones-historial">
-            <a href="comprobanteCita.html" class="btn-accion-historial"><i class="fa-solid fa-file-invoice"></i> Ver Recibo</a>
-        </div>
-    </div>
+                <!-- CITA 3: NO ASISTIÓ -->
+                <div class="item-historial">
+                    <div class="fecha-historial">
+                        <span class="h-dia">10</span><span class="h-mes">AGO</span><span class="h-anio">2026</span>
+                        <span class="h-hora">04:15 PM</span>
+                    </div>
+                    <div class="icono-tipo-cita gris"><i class="fa-solid fa-user-xmark"></i></div>
+                    <div class="detalle-historial">
+                        <div class="cabecera-detalle">
+                            <h3 style="color: #6b7280;">Dermatología</h3>
+                            <span class="texto-folio">Folio Cita: #CIT-7502</span>
+                        </div>
+                        <p><strong>Dra. Laura Gómez</strong> • Consultorio 105, Ala Este</p>
+                        <div class="etiquetas-registro">
+                            <span class="tag tag-error"><i class="fa-solid fa-circle-xmark"></i> No asistió</span>
+                        </div>
+                    </div>
+                    <div class="acciones-historial">
+                        <button class="btn-accion-historial" disabled style="opacity: 0.5; cursor: not-allowed;"><i class="fa-solid fa-ban"></i> Sin acciones</button>
+                    </div>
+                </div>
 
-    <div class="item-historial">
-        <div class="fecha-historial">
-            <span class="h-dia">05</span><span class="h-mes">ABR</span><span class="h-anio">2023</span>
-        </div>
-        <div class="icono-tipo-cita rojo"><i class="fa-solid fa-truck-medical"></i></div>
-        <div class="detalle-historial">
-            <h3>Atención de Urgencias</h3>
-            <p><strong>Dra. Elena Gómez</strong> • Cuadro de gastroenteritis aguda. Se administra suero intravenoso.</p>
-            <div class="etiquetas-registro">
-                <span class="tag tag-receta"><i class="fa-solid fa-pills"></i> Receta Emitida</span>
-                <span class="tag tag-ok"><i class="fa-solid fa-check"></i> Alta Médica</span>
             </div>
-        </div>
-        <div class="acciones-historial">
-            <a href="comprobanteCita.html" class="btn-accion-historial"><i class="fa-solid fa-file-invoice"></i> Ver Recibo</a>
-        </div>
-    </div>
-</div>
         </div>
     </main>
 

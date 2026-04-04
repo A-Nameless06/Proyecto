@@ -3,161 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Médico R.A.S.A - Emitir Receta</title>
+    <title>Emitir Receta - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
 </head>
 <body>
 
-    <nav class="barra-navegacion">
+    <nav class="barra-navegacion minimalista">
+        
         <div class="marca">
-            <span class="icono-marca">🏥</span>
-            <strong>Centro Médico<br>R.A.S.A</strong>
+            <i class="fa-solid fa-stethoscope icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico</strong>
+                <span>R.A.S.A</span>
+            </div>
         </div>
         
         <ul class="menu-principal">
-            <li><a href="#">Panel Principal</a></li>
-            <li><a href="#">Consultas de Hoy</a></li>
+            <li><a href="inicioDoctor.html">Panel</a></li>
+            <li class="activo"><a href="#">Consultas</a></li>
             <li><a href="#">Mis Pacientes</a></li>
-            <li class="activo"><a href="#">Recetas</a></li>
-            <li><a href="#">Resultados de Lab</a></li>
+            <li><a href="resultadosLab.html">Resultados de Lab</a></li>
         </ul>
 
         <div class="perfil-usuario">
-            <div class="info-doctor">
-                <strong>Dr. Roberto Sánchez</strong>
-                <span>Cardiología | ID: #MED-092</span>
+            
+            <div class="info-usuario-texto flat">
+                <span><strong>Dr. Roberto Sánchez</strong> | Cardiología Clínico</span>
             </div>
-            <button class="btn-salir" title="Cerrar Sesión">🚪</button>
-        </div>
+            
+            </div>
+        
     </nav>
 
-    <main class="contenedor-principal">
+    <main class="contenido-principal">
         
-        <header class="encabezado-pagina">
+        <div class="fila-acciones">
             <div class="migas-pan">
-                Consultas de Hoy > María López > <strong>Nueva Receta Médica</strong>
+                Consultas <span class="separador-migas">/</span> María López <span class="separador-migas">/</span> <span>Emitir Receta</span>
             </div>
-        </header>
+        </div>
 
-        <div class="cuadricula-receta">
+        <div class="cuadricula-admin">
             
-            <section class="panel-constructor tarjeta-fondo">
-                <div class="encabezado-panel">
+            <!-- PANEL IZQUIERDO: FORMULARIO DEL DOCTOR -->
+            <section class="tarjeta-panel">
+                <div class="cabecera-bloque">
                     <h3>Generar Receta Médica</h3>
-                    <span class="etiqueta-pill pill-estable">Paciente Actual: María López</span>
+                    <span class="estado-admin en-consulta" style="margin:0;">Paciente: María López</span>
                 </div>
 
-                <div class="formulario-receta">
+                <form class="formulario-receta">
                     
-                    <h4 class="subtitulo-form">1. Agregar Medicamento</h4>
-                    <div class="grupo-inputs-doble">
-                        <div class="input-grupo ancho-completo">
-                            <label>Nombre del Medicamento / Sustancia Activa</label>
+                    <!-- 1. DIAGNÓSTICO -->
+                    <h4 class="titulo-seccion-form"><i class="fa-solid fa-stethoscope"></i> 1. Diagnóstico</h4>
+                    <div class="grupo-input ancho-completo" style="margin-bottom: 24px;">
+                        <input type="text" class="input-form" placeholder="Ej. Faringoamigdalitis aguda...">
+                    </div>
+
+                    <!-- 2. MEDICAMENTOS -->
+                    <h4 class="titulo-seccion-form"><i class="fa-solid fa-pills"></i> 2. Medicamento(s)</h4>
+                    <div class="recuadro-medicamento">
+                        <div class="grupo-input ancho-completo">
+                            <label>Nombre del Medicamento / Sustancia</label>
                             <input type="text" class="input-form" placeholder="Ej. Paracetamol 500mg...">
                         </div>
+                        
+                        <div class="grid-form-3" style="margin-top: 12px;">
+                            <div class="grupo-input">
+                                <label>Dosis</label>
+                                <input type="text" class="input-form" placeholder="Ej. 1 tableta">
+                            </div>
+                            <div class="grupo-input">
+                                <label>Frecuencia</label>
+                                <input type="text" class="input-form" placeholder="Ej. Cada 8 horas">
+                            </div>
+                            <div class="grupo-input">
+                                <label>Duración</label>
+                                <input type="text" class="input-form" placeholder="Ej. 5 días">
+                            </div>
+                        </div>
+                        
+                        <div class="grupo-input ancho-completo" style="margin-top: 12px;">
+                            <label>Indicación de Toma</label>
+                            <input type="text" class="input-form" placeholder="Ej. Tomar después de los alimentos.">
+                        </div>
+                        
+                        <button type="button" class="btn-filtro-mini" style="margin-top: 12px; color: var(--primario); border: 1px solid var(--primario-suave);"><i class="fa-solid fa-plus"></i> Añadir a la lista</button>
                     </div>
 
-                    <div class="grupo-inputs-triple">
-                        <div class="input-grupo">
-                            <label>Dosis</label>
-                            <input type="text" class="input-form" placeholder="Ej. 1 tableta">
-                        </div>
-                        <div class="input-grupo">
-                            <label>Frecuencia</label>
-                            <select class="input-form">
-                                <option>Cada 8 horas</option>
-                                <option>Cada 12 horas</option>
-                                <option>Cada 24 horas</option>
-                                <option>Dosis única</option>
-                            </select>
-                        </div>
-                        <div class="input-grupo">
-                            <label>Duración</label>
-                            <input type="text" class="input-form" placeholder="Ej. 5 días">
-                        </div>
+                    <hr class="separador-formulario">
+
+                    <!-- 3. TRATAMIENTOS (No farmacológicos) -->
+                    <h4 class="titulo-seccion-form"><i class="fa-solid fa-kit-medical"></i> 3. Tratamiento(s) Especiales</h4>
+                    <div class="grupo-input ancho-completo" style="margin-bottom: 24px;">
+                        <textarea class="input-form area-texto" placeholder="Ej. Terapia física, curaciones, nebulizaciones..." style="min-height: 70px;"></textarea>
                     </div>
 
-                    <div class="grupo-inputs-doble">
-                        <div class="input-grupo ancho-completo">
-                            <label>Vía de Administración e Indicaciones Específicas</label>
-                            <input type="text" class="input-form" placeholder="Ej. Vía oral, tomar después de los alimentos.">
-                        </div>
+                    <!-- 4. OBSERVACIONES -->
+                    <h4 class="titulo-seccion-form"><i class="fa-solid fa-clipboard-list"></i> 4. Observaciones</h4>
+                    <div class="grupo-input ancho-completo">
+                        <textarea class="input-form area-texto" placeholder="Reposo absoluto, hidratación abundante, evitar grasas..." style="min-height: 70px;"></textarea>
                     </div>
 
-                    <button class="btn-secundario btn-agregar-med">➕ Añadir a la receta</button>
-
-                    <hr class="divisor">
-
-                    <h4 class="subtitulo-form">2. Indicaciones Generales (Opcional)</h4>
-                    <div class="input-grupo">
-                        <textarea class="input-form textarea-form" placeholder="Reposo absoluto, hidratación abundante, evitar grasas..."></textarea>
-                    </div>
-
-                </div>
+                </form>
             </section>
 
-            <aside class="panel-vista-previa">
+            <!-- PANEL DERECHO: VISTA PREVIA DE LA RECETA -->
+            <aside style="display: flex; flex-direction: column; gap: 24px;">
                 
-                <div class="documento-receta">
+                <div class="documento-receta-papel">
+                    <!-- Cabecera Receta -->
                     <div class="receta-header">
                         <div class="receta-logo">
-                            <span class="icono-marca">🏥</span>
+                            <i class="fa-solid fa-hospital-user"></i>
                             <strong>R.A.S.A</strong>
                         </div>
                         <div class="receta-datos-doctor">
                             <strong>Dr. Roberto Sánchez</strong>
-                            <span>Cardiólogo Clínico | Cédula: 8892314</span>
+                            <span>Cédula Profesional: 8892314</span>
                             <span>Universidad Nacional Autónoma</span>
                         </div>
                     </div>
                     
+                    <!-- Datos Paciente (Auto-llenados) -->
                     <div class="receta-datos-paciente">
+                        <div class="dato-inline"><strong>Folio:</strong> FOL-2026-0921</div>
+                        <div class="dato-inline"><strong>Fecha:</strong> 02/04/2026</div>
                         <div class="dato-inline"><strong>Paciente:</strong> María López</div>
                         <div class="dato-inline"><strong>Edad:</strong> 45 años</div>
-                        <div class="dato-inline"><strong>Fecha:</strong> 3 de Marzo, 2026</div>
-                        <div class="dato-inline"><strong>Peso:</strong> 68 kg</div>
-                        <div class="dato-inline"><strong>Temp:</strong> 38.5 °C</div>
-                        <div class="dato-inline"><strong>T.A.:</strong> 120/80</div>
                     </div>
 
+                    <!-- Cuerpo Médico -->
                     <div class="receta-cuerpo">
-                        <div class="marca-agua">R.A.S.A</div>
+                        <div class="marca-agua-receta"><i class="fa-solid fa-hospital-user"></i></div>
+                        
+                        <div class="bloque-impresion">
+                            <strong>Diagnóstico:</strong>
+                            <p>Faringoamigdalitis Aguda.</p>
+                        </div>
+
                         <h4 class="simbolo-rx">Rx</h4>
                         
-                        <ul class="lista-medicamentos-receta">
-                            <li>
-                                <strong>1. Ibuprofeno 400mg</strong> (Tabletas)
-                                <p>Tomar <strong>1 tableta</strong> por vía oral cada <strong>8 horas</strong> durante <strong>3 días</strong>.</p>
-                                <p class="nota-med"><em>* Tomar junto con los alimentos.</em></p>
-                            </li>
-                            <li>
-                                <strong>2. Amoxicilina / Ácido Clavulánico 500mg/125mg</strong> (Cápsulas)
-                                <p>Tomar <strong>1 cápsula</strong> por vía oral cada <strong>12 horas</strong> durante <strong>7 días</strong>.</p>
-                            </li>
-                        </ul>
+                        <div class="bloque-impresion">
+                            <strong>Medicamento(s):</strong>
+                            <ul class="lista-impresion">
+                                <li>
+                                    <strong>1. Ibuprofeno 400mg</strong>
+                                    <p>Tomar 1 tableta por vía oral cada 8 horas durante 3 días. (Tomar junto con los alimentos).</p>
+                                </li>
+                                <li>
+                                    <strong>2. Amoxicilina / Ácido Clavulánico 500/125mg</strong>
+                                    <p>Tomar 1 cápsula por vía oral cada 12 horas durante 7 días.</p>
+                                </li>
+                            </ul>
+                        </div>
 
-                        <div class="indicaciones-generales-receta">
-                            <strong>Indicaciones Generales:</strong>
+                        <div class="bloque-impresion" style="margin-top: 15px;">
+                            <strong>Tratamiento(s):</strong>
+                            <p>No requiere tratamientos adicionales ni procedimientos físicos.</p>
+                        </div>
+
+                        <div class="bloque-impresion" style="margin-top: 15px;">
+                            <strong>Observaciones:</strong>
                             <p>Mantener reposo en casa por 3 días. Consumir abundantes líquidos (mínimo 2 litros diarios). Si la fiebre persiste por más de 48 horas, acudir nuevamente a consulta.</p>
                         </div>
                     </div>
 
+                    <!-- Firma -->
                     <div class="receta-footer">
                         <div class="firma-espacio">
                             <div class="linea-firma"></div>
-                            <span>Firma del Médico</span>
-                        </div>
-                        <div class="codigo-qr-simulado">
-                            <span class="texto-gris">ID: REC-2026-0382</span>
-                            <div class="cuadro-qr">📱</div>
+                            <span>Firma del Médico Atendido</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="acciones-receta-final">
-                    <button class="btn-secundario"><span class="icono-btn">📧</span> Enviar por Correo</button>
-                    <button class="btn-primario ancho-completo"><span class="icono-btn">🖨️</span> Imprimir y Guardar</button>
+                <!-- Botones de Acción -->
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn-secundario-admin" style="flex: 1;"><i class="fa-solid fa-envelope"></i> Enviar</button>
+                    <button class="btn-accion-principal" style="flex: 2;"><i class="fa-solid fa-print"></i> Guardar e Imprimir</button>
                 </div>
 
             </aside>

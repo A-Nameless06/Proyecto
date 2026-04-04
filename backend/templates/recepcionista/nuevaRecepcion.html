@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Recepcionista - R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico R.A.S.A</strong>
+            </div>
+        </div>
+        <ul class="menu-principal">
+            <li><a href="#">Recepción</a></li>
+            <li><a href="#">Citas</a></li>
+            <li><a href="doctores.html">Doctores</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+        </ul>
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Admin. Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenedor-layout">
+        
+        <div class="header-pagina">
+            <div class="migas-pan">
+                Administración > Plantilla > <strong>Nueva Recepcionista</strong>
+            </div>
+            <a href="recepcionistas.html" class="btn-volver-header">
+                <i class="fa-solid fa-arrow-left"></i> <u>Volver</u>
+            </a>
+        </div>
+
+        <div class="tarjeta-formulario-ancha">
+            
+            <div class="cabecera-tarjeta">
+                <h2 class="titulo-azul"><i class="fa-solid fa-headset"></i> Alta de Personal de Recepción</h2>
+                <span class="subtitulo-gris">Asigne el área y turno correspondiente a la nueva colaboradora.</span>
+            </div>
+
+            <form action="#" method="POST">
+                
+                <div class="grid-formulario-2">
+                    
+                    <div class="grupo-campo">
+                        <label>NOMBRE COMPLETO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Ej. Ana Martínez Silva" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>NÚMERO DE EMPLEADO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-id-badge"></i>
+                            <input type="text" placeholder="Ej. REC-2026-045" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>CURP</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-address-card"></i>
+                            <input type="text" placeholder="18 caracteres" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>TELÉFONO DE CONTACTO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" placeholder="Ej. 55-0000-0000" required>
+                        </div>
+                    </div>
+
+                    <!-- Lista completa de las 11 áreas + Lobby -->
+                    <div class="grupo-campo">
+                        <label>ÁREA / MÓDULO ASIGNADO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <select required>
+                                <option value="" disabled selected>Seleccione el área de trabajo</option>
+                                <option value="general">Recepción General (Lobby)</option>
+                                <option value="cardiologia">Módulo Cardiología</option>
+                                <option value="dermatologia">Módulo Dermatología</option>
+                                <option value="ginecologia">Módulo Ginecología</option>
+                                <option value="medicina_general">Módulo Medicina General</option>
+                                <option value="nefrologia">Módulo Nefrología</option>
+                                <option value="nutriologia">Módulo Nutriología</option>
+                                <option value="oftalmologia">Módulo Oftalmología</option>
+                                <option value="oncologia">Módulo Oncología</option>
+                                <option value="ortopedia">Módulo Ortopedia</option>
+                                <option value="pediatria">Módulo Pediatría</option>
+                                <option value="laboratorio">Recepción Laboratorio Clínico</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>TURNO LABORAL</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-clock"></i>
+                            <select required>
+                                <option value="" disabled selected>Seleccione el turno</option>
+                                <option value="matutino">Matutino (07:00 a 14:00)</option>
+                                <option value="vespertino">Vespertino (14:00 a 21:00)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="linea-divisora">
+
+                <div class="fila-botones-form">
+                    <button type="reset" class="btn-limpiar">Limpiar Formulario</button>
+                    <button type="submit" class="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar Recepcionista</button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

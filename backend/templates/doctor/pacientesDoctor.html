@@ -5,30 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centro Médico R.A.S.A - Mis Pacientes</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="barra-navegacion">
+   <nav class="barra-navegacion minimalista">
+        
         <div class="marca">
-            <span class="icono-marca">🏥</span>
-            <strong>Centro Médico<br>R.A.S.A</strong>
+            <i class="fa-solid fa-stethoscope icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico</strong>
+                <span>R.A.S.A</span>
+            </div>
         </div>
         
         <ul class="menu-principal">
-            <li><a href="inicioDoctor.html">Panel Principal</a></li>
-            <li><a href="agendaDoctor.html">Consultas de Hoy</a></li>
-            <li class="activo"><a href="#">Mis Pacientes</a></li>
-            <li><a href="#">Resultados de Lab</a></li>
+            <li><a href="inicioDoctor.html">Panel</a></li>
+            <li class="activo"><a href="#">Consultas</a></li>
+            <li><a href="#">Mis Pacientes</a></li>
+            <li><a href="resultadosLab.html">Laboratorio</a></li>
         </ul>
 
         <div class="perfil-usuario">
-            <div class="info-doctor">
-                <strong>Dr. Roberto Sánchez</strong>
-                <span>Cardiología | ID: #MED-092</span>
+            
+            <div class="info-usuario-texto flat">
+                <span><strong>Dr. Roberto Sánchez</strong> | Cardiología Clínico</span>
             </div>
-            <button class="btn-salir" title="Cerrar Sesión">🚪</button>
-        </div>
+            </div>
     </nav>
 
     <main class="contenedor-principal">

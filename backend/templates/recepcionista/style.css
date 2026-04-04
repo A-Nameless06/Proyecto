@@ -377,235 +377,1024 @@ body {
 .en-espera { background: #fef3c7; color: #92400e; }
 .por-llegar { background: #f1f5f9; color: #475569; }
 
-/* 4. ESTILOS DEL PANEL DE CONTROL DE CITA (RECEPCIÓN) */
-
-/* --- Variables y Reset --- */
-:root {
-    --primary-blue: #0070f3;
-    --light-blue: #e0f0ff;
-    --dark-text: #111827;
-    --gray-text: #6b7280;
-    --light-gray-text: #9ca3af;
-    --bg-color: #f3f4f6;
-    --card-bg: #ffffff;
-    --border-color: #e5e7eb;
-    --pending-orange: #f97316;
+/* ==========================================================================
+   MÓDULO 2: DIRECTORIO DE ESPECIALIDADES
+   ========================================================================== */
+.cuadricula-especialidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--dark-text);
+.tarjeta-especialidad {
+    background: var(--superficie);
+    border-radius: 20px;
+    box-shadow: var(--sombra-tarjeta);
+    border: 1px solid var(--borde-suave);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* --- Tipografía --- */
-.label { font-size: 0.75rem; font-weight: 600; color: var(--light-gray-text); letter-spacing: 0.05em; text-transform: uppercase; }
-.value { font-size: 1.1rem; font-weight: 600; margin-top: 4px; }
-.value-sm { font-size: 0.95rem; font-weight: 600; margin-top: 2px; }
-.sub-value { font-size: 0.85rem; color: var(--gray-text); margin-top: 4px; }
-.text-blue { color: var(--primary-blue); font-weight: 600; }
-.text-light-blue { color: #60a5fa; font-size: 1.5rem; }
+.tarjeta-especialidad:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
 
-/* --- Barra de Navegación de Ancho Completo --- */
-.navbar-top {
-    background: var(--card-bg);
+.cabecera-esp {
+    padding: 24px 24px 16px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid var(--border-color);
-    width: 100%; /* Ancho completo */
-    z-index: 10;
+    gap: 16px;
+    border-bottom: 1px dashed var(--borde-suave);
 }
 
-.nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-.logo-icon { color: var(--primary-blue); font-size: 2.5rem; } /* Más grande para el logo completo */
-.logo-texts { display: flex; flex-direction: column; font-weight: 700; }
-.logo-text-top { font-size: 1.2rem; line-height: 1.1; }
-.logo-text-bottom { font-size: 1.2rem; }
-
-.nav-links { list-style: none; display: flex; gap: 2rem; }
-.nav-links a { text-decoration: none; color: var(--gray-text); font-weight: 500; font-size: 0.95rem; }
-.nav-links a.active { color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); padding-bottom: 0.25rem; }
-
-.nav-actions { display: flex; gap: 0.75rem; align-items: center; }
-.icon-btn, .rounded-icon {
-    background: #f3f4f6;
-    border: none;
-    border-radius: 50%; /* Iconos redondeados de la imagen */
-    width: 40px;
-    height: 40px;
+.icono-esp {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: var(--gray-text);
-    transition: background 0.2s;
-}
-.icon-btn:hover { background-color: #e5e7eb; }
-
-/* --- Fila de Acciones y Miga de Pan (Debajo de la Nav) --- */
-.action-row {
-    width: 100%;
-    max-width: 900px; /* Centrado como el comprobante */
-    margin: 1.5rem auto 0.5rem; /* Margen superior para separarlo de la nav */
-    padding: 0 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    font-size: 24px;
+    flex-shrink: 0;
 }
 
-.breadcrumb { font-size: 0.85rem; color: var(--light-gray-text); }
-.breadcrumb span { color: var(--primary-blue); }
+.titulo-esp h3 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--texto-principal);
+}
 
-.header-actions { display: flex; gap: 1rem; }
+.titulo-esp span {
+    font-size: 13px;
+    color: var(--texto-secundario);
+    font-weight: 500;
+}
 
-/* Botones */
-.btn {
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+.info-adicional-esp {
+    padding: 16px 24px;
+    background: var(--fondo-app);
+}
+
+.dato-mini-esp {
+    font-size: 13px;
     font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
+    color: var(--texto-principal);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.2s;
-}
-.btn-primary { background-color: var(--primary-blue); color: white; border: 1px solid var(--primary-blue); }
-.btn-outline { background-color: white; color: var(--dark-text); border: 1px solid var(--border-color); }
-.btn-outline:hover { background-color: var(--bg-color); }
-.btn-outline.large { margin: 0 auto; padding: 0.8rem 1.5rem; }
-
-/* --- Contenedor Principal (Tarjeta del Comprobante) --- */
-.main-container {
-    max-width: 900px;
-    margin: 1rem auto;
-    padding: 0 1rem;
-    width: 100%;
-    flex-grow: 1; /* Para empujar el footer hacia abajo */
+    gap: 8px;
 }
 
-.page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem; }
-.folio-text { color: var(--gray-text); margin-bottom: 1.5rem; }
-
-/* --- Tarjeta del Comprobante (Original) --- */
-.receipt-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    margin-bottom: 2rem;
-    overflow: hidden;
+.dato-mini-esp i {
+    color: var(--texto-secundario);
 }
 
-/* Header Tarjeta */
-.card-header {
+.medicos-asignados {
+    padding: 16px 24px;
+    flex-grow: 1;
+}
+
+.medicos-asignados h4 {
+    margin: 0 0 12px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--texto-secundario);
+}
+
+.medicos-asignados ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.medicos-asignados li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
-    border-bottom: 5px solid var(--bg-color);
 }
-.header-title { display: flex; align-items: center; gap: 1rem; }
-.header-title h2 { font-size: 1.1rem; color: var(--primary-blue); }
-.header-title p { font-size: 0.85rem; color: var(--gray-text); }
-.icon-box {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
+
+.medico-info-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-.icon-box.blue { background-color: var(--primary-blue); color: white; }
-.icon-box.light-gray { background-color: #e5e7eb; color: var(--gray-text); }
-.header-folio { text-align: right; }
-.badge {
-    background: var(--primary-blue);
-    color: white;
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
-    font-size: 0.7rem;
+
+.medico-info-mini img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.medico-info-mini span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto-principal);
+}
+
+/* Redondos de estado para médicos (dentro de las tarjetas) */
+span.punto-estado {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block; /* Sobrescribe el display:flex general si es necesario */
+}
+
+span.punto-estado.ocupado { background-color: var(--rojo); box-shadow: 0 0 0 3px #fee2e2; }
+span.punto-estado.libre { background-color: var(--exito); box-shadow: 0 0 0 3px #d1fae5; }
+
+.pie-tarjeta-esp {
+    padding: 20px 24px;
+    border-top: 1px solid var(--borde-suave);
+    background: var(--superficie);
+}
+
+.ancho-completo {
+    width: 100%;
+}
+
+/* ==========================================================================
+   MÓDULO: COMPROBANTE DE CITA (RECIBO PDF)
+   ========================================================================== */
+
+.fila-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    max-width: 800px;       /* <-- Centrado */
+    margin-left: auto;      /* <-- Centrado */
+    margin-right: auto;     /* <-- Centrado */
+}
+
+.migas-pan {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto-secundario);
+}
+
+.separador-migas {
+    margin: 0 8px;
+    color: var(--borde-suave);
+}
+
+.migas-pan span:last-child {
+    color: var(--primario);
     font-weight: 700;
 }
-.header-folio h3 { font-size: 1.4rem; margin-top: 0.5rem; }
 
-/* Body Tarjeta */
-.card-body { padding: 2rem; }
-.patient-section { display: flex; justify-content: space-between; margin-bottom: 2rem; }
-.align-right { text-align: right; }
-.divider { border: 0; border-top: 1px dashed var(--border-color); margin: 2rem 0; }
-.details-section {
+.acciones-cabecera {
+    display: flex;
+    gap: 12px;
+}
+
+.encabezado-pagina {
+    margin-bottom: 32px;
+    max-width: 800px;       /* <-- Centrado */
+    margin-left: auto;      /* <-- Centrado */
+    margin-right: auto;     /* <-- Centrado */
+    display: flex;          /* <-- Centrado */
+    justify-content: center;/* <-- Centrado */
+    text-align: center;     /* <-- Centrado */
+}
+
+.encabezado-pagina > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo-pagina {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0 0 4px 0;
+}
+
+.texto-folio {
+    color: var(--texto-secundario);
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Tarjeta Principal del Comprobante */
+.tarjeta-comprobante {
+    background: var(--superficie);
+    border-radius: 24px;
+    box-shadow: var(--sombra-tarjeta);
+    border: 1px solid var(--borde-suave);
+    overflow: hidden;
+    max-width: 800px;       /* <-- Ajustado para tamaño de recibo */
+    margin-left: auto;      /* <-- Centrado */
+    margin-right: auto;     /* <-- Centrado */
+}
+
+.cabecera-comprobante {
+    background: var(--fondo-app);
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borde-suave);
+}
+
+.titulo-comprobante {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.caja-icono {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.caja-icono.azul { background: var(--primario-suave); color: var(--primario); }
+.caja-icono.gris-claro { background: var(--superficie); color: var(--texto-secundario); border: 1px solid var(--borde-suave); }
+
+.titulo-comprobante h2 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.titulo-comprobante p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--texto-secundario);
+}
+
+.folio-comprobante {
+    text-align: right;
+}
+
+.etiqueta-folio {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--texto-secundario);
+    letter-spacing: 1px;
+}
+
+.folio-comprobante h3 {
+    margin: 4px 0 0 0;
+    font-size: 20px;
+    font-family: monospace;
+    color: var(--primario);
+}
+
+.cuerpo-comprobante {
+    padding: 32px;
+}
+
+.seccion-paciente {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bloque-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.alinear-derecha {
+    text-align: right;
+}
+
+.etiqueta-info {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--texto-secundario);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.valor-info {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--texto-principal);
+    margin: 4px 0;
+}
+
+.sub-valor {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--texto-secundario);
+    margin: 0;
+}
+
+.texto-azul { color: var(--primario) !important; font-weight: 700; }
+
+.separador-punteado {
+    border: none;
+    border-top: 2px dashed var(--borde-suave);
+    margin: 32px 0;
+}
+
+.seccion-detalles {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 24px;
 }
-.detail-item { display: flex; align-items: flex-start; gap: 0.75rem; }
 
-/* Bloque de Pago */
-.payment-block {
-    background-color: #f8fafc;
-    border-radius: 12px;
-    padding: 1.5rem;
+.item-detalle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.item-detalle i {
+    font-size: 24px;
+}
+
+.texto-azul-claro { color: #38bdf8; }
+
+.valor-pequeno {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto-principal);
+    margin: 4px 0 0 0;
+}
+
+.bloque-pago {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    background: var(--fondo-app);
+    padding: 24px;
+    border-radius: 16px;
+    margin: 32px 0;
+    border: 1px solid var(--borde-suave);
 }
-.payment-info { display: flex; align-items: center; gap: 1rem; }
-.payment-amount { text-align: right; }
-.price { font-size: 1.5rem; font-weight: 700; color: var(--primary-blue); }
-.status-pending {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--pending-orange);
+
+.info-pago {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.monto-pago {
+    text-align: right;
+}
+
+.precio {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--texto-principal);
+    margin: 0 0 4px 0;
+}
+
+.estado-pendiente {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--alerta);
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 0.25rem;
-    margin-top: 0.25rem;
+    gap: 6px;
+    margin: 0;
 }
-.dot { width: 6px; height: 6px; background-color: var(--pending-orange); border-radius: 50%; display: inline-block; }
 
-/* Caja de Info */
-.info-box {
-    background-color: #f0f7ff;
-    border: 1px solid #cce4ff;
-    border-radius: 12px;
-    padding: 1.5rem;
+.punto-alerta {
+    width: 8px;
+    height: 8px;
+    background-color: var(--alerta);
+    border-radius: 50%;
 }
-.info-header { display: flex; align-items: center; gap: 0.5rem; color: var(--primary-blue); margin-bottom: 1rem; }
-.info-content { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 0.85rem; color: var(--dark-text); line-height: 1.5; }
-.info-content p { display: flex; gap: 0.5rem; align-items: flex-start; }
-.info-content i { color: var(--primary-blue); margin-top: 3px; }
 
-/* Footer Tarjeta */
-.card-footer {
-    padding: 1.5rem 2rem;
-    border-top: 1px solid var(--border-color);
+.caja-informacion {
+    background: var(--primario-suave);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid #bfdbfe;
+}
+
+.cabecera-informacion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primario);
+    margin-bottom: 12px;
+}
+
+.cabecera-informacion h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.contenido-informacion p {
+    margin: 0 0 12px 0;
+    font-size: 13px;
+    color: #1e3a8a;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+}
+
+.contenido-informacion p:last-child {
+    margin: 0;
+}
+
+.pie-comprobante {
+    background: var(--texto-principal);
+    color: white;
+    padding: 24px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.footer-text { font-size: 0.75rem; color: var(--light-gray-text); }
-.footer-text .italic { font-style: italic; margin-top: 0.25rem; }
 
-/* Código de barras simulado */
-.barcode { display: flex; gap: 2px; height: 30px; border: 1px solid var(--border-color); padding: 4px; border-radius: 4px;}
-.bar { background-color: #d1d5db; height: 100%; }
-.bar.thin { width: 2px; }
-.bar.medium { width: 4px; }
-.bar.thick { width: 6px; }
+.texto-pie p {
+    margin: 0 0 4px 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #cbd5e1;
+}
 
-/* --- Acción Inferior y Footer --- */
-.bottom-action { display: flex; justify-content: center; margin-bottom: 3rem; }
-.site-footer { text-align: center; font-size: 0.85rem; color: var(--light-gray-text); padding: 2rem 1rem; width: 100%; background: white; border-top: 1px solid var(--border-color); }
+.cursiva {
+    font-style: italic;
+    font-weight: 400 !important;
+    color: #94a3b8 !important;
+}
+
+.codigo-barras {
+    display: flex;
+    height: 30px;
+    gap: 3px;
+}
+
+.barra { background-color: white; height: 100%; }
+.barra.gruesa { width: 6px; }
+.barra.media { width: 4px; }
+.barra.fina { width: 2px; }
+
+/* Acción Inferior Centrada */
+.accion-inferior {
+    margin-top: 32px;
+    text-align: center;
+    max-width: 800px;       /* <-- Centrado */
+    margin-left: auto;      /* <-- Centrado */
+    margin-right: auto;     /* <-- Centrado */
+}
+
+/* ==========================================================================
+   LAYOUT GENERAL Y ALINEACIÓN
+   ========================================================================== */
+body {
+    background-color: var(--fondo-app);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--texto-principal);
+}
+
+.contenedor-layout {
+    max-width: 1100px; /* Ancho para que se vea extendido como en la imagen */
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+/* ==========================================================================
+   HEADER SUPERIOR (MIGAS Y BOTÓN VOLVER)
+   ========================================================================== */
+.header-pagina {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.migas-pan {
+    font-size: 14px;
+    color: var(--texto-secundario);
+}
+
+.migas-pan strong {
+    color: var(--texto-principal);
+    font-weight: 700;
+}
+
+.btn-volver-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f1f5f9; /* Color sutil como en la imagen */
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    color: var(--texto-secundario);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-volver-header u {
+    text-underline-offset: 3px;
+}
+
+.btn-volver-header:hover {
+    background-color: var(--borde-suave);
+    color: var(--texto-principal);
+}
+
+/* ==========================================================================
+   TARJETA BLANCA PRINCIPAL
+   ========================================================================== */
+.tarjeta-formulario-ancha {
+    background-color: var(--superficie);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--sombra-tarjeta);
+    border: 1px solid var(--borde-suave);
+}
+
+/* Cabecera interna */
+.cabecera-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.titulo-azul {
+    color: var(--primario);
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+}
+
+.subtitulo-gris {
+    color: var(--texto-secundario);
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   GRID DEL FORMULARIO Y CAMPOS
+   ========================================================================== */
+.grid-formulario-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+    row-gap: 24px;
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Labels en mayúsculas como en la foto */
+.grupo-campo label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--texto-secundario);
+    letter-spacing: 0.5px;
+}
+
+/* Contenedor relativo para el ícono */
+.input-con-icono {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-con-icono i {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+/* El input en sí */
+.input-con-icono input,
+.input-con-icono select {
+    width: 100%;
+    padding: 14px 16px 14px 45px; /* Padding izquierdo ancho para no pisar el ícono */
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--texto-principal);
+    background-color: var(--superficie);
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.input-con-icono input:focus,
+.input-con-icono select:focus {
+    outline: none;
+    border-color: var(--primario);
+    box-shadow: 0 0 0 3px var(--primario-suave);
+}
+
+.input-con-icono input::placeholder {
+    color: #cbd5e1;
+}
+
+/* ==========================================================================
+   SEPARADOR Y BOTONES INFERIORES
+   ========================================================================== */
+.linea-divisora {
+    border: none;
+    border-top: 1px solid var(--borde-suave);
+    margin: 40px 0 30px 0;
+}
+
+.fila-botones-form {
+    display: flex;
+    justify-content: flex-end; /* Los empuja a la derecha */
+    gap: 16px;
+}
+
+/* Botón Gris (Limpiar) */
+.btn-limpiar {
+    background-color: #f1f5f9;
+    color: var(--texto-principal);
+    border: 1px solid var(--borde-suave);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-limpiar:hover {
+    background-color: #e2e8f0;
+}
+
+/* Botón Azul (Guardar) */
+.btn-guardar {
+    background-color: var(--primario);
+    color: var(--superficie);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: var(--sombra-boton);
+}
+
+.btn-guardar:hover {
+    background-color: var(--primario-hover);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   REGISTRO DE NUEVOS DOCTORES
+   ========================================================================== */
+
+.grid-form-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.input-contenedor {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-contenedor i {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8; /* Color gris suave para los iconos */
+    font-size: 16px;
+}
+
+.input-contenedor .input-form {
+    padding-left: 45px; /* Espacio para que el texto no pise el icono */
+}
+
+.fila-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.titulo-seccion-form h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.separador-formulario {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 32px 0;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN UNIVERSAL
+   ========================================================================== */
+
+/* Quitamos sombras pesadas para un look más plano */
+.barra-navegacion.minimalista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 48px; /* Reducimos padding para que sea más compacta */
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 64px; /* Un poco más bajita para ser minimalista */
+}
+
+/* LADO IZQUIERDO: Logo Plano en una línea */
+.barra-navegacion .marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.barra-navegacion .icono-marca {
+    font-size: 24px;
+    color: #2563eb;
+}
+
+.barra-navegacion .marca strong {
+    font-weight: 800;
+    font-size: 15px;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+}
+
+/* ZONA ENLACES: Mismo estilo de "pastilla" azul */
+.barra-navegacion .menu-principal {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.barra-navegacion .menu-principal a {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.barra-navegacion .menu-principal li.activo a, 
+.barra-navegacion .menu-principal a:hover {
+    background-color: #eff6ff; /* Fondo azul clarito de tus fotos */
+    color: #2563eb; /* Letra azul fuerte */
+}
+
+/* ZONA PERFIL MINIMALISTA TIPOGRÁFICO */
+.barra-navegacion .perfil-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.info-usuario-texto.flat {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #64748b; /* Color base del texto de info */
+    font-weight: 500;
+}
+
+/* El nombre lo ponemos un poco más fuerte para que resalte */
+.info-usuario-texto.flat span::first-line {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* Botón Salir Discreto */
+.btn-salir-mini {
+    background: transparent;
+    border: none;
+    color: #cbd5e1; /* Muy discreto inicialmente */
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-salir-mini:hover {
+    color: #ef4444; /* Rojo solo al pasar el mouse */
+    background-color: #fee2e2;
+}
+
+/* ==========================================================================
+   DIRECTORIO MÉDICO 
+   ========================================================================== */
+
+/* --- Estructura Principal --- */
+.contenido-principal {
+    padding: 40px 48px;
+    max-width: 1400px;
+    margin: 0 auto; /* Centra el contenido en pantallas muy grandes */
+}
+
+.fila-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.migas-pan {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.migas-pan strong {
+    color: #0f172a;
+}
+
+.btn-accion-principal {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-accion-principal:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+/* --- Contenedor de Especialidades --- */
+.contenedor-especialidades {
+    display: flex;
+    flex-direction: column;
+    gap: 32px; /* Espacio entre cada especialidad */
+}
+
+.bloque-especialidad {
+    background: #f8fafc; /* Gris super clarito */
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #f1f5f9;
+}
+
+.titulo-esp {
+    font-size: 18px;
+    color: #0f172a;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+
+.titulo-esp i {
+    color: #2563eb; /* Íconos en azul institucional */
+    font-size: 20px;
+}
+
+/* --- Grid de Tarjetas (Acomodo Automático) --- */
+.grid-personal {
+    display: grid;
+    /* Esto hace la magia: acomoda las tarjetas solas dependiendo del tamaño de la pantalla */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+/* --- Tarjeta Individual del Doctor --- */
+.tarjeta-personal {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    position: relative; /* Necesario para poner el "badge" en la esquina */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta-personal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+/* Textos de la tarjeta */
+.info-p {
+    margin-top: 18px; /* Espacio para que el badge no tape el nombre */
+}
+
+.info-p strong {
+    display: block;
+    font-size: 15px;
+    color: #0f172a;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.info-p p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* --- Badges de Estado (En servicio / Fuera de servicio) --- */
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+}
+
+.en-servicio { 
+    background-color: #ecfdf5; 
+    color: #059669; /* Verde esmeralda */
+}
+
+.fuera-servicio { 
+    background-color: #fef2f2; 
+    color: #dc2626; /* Rojo */
+}
+
+/* --- Estilo Especial para Laboratorio --- */
+.bloque-especialidad.laboratorio {
+    background-color: #eff6ff; /* Azul super clarito */
+    border: 1px dashed #93c5fd; /* Borde punteado azul */
+}
+
+/* --- BUSCADOR DE PACIENTES --- */
+.contenedor-buscador {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 300px;
+    transition: 0.2s;
+}
+
+.contenedor-buscador:focus-within {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.contenedor-buscador i {
+    color: #94a3b8;
+    margin-right: 10px;
+}
+
+.input-buscar {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.input-buscar::placeholder {
+    color: #94a3b8;
+}
+

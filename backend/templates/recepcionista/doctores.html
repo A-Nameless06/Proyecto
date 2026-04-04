@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Directorio Médico - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR MINIMALISTA RECEPCIÓN -->
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        <ul class="menu-principal">
+            <li><a href="recepcion.html">Recepción</a></li>
+            <li><a href="#">Citas</a></li>
+            <li class="activo"><a href="#">Doctores</a></li>
+            <li><a href="#">Pacientes</a></li>
+        </ul>
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenido-principal" style="padding: 40px 48px;">
+        <header class="fila-acciones" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <div class="migas-pan" style="color: #64748b; font-size: 14px;">Recepción > <strong>Directorio Médico</strong></div>
+            <a href="nuevoDoctor.html" class="btn-accion-principal" style="background: #2563eb; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;">
+                <i class="fa-solid fa-user-plus"></i> Registrar Nuevo Doctor
+            </a>
+        </header>
+
+        <section class="contenedor-especialidades">
+            
+            <!-- 1. CARDIOLOGÍA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-heart-pulse"></i> Cardiología</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Roberto Sánchez</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dra. Ana Valdez</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Luis Torres</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Carmen Ríos</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 2. DERMATOLOGÍA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-hand-dots"></i> Dermatología</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dra. Laura Gómez</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Pedro Ruiz</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Elena Paz</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Diego Silva</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 3. GINECOLOGÍA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-venus"></i> Ginecología</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dra. Patricia Luna</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dra. Mariana Castro</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Ricardo Arce</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Blanca Díaz</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 4. MEDICINA GENERAL -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-stethoscope"></i> Medicina General</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Carlos Rivera</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Hugo Montes</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Rosa Lima</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Tomás Herrera</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 5. NEFROLOGÍA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-kidneys"></i> Nefrología</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Sergio Peña</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dra. Inés Cruz</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Fernando Rey</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Alicia Cano</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 6. NUTRIOLOGÍA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-apple-whole"></i> Nutriología</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Lic. Daniela Solís</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Lic. Jorge Vaca</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Lic. Mónica Gil</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Lic. Ramón Ortiz</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 7. OFTALMOLOGÍA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-eye"></i> Oftalmología</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Miguel Ángel Rey</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dra. Sara Pinto</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Omar Ríos</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Diana Mora</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 8. ONCOLOGÍA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-ribbon"></i> Oncología</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dra. Sofía Torres</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Andrés Vega</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Beatriz Sol</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Víctor Rivas</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 9. ORTOPEDIA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-bone"></i> Ortopedia</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Fernando Soto</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Julio Blanco</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Teresa Cota</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Raúl Parra</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 10. PEDIATRÍA -->
+            <div class="bloque-especialidad">
+                <h3 class="titulo-esp"><i class="fa-solid fa-baby"></i> Pediatría</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dra. Mariana Casos</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">En Servicio</div><div class="info-p"><strong>Dr. Javier Peña</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dra. Lourdes Ruiz</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Dr. Esteban Flores</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+            <!-- 11. LABORATORIO -->
+            <div class="bloque-especialidad laboratorio" style="background: #eff6ff; border: 1px dashed #bfdbfe;">
+                <h3 class="titulo-esp"><i class="fa-solid fa-flask-vial"></i> Laboratorio Clínico</h3>
+                <div class="grid-personal">
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">Disponible</div><div class="info-p"><strong>Q.B.P. Ricardo Lara</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge en-servicio">Disponible</div><div class="info-p"><strong>Téc. Irma Ruiz</strong><p>Turno: Mañana</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Q.B.P. Oscar Meza</strong><p>Turno: Tarde</p></div></div>
+                    <div class="tarjeta-personal"><div class="status-badge fuera-servicio">Fuera de Servicio</div><div class="info-p"><strong>Téc. Elena Cruz</strong><p>Turno: Tarde</p></div></div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>

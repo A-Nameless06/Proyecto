@@ -3,165 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprobante de Cita - Portal Médico</title>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>Comprobante de Cita - R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar-top">
-        <div class="nav-brand">
-            <div class="logo-icon"><i class="ph-fill ph-plus-square"></i></div>
-            <div class="logo-texts">
-                <span class="logo-text-top">Portal</span>
-                <span class="logo-text-bottom">R.A.S.A</span>
-            </div>
+    <nav class="barra-navegacion minimalista">
+    
+    <div class="marca">
+        <i class="fa-solid fa-hospital-user icono-marca"></i>
+        <div class="texto-marca">
+            <strong>Centro Médico</strong>
+            <strong>R.A.S.A</strong>
         </div>
-        <ul class="nav-links">
-            <li><a href="inicioRecepcion.html">Inicio</a></li>
-            <li><a href="#" class="active">Citas</a></li>
-            <li><a href="#">Expediente</a></li>
-            <li><a href="#">Pagos</a></li>
-        </ul>
-        <div class="nav-actions">
-            <button class="icon-btn rounded-icon"><i class="ph ph-bell"></i></button>
-            <button class="icon-btn rounded-icon"><i class="ph ph-gear"></i></button>
-            <button class="icon-btn rounded-icon profile-btn"><i class="ph ph-user"></i></button>
-        </div>
-    </nav>
+    </div>
+    
+    <ul class="menu-principal">
+        <li><a href="recepcion.html">Recepción</a></li>
+        <li class="activo"><a href="#">Citas</a></li>
+        <li><a href="#">Pacientes</a></li>
+    </ul>
 
-    <div class="action-row">
-        <div class="breadcrumb">
-            Inicio / Citas / <span>Comprobante de Cita</span>
-        </div>
-        <div class="header-actions">
-            <button class="btn btn-outline">
-                <i class="ph ph-download-simple"></i> Descargar PDF
-            </button>
-            <button class="btn btn-primary">
-                <i class="ph ph-printer"></i> Imprimir
-            </button>
+    <div class="perfil-usuario">
+        <div class="info-usuario-texto flat">
+            <span><strong>Ana Martínez</strong> | Recepción</span>
         </div>
     </div>
 
-    <main class="main-container">
+</nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido-principal">
         
-        <header class="page-header">
+        <div class="fila-acciones">
+            <div class="migas-pan">
+                Inicio <span class="separador-migas">/</span> Citas <span class="separador-migas">/</span> <span>Comprobante de Cita</span>
+            </div>
+            <div class="acciones-cabecera">
+                <button class="btn-secundario-admin" style="min-width: auto;">
+                    <i class="fa-solid fa-download"></i> Descargar PDF
+                </button>
+                <button class="btn-accion-principal" style="min-width: auto;">
+                    <i class="fa-solid fa-print"></i> Imprimir
+                </button>
+            </div>
+        </div>
+        
+        <header class="encabezado-pagina">
             <div>
-                <h1>Comprobante de Cita</h1>
-                <p class="folio-text">Folio #HOSP-2023-8842</p>
+                <h1 class="titulo-pagina">Comprobante de Cita</h1>
+                <p class="texto-folio">Folio #HOSP-2023-8842</p>
             </div>
         </header>
 
-        <article class="receipt-card">
+        <article class="tarjeta-comprobante">
             
-            <div class="card-header">
-                <div class="header-title">
-                    <div class="icon-box blue"><i class="ph-fill ph-first-aid-kit"></i></div>
+            <div class="cabecera-comprobante">
+                <div class="titulo-comprobante">
+                    <div class="caja-icono azul"><i class="fa-solid fa-briefcase-medical"></i></div>
                     <div>
                         <h2>COMPROBANTE DE CITA MÉDICA</h2>
                         <p>Sistema de Gestión Hospitalaria General</p>
                     </div>
                 </div>
-                <div class="header-folio">
-                    <span class="badge">FOLIO</span>
+                <div class="folio-comprobante">
+                    <span class="etiqueta-folio">FOLIO</span>
                     <h3>HOSP-2023-8842</h3>
                 </div>
             </div>
 
-            <div class="card-body">
+            <div class="cuerpo-comprobante">
                 
-                <div class="patient-section">
-                    <div class="info-block">
-                        <span class="label">PACIENTE</span>
-                        <p class="value">Juan Perz</p>
-                        <p class="sub-value">ID Paciente: P-99824021</p>
+                <div class="seccion-paciente">
+                    <div class="bloque-info">
+                        <span class="etiqueta-info">PACIENTE</span>
+                        <p class="valor-info">Juan Pérez</p>
+                        <p class="sub-valor">ID Paciente: P-99824021</p>
                     </div>
-                    <div class="info-block align-right">
-                        <span class="label">FECHA Y HORARIO</span>
-                        <p class="value">Lunes, 24 Oct, 2026</p>
-                        <p class="sub-value text-blue">10:30 AM — 11:15 AM</p>
-                    </div>
-                </div>
-
-                <hr class="divider">
-
-                <div class="details-section">
-                    <div class="detail-item">
-                        <i class="ph-fill ph-identification-card text-light-blue"></i>
-                        <div>
-                            <span class="label">DOCTOR</span>
-                            <p class="value-sm">Dra. Sarah Jenkins</p>
-                        </div>
-                    </div>
-                    <div class="detail-item">
-                        <i class="ph-fill ph-stethoscope text-light-blue"></i>
-                        <div>
-                            <span class="label">ESPECIALIDAD</span>
-                            <p class="value-sm">Departamento de Cardiología</p>
-                        </div>
-                    </div>
-                    <div class="detail-item">
-                        <i class="ph-fill ph-door text-light-blue"></i>
-                        <div>
-                            <span class="label">CONSULTORIO</span>
-                            <p class="value-sm">Sala 402, 4to Piso</p>
-                        </div>
+                    <div class="bloque-info alinear-derecha">
+                        <span class="etiqueta-info">FECHA Y HORARIO</span>
+                        <p class="valor-info">Lunes, 24 Oct, 2026</p>
+                        <p class="sub-valor texto-azul">10:30 AM — 11:15 AM</p>
                     </div>
                 </div>
 
-                <div class="payment-block">
-                    <div class="payment-info">
-                        <div class="icon-box light-gray"><i class="ph-fill ph-money"></i></div>
+                <hr class="separador-punteado">
+
+                <div class="seccion-detalles">
+                    <div class="item-detalle">
+                        <i class="fa-solid fa-id-card texto-azul-claro"></i>
                         <div>
-                            <p class="value">Línea de Pago</p>
-                            <p class="sub-value">Cuota por consulta de especialidad</p>
+                            <span class="etiqueta-info">DOCTOR</span>
+                            <p class="valor-pequeno">Dra. Sarah Jenkins</p>
                         </div>
                     </div>
-                    <div class="payment-amount">
-                        <p class="price">$1,200.00 MXN</p>
-                        <p class="status-pending"><span class="dot"></span> PENDIENTE EN CAJA</p>
+                    <div class="item-detalle">
+                        <i class="fa-solid fa-stethoscope texto-azul-claro"></i>
+                        <div>
+                            <span class="etiqueta-info">ESPECIALIDAD</span>
+                            <p class="valor-pequeno">Cardiología</p>
+                        </div>
+                    </div>
+                    <div class="item-detalle">
+                        <i class="fa-solid fa-door-open texto-azul-claro"></i>
+                        <div>
+                            <span class="etiqueta-info">CONSULTORIO</span>
+                            <p class="valor-pequeno">Sala 402, 4to Piso</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="info-box">
-                    <div class="info-header">
-                        <i class="ph-fill ph-info"></i>
+                <div class="bloque-pago">
+                    <div class="info-pago">
+                        <div class="caja-icono gris-claro"><i class="fa-solid fa-money-bill-wave"></i></div>
+                        <div>
+                            <p class="valor-info">Línea de Pago</p>
+                            <p class="sub-valor">Cuota por consulta de especialidad</p>
+                        </div>
+                    </div>
+                    <div class="monto-pago">
+                        <p class="precio">$1,200.00 MXN</p>
+                        <p class="estado-pendiente"><span class="punto-alerta"></span> PENDIENTE EN CAJA</p>
+                    </div>
+                </div>
+
+                <div class="caja-informacion">
+                    <div class="cabecera-informacion">
+                        <i class="fa-solid fa-circle-info"></i>
                         <h4>Información Importante</h4>
                     </div>
-                    <div class="info-content">
-                        <p><i class="ph-fill ph-clock"></i> <strong>Límite de Pago (24 hrs):</strong> Para garantizar su lugar, el pago debe realizarse al menos 24 horas antes del horario programado de su cita.</p>
-                        <p><i class="ph-fill ph-arrows-left-right"></i> <strong>Política de Cancelación:</strong> Las cancelaciones con menos de 24 horas de antelación estarán sujetas a un cargo administrativo de $250.00 MXN.</p>
+                    <div class="contenido-informacion">
+                        <p><i class="fa-regular fa-clock"></i> <strong>Límite de Pago (24 hrs):</strong> Para garantizar su lugar, el pago debe realizarse al menos 24 horas antes del horario programado.</p>
+                        <p><i class="fa-solid fa-right-left"></i> <strong>Política de Cancelación:</strong> Las cancelaciones con menos de 24 horas estarán sujetas a un cargo de $250.00 MXN.</p>
                     </div>
                 </div>
 
             </div>
 
-            <div class="card-footer">
-                <div class="footer-text">
-                    <p>DOCUMENTO GENERADO EL: 20 DE OCT, 2023 A LAS 09:12 AM</p>
-                    <p class="italic">Documento Digital Oficial del Sistema de Salud</p>
+            <div class="pie-comprobante">
+                <div class="texto-pie">
+                    <p>GENERADO EL: 20 DE OCT, 2026 A LAS 09:12 AM</p>
+                    <p class="cursiva">Documento Digital Oficial del Sistema de Salud</p>
                 </div>
-                <div class="barcode">
-                    <div class="bar thick"></div><div class="bar thin"></div><div class="bar medium"></div>
-                    <div class="bar thin"></div><div class="bar thick"></div><div class="bar thin"></div>
-                    <div class="bar medium"></div><div class="bar thin"></div><div class="bar thick"></div>
+                <div class="codigo-barras">
+                    <div class="barra gruesa"></div><div class="barra fina"></div><div class="barra media"></div>
+                    <div class="barra fina"></div><div class="barra gruesa"></div><div class="barra fina"></div>
+                    <div class="barra media"></div><div class="barra fina"></div><div class="barra gruesa"></div>
                 </div>
             </div>
 
         </article>
 
-        <div class="bottom-action">
-            <button class="btn btn-outline large">
-                <i class="ph ph-arrow-left"></i> Volver al Tablero
-            </button>
+        <div class="accion-inferior" style="margin-top: 32px;">
+            <a href="recepcion.html" class="btn-secundario-admin" style="display: inline-flex; width: auto; min-width: auto;">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Tablero
+            </a>
         </div>
 
     </main>
-
-    <footer class="site-footer">
-        <p>© 2023 Sistema de Gestión Hospitalaria. Todos los derechos reservados.</p>
-    </footer>
 
 </body>
 </html>

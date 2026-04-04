@@ -429,3 +429,110 @@ body {
 /* --- Acción Inferior y Footer --- */
 .bottom-action { display: flex; justify-content: center; margin-bottom: 3rem; }
 .site-footer { text-align: center; font-size: 0.85rem; color: var(--light-gray-text); padding: 2rem 1rem; width: 100%; background: white; border-top: 1px solid var(--border-color); }
+
+
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN UNIVERSAL (ESTILO MINIMALISTA DOCTOR)
+   ========================================================================== */
+
+/* Quitamos sombras pesadas para un look más plano */
+.barra-navegacion.minimalista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 48px; /* Reducimos padding para que sea más compacta */
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 64px; /* Un poco más bajita para ser minimalista */
+}
+
+/* LADO IZQUIERDO: Logo Plano en una línea */
+.barra-navegacion .marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.barra-navegacion .icono-marca {
+    font-size: 24px;
+    color: #2563eb;
+}
+
+.barra-navegacion .marca strong {
+    font-weight: 800;
+    font-size: 15px;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+}
+
+/* ZONA ENLACES: Mismo estilo de "pastilla" azul */
+.barra-navegacion .menu-principal {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.barra-navegacion .menu-principal a {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.barra-navegacion .menu-principal li.activo a, 
+.barra-navegacion .menu-principal a:hover {
+    background-color: #eff6ff; /* Fondo azul clarito de tus fotos */
+    color: #2563eb; /* Letra azul fuerte */
+}
+
+/* ZONA PERFIL MINIMALISTA TIPOGRÁFICO */
+.barra-navegacion .perfil-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.info-usuario-texto.flat {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #64748b; /* Color base del texto de info */
+    font-weight: 500;
+}
+
+/* El nombre lo ponemos un poco más fuerte para que resalte */
+.info-usuario-texto.flat span::first-line {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* Botón Salir Discreto */
+.btn-salir-mini {
+    background: transparent;
+    border: none;
+    color: #cbd5e1; /* Muy discreto inicialmente */
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-salir-mini:hover {
+    color: #ef4444; /* Rojo solo al pasar el mouse */
+    background-color: #fee2e2;
+}
+

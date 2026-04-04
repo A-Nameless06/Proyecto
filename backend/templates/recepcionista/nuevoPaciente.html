@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Paciente - R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR IGUAL A LA IMAGEN -->
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="#">Recepción</a></li>
+            <li><a href="#">Citas</a></li>
+            <li><a href="doctores.html">Doctores</a></li>
+            <li class="activo"><a href="pacientes.html">Pacientes</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor-layout">
+        
+        <!-- HEADER DE PÁGINA (Migas y botón volver) -->
+        <div class="header-pagina">
+            <div class="migas-pan">
+                Recepción > Pacientes > <strong>Registrar Paciente</strong>
+            </div>
+            <a href="pacientes.html" class="btn-volver-header">
+                <i class="fa-solid fa-arrow-left"></i> <u>Volver</u>
+            </a>
+        </div>
+
+        <!-- TARJETA DEL FORMULARIO (Estilo ancho) -->
+        <div class="tarjeta-formulario-ancha">
+            
+            <!-- Cabecera interna de la tarjeta -->
+            <div class="cabecera-tarjeta">
+                <h2 class="titulo-azul"><i class="fa-solid fa-user-injured"></i> Registro de Paciente</h2>
+                <span class="subtitulo-gris">Complete la información inicial para crear el expediente médico.</span>
+            </div>
+
+            <!-- Formulario -->
+            <form action="#" method="POST">
+                
+                <div class="grid-formulario-2">
+                    
+                    <div class="grupo-campo">
+                        <label>NOMBRE COMPLETO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="Ej. Juan Pérez García" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>TELÉFONO DE CONTACTO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" placeholder="Ej. 55-1234-5678" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>CURP</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-id-card"></i>
+                            <input type="text" placeholder="18 caracteres">
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>FECHA DE NACIMIENTO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-calendar-day"></i>
+                            <input type="date">
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>TIPO DE SANGRE</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-droplet"></i>
+                            <select>
+                                <option value="" disabled selected>Seleccione grupo sanguíneo</option>
+                                <option value="O+">O+</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="Desconocido">Desconocido</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="linea-divisora">
+
+                <!-- Botones finales (Alineados a la derecha como en la foto) -->
+                <div class="fila-botones-form">
+                    <button type="reset" class="btn-limpiar">Limpiar Formulario</button>
+                    <button type="submit" class="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar Paciente</button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

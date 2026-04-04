@@ -1030,53 +1030,40 @@ button { cursor: pointer; border: none; font-family: inherit; }
 .btn-filtro {
     padding: 8px 18px;
     border-radius: 20px;
-    border: 1px solid var(--color-borde, #e5e7eb);
+    border: 1px solid var(--borde-suave, #e5e7eb);
     background: #ffffff;
     color: var(--texto-secundario, #6b7280);
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.2s;
 }
 
 .btn-filtro.activo, .btn-filtro:hover {
-    background: #0b5edd;
+    background: var(--primario, #2563eb);
     color: #ffffff;
-    border-color: #0b5edd;
+    border-color: var(--primario, #2563eb);
 }
 
 /* Lista de Historial */
-.lista-historial {
-    display: flex;
-    flex-direction: column;
-}
+.lista-historial { display: flex; flex-direction: column; }
+.item-historial { display: flex; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid #f1f5f9; }
+.item-historial:last-child { border-bottom: none; padding-bottom: 0; }
 
-.item-historial {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 0;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.item-historial:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-/* Fecha (Corrección del 15 gigante) */
+/* Fecha y Hora (NUEVO) */
 .fecha-historial {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 60px;
-    color: #1a1a1a;
+    min-width: 75px;
+    color: #0f172a;
 }
-.fecha-historial .h-dia { font-size: 24px; font-weight: 700; line-height: 1; }
-.fecha-historial .h-mes { font-size: 12px; font-weight: 600; text-transform: uppercase; color: #6b7280; margin-top: 2px;}
-.fecha-historial .h-anio { font-size: 11px; color: #94a3b8; }
+.fecha-historial .h-dia { font-size: 24px; font-weight: 800; line-height: 1; }
+.fecha-historial .h-mes { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #64748b; margin-top: 2px;}
+.fecha-historial .h-anio { font-size: 11px; color: #94a3b8; font-weight: 500;}
+.fecha-historial .h-hora { font-size: 11px; color: var(--primario, #2563eb); font-weight: 700; margin-top: 6px; background: #eff6ff; padding: 2px 6px; border-radius: 4px; }
 
 /* Iconos de Cita */
 .icono-tipo-cita {
@@ -1090,66 +1077,47 @@ button { cursor: pointer; border: none; font-family: inherit; }
     color: #ffffff;
     flex-shrink: 0;
 }
-.icono-tipo-cita.azul { background-color: #0b5edd; }
+.icono-tipo-cita.azul { background-color: var(--primario, #2563eb); }
 .icono-tipo-cita.verde { background-color: #10b981; }
 .icono-tipo-cita.naranja { background-color: #f59e0b; }
-.icono-tipo-cita.rojo { background-color: #ef4444; }
+.icono-tipo-cita.gris { background-color: #cbd5e1; } /* Para citas perdidas */
 
-/* Detalles del Texto */
-.detalle-historial {
-    flex-grow: 1;
-}
-.detalle-historial h3 {
-    font-size: 16px;
-    margin-bottom: 4px;
-    color: #1a1a1a;
-}
-.detalle-historial p {
-    font-size: 13px;
-    color: #6b7280;
-    margin-bottom: 10px;
-}
-.detalle-historial p strong { color: #1a1a1a; }
+/* Detalles del Texto y Folio */
+.detalle-historial { flex-grow: 1; }
+.cabecera-detalle { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+.detalle-historial h3 { font-size: 16px; margin: 0; color: #0f172a; font-weight: 700; }
+.texto-folio { font-size: 12px; font-weight: 600; color: #94a3b8; font-family: monospace; }
+.detalle-historial p { font-size: 13px; color: #64748b; margin: 0 0 10px 0; }
+.detalle-historial p strong { color: #0f172a; }
 
-/* Etiquetas (Tags) */
-.etiquetas-registro {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.tag {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-.tag-receta { background-color: #eef2ff; color: #0b5edd; }
-.tag-ok { background-color: #ecfdf5; color: #10b981; }
+/* Etiquetas (Tags) de Estatus */
+.etiquetas-registro { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; display: flex; align-items: center; gap: 6px; letter-spacing: 0.5px;}
+.tag-receta { background-color: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+.tag-ok { background-color: #ecfdf5; color: #059669; border: 1px solid #a7f3d0;}
+.tag-error { background-color: #fef2f2; color: #dc2626; border: 1px solid #fecaca;}
 
 /* Botones de Acción (Ver Recibo) */
-.acciones-historial {
-    flex-shrink: 0;
-}
+.acciones-historial { flex-shrink: 0; }
 .btn-accion-historial {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 10px 16px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     font-size: 13px;
-    font-weight: 600;
-    color: #1a1a1a;
+    font-weight: 700;
+    color: #0f172a;
     background: #ffffff;
     transition: all 0.2s;
     text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
-.btn-accion-historial:hover {
+.btn-accion-historial:hover:not([disabled]) {
     background: #f8fafc;
     border-color: #cbd5e1;
+    transform: translateY(-1px);
 }
 
 /* ==========================================================================
@@ -1321,10 +1289,6 @@ button { cursor: pointer; border: none; font-family: inherit; }
     transition: background-color 0.2s;
 }
 .btn-guardar:hover { background-color: var(--azul-secundario); }
-
-/* ==========================================================================
-   ESTILOS EXCLUSIVOS PARA LA NUEVA BARRA DE NAVEGACIÓN (R.A.S.A)
-   ========================================================================== */
 
 /* ==========================================================================
    ESTILOS EXCLUSIVOS PARA LA NUEVA BARRA DE NAVEGACIÓN (R.A.S.A)
@@ -1626,3 +1590,109 @@ input:checked + .deslizador:before {
 .activo-icono {
     color: var(--azul-principal, #3b82f6) !important;
 }
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN UNIVERSAL
+   ========================================================================== */
+
+/* Quitamos sombras pesadas para un look más plano */
+.barra-navegacion.minimalista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 48px; /* Reducimos padding para que sea más compacta */
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 64px; /* Un poco más bajita para ser minimalista */
+}
+
+/* LADO IZQUIERDO: Logo Plano en una línea */
+.barra-navegacion .marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.barra-navegacion .icono-marca {
+    font-size: 24px;
+    color: #2563eb;
+}
+
+.barra-navegacion .marca strong {
+    font-weight: 800;
+    font-size: 15px;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+}
+
+/* ZONA ENLACES: Mismo estilo de "pastilla" azul */
+.barra-navegacion .menu-principal {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.barra-navegacion .menu-principal a {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.barra-navegacion .menu-principal li.activo a, 
+.barra-navegacion .menu-principal a:hover {
+    background-color: #eff6ff; /* Fondo azul clarito de tus fotos */
+    color: #2563eb; /* Letra azul fuerte */
+}
+
+/* ZONA PERFIL MINIMALISTA TIPOGRÁFICO */
+.barra-navegacion .perfil-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.info-usuario-texto.flat {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #64748b; /* Color base del texto de info */
+    font-weight: 500;
+}
+
+/* El nombre lo ponemos un poco más fuerte para que resalte */
+.info-usuario-texto.flat span::first-line {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* Botón Salir Discreto */
+.btn-salir-mini {
+    background: transparent;
+    border: none;
+    color: #cbd5e1; /* Muy discreto inicialmente */
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-salir-mini:hover {
+    color: #ef4444; /* Rojo solo al pasar el mouse */
+    background-color: #fee2e2;
+}
+
+

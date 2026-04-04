@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Doctor - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="recepcion.html">Recepción</a></li>
+            <li><a href="#">Citas</a></li>
+            <li class="activo"><a href="#">Doctores</a></li>
+            <li><a href="#">Pacientes</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Usamos el nuevo contenedor amplio -->
+    <main class="contenedor-layout">
+        
+        <!-- Header con el botón Volver estilizado -->
+        <div class="header-pagina">
+            <div class="migas-pan">Recepción > Pacientes > <strong>Registrar Doctor</strong></div>
+            <a href="doctores.html" class="btn-volver-header">
+                <i class="fa-solid fa-arrow-left"></i> <u>Volver</u>
+            </a>
+        </div>
+
+        <!-- Tarjeta ancha moderna -->
+        <div class="tarjeta-formulario-ancha">
+            
+            <div class="cabecera-tarjeta">
+                <h2 class="titulo-azul"><i class="fa-solid fa-user-doctor"></i> Registro de Personal Médico</h2>
+                <span class="subtitulo-gris">Complete todos los campos para dar de alta al especialista.</span>
+            </div>
+
+            <form action="/guardar-doctor" method="POST">
+                
+                <!-- El nuevo Grid -->
+                <div class="grid-formulario-2">
+                    
+                    <div class="grupo-campo">
+                        <label>NOMBRE COMPLETO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej. Dr. Roberto Sánchez" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>NÚMERO DE EMPLEADO</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-id-card-clip"></i>
+                            <input type="text" id="num_empleado" name="num_empleado" placeholder="Ej. MED-2024-001" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>CURP</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-address-card"></i>
+                            <input type="text" id="curp" name="curp" placeholder="18 caracteres" required>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>CÉDULA PROFESIONAL</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <input type="text" id="cedula" name="cedula" placeholder="Número de cédula estatal/federal" required>
+                        </div>
+                    </div>
+
+                    <!-- Usamos grid-column para que la especialidad ocupe todo el ancho -->
+                    <div class="grupo-campo" style="grid-column: 1 / -1;">
+                        <label>ESPECIALIDAD MÉDICA</label>
+                        <div class="input-con-icono">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            <select id="especialidad" name="especialidad" required>
+                                <option value="" disabled selected>Seleccione una especialidad</option>
+                                <option value="medicina_general">Medicina General</option>
+                                <option value="cardiologia">Cardiología</option>
+                                <option value="pediatria">Pediatría</option>
+                                <option value="ginecologia">Ginecología</option>
+                                <option value="dermatologia">Dermatología</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="linea-divisora">
+
+                <!-- Botones finales actualizados -->
+                <div class="fila-botones-form">
+                    <button type="reset" class="btn-limpiar">Limpiar Formulario</button>
+                    <button type="submit" class="btn-guardar">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Médico
+                    </button>
+                </div>
+                
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
