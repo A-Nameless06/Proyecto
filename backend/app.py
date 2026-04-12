@@ -9,6 +9,7 @@ from routes.paciente import paciente_bp
 from routes.doctor import doctor_bp
 from routes.recepcionista import recepcion_bp
 from routes.soporte import soporte_bp
+from routes.farmacia import farmacia_bp
 
 
 def create_app():
@@ -24,6 +25,7 @@ def create_app():
     app.register_blueprint(doctor_bp)
     app.register_blueprint(recepcion_bp)
     app.register_blueprint(soporte_bp)
+    app.register_blueprint(farmacia_bp)
 
     @app.route("/")
     def index():
