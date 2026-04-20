@@ -1694,5 +1694,3 @@ input:checked + .deslizador:before {
     color: #ef4444; /* Rojo solo al pasar el mouse */
     background-color: #fee2e2;
 }
-
-
