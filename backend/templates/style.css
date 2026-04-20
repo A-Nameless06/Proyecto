@@ -1,126 +1,286 @@
+/* --- Estilos Generales y Reset --- */
 :root {
-    --azul-medico: #1e88e5;
-    --azul-oscuro: #1565c0;
-    --gris-fondo: #f8fafc;
-    --borde-suave: #e0e0e0;
+    --azul-primario: #007bff; /* Azul vibrante */
+    --azul-oscuro: #0056b3;
+    --azul-fondo: #f0f8ff; /* Azul muy pálido para el fondo */
+    --gris-texto: #333;
+    --gris-subtitulo: #6c757d;
+    --borde-input: #ddd;
+    --blanco: #ffffff;
+    --sombra: 0 10px 25px rgba(0,0,0,0.05);
+    --fuente-principal: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--gris-fondo);
-    /* Patrón de puntos */
-    background-image: radial-gradient(#ced4da 1px, transparent 1px);
-    background-size: 20px 20px;
+    font-family: var(--fuente-principal);
+    background-color: var(--azul-fondo);
+    background-image: radial-gradient(#d1e9ff 1px, transparent 1px);
+    background-size: 20px 20px; /* Textura sutil de fondo */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    color: var(--gris-texto);
 }
 
+/* --- Contenedor Principal --- */
 .contenedor-principal {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     padding: 20px;
 }
 
 .tarjeta-login {
-    background: white;
+    background-color: var(--blanco);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--sombra);
     text-align: center;
+    border: 1px solid rgba(0,123,255,0.1);
 }
 
+/* --- Encabezado --- */
 .icono-encabezado {
-    background-color: #e3f2fd;
-    color: var(--azul-medico);
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    background-color: var(--azul-fondo);
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    margin: 0 auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    border: 2px solid var(--azul-primario);
+}
+
+.icono-encabezado i {
+    font-size: 35px;
+    color: var(--azul-primario);
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--azul-primario);
+    margin-bottom: 10px;
 }
 
 .subtitulo {
     font-size: 14px;
-    color: #666;
-    margin-bottom: 25px;
+    color: var(--gris-subtitulo);
+    margin-bottom: 30px;
+    line-height: 1.6;
 }
 
+/* --- Grupo de Entrada --- */
 .grupo-entrada {
     text-align: left;
     margin-bottom: 20px;
 }
 
 .grupo-entrada label {
+    display: block;
     font-size: 13px;
     font-weight: 600;
+    color: var(--azul-oscuro);
     margin-bottom: 8px;
-    display: block;
 }
 
+.grupo-entrada label i {
+    margin-right: 5px;
+    color: var(--azul-primario);
+}
+
+/* Campos de Texto y Selectores --- */
 .campo-texto, .selector-rol {
     width: 100%;
-    padding: 12px;
-    border: 1px solid var(--borde-suave);
-    border-radius: 8px;
-    box-sizing: border-box; /* Evita que el padding ensanche el input */
+    padding: 12px 15px;
+    border: 1px solid var(--borde-input);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: var(--fuente-principal);
+    transition: all 0.3s ease;
+    background-color: #fdfdfd;
 }
 
+.campo-texto:focus, .selector-rol:focus {
+    outline: none;
+    border-color: var(--azul-primario);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Estilo especial para el select (flecha personalizada) */
+.contenedor-select {
+    position: relative;
+}
+
+.selector-rol {
+    appearance: none; /* Quita la flecha por defecto */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 40px;
+}
+
+.flecha-select {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--azul-primario);
+    pointer-events: none; /* Para que el clic pase al select */
+    font-size: 12px;
+}
+
+/* --- Password --- */
 .fila-etiqueta {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .enlace-olvido {
-    font-size: 11px;
-    color: var(--azul-medico);
+    font-size: 12px;
+    color: var(--azul-primario);
     text-decoration: none;
+    font-weight: 500;
+}
+
+.enlace-olvido:hover {
+    text-decoration: underline;
 }
 
 .contenedor-password {
     position: relative;
 }
 
+.contenedor-password .campo-texto {
+    padding-right: 45px; /* Espacio para el ojo */
+}
+
 .icono-ojo {
     position: absolute;
-    right: 12px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #ccc;
+    color: var(--gris-subtitulo);
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    padding: 5px; /* Área de clic más grande */
+}
+
+.icono-ojo:hover {
+    color: var(--azul-primario);
+}
+
+/* --- Checkbox --- */
+.grupo-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--gris-subtitulo);
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.grupo-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--azul-primario); /* Color del check */
+}
+
+.grupo-checkbox label {
     cursor: pointer;
 }
 
+/* --- Botón --- */
 .boton-ingresar {
     width: 100%;
-    padding: 14px;
-    background-color: var(--azul-medico);
-    color: white;
+    padding: 15px;
+    background-color: var(--azul-primario);
+    color: var(--blanco);
     border: none;
-    border-radius: 8px;
-    font-weight: bold;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--fuente-principal);
     cursor: pointer;
-    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
 }
 
 .boton-ingresar:hover {
     background-color: var(--azul-oscuro);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.boton-ingresar:active {
+    transform: translateY(1px);
+}
+
+/* --- Error y Registro --- */
+.mensaje-error {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .enlace-registro {
-    margin-top: 20px;
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--gris-subtitulo);
+}
+
+.enlace-registro a {
+    color: var(--azul-primario);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.enlace-registro a:hover {
+    text-decoration: underline;
+}
+
+/* --- Pie de Seguridad --- */
+.pie-seguridad {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gris-subtitulo);
+    letter-spacing: 1px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.pie-seguridad i {
+    color: #28a745; /* Verde para seguridad */
     font-size: 14px;
 }
 
-.pie-seguridad {
-    margin-top: 20px;
-    font-size: 10px;
-    color: #999;
-    text-align: center;
-    text-transform: uppercase;
-}
+/* Error 404 */
 
 .body-404 {
     display: flex;

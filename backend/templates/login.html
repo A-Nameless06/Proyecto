@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centro Medico R.A.S.A</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -26,11 +27,16 @@
                     <label>
                         <i class="fa-solid fa-user-tag"></i> Selecciona tu Rol
                     </label>
-                    <select class="selector-rol" name="rol" required>
-                        <option value="Paciente">Paciente</option>
-                        <option value="Doctor">Médico</option>
-                        <option value="Recepcionista">Recepcio</option>
-                    </select>
+                    <div class="contenedor-select">
+                        <select class="selector-rol" name="rol" required>
+                            <option value="" disabled selected>Selecciona un rol...</option>
+                            <option value="Paciente">Paciente</option>
+                            <option value="Doctor">Médico</option>
+                            <option value="Recepcionista">Recepcionista</option>
+                            <option value="Farmaceutico">Farmaceutico</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down flecha-select"></i>
+                    </div>
                 </div>
 
                 <div class="grupo-entrada">
@@ -50,7 +56,7 @@
                         <label>
                             <i class="fa-solid fa-key"></i> Contraseña
                         </label>
-                        <a href="#" class="enlace-olvido">
+                        <a href="/recuperar" class="enlace-olvido">
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>
@@ -63,7 +69,7 @@
                             name="password"
                             placeholder="********"
                             required>
-                        <i class="fa-solid fa-eye icono-ojo" id="iconoAlternar"></i>
+                        <i class="fa-solid fa-eye icono-ojo" id="btnAlternarPassword"></i>
                     </div>
                 </div>
 
@@ -71,14 +77,14 @@
                     <input type="checkbox" id="recordar" name="recordar">
                     <label for="recordar">Mantener sesión iniciada</label>
                 </div>
-                <br>
+
                 <button type="submit" class="boton-ingresar">
                     Iniciar Sesión <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </form>
             {% if error %}
-                <p style="color:red; margin-top:10px;">
-                    {{ error }}
+                <p class="mensaje-error">
+                    <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
                 </p>
             {% endif %}
 
@@ -93,5 +99,28 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const campoPassword = document.getElementById('campoPassword');
+            const btnAlternar = document.getElementById('btnAlternarPassword');
+
+            if (btnAlternar && campoPassword) {
+                btnAlternar.addEventListener('click', function() {
+                    // Cambiar el tipo de input
+                    if (campoPassword.type === 'password') {
+                        campoPassword.type = 'text';
+                        // Cambiar el icono a ojo cerrado
+                        btnAlternar.classList.remove('fa-eye');
+                        btnAlternar.classList.add('fa-eye-slash');
+                    } else {
+                        campoPassword.type = 'password';
+                        // Cambiar el icono a ojo abierto
+                        btnAlternar.classList.remove('fa-eye-slash');
+                        btnAlternar.classList.add('fa-eye');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
