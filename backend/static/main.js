@@ -17,6 +17,11 @@ function inicio(){
 function doctores(){
     window.location.href = "/doctores"
 }
+
 function privacidad(){
     window.location.href = "/privacidad"
+}
+
+function especialidades(){
+    window.location.href = "/especialidades"
 }
