@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
 </head>
 <body>
 
@@ -18,9 +19,9 @@
     </div>
     
     <ul class="menu-principal">
-        <li><a href="inicioPaciente.html">Panel</a></li>
-        <li><a href="citasPaciente.html">Citas</a></li>
-        <li class="activo"><a href="historialPaciente.html">Expediente</a></li>
+        <li><a href="/dashboard">Panel</a></li>
+        <li><a href="/paciente/citas">Citas</a></li>
+        <li class="activo"><a href="/paciente/historial">Historial</a></li>
     </ul>
 
     <div class="perfil-usuario">
