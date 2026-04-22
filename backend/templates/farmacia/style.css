@@ -72,6 +72,7 @@ body {
 }
 
 /* ZONA ENLACES: Mismo estilo de "pastilla" azul */
+/* ZONA ENLACES: Mismo estilo de "pastilla" azul */
 .barra-navegacion .menu-principal {
     display: flex;
     list-style: none;
@@ -81,19 +82,24 @@ body {
 }
 
 .barra-navegacion .menu-principal a {
-    text-decoration: none;
+    text-decoration: none !important; /* Blindamos el texto */
     color: #64748b;
     font-weight: 600;
     font-size: 14px;
     padding: 8px 16px;
     border-radius: 6px;
     transition: all 0.2s ease;
+    border: none !important; /* Apaga cualquier borde global */
+    box-shadow: none !important; /* Apaga sombras globales */
 }
 
 .barra-navegacion .menu-principal li.activo a, 
 .barra-navegacion .menu-principal a:hover {
-    background-color: #eff6ff; /* Fondo azul clarito de tus fotos */
-    color: #2563eb; /* Letra azul fuerte */
+    background-color: #eff6ff; 
+    color: #2563eb; 
+    border: none !important; /* Fuerza a quitar la línea azul inferior */
+    box-shadow: none !important; /* Fuerza a quitar si es una sombra */
+    text-decoration: none !important;
 }
 
 /* ZONA PERFIL MINIMALISTA TIPOGRÁFICO */
@@ -141,8 +147,9 @@ body {
 /* ==========================================================================
    BARRA LATERAL (Sidebar Fija)
    ========================================================================== */
+
 .barra-lateral {
-    background: white;
+    background: var(--superficie); /* Tu variable para el blanco */
     border-right: 1px solid var(--borde-suave);
     display: flex;
     flex-direction: column;
@@ -153,54 +160,87 @@ body {
     left: 0;
     top: 0;
     z-index: 100;
+    overflow-y: auto;
 }
 
 .logo {
     padding: 0 24px 30px;
     color: var(--texto-principal);
     font-size: 16px;
-    font-weight: 800;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 10px;
-    line-height: 1.2;
 }
 
-.logo i { color: var(--primario); font-size: 24px; }
+.logo i {
+    color: var(--primario); /* Tu azul principal */
+    font-size: 20px;
+}
 
-.navegacion-principal { display: flex; flex-direction: column; flex-grow: 1; }
+.navegacion-principal {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
 
 .item-menu {
     padding: 12px 24px;
-    text-decoration: none;
+    text-decoration: none !important;
     color: var(--texto-secundario);
     display: flex;
     align-items: center;
     gap: 15px;
-    font-weight: 600;
+    font-weight: 500;
     transition: 0.2s;
     margin: 4px 12px;
     border-radius: 8px;
     cursor: pointer;
 }
 
-.item-menu:hover { background-color: var(--fondo-app); color: var(--texto-principal); }
-.item-menu.activo { background-color: var(--primario-suave); color: var(--primario); }
+.item-menu:hover {
+    background-color: var(--fondo-app);
+}
 
-.separador { height: 1px; background: var(--borde-suave); margin: 15px 24px; }
+.item-menu.activo {
+    background-color: var(--primario-suave); /* Tu azul claro */
+    color: var(--primario);
+}
 
+.item-menu.activo i {
+    color: var(--primario);
+}
+
+.separador {
+    height: 1px;
+    background: var(--borde-suave);
+    margin: 15px 24px;
+}
+
+/* Sección de Perfil de Usuario Inferior */
 .perfil-usuario-inferior {
     padding: 20px 24px;
     display: flex;
     align-items: center;
     gap: 12px;
     border-top: 1px solid var(--borde-suave);
-    margin-top: auto;
+    margin-top: auto; 
 }
 
-.info-user { display: flex; flex-direction: column; font-size: 13px; }
-.info-user strong { color: var(--texto-principal); font-weight: 700; }
-.info-user span { color: var(--texto-secundario); font-size: 11px; }
+.info-user {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+}
+
+.info-user strong {
+    color: var(--texto-principal);
+}
+
+.info-user span {
+    color: var(--texto-secundario);
+    font-size: 11px;
+}
 
 .btn-cerrar {
     margin-left: auto;
@@ -208,7 +248,7 @@ body {
     border: none;
     color: var(--texto-secundario);
     cursor: pointer;
-    font-size: 16px;
+    padding: 5px;
 }
 
 /* ==========================================================================
