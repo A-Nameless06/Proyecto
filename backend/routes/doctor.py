@@ -14,4 +14,22 @@ def dashboard():
 @login_requerido
 @rol_requerido("Doctor")
 def pacientes():
-    return render_template("doctor/pacientes.html")
+    return render_template("doctor/pacientesDoctor.html")
+
+@doctor_bp.route("/agenda")
+@login_requerido
+@rol_requerido("Doctor" or "Recepcionista")
+def agenda():
+    return render_template("doctor/agendaDoctor.html")
+
+@doctor_bp.route("/laboratorio")
+@login_requerido
+@rol_requerido("Doctor")
+def laboratorio():
+    return render_template("doctor/resultadosLab.html")
+
+@doctor_bp.route("/recetas")
+@login_requerido
+@rol_requerido("Doctor")
+def crearReceta():
+    return render_template("doctor/recetasDoctor.html")

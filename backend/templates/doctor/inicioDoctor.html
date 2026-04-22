@@ -17,14 +17,14 @@
             </div>
             
             <nav class="navegacion-principal">
-                <a href="agendaDoctor.html" class="item-menu activo"><i class="fa-solid fa-stethoscope"></i> Consultorio</a>
-                <a href="pacientesDoctor.html" class="item-menu"><i class="fa-solid fa-users"></i>Pacientes</a>
-                <a href="agendaDoctor.html" class="item-menu"><i class="fa-solid fa-calendar-check"></i>Agenda</a>
-                <a href="resultadosLab.html" class="item-menu"><i class="fa-solid fa-file-waveform"></i>Laboratorio</a>
+                <a href="agendaDoctor.html" class="item-menu activo"><i class="fa-solid fa-stethoscope"></i>Consultorio</a>
+                <a href="/doctor/pacientes" class="item-menu"><i class="fa-solid fa-users"></i>Pacientes</a>
+                <a href="/doctor/agenda" class="item-menu"><i class="fa-solid fa-calendar-check"></i>Agenda</a>
+                <a href="/doctor/laboratorio" class="item-menu"><i class="fa-solid fa-file-waveform"></i>Laboratorio</a>
                 
                 <div class="separador"></div>
                 <a href="perfilDoctor.html" class="item-menu"><i class="fa-solid fa-user-doctor"></i>Perfil</a>
-                <a href="" class="item-menu"><i class="fa-solid fa-gear"></i>Ajustes</a>
+                <a href="/ajustes" class="item-menu"><i class="fa-solid fa-gear"></i> Ajustes</a>
             </nav>
 
             <div class="perfil-usuario-inferior">
@@ -81,7 +81,7 @@
                             <div class="hora-cita">10:00 AM</div>
                         </div>
                         <div class="acciones-medicas">
-                            <a href="recetasDoctor.html" class="btn-iniciar-consulta">Iniciar Consulta</a>
+                            <a href="/doctor/recetas" class="btn-iniciar-consulta" onclick="IniciarConsulta()">Iniciar Consulta</a>
                         </div>
                     </div>
 
@@ -112,5 +112,6 @@
         </main>
     </div>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="{{ url_for('static', filename='JavaScripts/main_doctor.js')}}"></script>
 </body>
 </html>

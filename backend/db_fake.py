@@ -29,6 +29,13 @@ USUARIOS = [
         "password": "1234",
         "rol": "Recepcionista",
         "nombre": "Sara"
+    },
+    {
+        "id": 4,
+        "usuario": "farmacia@prueba.com",
+        "password": "1234",
+        "rol": "Farmaceutico",
+        "nombre": "Angel"
     }
 ]
 

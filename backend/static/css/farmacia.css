@@ -331,11 +331,289 @@ body {
    ESTILOS DE LA HOJA DE RECETA (Diseño Documento Oficial)
    ========================================================================== */
 
+.layout-centrado {
+    max-width: 1100px; 
+    margin: 30px auto; 
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN
+   ========================================================================== */
+.barra-navegacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--superficie);
+    padding: 12px 5%;
+    border-bottom: 1px solid var(--borde-suave);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.icono-marca {
+    color: var(--primario);
+    font-size: 20px;
+}
+
+.menu-principal {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.menu-principal a {
+    text-decoration: none;
+    color: var(--texto-secundario);
+    font-weight: 600;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.menu-principal a:hover {
+    color: var(--primario);
+}
+
+.menu-principal .activo a {
+    color: var(--primario);
+    border-bottom: 2px solid var(--primario);
+    padding-bottom: 4px;
+}
+
+.perfil-usuario {
+    font-size: 12px;
+    color: var(--texto-secundario);
+}
+
+/* ==========================================================================
+   HEADER DEL DASHBOARD
+   ========================================================================== */
+.header-dashboard h1 {
+    font-size: 22px; 
+    margin-bottom: 5px;
+}
+
+.header-dashboard p {
+    color: var(--texto-secundario);
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   KPIS (Tarjetas superiores)
+   ========================================================================== */
+.grid-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px; 
+    margin-bottom: 20px;
+}
+
+.tarjeta-kpi {
+    background: var(--superficie);
+    border-radius: 8px;
+    padding: 15px 20px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--sombra-tarjeta);
+    border: 1px solid var(--borde-suave);
+}
+
+.info-kpi {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-kpi span:first-child {
+    font-size: 12px;
+    color: var(--texto-secundario);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.info-kpi strong {
+    font-size: 24px; 
+    line-height: 1;
+}
+
+.tendencia {
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.tendencia.positiva { color: var(--exito); }
+.tendencia.negativa { color: var(--rojo); }
+.tendencia.neutra { color: var(--texto-secundario); }
+
+.icono-kpi {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.icono-kpi.azul { background: var(--primario-suave); color: var(--primario); }
+.icono-kpi.naranja { background: #fef3c7; color: var(--alerta); }
+
+/* ==========================================================================
+   PANELES Y TABLAS
+   ========================================================================== */
+.tarjeta-panel {
+    background: var(--superficie);
+    border-radius: 8px;
+    padding: 20px; 
+    box-shadow: var(--sombra-tarjeta);
+    border: 1px solid var(--borde-suave);
+    margin-bottom: 20px;
+}
+
+.filtros-historial {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.input-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-grupo label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--texto-secundario);
+    text-transform: uppercase;
+}
+
+.input-grupo input, 
+.input-grupo select,
+.buscador-farmacia-integrado {
+    display: flex;
+    align-items: center;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px; 
+    padding: 4px; /* Crea un pequeño margen interno para que el botón no toque los bordes */
+    transition: all 0.3s ease;
+}
+
+/* Efecto cuando das clic en cualquier parte de la barra */
+.buscador-farmacia-integrado:focus-within {
+    border-color: var(--primario);
+    box-shadow: 0 0 0 3px var(--primario-suave);
+}
+
+/* 2. El ícono con su espacio exacto */
+.buscador-farmacia-integrado i {
+    color: var(--primario);
+    font-size: 16px;
+    padding-left: 12px;
+    padding-right: 12px; /* Espacio entre el código de barras y el inicio del texto */
+}
+
+/* 3. El input se vuelve invisible y toma el espacio sobrante */
+.buscador-farmacia-integrado input {
+    flex-grow: 1;
+    border: none; /* Le quitamos el borde al input porque ya lo tiene el contenedor */
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--texto-principal);
+    padding: 8px 0; /* Solo padding vertical */
+}
+
+/* 4. El botón integrado a la derecha */
+.btn-buscar {
+    background-color: var(--primario);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px; /* Borde un poco más pequeño para encajar dentro del contenedor */
+    padding: 8px 18px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: 10px; /* Espacio entre el final del texto y el botón */
+}
+
+/* Efecto hover sin levantarse */
+.btn-buscar:hover {
+    background-color: var(--primario-hover);
+}
+
+.btn-primario:active {
+    transform: translateY(0);
+}
+
+.cabecera-panel {
+    margin-bottom: 15px;
+}
+
+.cabecera-panel h3 {
+    font-size: 16px; 
+}
+
+/* Tabla */
+.tabla-admin {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px; 
+}
+
+.tabla-admin th {
+    text-align: left;
+    padding: 10px;
+    color: var(--texto-secundario);
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--borde-suave);
+}
+
+.tabla-admin td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--borde-suave);
+    vertical-align: middle;
+}
+
+/* Badges de Estados */
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+.badge-verde { background: #dcfce7; color: var(--exito); }
+.badge-gris { background: #f1f5f9; color: var(--texto-secundario); }
+.badge-roja { background: #fee2e2; color: var(--rojo); }
+.badge-naranja { background: #fef3c7; color: var(--alerta); }
+
+/* ==========================================================================
+   ESTILOS DE LA HOJA DE RECETA
+   ========================================================================== */
 .hoja-receta {
-    background: #ffffff;
-    border-radius: 8px; /* Borde menos redondeado para parecer papel */
-    padding: 40px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    background: var(--superficie);
+    border-radius: 6px; 
+    padding: 25px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     border: 1px solid #cbd5e1;
     position: relative;
 }
@@ -346,70 +624,70 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     border-bottom: 2px solid var(--primario);
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .logo-receta {
-    font-size: 20px;
+    font-size: 16px; 
     font-weight: 800;
     color: var(--primario);
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     line-height: 1.1;
 }
-.logo-receta i { font-size: 32px; }
+.logo-receta i { font-size: 24px; } 
 
 .datos-medico {
     text-align: right;
     display: flex;
     flex-direction: column;
-    font-size: 13px;
+    font-size: 12px; 
     color: var(--texto-secundario);
-    gap: 3px;
+    gap: 2px;
 }
-.datos-medico strong { font-size: 16px; color: var(--texto-principal); font-weight: 800; }
+.datos-medico strong { font-size: 14px; color: var(--texto-principal); font-weight: 800; }
 
 /* Tira de Datos del Paciente y Vitales */
 .receta-paciente {
     background: var(--fondo-app);
     border: 1px solid var(--borde-suave);
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 25px;
+    border-radius: 6px;
+    padding: 12px; 
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .fila-paciente {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
+    font-size: 12px; 
     color: var(--texto-principal);
 }
 
-.fila-paciente.principal { font-size: 14px; border-bottom: 1px dashed var(--borde-suave); padding-bottom: 10px; }
-.fila-paciente.vitales { font-size: 12px; }
+.fila-paciente.principal { font-size: 13px; border-bottom: 1px dashed var(--borde-suave); padding-bottom: 8px; }
+.fila-paciente.vitales { font-size: 11px; }
 .alergias strong { color: var(--rojo); }
 
 /* Cuerpo de la Receta */
 .diagnostico {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--texto-principal);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     background: #f1f5f9;
-    padding: 10px 15px;
-    border-left: 4px solid var(--texto-secundario);
+    padding: 8px 12px;
+    border-left: 3px solid var(--texto-secundario);
 }
 
 .simbolo-rx {
-    font-size: 40px;
+    font-size: 28px; 
     font-weight: 800;
     color: var(--borde-suave);
     line-height: 1;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-family: serif;
     font-style: italic;
 }
@@ -417,14 +695,14 @@ body {
 .lista-medicamentos-rx {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .item-med-rx {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding-bottom: 20px;
+    gap: 6px;
+    padding-bottom: 15px;
     border-bottom: 1px solid var(--borde-suave);
 }
 .item-med-rx:last-child { border-bottom: none; }
@@ -434,36 +712,36 @@ body {
     justify-content: space-between;
     align-items: baseline;
 }
-.med-titulo strong { font-size: 16px; color: var(--texto-principal); font-weight: 800; }
-.med-presentacion { font-size: 12px; color: var(--primario); font-weight: 700; background: var(--primario-suave); padding: 4px 10px; border-radius: 6px; }
+.med-titulo strong { font-size: 14px; color: var(--texto-principal); font-weight: 800; }
+.med-presentacion { font-size: 11px; color: var(--primario); font-weight: 700; background: var(--primario-suave); padding: 3px 8px; border-radius: 4px; }
 
 .med-indicaciones {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: flex-start;
-    padding-left: 20px;
+    padding-left: 15px;
 }
-.med-indicaciones i { color: var(--texto-secundario); margin-top: 3px; font-size: 14px; }
-.med-indicaciones p { font-size: 14px; color: var(--texto-secundario); line-height: 1.5; margin: 0; }
+.med-indicaciones i { color: var(--texto-secundario); margin-top: 2px; font-size: 12px; }
+.med-indicaciones p { font-size: 12px; color: var(--texto-secundario); line-height: 1.4; margin: 0; }
 
 .sello-retencion {
-    margin-left: 20px;
-    margin-top: 8px;
+    margin-left: 15px;
+    margin-top: 6px;
     display: inline-block;
     align-self: flex-start;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
     color: var(--rojo);
     background: #fef2f2;
-    padding: 6px 12px;
-    border-radius: 6px;
+    padding: 4px 8px;
+    border-radius: 4px;
     border: 1px solid #fca5a5;
     letter-spacing: 0.5px;
 }
 
 /* Firma y Footer */
 .receta-footer {
-    margin-top: 50px;
+    margin-top: 30px; 
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -473,45 +751,45 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 250px;
+    width: 200px; 
 }
-.imagen-firma { height: 60px; opacity: 0.8; margin-bottom: -10px; }
-.linea-firma { width: 100%; height: 1px; background: var(--texto-principal); margin-bottom: 8px; }
-.firma-caja span { font-size: 12px; color: var(--texto-secundario); }
+.imagen-firma { height: 45px; opacity: 0.8; margin-bottom: -5px; } 
+.linea-firma { width: 100%; height: 1px; background: var(--texto-principal); margin-bottom: 6px; }
+.firma-caja span { font-size: 11px; color: var(--texto-secundario); }
 
 .qr-receta {
-    font-size: 60px;
+    font-size: 40px; 
     color: var(--texto-secundario);
     opacity: 0.5;
 }
 
 /* ==========================================================================
-   COLUMNA DERECHA (Panel de validación)
+   COLUMNA DERECHA (Panel de validación de Recetas)
    ========================================================================== */
-.item-insumo.validado { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 16px; margin-bottom: 10px;}
-.item-insumo.validado div { display: flex; align-items: center; gap: 8px; color: var(--exito); }
-.item-insumo.validado strong { color: var(--texto-principal); }
+.item-insumo.validado { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; margin-bottom: 8px; border-radius: 6px;}
+.item-insumo.validado div { display: flex; align-items: center; gap: 6px; color: var(--exito); font-size: 12px; }
+.item-insumo.validado strong { color: var(--texto-principal); font-size: 13px; }
 
-.resumen-surtido { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--borde-suave); text-align: center; }
-.estado-surtido.listo { color: var(--exito); font-weight: 800; font-size: 16px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.resumen-surtido p { font-size: 12px; color: var(--texto-secundario); }
+.resumen-surtido { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--borde-suave); text-align: center; }
+.estado-surtido.listo { color: var(--exito); font-weight: 800; font-size: 14px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.resumen-surtido p { font-size: 11px; color: var(--texto-secundario); }
 
-.acciones-surtido { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.acciones-surtido { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
 .btn-surtir {
-    background: var(--primario); color: white; border: none; padding: 16px; border-radius: 12px;
+    background: var(--primario); color: var(--superficie); border: none; padding: 12px; border-radius: 8px;
     font-weight: 800; font-family: inherit; cursor: pointer; transition: 0.2s;
-    display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 14px;
+    display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 13px;
 }
-.btn-surtir:hover { background: var(--primario-hover); box-shadow: var(--sombra-boton); }
+.btn-surtir:hover { background: var(--primario-hover); box-shadow: var(--sombra-tarjeta); }
 
 .btn-rechazar {
-    background: transparent; color: var(--rojo); border: 1px solid var(--rojo); padding: 14px; border-radius: 12px;
-    font-weight: 700; font-family: inherit; cursor: pointer; transition: 0.2s; font-size: 13px;
+    background: transparent; color: var(--rojo); border: 1px solid var(--rojo); padding: 10px; border-radius: 8px;
+    font-weight: 700; font-family: inherit; cursor: pointer; transition: 0.2s; font-size: 12px;
 }
 .btn-rechazar:hover { background: #fef2f2; }
 
 /* ==========================================================================
-   ESTILOS ESPECÍFICOS: HISTORIAL 
+   ESTILOS ESPECÍFICOS: HISTORIAL (Versión Compacta)
    ========================================================================== */
 
 /* ==========================================================================
@@ -519,62 +797,76 @@ body {
    ========================================================================== */
 .grid-kpis {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Esto crea las 3 columnas iguales */
-    gap: 24px; /* Espacio entre los rectángulos */
-    margin-bottom: 32px;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; /* Reducido de 24px para juntarlas un poco más */
+    margin-bottom: 20px; /* Reducido de 32px */
 }
 
 .tarjeta-kpi {
-    background: var(--superficie); /* Fondo blanco */
-    padding: 24px;
-    border-radius: 16px;
+    background: var(--superficie); 
+    padding: 15px 20px; /* Reducido para hacerla menos alta */
+    border-radius: 8px; /* Bordes más sutiles en lugar de 16px */
     border: 1px solid var(--borde-suave);
     display: flex;
-    justify-content: space-between; /* Texto a la izq, Icono a la der */
-    align-items: flex-start;
+    justify-content: space-between; 
+    align-items: center; /* Centrado vertical para que se vea más ordenado */
     box-shadow: var(--sombra-tarjeta);
 }
 
 .info-kpi { display: flex; flex-direction: column; }
-.info-kpi span:first-child { font-size: 13px; color: var(--texto-secundario); font-weight: 600; margin-bottom: 8px; }
-.info-kpi strong { font-size: 32px; font-weight: 800; color: var(--texto-principal); line-height: 1; margin-bottom: 12px; }
+.info-kpi span:first-child { 
+    font-size: 11px; /* Letra más pequeña */
+    color: var(--texto-secundario); 
+    font-weight: 600; 
+    margin-bottom: 4px; 
+    text-transform: uppercase; 
+}
+.info-kpi strong { 
+    font-size: 24px; /* Número más compacto (antes 32px) */
+    font-weight: 800; 
+    color: var(--texto-principal); 
+    line-height: 1; 
+    margin-bottom: 6px; 
+}
 
-.tendencia { font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.tendencia { font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
 .tendencia.positiva { color: var(--exito); }
 .tendencia.neutra { color: var(--alerta); }
 .tendencia.negativa { color: var(--rojo); }
 
 .icono-kpi {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 40px; /* Cuadro de ícono más pequeño */
+    height: 40px; 
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 18px; /* Ícono reducido */
 }
 .icono-kpi.azul { background: var(--primario-suave); color: var(--primario); }
 .icono-kpi.naranja { background: #fef3c7; color: var(--alerta); }
 .icono-kpi.verde { background: #d1fae5; color: var(--exito); }
 
-/* Contenedor de Filtros */
+/* ==========================================================================
+   CONTENEDOR DE FILTROS E INPUTS
+   ========================================================================== */
 .filtros-historial {
     display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    margin-bottom: 24px;
-    padding: 20px 24px;
+    gap: 15px; /* Reducido de 20px */
+    align-items: flex-end; /* Obliga a que todos los campos se alineen por abajo */
+    margin-bottom: 20px;
+    padding: 15px 20px; /* Menos espacio interior */
 }
 
 /* Grupos de Inputs (Fechas y Selects) */
 .input-grupo {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px; /* Espacio reducido entre el label y el input */
 }
 
 .input-grupo label {
-    font-size: 11px;
+    font-size: 10px; /* Reducido para no estorbar visualmente */
     font-weight: 800;
     text-transform: uppercase;
     color: var(--texto-secundario);
@@ -585,10 +877,10 @@ body {
 .select-filtro {
     background: var(--fondo-app);
     border: 1px solid var(--borde-suave);
-    padding: 12px 16px;
-    border-radius: 10px;
+    padding: 8px 12px; /* Reducido de 12px 16px */
+    border-radius: 6px; /* Reducido de 10px */
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13px; /* Reducido de 14px */
     color: var(--texto-principal);
     font-weight: 600;
     outline: none;
@@ -607,8 +899,8 @@ body {
     box-shadow: 0 0 0 3px var(--primario-suave);
 }
 
-/* Ajuste específico para que el select se vea igual de alto que el buscador */
+/* Ajuste específico para que el select se vea igual de alto que los otros inputs */
 .select-filtro {
-    height: 45px;
-    min-width: 200px;
+    height: 38px; /* Se redujo de 45px para mantener el estilo compacto */
+    min-width: 180px;
 }

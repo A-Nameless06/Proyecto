@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/farmacia.css') }}">
 </head>
 <body>
 
@@ -23,23 +24,34 @@
             <i class="fa-solid fa-file-prescription"></i> Validación Recetas
         </a>
 
-        <a href="proveedores.html" class="item-menu">
-            <i class="fa-solid fa-truck-ramp-box"></i> Proveedores
-        </a>
+            <a href="/farmacia/validacion">
+                <div class="item-menu">
+                    <i class="fa-solid fa-file-prescription"></i> Validación Recetas
+                </div>
+            </a>
 
-        <a href="historial.html" class="item-menu">
-            <i class="fa-solid fa-clock-rotate-left"></i> Historial Ventas
-        </a>
+            <a href="proveedores.html">
+                <div class="item-menu">
+                    <i class="fa-solid fa-truck-ramp-box"></i> Proveedores
+                </div>
+            </a>
+
+            <a href="/farmacia/historialVentas">
+                <div class="item-menu">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Historial Ventas
+                </div>
+            </a>
+        </nav>
             
         <div class="separador"></div>
             
-        <a href="#" class="item-menu">
-            <i class="fa-solid fa-kit-medical"></i> Kits de Emergencia
-        </a>
-        <a href="#" class="item-menu">
-            <i class="fa-solid fa-gear"></i> Configuración
-        </a>
-    </nav>
+            <div class="item-menu">
+                <i class="fa-solid fa-kit-medical"></i> Kits de Emergencia
+            </div>
+            <a href="/ajustes">
+                    <i class="fa-solid fa-gear"></i> Configuración
+            </a>
+        </nav>
 
     <div class="perfil-usuario-inferior">
         <div class="info-user">

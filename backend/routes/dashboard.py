@@ -21,4 +21,7 @@ def dashboard():
     elif rol == "Recepcionista":
         return render_template("recepcionista/inicioRecepcion.html")
 
+    elif rol == "Farmaceutico":
+        return render_template("farmacia/inicioFarmacia.html")
+
     return redirect("/auth/login")
