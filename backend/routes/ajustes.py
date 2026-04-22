@@ -20,4 +20,7 @@ def ajustes():
     elif rol == "Recepcionista":
         return render_template("recepcionista/ajustesRecepcionista.html")
 
+    elif rol == "Farmaceutico":
+        return render_template("farmacia/ajustesFarmaceutico.html")
+
     return redirect("/auth/login")
