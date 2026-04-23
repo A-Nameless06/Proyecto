@@ -40,9 +40,6 @@
         <main class="contenido-principal">
             <header class="encabezado-simple">
                 <div class="migas-pan">Inicio > Resumen del Dashboard</div>
-                <div class="notificaciones">
-                    <i class="fa-solid fa-bell"></i>
-                </div>
             </header>
 
             <section class="seccion-bienvenida">
@@ -50,7 +47,11 @@
                     <h1>Bienvenido, {{ session.nombre }}</h1>
                     <p>Tienes 3 citas programadas para esta semana. ¡Cuida tu salud!</p>
                 </div>
-                <button class="btn-agendar-cita"><i class="fa-solid fa-plus"></i> Agendar Cita</button>
+                <a href="/paciente/citas">
+                        <button class="btn-agendar-cita">
+                            <i class="fa-solid fa-plus"></i> Agendar Cita
+                        </button>
+                </a>
             </section>
 
             <div class="cuadricula-dashboard">
