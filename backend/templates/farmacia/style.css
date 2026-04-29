@@ -144,7 +144,7 @@ body {
 }
 
 /* ==========================================================================
-   BARRA LATERAL (Sidebar Fija)
+   BARRA LATERAL UNIVERSAL
    ========================================================================== */
 
 .barra-lateral {
@@ -942,4 +942,175 @@ body {
 .select-filtro {
     height: 38px; /* Se redujo de 45px para mantener el estilo compacto */
     min-width: 180px;
+}
+
+/* Nuevo badge para Entradas */
+.badge-azul { background: #eff6ff; color: #2563eb; }
+
+/* Estilo para la antigüedad calculada */
+.antiguedad-texto { display: block; font-size: 11px; color: var(--primario); font-weight: 700; margin-top: 2px; }
+
+/* ==========================================================================
+   ESTILOS PARA PROVEEDORES Y PEDIDOS (Actualizados: Centrados y más anchos)
+   ========================================================================== */
+
+
+.area-trabajo {
+    width: 100%;
+    max-width: 1000px; /* Un poco más ancho para que las tablas respiren mejor */
+    padding: 40px 20px;
+    margin: 0 auto;
+}
+
+/* 2. Botón principal más ancho y centrado */
+.btn-primario {
+    background: var(--primario, #2563eb);
+    color: white;
+    border: none;
+    padding: 14px 32px; /* Más ancho y alto */
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Centra el texto y el icono dentro del botón */
+    gap: 10px;
+    transition: background 0.3s;
+    font-size: 15px;
+}
+.btn-primario:hover { background: #1d4ed8; }
+
+/* Contenedor extra para que el botón de "Enviar Pedido" quede al centro de la tarjeta */
+.contenedor-boton-centrado {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center; /* Centra el botón en la tarjeta */
+    width: 100%;
+}
+
+/* 3. Inputs de cantidad más anchos */
+.input-cantidad {
+    width: 100px; /* Antes era 70px, ahora es más ancho */
+    padding: 10px;
+    border: 1px solid var(--borde-suave, #e2e8f0);
+    border-radius: 6px;
+    text-align: center; /* El número aparece centrado */
+    font-family: inherit;
+    font-size: 16px;
+}
+
+/* 4. Pantalla de éxito centrada y más ancha */
+.pantalla-exito {
+    text-align: center;
+    padding: 50px 20px;
+    max-width: 800px; /* Hace la tarjeta de éxito más ancha */
+    margin: 0 auto;
+}
+.pantalla-exito i.icono-grande {
+    font-size: 72px; /* Icono un poco más grande */
+    color: var(--exito, #10b981);
+    margin-bottom: 20px;
+}
+.pantalla-exito h2 {
+    font-size: 26px;
+    color: var(--texto-principal, #1e293b);
+    margin-bottom: 10px;
+}
+.pantalla-exito p {
+    color: var(--texto-secundario, #64748b);
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+/* Botones de Filtro */
+.acciones-filtro {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.btn-filtro {
+    background: var(--superficie, #ffffff);
+    border: 1px solid var(--borde-suave, #e2e8f0);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--texto-secundario, #64748b);
+    transition: all 0.2s;
+    font-family: inherit;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-filtro:hover, .btn-filtro.activo {
+    background: var(--primario-suave, #eff6ff);
+    color: var(--primario, #2563eb);
+    border-color: var(--primario, #2563eb);
+}
+.btn-filtro.alerta {
+    color: #ef4444; /* Rojo */
+}
+.btn-filtro.alerta:hover, .btn-filtro.alerta.activo {
+    background: #fef2f2;
+    border-color: #ef4444;
+}
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS: PUNTO DE VENTA (POS)
+   ========================================================================== */
+.layout-venta {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.btn-agregar {
+    background: var(--primario-suave, #eff6ff);
+    color: var(--primario, #2563eb);
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 12px;
+}
+
+.btn-agregar:hover {
+    background: var(--primario, #2563eb);
+    color: white;
+}
+
+.item-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--borde-suave, #e2e8f0);
+}
+
+.item-carrito:last-child {
+    border-bottom: none;
+}
+
+.btn-eliminar {
+    color: #ef4444;
+    background: #fef2f2;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.btn-eliminar:hover { 
+    background: #ef4444; 
+    color: white; 
 }

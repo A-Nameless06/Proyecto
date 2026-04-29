@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Exitoso - R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-pills icono-marca"></i>
+            <strong>Control Farmacia<br>R.A.S.A</strong>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="inicioFarmacia.html">Inicio</a></li>
+            <li><a href="/farmacia/validacion">Validar Receta</a></li>
+            <li><a href="venta.html">Venta</a></li>
+            <li><a href="historial.html">Historial</a></li>
+            <li class="activo"><a href="proveedores.html">Proveedores</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Elena Rivas</strong> | Farmacéutico </span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="layout-centrado">
+        <div class="area-trabajo">
+            <header class="header-dashboard">
+                <h1>Confirmación de Pedido</h1>
+                <p>Folio de seguimiento: #ORD-78492-MEX</p>
+            </header>
+
+            <div class="tarjeta-panel pantalla-exito">
+                <i class="fa-solid fa-circle-check icono-grande"></i>
+                <h2>¡Pedido enviado con éxito a Droguería Nacional S.A.!</h2>
+                <p>El proveedor ha recibido tu solicitud. El tiempo estimado de entrega es de 24 a 48 horas hábiles.</p>
+                
+                <div style="max-width: 600px; margin: 0 auto; text-align: left; background: var(--fondo-app, #f8fafc); padding: 20px; border-radius: 12px; margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 15px; font-size: 16px; border-bottom: 1px solid var(--borde-suave); padding-bottom: 10px;">Resumen del Pedido</h3>
+                    
+                    <ul id="lista-resumen" style="list-style: none; padding: 0;">
+                        </ul>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--borde-suave); font-weight: 800; font-size: 16px;">
+                        <span>TOTAL ESTIMADO:</span>
+                        <span id="gran-total" style="color: var(--primario);">$0.00 MXN</span>
+                    </div>
+
+                    <div id="total-pedido" style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--borde-suave); font-weight: 800; display: flex; justify-content: space-between;">
+                        <span>ESTADO DEL PEDIDO</span>
+                        <span id="estado-texto" style="color: #f59e0b;"><i class="fa-solid fa-spinner fa-spin" style="margin-right: 5px;"></i>PROCESANDO...</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+                    <a href="inicioFarmacia.html" class="btn-primario" style="text-decoration: none; background: var(--superficie); color: var(--texto-principal); border: 1px solid var(--borde-suave);">
+                        <i class="fa-solid fa-house"></i> Volver a Inicio
+                    </a>
+                    <a href="proveedores.html" class="btn-primario" style="text-decoration: none;">
+                        <i class="fa-solid fa-arrow-left"></i> Nuevo Pedido
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lista = document.getElementById('lista-resumen');
+            const elGranTotal = document.getElementById('gran-total');
+            const datosGuardados = localStorage.getItem('ultimoPedido');
+            let sumaTotal = 0;
+
+            if (datosGuardados) {
+                const pedido = JSON.parse(datosGuardados);
+
+                if (pedido.length === 0) {
+                    lista.innerHTML = '<li style="color: var(--texto-secundario); text-align: center; padding: 10px;">No se seleccionaron productos en el pedido.</li>';
+                } else {
+                    pedido.forEach(item => {
+                        sumaTotal += item.subtotal;
+
+                        const li = document.createElement('li');
+                        li.style.display = 'flex';
+                        li.style.justifyContent = 'space-between';
+                        li.style.marginBottom = '10px';
+                        li.innerHTML = `<span><strong>${item.cantidad}x</strong> ${item.nombre} <br><small style="color: var(--texto-secundario); font-size: 11px;">$${item.precioUnitario.toFixed(2)} c/u</small></span> <strong>$${item.subtotal.toFixed(2)} MXN</strong>`;
+                        lista.appendChild(li);
+                    });
+                }
+            } else {
+                lista.innerHTML = '<li style="color: var(--rojo); text-align: center; padding: 10px;">Error al cargar el resumen del pedido.</li>';
+            }
+
+            // Pintamos el gran total formateado a 2 decimales
+            elGranTotal.innerText = `$${sumaTotal.toFixed(2)} MXN`;
+
+            // Simular el tiempo de procesamiento (10 segundos)
+            setTimeout(function() {
+                const estadoSpan = document.getElementById('estado-texto');
+                if (estadoSpan) {
+                    estadoSpan.style.color = 'var(--exito, #10b981)';
+                    estadoSpan.innerHTML = '<i class="fa-solid fa-check-double" style="margin-right: 5px;"></i>PEDIDO APROBADO';
+                }
+            }, 10000);
+        });
+    </script>
+
+</body>
+</html>

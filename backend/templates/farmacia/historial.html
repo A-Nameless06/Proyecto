@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de Entregas - Farmacia R.A.S.A</title>
+    <title>Auditoría de Inventario - Farmacia R.A.S.A</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/farmacia.css') }}">
 </head>
 <body>
 
@@ -20,7 +19,9 @@
         <ul class="menu-principal">
             <li><a href="/dashboard">Inicio</a></li>
             <li><a href="/farmacia/validacion">Validar Receta</a></li>
-            <li class="activo"><a href="historial.html">Historial Entregas</a></li>
+            <li><a href="venta.html">Venta</a></li>
+            <li class="activo"><a href="historial.html">Historial</a></li>
+            <li><a href="proveedores.html">Provedores</a></li>
         </ul>
 
         <div class="perfil-usuario">
@@ -34,34 +35,34 @@
         
         <header class="header-dashboard" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px;">
             <div>
-                <h1>Historial y Auditoría de Salidas</h1>
-                <p>Registro oficial de dispensación, controlados y mermas de inventario</p>
+                <h1>Historial y Auditoría de Movimientos</h1>
+                <p>Registro oficial de entradas, salidas, controlados y mermas de inventario</p>
             </div>
         </header>
 
         <div class="grid-kpis">
             <div class="tarjeta-kpi">
                 <div class="info-kpi">
-                    <span>Recetas Surtidas (Hoy)</span>
-                    <strong>42</strong>
-                    <span class="tendencia positiva"><i class="fa-solid fa-arrow-trend-up"></i> +15% vs ayer</span>
+                    <span>Entradas de Proveedor (Mes)</span>
+                    <strong>12</strong>
+                    <span class="tendencia positiva"><i class="fa-solid fa-truck"></i> Stock reabastecido</span>
                 </div>
-                <div class="icono-kpi azul"><i class="fa-solid fa-file-prescription"></i></div>
+                <div class="icono-kpi azul"><i class="fa-solid fa-boxes-stacked"></i></div>
             </div>
             
             <div class="tarjeta-kpi">
                 <div class="info-kpi">
-                    <span>Controlados Entregados</span>
-                    <strong>8</strong>
-                    <span class="tendencia neutra"><i class="fa-solid fa-lock"></i> Retención obligatoria</span>
+                    <span>Salidas y Recetas (Hoy)</span>
+                    <strong>42</strong>
+                    <span class="tendencia positiva"><i class="fa-solid fa-arrow-trend-up"></i> +15% vs ayer</span>
                 </div>
-                <div class="icono-kpi naranja"><i class="fa-solid fa-pills"></i></div>
+                <div class="icono-kpi verde"><i class="fa-solid fa-file-prescription"></i></div>
             </div>
 
             <div class="tarjeta-kpi">
                 <div class="info-kpi">
                     <span>Mermas / Caducados</span>
-                    <strong>1</strong>
+                    <strong>2</strong>
                     <span class="tendencia negativa"><i class="fa-solid fa-triangle-exclamation"></i> Pérdida reportada</span>
                 </div>
                 <div class="icono-kpi" style="background: #fee2e2; color: var(--rojo);"><i class="fa-solid fa-trash-can"></i></div>
@@ -71,29 +72,30 @@
         <div class="tarjeta-panel filtros-historial">
             <div class="input-grupo">
                 <label>Fecha Inicial</label>
-                <input type="date" value="2026-04-01">
+                <input type="date" id="filtro-fecha-inicio" value="2026-04-01" onchange="aplicarFiltros()">
             </div>
             <div class="input-grupo">
                 <label>Fecha Final</label>
-                <input type="date" value="2026-04-06">
+                <input type="date" id="filtro-fecha-fin" value="2026-04-30" onchange="aplicarFiltros()">
             </div>
             <div class="buscador-farmacia" style="flex-grow: 1; margin-top: 18px;">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar folio, medicamento, paciente o médico...">
+                <input type="text" id="filtro-texto" placeholder="Buscar folio, medicamento, paciente o proveedor..." onkeyup="aplicarFiltros()">
             </div>
             <div class="input-grupo" style="margin-top: 18px;">
-                <select class="select-filtro">
-                    <option>Todos los Movimientos</option>
-                    <option>Surtido con Receta</option>
-                    <option>Venta Libre</option>
-                    <option>Mermas y Caducidades</option>
+                <select class="select-filtro" id="filtro-tipo" onchange="aplicarFiltros()">
+                    <option value="todos">Todos los Movimientos</option>
+                    <option value="entrada">Entradas (Proveedores)</option>
+                    <option value="con_receta">Salida: Con Receta</option>
+                    <option value="sin_receta">Salida: Sin Receta (Venta Libre)</option>
+                    <option value="merma">Mermas y Caducidades</option>
                 </select>
             </div>
         </div>
 
         <div class="tarjeta-panel">
             <div class="cabecera-panel">
-                <h3>Registro de Salidas</h3>
+                <h3>Registro de Movimientos (Kardex)</h3>
             </div>
             
             <table class="tabla-admin">
@@ -101,101 +103,134 @@
                     <tr>
                         <th>FECHA Y HORA</th>
                         <th>FOLIO / REF</th>
-                        <th>MEDICAMENTO(S) SURTIDO(S)</th>
-                        <th>PACIENTE / DESTINO</th>
+                        <th>MEDICAMENTO(S)</th>
+                        <th>PACIENTE / DESTINO / PROV.</th>
                         <th>TIPO MOVIMIENTO</th>
                         <th>ESTADO</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">Hoy, 10:45 AM</strong></td>
+                <tbody id="cuerpo-tabla">
+                    <tr class="fila-historial" data-tipo="entrada" data-fecha="2026-04-29">
+                        <td><strong style="color: var(--texto-principal);">29/04/2026, 08:30 AM</strong><span class="antiguedad-texto" data-fecha-iso="2026-04-29"></span></td>
+                        <td><span style="font-family: monospace; color: var(--texto-secundario);">ORD-78492-MEX</span></td>
+                        <td><strong>Paracetamol 500mg</strong> (50 Cajas)<br><strong>Amoxicilina 500mg</strong> (30 Cajas)</td>
+                        <td><strong>Droguería Nacional S.A.</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Ingreso a Almacén Principal</span></td>
+                        <td><span class="badge badge-azul">ENTRADA STOCK</span></td>
+                        <td><span class="badge badge-verde">COMPLETADO</span></td>
+                    </tr>
+
+                    <tr class="fila-historial" data-tipo="con_receta" data-fecha="2026-04-28">
+                        <td><strong style="color: var(--texto-principal);">28/04/2026, 10:45 AM</strong><span class="antiguedad-texto" data-fecha-iso="2026-04-28"></span></td>
                         <td><span style="font-family: monospace; color: var(--texto-secundario);">FOL-2026-0921</span></td>
-                        <td>
-                            <strong>Ibuprofeno 400mg</strong> (1 Caja)<br>
-                            <span style="color: var(--rojo); font-size: 12px; font-weight: 700;"><i class="fa-solid fa-triangle-exclamation"></i> Amoxicilina 500mg</span> (1 Caja)
-                        </td>
+                        <td><strong>Ibuprofeno 400mg</strong> (1 Caja)<br><span style="color: var(--rojo); font-size: 12px; font-weight: 700;"><i class="fa-solid fa-lock"></i> Tramadol 50mg</span> (1 Caja)</td>
                         <td><strong>María López</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Dr. Roberto Sánchez</span></td>
-                        <td><span class="badge badge-gris">RECETA MÉDICA</span></td>
+                        <td><span class="badge badge-gris">SALIDA CON RECETA</span></td>
                         <td><span class="badge badge-verde">ENTREGADO</span></td>
                     </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">Hoy, 09:15 AM</strong></td>
+
+                    <tr class="fila-historial" data-tipo="sin_receta" data-fecha="2026-04-28">
+                        <td><strong style="color: var(--texto-principal);">28/04/2026, 09:15 AM</strong><span class="antiguedad-texto" data-fecha-iso="2026-04-28"></span></td>
                         <td><span style="font-family: monospace; color: var(--texto-secundario);">TKT-88492</span></td>
-                        <td><strong>Paracetamol 500mg</strong> (2 Cajas)<br><strong>Loratadina</strong> (1 Caja)</td>
-                        <td><strong>Mostrador (Público General)</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Sin médico</span></td>
-                        <td><span class="badge badge-verde">VENTA LIBRE</span></td>
+                        <td><strong>Paracetamol 500mg</strong> (2 Cajas)<br><strong>Loratadina 10mg</strong> (1 Caja)</td>
+                        <td><strong>Mostrador (Público General)</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Venta Directa</span></td>
+                        <td><span class="badge badge-verde">SALIDA SIN RECETA</span></td>
                         <td><span class="badge badge-verde">ENTREGADO</span></td>
                     </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">Ayer, 04:30 PM</strong></td>
+
+                    <tr class="fila-historial" data-tipo="merma" data-fecha="2026-04-26">
+                        <td><strong style="color: var(--texto-principal);">26/04/2026, 04:30 PM</strong><span class="antiguedad-texto" data-fecha-iso="2026-04-26"></span></td>
                         <td><span style="font-family: monospace; color: var(--texto-secundario);">MER-1029</span></td>
-                        <td><strong>Jarabe Dextrometorfano</strong> (1 Frasco)</td>
+                        <td><strong>Ambrosol Jarabe</strong> (1 Frasco)</td>
                         <td><strong>Ajuste de Inventario</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Frasco roto en almacén</span></td>
-                        <td><span class="badge badge-roja">MERMA INTERNA</span></td>
+                        <td><span class="badge badge-roja">MERMA / DAÑO</span></td>
                         <td><span class="badge badge-naranja">DESCONTADO</span></td>
                     </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">Ayer, 11:00 AM</strong></td>
-                        <td><span style="font-family: monospace; color: var(--texto-secundario);">REQ-INT-04</span></td>
-                        <td><strong>Alcohol Isopropílico</strong> (2 Botellas)<br><strong>Gasas Estériles</strong> (5 Paquetes)</td>
-                        <td><strong>Enfermería - Ala B</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Reabastecimiento Botiquín</span></td>
-                        <td><span class="badge badge-gris">USO CLÍNICO</span></td>
-                        <td><span class="badge badge-verde">ENTREGADO</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">Ayer, 09:30 AM</strong></td>
-                        <td><span style="font-family: monospace; color: var(--texto-secundario);">FOL-2026-0918</span></td>
-                        <td><strong>Losartán 50mg</strong> (2 Cajas)</td>
-                        <td><strong>Juan Carlos Ruiz</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Dra. Sarah Smith</span></td>
-                        <td><span class="badge badge-gris">RECETA MÉDICA</span></td>
-                        <td><span class="badge badge-verde">ENTREGADO</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">Ayer, 08:15 AM</strong></td>
-                        <td><span style="font-family: monospace; color: var(--texto-secundario);">TKT-88490</span></td>
-                        <td><strong>Omeprazol 20mg</strong> (1 Caja)</td>
-                        <td><strong>Mostrador (Público General)</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Sin médico</span></td>
-                        <td><span class="badge badge-verde">VENTA LIBRE</span></td>
-                        <td><span class="badge badge-verde">ENTREGADO</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">04/04/2026, 05:20 PM</strong></td>
-                        <td><span style="font-family: monospace; color: var(--texto-secundario);">FOL-2026-0915</span></td>
-                        <td><span style="color: var(--rojo); font-size: 12px; font-weight: 700;"><i class="fa-solid fa-lock"></i> Clonazepam 2mg</span> (1 Caja)</td>
-                        <td><strong>Teresa Mendoza</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Dr. Robert Chen</span></td>
-                        <td><span class="badge badge-gris">RECETA MÉDICA</span></td>
-                        <td><span class="badge badge-verde">ENTREGADO</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">04/04/2026, 02:10 PM</strong></td>
-                        <td><span style="font-family: monospace; color: var(--texto-secundario);">REQ-INT-03</span></td>
-                        <td><strong>Jeringas 5ml</strong> (1 Caja 100u)</td>
-                        <td><strong>Consultorio 3</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Suministro General</span></td>
-                        <td><span class="badge badge-gris">USO CLÍNICO</span></td>
-                        <td><span class="badge badge-verde">ENTREGADO</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">04/04/2026, 12:45 PM</strong></td>
-                        <td><span style="font-family: monospace; color: var(--texto-secundario);">MER-1028</span></td>
-                        <td><strong>Aspirina 500mg</strong> (3 Cajas)</td>
-                        <td><strong>Ajuste de Inventario</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Lote Caducado</span></td>
-                        <td><span class="badge badge-roja">MERMA INTERNA</span></td>
-                        <td><span class="badge badge-naranja">DESCONTADO</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--texto-principal);">03/04/2026, 10:00 AM</strong></td>
-                        <td><span style="font-family: monospace; color: var(--texto-secundario);">TKT-88450</span></td>
-                        <td><strong>Suero Oral</strong> (4 Botellas)<br><strong>Gel Antibacterial</strong> (1 Bote)</td>
-                        <td><strong>Mostrador (Público General)</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Sin médico</span></td>
-                        <td><span class="badge badge-verde">VENTA LIBRE</span></td>
-                        <td><span class="badge badge-verde">ENTREGADO</span></td>
+
+                    <tr class="fila-historial" data-tipo="entrada" data-fecha="2026-04-20">
+                        <td><strong style="color: var(--texto-principal);">20/04/2026, 11:00 AM</strong><span class="antiguedad-texto" data-fecha-iso="2026-04-20"></span></td>
+                        <td><span style="font-family: monospace; color: var(--texto-secundario);">ORD-78111-MEX</span></td>
+                        <td><strong>Jeringas 5ml</strong> (10 Cajas)<br><strong>Gasas Estériles</strong> (20 Paquetes)</td>
+                        <td><strong>BD Medical Prov.</strong><br><span style="font-size: 11px; color: var(--texto-secundario);">Ingreso a Insumos</span></td>
+                        <td><span class="badge badge-azul">ENTRADA STOCK</span></td>
+                        <td><span class="badge badge-verde">COMPLETADO</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
     </main>
+
+    <script>
+        // 1. Función para calcular la antigüedad al cargar la página
+        function calcularAntiguedad() {
+            const hoy = new Date();
+            hoy.setHours(0,0,0,0); // Ignorar la hora para un cálculo exacto de días
+
+            const spansAntiguedad = document.querySelectorAll('.antiguedad-texto');
+            
+            spansAntiguedad.forEach(span => {
+                const fechaFilaIso = span.getAttribute('data-fecha-iso');
+                if(fechaFilaIso) {
+                    // Convertir la fecha "YYYY-MM-DD" para asegurar compatibilidad cruzada (Safari/Mac, Chrome)
+                    const partes = fechaFilaIso.split('-');
+                    const fechaFila = new Date(partes[0], partes[1] - 1, partes[2]);
+                    
+                    const diferenciaTiempo = hoy.getTime() - fechaFila.getTime();
+                    const diferenciaDias = Math.floor(diferenciaTiempo / (1000 * 3600 * 24));
+
+                    if (diferenciaDias === 0) {
+                        span.innerText = "Hace un momento (Hoy)";
+                    } else if (diferenciaDias === 1) {
+                        span.innerText = "Ayer";
+                    } else if (diferenciaDias > 1) {
+                        span.innerText = `Hace ${diferenciaDias} días`;
+                    } else {
+                        span.innerText = "Programado"; // Por si hay fechas futuras
+                    }
+                }
+            });
+        }
+
+        // 2. Función maestra para aplicar todos los filtros combinados
+        function aplicarFiltros() {
+            const tipoFiltro = document.getElementById('filtro-tipo').value;
+            const fechaInicio = document.getElementById('filtro-fecha-inicio').value;
+            const fechaFin = document.getElementById('filtro-fecha-fin').value;
+            const textoBuscador = document.getElementById('filtro-texto').value.toLowerCase();
+
+            const filas = document.querySelectorAll('.fila-historial');
+
+            filas.forEach(fila => {
+                const tipoFila = fila.getAttribute('data-tipo');
+                const fechaFila = fila.getAttribute('data-fecha');
+                const contenidoTexto = fila.innerText.toLowerCase();
+
+                // Verificar Tipo de Movimiento
+                let coincideTipo = (tipoFiltro === 'todos' || tipoFiltro === tipoFila);
+
+                // Verificar Rango de Fechas
+                let coincideFecha = true;
+                if (fechaInicio && fechaFin) {
+                    coincideFecha = (fechaFila >= fechaInicio && fechaFila <= fechaFin);
+                }
+
+                // Verificar Buscador de Texto
+                let coincideBuscador = contenidoTexto.includes(textoBuscador);
+
+                // Si cumple TODAS las condiciones, se muestra; si no, se oculta
+                if (coincideTipo && coincideFecha && coincideBuscador) {
+                    fila.style.display = '';
+                } else {
+                    fila.style.display = 'none';
+                }
+            });
+        }
+
+        // Ejecutar el cálculo de días apenas cargue la página
+        document.addEventListener('DOMContentLoaded', () => {
+            calcularAntiguedad();
+        });
+    </script>
 
 </body>
 </html>

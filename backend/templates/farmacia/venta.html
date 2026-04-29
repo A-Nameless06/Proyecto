@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Venta - Farmacia R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-pills icono-marca"></i>
+            <strong>Control Farmacia<br>R.A.S.A</strong>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/dashboard">Inicio</a></li>
+            <li class="activo"><a href="venta.html">Venta</a></li>
+            <li><a href="/farmacia/validacion">Validar Receta</a></li>
+            <li><a href="historial.html">Historial</a></li>
+            <li><a href="proveedores.html">Provedores</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Elena Rivas</strong> | Farmacéutico </span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="layout-centrado">
+        <header class="header-dashboard" style="margin-bottom: 25px;">
+            <h1>Punto de Venta</h1>
+            <p>Dispensación rápida y cobro de mostrador</p>
+        </header>
+
+        <div class="layout-venta">
+            
+            <div class="seccion-catalogo">
+                <div class="tarjeta-panel" style="margin-bottom: 20px;">
+                    <div class="buscador-farmacia">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="buscador-productos" placeholder="Buscar medicamento por nombre..." onkeyup="filtrarCatalogo()" autofocus>
+                    </div>
+                </div>
+
+                <div class="tarjeta-panel">
+                    <div class="cabecera-panel">
+                        <h3><i class="fa-solid fa-box-open"></i> Catálogo de Productos</h3>
+                    </div>
+                    
+                    <table class="tabla-admin">
+                        <thead>
+                            <tr>
+                                <th>MEDICAMENTO</th>
+                                <th>PRECIO</th>
+                                <th>TIPO</th>
+                                <th>ACCIÓN</th>
+                            </tr>
+                        </thead>
+                        <tbody id="catalogo-productos">
+                            <tr class="fila-producto">
+                                <td><strong>Paracetamol 500mg</strong><br><span style="font-size: 11px; color: #64748b;">Stock: 120 u.</span></td>
+                                <td>$25.00</td>
+                                <td><span class="badge badge-verde">LIBRE</span></td>
+                                <td><button class="btn-agregar" onclick="agregarAlCarrito('Paracetamol 500mg', 25.00)"><i class="fa-solid fa-plus"></i> Añadir</button></td>
+                            </tr>
+                            <tr class="fila-producto">
+                                <td><strong>Ibuprofeno 400mg</strong><br><span style="font-size: 11px; color: #64748b;">Stock: 85 u.</span></td>
+                                <td>$35.50</td>
+                                <td><span class="badge badge-verde">LIBRE</span></td>
+                                <td><button class="btn-agregar" onclick="agregarAlCarrito('Ibuprofeno 400mg', 35.50)"><i class="fa-solid fa-plus"></i> Añadir</button></td>
+                            </tr>
+                            <tr class="fila-producto">
+                                <td><strong>Omeprazol 20mg</strong><br><span style="font-size: 11px; color: #64748b;">Stock: 95 u.</span></td>
+                                <td>$40.00</td>
+                                <td><span class="badge badge-verde">LIBRE</span></td>
+                                <td><button class="btn-agregar" onclick="agregarAlCarrito('Omeprazol 20mg', 40.00)"><i class="fa-solid fa-plus"></i> Añadir</button></td>
+                            </tr>
+                            <tr class="fila-producto">
+                                <td><strong>Amoxicilina 500mg</strong><br><span style="font-size: 11px; color: #64748b;">Stock: 30 u.</span></td>
+                                <td>$70.00</td>
+                                <td><span class="badge badge-roja">RECETA</span></td>
+                                <td><button class="btn-agregar" onclick="agregarAlCarrito('Amoxicilina 500mg', 70.00, true)"><i class="fa-solid fa-plus"></i> Añadir</button></td>
+                            </tr>
+                            <tr class="fila-producto">
+                                <td><strong>Clonazepam 2mg</strong><br><span style="font-size: 11px; color: #64748b;">Stock: 8 u.</span></td>
+                                <td>$200.00</td>
+                                <td><span class="badge badge-roja">RECETA</span></td>
+                                <td><button class="btn-agregar" onclick="agregarAlCarrito('Clonazepam 2mg', 200.00, true)"><i class="fa-solid fa-plus"></i> Añadir</button></td>
+                            </tr>
+                            <tr class="fila-producto">
+                                <td><strong>Electrolitos Orales (Fresa)</strong><br><span style="font-size: 11px; color: #64748b;">Stock: 45 u.</span></td>
+                                <td>$22.00</td>
+                                <td><span class="badge badge-verde">LIBRE</span></td>
+                                <td><button class="btn-agregar" onclick="agregarAlCarrito('Electrolitos Orales', 22.00)"><i class="fa-solid fa-plus"></i> Añadir</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="seccion-ticket">
+                <div class="tarjeta-panel" style="position: sticky; top: 20px;">
+                    <div class="cabecera-panel" style="margin-bottom: 10px; border-bottom: none;">
+                        <h3><i class="fa-solid fa-receipt" style="color: var(--primario);"></i> Resumen de Venta</h3>
+                    </div>
+
+                    <div id="alerta-receta" style="display: none; background: #fef2f2; border: 1px solid #f87171; color: #b91c1c; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; font-weight: 600;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Requiere Folio de Receta Médica
+                        <input type="text" placeholder="Ingresar Folio..." style="width: 100%; margin-top: 8px; padding: 6px; border: 1px solid #fca5a5; border-radius: 4px; outline: none;">
+                    </div>
+
+                    <div id="contenedor-carrito" style="min-height: 150px; max-height: 300px; overflow-y: auto; border-top: 1px solid var(--borde-suave); border-bottom: 1px solid var(--borde-suave); margin-bottom: 20px;">
+                        <div id="mensaje-vacio" style="text-align: center; color: var(--texto-secundario); padding: 40px 0; font-size: 13px;">
+                            <i class="fa-solid fa-cart-arrow-down" style="font-size: 24px; margin-bottom: 10px;"></i><br>
+                            No hay productos en la venta actual
+                        </div>
+                        <div id="lista-carrito"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; color: var(--texto-secundario);">
+                        <span>Subtotal:</span>
+                        <span id="txt-subtotal">$0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 22px; font-weight: 800; color: var(--texto-principal); margin-bottom: 24px;">
+                        <span>TOTAL:</span>
+                        <span id="txt-total">$0.00</span>
+                    </div>
+
+                    <button class="btn-primario" id="btn-cobrar" style="width: 100%; justify-content: center; font-size: 16px; padding: 16px;" onclick="procesarVenta()" disabled>
+                        <i class="fa-solid fa-cash-register"></i> Cobrar y Emitir Ticket
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // 1. FUNCIÓN NUEVA: Buscador en tiempo real
+        function filtrarCatalogo() {
+            // Obtenemos lo que el usuario escribe y lo pasamos a minúsculas
+            const input = document.getElementById("buscador-productos").value.toLowerCase();
+            const filas = document.querySelectorAll(".fila-producto");
+
+            filas.forEach(fila => {
+                // Buscamos el texto dentro de la primera celda (donde está el nombre del medicamento)
+                const nombreMedicamento = fila.querySelector("td strong").innerText.toLowerCase();
+                
+                // Si el nombre incluye lo que escribimos, se muestra; si no, se oculta
+                if (nombreMedicamento.includes(input)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+        }
+
+        // 2. Lógica del Carrito (Mantenida igual)
+        let carrito = [];
+        let requiereReceta = false;
+
+        function agregarAlCarrito(nombre, precio, ocupaReceta = false) {
+            const index = carrito.findIndex(item => item.nombre === nombre);
+            if (index > -1) {
+                carrito[index].cantidad += 1;
+            } else {
+                carrito.push({ nombre, precio, cantidad: 1, ocupaReceta });
+            }
+            actualizarVistaCarrito();
+        }
+
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarVistaCarrito();
+        }
+
+        function actualizarVistaCarrito() {
+            const lista = document.getElementById('lista-carrito');
+            const msjVacio = document.getElementById('mensaje-vacio');
+            const alertaReceta = document.getElementById('alerta-receta');
+            const btnCobrar = document.getElementById('btn-cobrar');
+            
+            lista.innerHTML = '';
+            let total = 0;
+            requiereReceta = false;
+
+            if (carrito.length === 0) {
+                msjVacio.style.display = 'block';
+                btnCobrar.disabled = true;
+                btnCobrar.style.opacity = '0.5';
+            } else {
+                msjVacio.style.display = 'none';
+                btnCobrar.disabled = false;
+                btnCobrar.style.opacity = '1';
+
+                carrito.forEach((item, index) => {
+                    const subtotal = item.precio * item.cantidad;
+                    total += subtotal;
+                    
+                    if(item.ocupaReceta) requiereReceta = true;
+
+                    const div = document.createElement('div');
+                    div.className = 'item-carrito';
+                    div.innerHTML = `
+                        <div style="flex-grow: 1;">
+                            <strong style="font-size: 13px; color: var(--texto-principal); display: block;">${item.nombre}</strong>
+                            <span style="font-size: 12px; color: var(--texto-secundario);">${item.cantidad}x $${item.precio.toFixed(2)}</span>
+                        </div>
+                        <strong style="font-size: 14px; color: var(--texto-principal); margin-right: 15px;">$${subtotal.toFixed(2)}</strong>
+                        <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})"><i class="fa-solid fa-trash-can"></i></button>
+                    `;
+                    lista.appendChild(div);
+                });
+            }
+
+            document.getElementById('txt-subtotal').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('txt-total').innerText = `$${total.toFixed(2)}`;
+            alertaReceta.style.display = requiereReceta ? 'block' : 'none';
+        }
+
+        function procesarVenta() {
+            alert('¡Venta registrada con éxito! Imprimiendo ticket...');
+            carrito = [];
+            actualizarVistaCarrito();
+            // Limpiamos el buscador por si acaso
+            document.getElementById('buscador-productos').value = '';
+            filtrarCatalogo();
+        }
+    </script>
+</body>
+</html>

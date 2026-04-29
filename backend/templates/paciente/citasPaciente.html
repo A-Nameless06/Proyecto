@@ -211,7 +211,14 @@
     </main>
 
     <script>
-        const hoySimulado = new Date(2026, 3, 28); 
+        // Fecha actual de la computadora
+        const hoySimulado = new Date(); 
+        hoySimulado.setHours(0, 0, 0, 0);
+
+        // Definimos "mañana" como el punto de inicio para las citas
+        const mañana = new Date(hoySimulado);
+        mañana.setDate(mañana.getDate() + 1);
+        
         let fechaCalendario = new Date(hoySimulado.getFullYear(), hoySimulado.getMonth(), 1);
 
         // Agregamos la variable de precio al estado
@@ -309,7 +316,8 @@
                 cuadricula.appendChild(divVacio);
             }
 
-            let fechaLimite = new Date(hoySimulado);
+            // El límite de tres meses ahora parte desde la fecha de mañana
+            let fechaLimite = new Date(mañana);
             fechaLimite.setMonth(fechaLimite.getMonth() + 3);
 
             for (let i = 1; i <= diasEnMes; i++) {
@@ -320,7 +328,8 @@
                 let fechaActualIteracion = new Date(anio, mes, i);
                 let diaSemana = fechaActualIteracion.getDay(); 
 
-                if (fechaActualIteracion < hoySimulado || fechaActualIteracion > fechaLimite || diaSemana === 0 || diaSemana === 6) {
+                // Comparamos contra la constante 'mañana' para bloquear el día actual y pasados
+                if (fechaActualIteracion < mañana || fechaActualIteracion > fechaLimite || diaSemana === 0 || diaSemana === 6) {
                     divDia.classList.add('inactivo');
                 } else {
                     divDia.addEventListener('click', function() {
@@ -378,6 +387,6 @@
             // Imprimimos el precio con formato
             document.getElementById('res-precio').innerText = `$${citaState.precio}.00 MXN`;
         }
-    </script>
+</script>
 </body>
 </html>

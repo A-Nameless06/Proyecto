@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/farmacia.css') }}">
+    
 </head>
 <body>
 
@@ -29,8 +29,12 @@
             <i class="fa-solid fa-file-prescription"></i> Validación Recetas
         </a>
 
+        <a href="venta.html" class="item-menu">
+            <i class="fa-solid fa-truck"></i> Venta
+        </a>
+
         <a href="/farmacia/historialVentas" class="item-menu">
-            <i class="fa-solid fa-clock-rotate-left"></i> Historial Ventas    
+            <i class="fa-solid fa-clock-rotate-left"></i> Historial    
         </a>
 
         <a href="proveedores.html" class="item-menu">
@@ -86,7 +90,10 @@
                     <tbody>
                         <tr><td>Paracetamol 500mg</td><td>Analgésico / Fiebre</td><td>120 u.</td><td><span class="badge badge-verde">LIBRE</span></td></tr>
                         <tr><td>Ibuprofeno 400mg</td><td>Antiinflamatorio</td><td>85 u.</td><td><span class="badge badge-verde">LIBRE</span></td></tr>
-                        <tr><td>Loratadina</td><td>Antihistamínico</td><td>40 u.</td><td><span class="badge badge-verde">LIBRE</span></td></tr>
+                        <tr><td>Loratadina 10mg</td><td>Antihistamínico</td><td>40 u.</td><td><span class="badge badge-verde">LIBRE</span></td></tr>
+                        <tr><td>Naproxeno 550mg</td><td>Dolor Muscular</td><td>62 u.</td><td><span class="badge badge-verde">LIBRE</span></td></tr>
+                        <tr><td>Omeprazol 20mg</td><td>Protector Gástrico</td><td>95 u.</td><td><span class="badge badge-verde">LIBRE</span></td></tr>
+                        <tr><td>Ambrosol Jarabe</td><td>Expectorante</td><td>18 u.</td><td><span class="badge badge-verde">LIBRE</span></td></tr>
                         <tr><td>Salbutamol</td><td>Inhalador Asma</td><td>12 u.</td><td><span class="badge badge-naranja">OPCIONAL</span></td></tr>
                     </tbody>
                 </table>
@@ -107,9 +114,13 @@
                     </thead>
                     <tbody>
                         <tr><td>Amoxicilina 500mg</td><td>Antibiótico</td><td>30 u.</td><td><span class="badge badge-roja">REQUERIDA</span></td></tr>
+                        <tr><td>Ciprofloxacino 500mg</td><td>Infecciones Bacterianas</td><td>25 u.</td><td><span class="badge badge-roja">REQUERIDA</span></td></tr>
                         <tr><td>Tramadol 50mg</td><td>Analgésico Fuerte</td><td>15 u.</td><td><span class="badge badge-roja">REQUERIDA</span></td></tr>
                         <tr><td>Clonazepam 2mg</td><td>Ansiolítico</td><td>8 u.</td><td><span class="badge badge-roja">CONTROLADO</span></td></tr>
+                        <tr><td>Diazepam 10mg</td><td>Relajante / Sedante</td><td>5 u.</td><td><span class="badge badge-roja">CONTROLADO</span></td></tr>
                         <tr><td>Insulina Glargina</td><td>Diabetes</td><td>22 u.</td><td><span class="badge badge-roja">REQUERIDA</span></td></tr>
+                        <tr><td>Metformina 850mg</td><td>Control Glucosa</td><td>54 u.</td><td><span class="badge badge-roja">REQUERIDA</span></td></tr>
+                        <tr><td>Gabapentina 300mg</td><td>Dolor Neuropático</td><td>14 u.</td><td><span class="badge badge-roja">REQUERIDA</span></td></tr>
                     </tbody>
                 </table>
             </section>

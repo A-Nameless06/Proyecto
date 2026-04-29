@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Cita - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-briefcase-medical icono-marca"></i>
+            <strong>Centro Médico<br>R.A.S.A</strong>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/dashboard">Panel</a></li>
+            <li class="activo"><a href="/paciente/citas">Citas</a></li>
+            <li><a href="/paciente/historial">Historial</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Juan Pérez</strong> | Paciente</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        
+        <div class="columna-izquierda" style="flex: 100%; max-width: 800px; margin: 0 auto;">
+            
+            <div class="migas-pan">
+                Panel <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 4px;"></i> Citas <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 4px;"></i> <span class="actual">Detalles de la Cita</span>
+            </div>
+            
+            <div class="seccion-titulo-detalle" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+                <div>
+                    <h1 class="titulo-seccion" style="margin-bottom: 5px;">Detalles de la Cita</h1>
+                    <p class="subtitulo-seccion" style="margin-bottom: 0;">Folio: #HOSP-2023-8842</p>
+                </div>
+                <span class="badge-estado confirmada">CONFIRMADA</span>
+            </div>
+
+            <div class="tarjeta-comprobante">
+                <div class="cuerpo-tarjeta">
+                    
+                    <div class="perfil-doctor-detalle">
+                        <div class="avatar-doctor-grande">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <div class="info-doctor-texto">
+                            <h2>Dra. Sarah Smith</h2>
+                            <span class="especialidad-tag">CARDIOLOGÍA</span>
+                        </div>
+                    </div>
+
+                    <hr class="linea-divisora">
+
+                    <div class="fila-detalles-cita">
+                        <div class="bloque-detalle">
+                            <i class="fa-regular fa-calendar"></i>
+                            <div>
+                                <span class="etiqueta-dato">FECHA</span>
+                                <p class="valor-dato">12 de Octubre, 2023</p>
+                            </div>
+                        </div>
+                        <div class="bloque-detalle">
+                            <i class="fa-regular fa-clock"></i>
+                            <div>
+                                <span class="etiqueta-dato">HORARIO</span>
+                                <p class="valor-dato">10:30 AM <span class="duracion-cita">(45 min)</span></p>
+                            </div>
+                        </div>
+                        <div class="bloque-detalle">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <span class="etiqueta-dato">CONSULTORIO</span>
+                                <p class="valor-dato">Piso 2, Área B</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="linea-divisora">
+
+                    <div class="fila-paciente-pago">
+                        <div>
+                            <span class="etiqueta-dato">PACIENTE</span>
+                            <p class="valor-dato" style="font-size: 1rem;">Juan Pérez (ID: P-99824021)</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="etiqueta-dato">ESTADO DE PAGO</span>
+                            <p class="valor-dato" style="color: var(--verde-exito); font-size: 1rem;"><i class="fa-solid fa-circle-check"></i> Pagado ($800.00 MXN)</p>
+                        </div>
+                    </div>
+
+                    <div class="caja-instrucciones">
+                        <strong><i class="fa-solid fa-notes-medical"></i> Instrucciones previas a la consulta:</strong>
+                        <ul>
+                            <li>Por favor, preséntate 15 minutos antes de tu horario.</li>
+                            <li>Trae contigo cualquier estudio de laboratorio cardíaco reciente (electrocardiogramas, etc.).</li>
+                            <li>Identificación oficial vigente.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="acciones-detalle-cita">
+                <a href="citasPaciente.html" class="btn-contorno"><i class="fa-solid fa-arrow-left"></i> Volver a Citas</a>
+                
+                <div class="botones-derecha">
+                    <a href="comprobanteCita.html" class="btn-contorno"><i class="fa-solid fa-file-pdf"></i> Ver Recibo</a>
+                    <a href="cancelarCita.html" class="btn-peligro-contorno">Cancelar Cita</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
