@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancelar Cita - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-briefcase-medical icono-marca"></i>
+            <strong>Centro Médico<br>R.A.S.A</strong>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/dashboard">Inicio</a></li>
+            <li class="activo"><a href="/paciente/citas">Citas</a></li>
+            <li><a href="/paciente/historial">Historial</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Juan Pérez</strong> | Paciente</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        
+        <div class="columna-izquierda" style="flex: 100%; max-width: 700px; margin: 0 auto;">
+            <div class="migas-pan">
+                Panel <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 4px;"></i> Citas <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 4px;"></i> <span class="actual">Cancelar Cita</span>
+            </div>
+            
+            <h1 class="titulo-seccion">Cancelar Cita Médica</h1>
+            <p class="subtitulo-seccion">Folio de reservación: #HOSP-2026-8842</p>
+
+            <div id="vista-cancelacion">
+                <div class="alerta-peligro">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <div>
+                        <strong>Política de Cancelación</strong>
+                        <p>De acuerdo con nuestras políticas, las cancelaciones procesadas en este momento están sujetas a una penalización. <strong>Solo se emitirá un reembolso del 50%</strong> del costo original de la consulta.</p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-comprobante" style="margin-top: 25px;">
+                    <div class="cuerpo-tarjeta">
+                        
+                        <h3 style="margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid var(--borde); padding-bottom: 10px;">Detalles de la Cita</h3>
+                        
+                        <div class="detalle-resumen">
+                            <span>Especialidad:</span>
+                            <strong>Cardiología</strong>
+                        </div>
+                        <div class="detalle-resumen">
+                            <span>Fecha programada:</span>
+                            <strong>Martes, 28 Abr, 2026</strong>
+                        </div>
+                        <div class="detalle-resumen">
+                            <span>Horario:</span>
+                            <strong>10:30 AM</strong>
+                        </div>
+
+                        <div class="caja-reembolso">
+                            <h4 style="margin-bottom: 15px; color: var(--texto-oscuro);">Desglose del Reembolso</h4>
+                            
+                            <div class="detalle-resumen">
+                                <span>Costo original pagado:</span>
+                                <strong>$800.00 MXN</strong>
+                            </div>
+                            <div class="detalle-resumen" style="color: var(--rojo-alerta);">
+                                <span>Penalización por cancelación (50%):</span>
+                                <strong>-$400.00 MXN</strong>
+                            </div>
+                            
+                            <hr style="border: none; border-top: 1px dashed var(--borde); margin: 15px 0;">
+                            
+                            <div class="detalle-resumen" style="font-size: 1.2rem;">
+                                <span style="font-weight: 700; color: var(--verde-exito);">Total a reembolsar:</span>
+                                <strong style="color: var(--verde-exito); font-size: 1.5rem;">$400.00 MXN</strong>
+                            </div>
+                        </div>
+
+                        <div class="motivo-cancelacion" style="margin-top: 25px;">
+                            <label for="motivo" style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px;">Motivo de la cancelación (Opcional):</label>
+                            <textarea id="motivo" rows="3" placeholder="Ej. Problemas de transporte, enfermedad, etc." style="width: 100%; padding: 10px; border: 1px solid var(--borde); border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="acciones-cancelacion">
+                    <a href="inicioPaciente.html" class="btn-contorno">Mantener mi cita</a>
+                    <button class="btn-peligro" id="btn-confirmar-cancelacion" onclick="procesarCancelacion()">
+                        <i class="fa-solid fa-calendar-xmark"></i> Confirmar Cancelación
+                    </button>
+                </div>
+            </div>
+
+            <div id="vista-exito" class="oculto">
+                <div class="tarjeta-comprobante" style="text-align: center; padding: 50px 30px;">
+                    <i class="fa-solid fa-circle-check" style="font-size: 4rem; color: var(--verde-exito); margin-bottom: 20px;"></i>
+                    <h2 style="margin-bottom: 10px;">Cita Cancelada Exitosamente</h2>
+                    <p style="color: var(--texto-gris); margin-bottom: 25px; font-size: 1.05rem;">Tu cita ha sido eliminada del sistema. El reembolso del 50% (<strong>$400.00 MXN</strong>) ha sido procesado y se reflejará en tu método de pago original en un plazo de 3 a 5 días hábiles.</p>
+                    
+                    <a href="inicioPaciente.html" class="btn-primario" style="display: inline-block; text-decoration: none;">
+                        Volver a Inicio
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function procesarCancelacion() {
+            const btnConfirmar = document.getElementById('btn-confirmar-cancelacion');
+            
+            // Simular carga
+            btnConfirmar.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
+            btnConfirmar.disabled = true;
+            btnConfirmar.style.opacity = '0.7';
+
+            // Esperar 1.5 segundos y mostrar la pantalla de éxito
+            setTimeout(() => {
+                document.getElementById('vista-cancelacion').classList.add('oculto');
+                document.getElementById('vista-exito').classList.remove('oculto');
+                
+                // Mover la pantalla hacia arriba
+                window.scrollTo(0, 0);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

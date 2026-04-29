@@ -4,45 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprobante de Cita - Centro Médico R.A.S.A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Libre+Barcode+39&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
 </head>
 <body>
-    <nav class="barra-navegacion minimalista">
     
-    <div class="marca">
-        <i class="fa-solid fa-briefcase-medical icono-marca"></i>
-        <strong>Centro Médico<br>R.A.S.A</strong>
-    </div>
-    
-    <ul class="menu-principal">
-        <li><a href="/dashboard">Panel</a></li>
-        <li><a href="/paciente/citas">Citas</a></li>
-        <li class="activo"><a href="/paciente/historial">Historial</a></li>
-    </ul>
-
-    <div class="perfil-usuario">
-        
-        <div class="info-usuario-texto flat">
-            <span><strong>Juan Pérez</strong> | Paciente</span>
+    <nav class="barra-navegacion minimalista no-imprimir">
+        <div class="marca">
+            <i class="fa-solid fa-briefcase-medical icono-marca"></i>
+            <strong>Centro Médico<br>R.A.S.A</strong>
         </div>
         
-    </div>
-    
+        <ul class="menu-principal">
+            <li><a href="/dashboard">Inicio</a></li>
+            <li class="activo"><a href="/paciente/citas">Citas</a></li>
+            <li><a href="/paciente/historial">Historial</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Juan Pérez</strong> | Paciente</span>
+            </div>
+        </div>
     </nav>
 
     <main class="principal-comprobante">
-        <div class="seccion-titulo-folio">
+        
+        <div class="seccion-titulo-folio no-imprimir">
             <div>
                 <h1>Comprobante de Cita</h1>
-                <p class="texto-folio">Folio #HOSP-2023-8842</p>
+                <p class="texto-folio">Guarda este documento para tu referencia</p>
             </div>
             <div class="acciones-comprobante">
-                <a href="#" class="btn-primario btn-imprimir">
-                    <span class="material-icons">print</span> Imprimir
-                </a>
+                <button class="btn-exito btn-pagar no-imprimir" id="btn-hacer-pago" onclick="simularPago()">
+                    <i class="fa-solid fa-credit-card"></i> Hacer Pago
+                </button>
+                <button class="btn-primario btn-imprimir" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> Imprimir Ticket
+                </button>
             </div>
         </div>
 
@@ -50,16 +51,16 @@
             <div class="cabecera-tarjeta">
                 <div class="cabecera-izquierda">
                     <div class="contenedor-icono-calendario">
-                        <span class="material-icons">calendar_today</span>
+                        <i class="fa-regular fa-calendar-check"></i>
                     </div>
                     <div>
                         <p class="titulo-principal-comprobante">COMPROBANTE DE CITA MÉDICA</p>
-                        <p class="subtitulo-comprobante">Sistema de Gestión Hospitalaria General</p>
+                        <p class="subtitulo-comprobante">Sistema de Gestión Hospitalaria R.A.S.A.</p>
                     </div>
                 </div>
                 <div class="cabecera-derecha">
-                    <span class="etiqueta-folio">FOLIO</span>
-                    <p class="numero-folio-grande">HOSP-2023-8842</p>
+                    <span class="etiqueta-folio">FOLIO DE CITA</span>
+                    <p class="numero-folio-grande">HOSP-2026-8842</p>
                 </div>
             </div>
 
@@ -67,36 +68,36 @@
                 <div class="fila-paciente-fecha">
                     <div class="info-paciente">
                         <p class="etiqueta-dato">PACIENTE</p>
-                        <p class="valor-dato">Juan Perez</p>
-                        <p class="id-paciente">ID Paciente: P-99824021</p>
+                        <p class="valor-dato">Juan Pérez</p>
+                        <p class="id-paciente"><i class="fa-solid fa-id-card"></i> ID: P-99824021</p>
                     </div>
                     <div class="info-fecha-hora">
                         <p class="etiqueta-dato">FECHA Y HORARIO</p>
-                        <p class="valor-dato">Lunes, 24 Oct, 2023</p>
-                        <p class="fecha-hora-detallada">10:30 AM — 11:15 AM</p>
+                        <p class="valor-dato">Martes, 28 Abr, 2026</p>
+                        <p class="fecha-hora-detallada"><i class="fa-regular fa-clock"></i> 10:30 AM — 11:30 AM</p>
                     </div>
                 </div>
 
                 <div class="fila-detalles">
                     <div class="item-detalle">
-                        <span class="material-icons">face</span>
+                        <i class="fa-solid fa-user-doctor"></i>
                         <div>
-                            <p class="etiqueta-dato">DOCTOR</p>
-                            <p class="valor-dato">Dra. Maria Perez</p>
+                            <p class="etiqueta-dato">DOCTOR ASIGNADO</p>
+                            <p class="valor-dato">Por definir en recepción</p>
                         </div>
                     </div>
                     <div class="item-detalle">
-                        <span class="material-icons">cardiology</span>
+                        <i class="fa-solid fa-notes-medical"></i>
                         <div>
                             <p class="etiqueta-dato">ESPECIALIDAD</p>
-                            <p class="valor-dato">Departamento de<br>Cardiología</p>
+                            <p class="valor-dato">Cardiología</p>
                         </div>
                     </div>
                     <div class="item-detalle">
-                        <span class="material-icons">room</span>
+                        <i class="fa-solid fa-location-dot"></i>
                         <div>
                             <p class="etiqueta-dato">CONSULTORIO</p>
-                            <p class="valor-dato">Sala 402, 4to Piso</p>
+                            <p class="valor-dato">Piso 2, Área B</p>
                         </div>
                     </div>
                 </div>
@@ -104,33 +105,36 @@
                 <div class="fila-pago">
                     <div class="contenedor-info-pago">
                         <div class="contenedor-icono-pago">
-                            <span class="material-icons">payments</span>
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
                         </div>
                         <div>
-                            <p class="titulo-principal-pago">Línea de Pago</p>
+                            <p class="titulo-principal-pago">Resumen de Pago</p>
                             <p class="subtitulo-pago">Cuota por consulta de especialidad</p>
                         </div>
                     </div>
                     <div class="resumen-monto">
-                        <p class="monto-pago">$1,200.00 MXN</p>
-                        <p class="estado-pago-pendiente"><span class="punto-pendiente"></span> PENDIENTE EN CAJA</p>
+                        <p class="monto-pago">$800.00 MXN</p>
+                        <p class="estado-pago-pendiente" id="estado-pago-contenedor">
+                            <span class="punto-pendiente" id="punto-estado"></span> 
+                            <span id="texto-estado">PENDIENTE EN CAJA</span>
+                        </p>
                     </div>
                 </div>
 
                 <div class="fila-info-importante">
                     <div class="contenedor-cabecera-info">
-                        <span class="material-icons">info</span>
+                        <i class="fa-solid fa-circle-info"></i>
                         <p class="titulo-principal-info">Información Importante</p>
                     </div>
                     <div class="puntos-importantes">
                         <div class="item-punto">
-                            <span class="material-icons">history_toggle_off</span>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
                             <div>
                                 <span class="titulo-punto">Límite de Pago (24 hrs):</span> Para garantizar su lugar, el pago debe realizarse al menos 24 horas antes del horario programado de su cita.
                             </div>
                         </div>
                         <div class="item-punto">
-                            <span class="material-icons">cancel_schedule_send</span>
+                            <i class="fa-solid fa-ban"></i>
                             <div>
                                 <span class="titulo-punto">Política de Cancelación:</span> Las cancelaciones con menos de 24 horas de antelación estarán sujetas a un cargo administrativo de $250.00 MXN.
                             </div>
@@ -141,21 +145,57 @@
 
             <div class="pie-tarjeta">
                 <div>
-                    DOCUMENTO GENERADO EL: 20 DE OCT, 2026 A LAS 09:12 AM
-                    <p style="margin-top: 5px; font-style: italic;">Documento Digital Oficial del Sistema de Salud</p>
+                    DOCUMENTO GENERADO EL: 28 DE ABRIL, 2026 A LAS 03:45 PM
+                    <p style="margin-top: 5px; font-style: italic;">Documento Digital Oficial del Centro Médico R.A.S.A.</p>
                 </div>
-                <div class="codigo-barras">*HOSP-2023-8842*</div>
+                <div class="codigo-barras-contenedor">
+                    <div class="codigo-barras">*HOSP20268842*</div>
+                </div>
             </div>
         </div>
 
-        <div class="contenedor-boton-volver">
-            <a href="#" class="btn-contorno"><span class="material-icons">arrow_back</span> Volver al Tablero</a>
+        <div class="contenedor-boton-volver no-imprimir">
+            <a href="citasPaciente.html" class="btn-contorno"><i class="fa-solid fa-arrow-left"></i> Volver a Citas</a>
         </div>
     </main>
 
-    <footer class="pie-pagina-comprobante">
-        © 2023 Sistema de Gestión Hospitalaria. Todos los derechos reservados.
+    <footer class="pie-pagina-comprobante no-imprimir">
+        © 2026 Centro Médico R.A.S.A. Todos los derechos reservados.
     </footer>
 
+    <script>
+        function simularPago() {
+            const btnPago = document.getElementById('btn-hacer-pago');
+            
+            // 1. Cambiamos visualmente el botón a "Procesando"
+            btnPago.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
+            btnPago.style.cursor = 'not-allowed';
+            btnPago.style.opacity = '0.8';
+
+            // 2. Usamos setTimeout para simular 1 segundo de "conexión al banco"
+            setTimeout(() => {
+                // Elementos a actualizar
+                const contenedorEstado = document.getElementById('estado-pago-contenedor');
+                const textoEstado = document.getElementById('texto-estado');
+                const puntoEstado = document.getElementById('punto-estado');
+                
+                // Cambiamos las clases para que se ponga verde
+                contenedorEstado.className = 'estado-pago-completado';
+                
+                // Quitamos el círculo rojo animado y ponemos una palomita verde
+                puntoEstado.className = ''; 
+                puntoEstado.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                puntoEstado.style.fontSize = '14px';
+                
+                // Cambiamos el texto
+                textoEstado.innerText = 'PAGO COMPLETADO';
+                
+                // Ocultamos el botón de pago y mandamos alerta
+                btnPago.style.display = 'none';
+                alert('¡Tu pago ha sido procesado con éxito!');
+                
+            }, 1000); // 1000 milisegundos = 1 segundo
+        }
+    </script>
 </body>
 </html>
