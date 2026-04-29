@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Laboratorio - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion">
+        <div class="marca">
+            <i class="fa-solid fa-briefcase-medical icono-marca"></i>
+            <strong>Centro Médico<br>R.A.S.A</strong>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/dashboard">Inicio</a></li>
+            <li><a href="/paciente/citas">Citas</a></li>
+            <li><a href="/paciente/citas">Historial</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Juan Perez</strong> | Paciente</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        <div class="columna-izquierda" style="flex: 100%; max-width: 1000px; margin: 0 auto;">
+            
+            <div class="seccion-titulo-folio">
+                <div>
+                    <h1 class="titulo-bienvenida">Mis Resultados de Laboratorio</h1>
+                    <p class="subtitulo-seccion">Última actualización: 28 de Abril, 2026</p>
+                </div>
+                <button class="btn-primario" onclick="window.print()">
+                    <i class="fa-solid fa-download"></i> Descargar PDF
+                </button>
+            </div>
+
+            <div class="grid-vitals">
+                <div class="tarjeta-vital">
+                    <div class="icono-vital azul"><i class="fa-solid fa-weight-scale"></i></div>
+                    <div class="info-vital">
+                        <span class="etiqueta-dato">Peso</span>
+                        <p class="valor-dato">75.5 <small>kg</small></p>
+                    </div>
+                </div>
+                <div class="tarjeta-vital">
+                    <div class="icono-vital verde"><i class="fa-solid fa-ruler-vertical"></i></div>
+                    <div class="info-vital">
+                        <span class="etiqueta-dato">Altura</span>
+                        <p class="valor-dato">1.78 <small>m</small></p>
+                    </div>
+                </div>
+                <div class="tarjeta-vital">
+                    <div class="icono-vital rojo"><i class="fa-solid fa-droplet"></i></div>
+                    <div class="info-vital">
+                        <span class="etiqueta-dato">Tipo de Sangre</span>
+                        <p class="valor-dato">O +</p>
+                    </div>
+                </div>
+                <div class="tarjeta-vital">
+                    <div class="icono-vital naranja"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="info-vital">
+                        <span class="etiqueta-dato">IMC</span>
+                        <p class="valor-dato">23.8</p>
+                        <span class="estado-salud">Normal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta-comprobante" style="margin-top: 30px;">
+                <div class="cabecera-tabla-resultados">
+                    <h3>Química Clínica e Inmunología</h3>
+                </div>
+                <table class="tabla-laboratorio">
+                    <thead>
+                        <tr>
+                            <th>Estudio</th>
+                            <th>Resultado</th>
+                            <th>Unidades</th>
+                            <th>Valores de Referencia</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Glucosa en Ayuno</strong></td>
+                            <td>92.0</td>
+                            <td>mg/dL</td>
+                            <td>70.0 - 100.0</td>
+                            <td><span class="badge badge-normal">Normal</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Colesterol Total</strong></td>
+                            <td>185.0</td>
+                            <td>mg/dL</td>
+                            <td>Menor a 200.0</td>
+                            <td><span class="badge badge-normal">Normal</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Triglicéridos</strong></td>
+                            <td>210.0</td>
+                            <td>mg/dL</td>
+                            <td>Menor a 150.0</td>
+                            <td><span class="badge badge-alerta">Elevado</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hemoglobina Glicosilada</strong></td>
+                            <td>5.4</td>
+                            <td>%</td>
+                            <td>4.0 - 5.6</td>
+                            <td><span class="badge badge-normal">Normal</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ácido Úrico</strong></td>
+                            <td>5.8</td>
+                            <td>mg/dL</td>
+                            <td>3.4 - 7.0</td>
+                            <td><span class="badge badge-normal">Normal</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alerta-info-clinica" style="margin-top: 20px;">
+                <i class="fa-solid fa-circle-info"></i>
+                <p><strong>Nota:</strong> Estos resultados deben ser interpretados por su médico tratante. No se automedique basándose únicamente en este reporte.</p>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
