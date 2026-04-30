@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes de Cuenta - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista sticky">
+        
+        <div class="marca">
+            <i class="fa-solid fa-briefcase-medical icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/dashboard">Consultorio</a></li>
+            <li><a href="/doctor/pacientes">Pacientes</a></li>
+            <li><a href="/doctor/agenda">Agenda</a></li>
+            <li><a href="/doctor/laboratorio">Laboratorio</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Dr. Roberto Sánchez</strong> | Cardiología</span>
+            </div>
+        </div>
+        
+    </nav>
+
+    <main class="contenedor-principal">
+        
+        <div class="ancho-completo" style="width: 100%; max-width: 1100px; margin: 25px auto 0;">
+            
+            <div class="migas-pan" style="color: var(--texto-gris); font-size: 0.9rem; margin-bottom: 15px;">
+                Panel <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 6px;"></i> <strong style="color: var(--azul-principal); font-weight: 600;">Configuración</strong>
+            </div>
+            
+            <h1 class="titulo-seccion" style="font-size: 1.8rem; color: var(--texto-oscuro); margin-bottom: 8px;">Configuración de la Cuenta</h1>
+            <p class="subtitulo-seccion" style="color: var(--texto-gris); font-size: 1rem; margin-bottom: 30px;">Administra tus preferencias de privacidad, notificaciones y comunicación del consultorio.</p>
+
+            <div class="layout-ajustes">
+                
+                <aside class="tarjeta-sidebar">
+                    <ul class="menu-ajustes-lista">
+                        <li>
+                            <button class="btn-ajuste activo" onclick="cambiarVista('vista-notificaciones', this)">
+                                <i class="fa-regular fa-bell"></i> Notificaciones
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn-ajuste" onclick="cambiarVista('vista-privacidad', this)">
+                                <i class="fa-solid fa-shield-halved"></i> Privacidad
+                            </button>
+                        </li>
+                    </ul>
+                </aside>
+
+                <div class="contenido-ajustes">
+                    
+                    <section id="vista-notificaciones" class="tarjeta-base seccion-ajuste">
+                        <div class="cabecera-ajuste">
+                            <h3><i class="fa-regular fa-bell" style="color: var(--azul-principal);"></i> Preferencias de Notificaciones</h3>
+                            <p>Elige qué alertas del sistema deseas recibir durante tu jornada laboral.</p>
+                        </div>
+                        
+                        <div class="lista-opciones-switch">
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Notificaciones de Nuevas Citas</strong>
+                                    <span>Recibe un correo electrónico o alerta cuando un paciente agende una nueva consulta.</span>
+                                </div>
+                                <label class="interruptor"><input type="checkbox" checked><span class="deslizador redondo"></span></label>
+                            </div>
+                            
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Avisos de Cancelación</strong>
+                                    <span>Te avisaremos de inmediato si un paciente cancela su cita con menos de 24 horas de antelación.</span>
+                                </div>
+                                <label class="interruptor"><input type="checkbox" checked><span class="deslizador redondo"></span></label>
+                            </div>
+
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Alertas de Laboratorio Crítico</strong>
+                                    <span>Recibe notificaciones push urgentes si un resultado de laboratorio de tus pacientes es crítico.</span>
+                                </div>
+                                <label class="interruptor"><input type="checkbox" checked><span class="deslizador redondo"></span></label>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--borde); display: flex; justify-content: flex-end;">
+                            <button class="btn-guardar-ajustes" onclick="alert('Preferencias guardadas exitosamente')">Guardar Preferencias</button>
+                        </div>
+                    </section>
+
+                    <section id="vista-privacidad" class="tarjeta-base seccion-ajuste oculto">
+                        <div class="cabecera-ajuste">
+                            <h3><i class="fa-solid fa-shield-halved" style="color: var(--azul-principal);"></i> Privacidad y Visibilidad</h3>
+                            <p>Controla la visibilidad de tu perfil profesional y la gestión de tus datos de consulta.</p>
+                        </div>
+                        
+                        <div class="lista-opciones-switch">
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Visibilidad en Directorio Público</strong>
+                                    <span>Permite que nuevos pacientes encuentren tu perfil profesional en el buscador de la clínica.</span>
+                                </div>
+                                <label class="interruptor"><input type="checkbox" checked><span class="deslizador redondo"></span></label>
+                            </div>
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Compartir estadísticas anónimas</strong>
+                                    <span>Contribuye con datos de tiempos de consulta para mejorar la logística del hospital (100% anónimo).</span>
+                                </div>
+                                <label class="interruptor"><input type="checkbox"><span class="deslizador redondo"></span></label>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--borde); display: flex; justify-content: flex-end;">
+                            <button class="btn-guardar-ajustes" onclick="alert('Ajustes de privacidad actualizados')">Guardar Privacidad</button>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function cambiarVista(idVista, btnActivado) {
+            // 1. Ocultar todas las secciones
+            const secciones = document.querySelectorAll('.seccion-ajuste');
+            secciones.forEach(seccion => seccion.classList.add('oculto'));
+
+            // 2. Quitar la clase 'activo' de todos los botones
+            const botones = document.querySelectorAll('.btn-ajuste');
+            botones.forEach(btn => btn.classList.remove('activo'));
+
+            // 3. Mostrar la sección seleccionada y marcar el botón
+            document.getElementById(idVista).classList.remove('oculto');
+            btnActivado.classList.add('activo');
+        }
+    </script>
+</body>
+</html>

@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>Panel Médico - Centro Médico R.A.S.A</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style_doctor.css') }}">
 </head>
 <body>
 
     <div class="contenedor-app">
+        
+        <!-- BARRA LATERAL -->
         <aside class="barra-lateral">
             <div class="logo">
                 <i class="fa-solid fa-user-doctor"></i>
@@ -23,32 +25,76 @@
                 <a href="/doctor/laboratorio" class="item-menu"><i class="fa-solid fa-file-waveform"></i>Laboratorio</a>
                 
                 <div class="separador"></div>
-                <a href="perfilDoctor.html" class="item-menu"><i class="fa-solid fa-user-doctor"></i>Perfil</a>
+                <a href="perfilDoctor.html" class="item-menu"><i class="fa-solid fa-id-card-clip"></i>Perfil</a>
                 <a href="/ajustes" class="item-menu"><i class="fa-solid fa-gear"></i> Ajustes</a>
             </nav>
 
             <div class="perfil-usuario-inferior">
                 <div class="info-user">
                     <strong>Dr. Roberto Sánchez</strong>
-                    <span>Cardiología | Medico</span>
+                    <span>Cardiología </span>
                 </div>
-                <button class="btn-cerrar" type="button" onclick="cerrarSesion()">
+                <button class="btn-cerrar" type="button" onclick="cerrarSesion()" title="Cerrar Sesión">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </button>
             </div>
         </aside>
 
         <main class="contenido-principal">
-            <header class="encabezado-simple">
-                <div class="migas-pan">Mi Consultorio > Resumen de Hoy</div>
-                <div class="fecha-actual">
+            
+            <!-- ENCABEZADO CON NOTIFICACIONES -->
+            <header class="encabezado-simple" style="display: flex; justify-content: flex-end; padding: 20px 30px;">
+                <div class="contenedor-campana" onclick="toggleNotificaciones(event)">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge-notificacion">3</span>
+
+                    <!-- Menú Desplegable de Notificaciones Médicas -->
+                    <div class="panel-notificaciones oculto" id="panel-notificaciones" onclick="event.stopPropagation()">
+                        <div class="cabecera-panel">
+                            <h4>Avisos Clínicos</h4>
+                            <span class="marcar-leidas">Limpiar</span>
+                        </div>
+                        
+                        <div class="lista-notificaciones">
+                            <div class="item-notificacion no-leida">
+                                <div class="icono-noti verde"><i class="fa-solid fa-flask-vial"></i></div>
+                                <div class="texto-noti">
+                                    <strong>Resultados Listos: Carlos Ruiz</strong>
+                                    <p>Química Sanguínea de 6 elementos disponible en su expediente.</p>
+                                    <span class="tiempo-noti">Hace 10 min</span>
+                                </div>
+                            </div>
+                            <div class="item-notificacion no-leida">
+                                <div class="icono-noti azul"><i class="fa-solid fa-calendar-day"></i></div>
+                                <div class="texto-noti">
+                                    <strong>Resumen de Mañana</strong>
+                                    <p>Tienes 12 citas agendadas para el turno matutino de mañana.</p>
+                                    <span class="tiempo-noti">Hace 1 hora</span>
+                                </div>
+                            </div>
+                            <div class="item-notificacion">
+                                <div class="icono-noti naranja"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="texto-noti">
+                                    <strong>Cancelación Aprobada</strong>
+                                    <p>Recepción aprobó la cancelación de la cita de las 12:30 PM.</p>
+                                    <span class="tiempo-noti">Hace 3 horas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </header>
 
+            <!-- BIENVENIDA Y DATOS DEL TURNO -->
             <section class="seccion-bienvenida">
                 <div class="texto-saludo">
                     <h1>Turno Matutino</h1>
-                    <p>Tienes 8 pacientes programados para hoy. 3 ya están en sala de espera.</p>
+                    <div class="info-turno-medico" style="display: flex; gap: 20px; margin-top: 10px; color: var(--texto-gris); font-size: 0.95rem;">
+                        <span><i class="fa-solid fa-door-open" style="color: var(--azul-principal);"></i> <strong>Consultorio 104</strong> (Ala Sur)</span>
+                        <span><i class="fa-regular fa-clock" style="color: var(--azul-principal);"></i> 07:00 AM - 03:00 PM</span>
+                        <span><i class="fa-solid fa-utensils" style="color: var(--naranja-alerta);"></i> Comida: 01:00 PM - 02:00 PM</span>
+                    </div>
+                    <p style="margin-top: 15px;">Tienes 8 pacientes programados para hoy. 3 ya están en sala de espera.</p>
                 </div>
             </section>
 
@@ -71,17 +117,27 @@
                 <div class="columna-principal">
                     
                     <div class="tarjeta-destacada">
-                        <div class="etiqueta-urgencia normal">Siguiente Paciente</div>
+                        <div class="cabecera-destacada" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <div class="etiqueta-urgencia normal" style="margin: 0;">Siguiente Paciente</div>
+                            <div class="hora-cita" style="font-weight: 700; color: var(--azul-principal); font-size: 1.2rem;">10:00 AM</div>
+                        </div>
+                        
                         <div class="info-paciente-actual">
                             <div>
-                                <h2>María López</h2>
-                                <span>Mujer, 45 años | Tipo de Sangre: A+</span>
-                                <p><i class="fa-solid fa-notes-medical"></i> Motivo: gripa.</p>
+                                <h2 style="margin-bottom: 5px;">María López</h2>
+                                <span style="color: var(--texto-gris);">ID: P-88210 | Mujer, 45 años | Tipo de Sangre: A+</span>
+                                <p style="margin-top: 15px; font-weight: 500;"><i class="fa-solid fa-notes-medical" style="color: #dc3545;"></i> Motivo: Revisión de presión arterial alta.</p>
                             </div>
-                            <div class="hora-cita">10:00 AM</div>
                         </div>
-                        <div class="acciones-medicas">
-                            <a href="/doctor/recetas" class="btn-iniciar-consulta" onclick="IniciarConsulta()">Iniciar Consulta</a>
+                        
+                        <div class="acciones-medicas" style="display: flex; gap: 15px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--borde);">
+                            <a href="/doctor/recetas" class="btn-iniciar-consulta" onclick="IniciarConsulta()" style="flex: 1; text-align: center; text-decoration: none;">
+                                <i class="fa-solid fa-stethoscope"></i> Iniciar Consulta
+                            </a>
+                            <!-- Botón de solicitar cancelación -->
+                            <button class="btn-solicitar-cancelacion" onclick="alert('Solicitud enviada a Recepción para su revisión.')">
+                                <i class="fa-solid fa-ban"></i> Solicitar Cancelación
+                            </button>
                         </div>
                     </div>
 
@@ -89,7 +145,7 @@
 
                 <aside class="columna-secundaria">
                     <div class="tarjeta-sala-espera">
-                        <h3><i class="fa-solid fa-chair"></i> En Sala de Espera</h3>
+                        <h3 style="margin-bottom: 20px; font-size: 1.1rem; color: var(--texto-oscuro);"><i class="fa-solid fa-chair" style="color: var(--azul-principal);"></i> En Sala de Espera</h3>
                         
                         <div class="item-espera">
                             <div class="tiempo-espera">15 min</div>
@@ -111,6 +167,24 @@
             </div>
         </main>
     </div>
+
+    <!-- SCRIPT DE LA CAMPANITA -->
+    <script>
+        function toggleNotificaciones(event) {
+            event.stopPropagation();
+            const panel = document.getElementById('panel-notificaciones');
+            panel.classList.toggle('oculto');
+        }
+
+        document.addEventListener('click', function(event) {
+            const panel = document.getElementById('panel-notificaciones');
+            const campana = document.querySelector('.contenedor-campana');
+            
+            if (panel && !panel.classList.contains('oculto') && !campana.contains(event.target)) {
+                panel.classList.add('oculto');
+            }
+        });
+    </script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
     <script src="{{ url_for('static', filename='JavaScripts/main_doctor.js')}}"></script>
 </body>

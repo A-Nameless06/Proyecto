@@ -53,6 +53,23 @@
         </div>
 
         <div class="tarjeta-panel" style="width: 100%; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+            
+            <!-- ==========================================
+                 ESTADO VACÍO (Para pacientes sin historial)
+                 Nota: Tiene display:none por defecto para no ocultar tu lista actual.
+                 ========================================== -->
+            <div class="estado-vacio" style="display: none;">
+                <i class="fa-regular fa-folder-open icono-vacio"></i>
+                <h3>Aún no tienes historial médico</h3>
+                <p>No hemos encontrado registros de citas médicas, laboratorios o recetas previas. Cuando asistas a tus consultas, aparecerán aquí.</p>
+                <a href="citasPaciente.html" class="btn-primario" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-calendar-plus"></i> Agendar mi primera cita
+                </a>
+            </div>
+
+            <!-- ==========================================
+                 LISTA DE HISTORIAL (Para pacientes con citas)
+                 ========================================== -->
             <div class="lista-historial">
                 
                 <!-- CITA 1: ATENDIDA Y CON RECETA -->
@@ -110,7 +127,7 @@
                     <div class="detalle-historial">
                         <div class="cabecera-detalle">
                             <h3 style="color: #6b7280;">Dermatología</h3>
-                            <span class="texto-folio">Folio Cita: #CIT-7502</span>
+                            <span class="texto-folio">Folio Cita: HOSP-2026-8842</span>
                         </div>
                         <p><strong>Dra. Laura Gómez</strong> • Consultorio 105, Ala Este</p>
                         <div class="etiquetas-registro">

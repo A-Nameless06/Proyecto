@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Panel MediGest - Centro Médico R.A.S.A</title>
-    <link rel="stylesheet" href="style.css"> <!--Eliminar cuando se termine el frontend-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
+    <!-- Usa siempre tu fuente solida del sistema (no importar inter si quieres mantenerlo formal) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
 </head>
 <body>
 
@@ -20,9 +21,10 @@
                 <a href="/dashboard" class="item-menu activo"><i class="fa-solid fa-house"></i> Inicio</a>
                 <a href="/paciente/citas" class="item-menu"><i class="fa-solid fa-calendar-days"></i> Mis Citas</a>
                 <a href="/paciente/historial" class="item-menu"><i class="fa-solid fa-file-medical"></i> Historial</a>
-                <a href="/paciente/perfil" class="item-menu"><i class="fa-solid fa-user"></i> Perfil</a>
+                
                 
                 <div class="separador"></div>
+                <a href="/paciente/perfil" class="item-menu"><i class="fa-solid fa-user"></i> Perfil</a>
                 <a href="/ajustes" class="item-menu"><i class="fa-solid fa-gear"></i> Ajustes</a>
             </nav>
 
@@ -38,19 +40,69 @@
         </aside>
 
         <main class="contenido-principal">
-            <header class="encabezado-simple">
+            
+            <!-- =========================================
+                 NUEVO ENCABEZADO CON CAMPANITA DE NOTIFICACIONES
+                 ========================================= -->
+            <header class="encabezado-simple" style="display: flex; justify-content: flex-end; padding: 20px 30px;">
+                <div class="contenedor-campana" onclick="toggleNotificaciones(event)">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge-notificacion">2</span>
 
+                    <!-- Menú Desplegable -->
+                    <div class="panel-notificaciones oculto" id="panel-notificaciones" onclick="event.stopPropagation()">
+                        <div class="cabecera-panel">
+                            <h4>Notificaciones</h4>
+                            <span class="marcar-leidas">Marcar como leídas</span>
+                        </div>
+                        
+                        <div class="lista-notificaciones">
+                            <!-- Notificación No Leída (Fondo azul clarito) -->
+                            <div class="item-notificacion no-leida">
+                                <div class="icono-noti azul"><i class="fa-solid fa-flask"></i></div>
+                                <div class="texto-noti">
+                                    <strong>Resultados de Laboratorio</strong>
+                                    <p>Tus análisis de sangre ya están disponibles en tu historial.</p>
+                                    <span class="tiempo-noti">Hace 2 horas</span>
+                                </div>
+                            </div>
+                            <!-- Notificación No Leída -->
+                            <div class="item-notificacion no-leida">
+                                <div class="icono-noti naranja"><i class="fa-solid fa-calendar-check"></i></div>
+                                <div class="texto-noti">
+                                    <strong>Recordatorio de Cita</strong>
+                                    <p>Mañana tienes consulta de Cardiología a las 10:30 AM.</p>
+                                    <span class="tiempo-noti">Hace 5 horas</span>
+                                </div>
+                            </div>
+                            <!-- Notificación Leída (Fondo blanco) -->
+                            <div class="item-notificacion">
+                                <div class="icono-noti verde"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                <div class="texto-noti">
+                                    <strong>Pago Procesado</strong>
+                                    <p>Tu comprobante de pago ha sido generado exitosamente.</p>
+                                    <span class="tiempo-noti">Ayer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pie-panel">
+                            <a href="#">Ver todas las notificaciones</a>
+                        </div>
+                    </div>
+                </div>
             </header>
 
             <section class="seccion-bienvenida">
                 <div class="texto-saludo">
-                    <h1>Bienvenido, {{ session.nombre }}</h1>
+                    <!-- Simulando la variable session de Jinja -->
+                    <h1>Bienvenido, Juan Pérez</h1>
                     <p>Tienes 3 citas programadas para esta semana. ¡Cuida tu salud!</p>
                 </div>
-                <a href="/paciente/citas">
-                        <button class="btn-agendar-cita">
-                            <i class="fa-solid fa-plus"></i> Agendar Cita
-                        </button>
+                <a href="/paciente/citas" style="text-decoration: none;">
+                    <button class="btn-agendar-cita">
+                        <i class="fa-solid fa-plus"></i> Agendar Cita
+                    </button>
                 </a>
             </section>
 
@@ -85,12 +137,12 @@
                                 <span class="etiqueta-estado confirmada">CONFIRMADA</span>
                             </div>
                             <div class="info-cita">
-                                <p><i class="fa-solid fa-calendar"></i> 12 de Octubre, 2023</p>
+                                <p><i class="fa-solid fa-calendar"></i> 12 de Octubre, 2026</p>
                                 <p><i class="fa-solid fa-clock"></i> 10:30 AM (45 min)</p>
                             </div>
                             <div class="acciones-cita">
-                                <a href="cancelarCita.html" class="btn-cancelar">Cancelar</a>
-                                <button class="btn-detalles">Detalles</button>
+                                <a href="cancelarCita.html" class="btn-cancelar" style="text-decoration: none; display: inline-block;">Cancelar</a>
+                                <a href="detallesCita.html" class="btn-detalles" style="text-decoration: none; display: inline-block;">Detalles</a>
                             </div>
                         </div>
                     </div>
@@ -104,25 +156,47 @@
                         <div class="stats-ficha">
                             <div class="stat"><span>Tipo Sangre</span><strong>O+</strong></div>
                             <div class="stat"><span>Peso</span><strong>72 kg</strong></div>
-                            <div class="stat"><span>Edad</span><strong>34</strong></div>
+                            <div class="stat"><span>Edad</span><strong>26</strong></div>
                         </div>
                     </div>
                     <div class="tarjeta-datos-personales">
                         <h3>Datos Personales</h3>
                         <div class="dato-item">
                             <i class="fa-solid fa-user"></i>
-                            <div><span>NOMBRE COMPLETO</span><strong>Juan Pérez de la Rosa</strong></div>
+                            <div><span>NOMBRE COMPLETO</span><strong>Juan Pérez Gómez</strong></div>
                         </div>
                         <div class="dato-item">
                             <i class="fa-solid fa-envelope"></i>
-                            <div><span>CORREO ELECTRÓNICO</span><strong>j.perez@ejemplo.com</strong></div>
+                            <div><span>CORREO ELECTRÓNICO</span><strong>juan.perez@email.com</strong></div>
                         </div>
-                        <button class="btn-editar-perfil">Editar Perfil Detallado</button>
+                        <a href="perfilPaciente.html">
+                            <button class="btn-editar-perfil" style="width: 100%;">Ir a Mi Perfil</button>
+                        </a>
                     </div>
                 </aside>
             </div>
         </main>
     </div>
+    
+    <!-- SCRIPT DE LA CAMPANITA -->
+    <script>
+        // Función para abrir/cerrar el panel
+        function toggleNotificaciones(event) {
+            event.stopPropagation(); // Evita que se cierre instantáneamente
+            const panel = document.getElementById('panel-notificaciones');
+            panel.classList.toggle('oculto');
+        }
+
+        // Cierra el panel si el usuario hace clic en cualquier otra parte de la pantalla
+        document.addEventListener('click', function(event) {
+            const panel = document.getElementById('panel-notificaciones');
+            const campana = document.querySelector('.contenedor-campana');
+            
+            if (!panel.classList.contains('oculto') && !campana.contains(event.target)) {
+                panel.classList.add('oculto');
+            }
+        });
+    </script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>

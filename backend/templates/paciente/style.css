@@ -79,7 +79,7 @@ button {
 }
 
 /* =========================================
-   1. ESTILOS DEL INICIO
+   ESTILOS DEL INICIO
    ========================================= */
 
 .contenedor-app {
@@ -90,7 +90,9 @@ button {
     width: 100%; 
 }
 
-/* --- BARRA LATERAL (SIN MODIFICAR) --- */
+/* =========================================
+   BARRA LATERAL
+   ========================================= */
 .barra-lateral {
     background: white;
     border-right: 1px solid var(--borde);
@@ -546,9 +548,113 @@ button {
     background: #d2e3fc;
 }
 
+/* =========================================
+   SISTEMA DE NOTIFICACIONES EN DASHBOARD
+   ========================================= */
+
+.contenedor-campana {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.contenedor-campana > i {
+    font-size: 1.6rem;
+    color: var(--texto-gris);
+    transition: color 0.2s;
+}
+.contenedor-campana:hover > i {
+    color: var(--azul-principal);
+}
+
+.badge-notificacion {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: var(--rojo-alerta, #dc3545);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--fondo-gris, #f8f9fa);
+}
+
+/* El menú flotante */
+.panel-notificaciones {
+    position: absolute;
+    top: 45px;
+    right: -10px;
+    width: 380px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+    border: 1px solid var(--borde);
+    z-index: 1000;
+    cursor: default; /* Quita la manita de todo el panel */
+    overflow: hidden;
+}
+
+/* Para ocultar/mostrar con JS */
+.oculto { display: none !important; }
+
+.cabecera-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--borde);
+    background: #f8fafc;
+}
+.cabecera-panel h4 { font-size: 1rem; color: var(--texto-oscuro); margin:0;}
+.marcar-leidas { font-size: 0.8rem; color: var(--azul-principal); cursor: pointer; font-weight: 500;}
+.marcar-leidas:hover { text-decoration: underline; }
+
+.lista-notificaciones {
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+.item-notificacion {
+    display: flex;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--borde);
+    gap: 15px;
+    transition: background 0.2s;
+}
+.item-notificacion:hover { background: #f8fafc; cursor: pointer; }
+.item-notificacion.no-leida { background: #f0f7ff; } /* Fondo especial si no está leída */
+.item-notificacion:last-child { border-bottom: none; }
+
+.icono-noti {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+}
+.icono-noti.azul { background: #e0eaff; color: var(--azul-principal); }
+.icono-noti.naranja { background: #fffbeb; color: var(--naranja-alerta, #f4b400); }
+.icono-noti.verde { background: #eafbee; color: var(--verde-exito, #0f9d58); }
+
+.texto-noti strong { display: block; font-size: 0.95rem; color: var(--texto-oscuro); margin-bottom: 4px;}
+.texto-noti p { font-size: 0.85rem; color: var(--texto-gris); margin: 0 0 6px 0; line-height: 1.4;}
+.tiempo-noti { font-size: 0.75rem; color: #94a3b8; font-weight: 500;}
+
+.pie-panel {
+    text-align: center;
+    padding: 14px;
+    border-top: 1px solid var(--borde);
+    background: #f8fafc;
+}
+.pie-panel a { font-size: 0.85rem; color: var(--azul-principal); text-decoration: none; font-weight: 600;}
+.pie-panel a:hover { text-decoration: underline; }
 
 /* =========================================
-   Comprobante Cita - Centro Médico R.A.S.A
+   COMPROBANTE CITA
    ========================================= */
 
 /* --- Navegación Superior --- */
@@ -725,7 +831,7 @@ button {
 .pie-pagina-comprobante { text-align: center; padding: 30px 20px; font-size: 0.85rem; color: var(--texto-gris); border-top: 1px solid var(--borde); margin-top: auto; }
 
 /* =========================================
-   SIMULACIÓN DE PAGO (Botón y Estado Exitoso)
+   SIMULACIÓN DE PAGO 
    ========================================= */
 
 .acciones-comprobante {
@@ -1128,6 +1234,35 @@ button {
     transform: translateY(-1px);
 }
 
+/* =========================================
+   ESTADO VACÍO (Historial y Citas)
+   ========================================= */
+.estado-vacio {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--texto-gris);
+}
+
+.icono-vacio {
+    font-size: 4rem;
+    color: #cbd5e1; /* Un gris muy suave y elegante */
+    margin-bottom: 20px;
+}
+
+.estado-vacio h3 {
+    color: var(--texto-oscuro);
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.estado-vacio p {
+    font-size: 0.95rem;
+    max-width: 450px;
+    margin: 0 auto 25px auto;
+    line-height: 1.5;
+}
+
 /* ==========================================================================
    ESTILOS: PERFIL DEL PACIENTE 
 ========================================================================== */
@@ -1135,10 +1270,11 @@ button {
     display: flex;
     gap: 32px;
     align-items: flex-start;
+    margin-top: 25px;
 }
 
-.perfil-sidebar { width: 320px; }
-.perfil-contenido { flex: 1; }
+.perfil-sidebar { width: 320px; flex-shrink: 0; }
+.perfil-contenido { flex: 1; display: flex; flex-direction: column; gap: 24px;}
 
 .tarjeta-perfil-resumen {
     background-color: var(--fondo-tarjeta);
@@ -1153,8 +1289,8 @@ button {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #ffe0b2;
-    color: #e65100;
+    background-color: var(--azul-claro); /* Ajustado a tu paleta */
+    color: var(--azul-principal); /* Ajustado a tu paleta */
     font-size: 2.5rem;
     font-weight: 700;
     display: flex;
@@ -1165,8 +1301,8 @@ button {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.nombre-perfil { font-size: 1.5rem; margin-bottom: 4px; color: var(--texto-principal); }
-.tipo-usuario { color: var(--texto-secundario); font-size: 0.9rem; margin-bottom: 24px; }
+.nombre-perfil { font-size: 1.5rem; margin-bottom: 4px; color: var(--texto-oscuro); }
+.tipo-usuario { color: var(--texto-gris); font-size: 0.9rem; margin-bottom: 24px; }
 
 .info-rapida-perfil {
     display: flex;
@@ -1178,26 +1314,40 @@ button {
 }
 
 .item-info-rapida { display: flex; align-items: center; gap: 16px; }
-.item-info-rapida i { font-size: 1.5rem; color: var(--azul-primario); width: 24px; text-align: center; }
+.item-info-rapida i { font-size: 1.5rem; color: var(--azul-principal); width: 24px; text-align: center; }
 .item-info-rapida .etiqueta { 
     display: block; 
     font-size: 0.75rem; 
-    color: var(--texto-secundario); 
+    color: var(--texto-gris); 
     text-transform: uppercase; 
     font-weight: 600; 
 }
-.item-info-rapida .valor { display: block; font-weight: 600; font-size: 0.95rem; }
+.item-info-rapida .valor { display: block; font-weight: 600; font-size: 0.95rem; color: var(--texto-oscuro); }
 
 .tarjeta-formulario {
-    background-color: var(--fondo-tarjeta);
+    background-color: var(--fondo-tarjeta, #ffffff);
     border: 1px solid var(--color-borde);
     border-radius: 12px;
     padding: 32px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 }
 
-.cabecera-tarjeta h3 { font-size: 1.25rem; display: flex; align-items: center; gap: 12px; }
-.cabecera-tarjeta h3 i { color: var(--azul-primario); }
+/* --- ADIÓS BARRA AZUL --- */
+.cabecera-tarjeta {
+    background: transparent; /* Fuerza a quitar fondos */
+    padding: 0 0 20px 0; /* Solo espacio hacia abajo */
+    border-bottom: 1px solid var(--color-borde); /* Línea sutil */
+    margin-bottom: 24px;
+}
+.cabecera-tarjeta h3 { 
+    font-size: 1.25rem; 
+    color: var(--texto-oscuro);
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    margin: 0;
+}
+.cabecera-tarjeta h3 i { color: var(--azul-principal); }
 
 .rejilla-formulario {
     display: grid;
@@ -1211,7 +1361,7 @@ button {
     display: block;
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--texto-secundario);
+    color: var(--texto-gris);
     margin-bottom: 8px;
 }
 
@@ -1221,68 +1371,76 @@ button {
     border: 1px solid var(--color-borde);
     border-radius: 8px;
     font-size: 0.95rem;
-    color: var(--texto-principal);
+    color: var(--texto-oscuro);
     background-color: var(--fondo-pagina);
     transition: border-color 0.2s;
 }
 
-.grupo-input input:focus {
-    outline: none;
-    border-color: var(--azul-primario);
-    background-color: #fff;
-}
-
+/* Magia del Solo Lectura: se vuelve transparente y parece texto normal */
 .grupo-input input[readonly] {
     background-color: transparent;
     border-color: transparent;
     padding-left: 0;
-    color: var(--texto-secundario);
+    color: var(--texto-oscuro);
     font-weight: 500;
+    cursor: default;
 }
+.grupo-input input[readonly]:focus { outline: none; border-color: transparent; }
 
-.acciones-formulario {
+/* Banner de Seguridad */
+.alerta-info-perfil {
+    background-color: var(--azul-claro);
+    border-left: 4px solid var(--azul-principal);
+    border-radius: 8px;
+    padding: 20px;
     display: flex;
-    justify-content: flex-end;
-    gap: 16px;
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid var(--color-borde);
+    gap: 15px;
+    align-items: flex-start;
+    color: var(--azul-principal);
+    margin-bottom: 24px;
 }
+.alerta-info-perfil i { font-size: 1.5rem; margin-top: 2px; }
+.alerta-info-perfil strong { display: block; margin-bottom: 5px; font-size: 1.05rem; color: var(--texto-oscuro); }
+.alerta-info-perfil p { font-size: 0.9rem; color: var(--texto-gris); line-height: 1.5; margin: 0; }
 
-.btn-secundario {
-    background-color: transparent;
+/* Estilos para etiquetas Select (Desplegables) */
+.input-select {
+    width: 100%;
+    padding: 12px 16px;
     border: 1px solid var(--color-borde);
-    color: var(--texto-principal);
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-.btn-secundario:hover { 
-    border-color: var(--texto-secundario); 
-    background-color: var(--fondo-pagina); 
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--texto-oscuro);
+    background-color: var(--fondo-pagina);
+    transition: border-color 0.2s;
+    appearance: none; /* Quita la flecha por defecto fea de algunos navegadores */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235f6368' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+    cursor: pointer;
 }
 
-.btn-cancelar {
-    background-color: transparent;
-    color: var(--texto-secundario);
-    padding: 12px 24px;
-    font-weight: 500;
+.input-select:focus {
+    outline: none;
+    border-color: var(--azul-principal);
+    background-color: #fff;
 }
-.btn-cancelar:hover { color: var(--texto-principal); }
 
+/* Botón Guardar */
 .btn-guardar {
-    background-color: var(--azul-primario);
+    background-color: var(--azul-principal);
     color: white;
+    border: none;
     padding: 12px 24px;
     border-radius: 8px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    cursor: pointer;
     transition: background-color 0.2s;
 }
-.btn-guardar:hover { background-color: var(--azul-secundario); }
+.btn-guardar:hover {
+    background-color: var(--azul-secundario);
+}
 
 /* ==========================================================================
    NUEVA BARRA DE NAVEGACIÓN (R.A.S.A)
@@ -1390,7 +1548,7 @@ button {
 }
 
 /* =========================================
-   Ajustes
+   AJUSTES (VISTA COMPARTIDA PACIENTE/DOCTOR)
    ========================================= */
 
 .layout-ajustes {
@@ -1401,54 +1559,64 @@ button {
     margin-top: 20px;
 }
 
-.tarjeta-base {
+/* El recuadro del menú lateral que pediste */
+.tarjeta-sidebar {
     background: #ffffff;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     border: 1px solid var(--borde);
-    overflow: hidden;
+    padding: 15px; /* Da el espacio interno alrededor de los botones */
 }
 
 .menu-ajustes-lista {
     list-style: none;
-    padding: 15px 0;
+    padding: 0;
     margin: 0;
-}
-
-.menu-ajustes-lista li {
-    padding: 2px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .btn-ajuste {
     width: 100%;
     text-align: left;
     background: transparent;
-    padding: 12px 20px;
+    border: none;
+    padding: 12px 16px;
     border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     color: var(--texto-gris);
     display: flex;
     align-items: center;
     gap: 12px;
     transition: all 0.2s;
+    cursor: pointer;
 }
 
 .btn-ajuste i {
-    font-size: 16px;
-    width: 20px;
+    font-size: 1.1rem;
+    width: 24px;
     text-align: center;
 }
 
 .btn-ajuste:hover {
-    background: var(--fondo-gris);
+    background: #f8fafc;
     color: var(--texto-oscuro);
 }
 
 .btn-ajuste.activo {
-    background: var(--azul-claro);
+    background: #eff6ff; /* Fondo azul claro exacto a la imagen */
     color: var(--azul-principal);
-    font-weight: 600;
+}
+
+/* Tarjeta del contenido derecho (Tamaño normal) */
+.tarjeta-base {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid var(--borde);
+    overflow: hidden;
 }
 
 .contenido-ajustes {
@@ -1469,29 +1637,33 @@ button {
 }
 
 .cabecera-ajuste h3 {
-    font-size: 18px;
+    font-size: 1.3rem;
     color: var(--texto-oscuro);
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .cabecera-ajuste p {
-    font-size: 13px;
+    font-size: 0.95rem;
     color: var(--texto-gris);
 }
 
+/* Elementos de Formulario y Switches */
 .lista-opciones-switch {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .item-switch {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 15px 20px;
     background: #f8fafc;
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid #f1f5f9;
 }
 
@@ -1503,15 +1675,16 @@ button {
 }
 
 .info-switch strong {
-    font-size: 14px;
+    font-size: 0.95rem;
     color: var(--texto-oscuro);
 }
 
 .info-switch span {
-    font-size: 12px;
+    font-size: 0.85rem;
     color: var(--texto-gris);
 }
 
+/* El Switch (Interruptor) */
 .interruptor {
     position: relative;
     display: inline-block;
@@ -1568,8 +1741,24 @@ input:checked + .deslizador:before {
     border-radius: 50%;
 }
 
-.activo-icono {
-    color: var(--azul-principal) !important;
+.btn-guardar-ajustes {
+    background-color: var(--azul-principal);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-guardar-ajustes:hover {
+    background-color: var(--azul-secundario);
+}
+
+/* UTILIDAD PARA OCULTAR PESTAÑAS (JS) */
+.oculto {
+    display: none !important;
 }
 
 /* ==========================================================================
@@ -1798,7 +1987,7 @@ input:checked + .deslizador:before {
 }
 
 /* =========================================
-   PÁGINA: DETALLES DE CITA
+    DETALLES DE CITA
    ========================================= */
 
 /* Etiqueta de Estado (Igual a la captura) */

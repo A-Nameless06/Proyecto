@@ -4,56 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajustes de Cuenta - Centro Médico R.A.S.A</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
 </head>
 <body>
 
     <nav class="barra-navegacion minimalista">
-    
-    <div class="marca">
-        <i class="fa-solid fa-briefcase-medical icono-marca"></i>
-        <strong>Centro Médico<br>R.A.S.A</strong>
-    </div>
-    
-    <ul class="menu-principal">
-        <li><a href="/dashboard">Inicio</a></li>
-        <li><a href="/paciente/citas">Citas</a></li>
-        <li class="activo"><a href="/paciente/historial">Historial</a></li>
-    </ul>
-
-    <div class="perfil-usuario">
-        
-        <div class="info-usuario-texto flat">
-            <span><strong>Juan Pérez</strong> | Paciente </span>
+        <div class="marca" style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-briefcase-medical icono-marca" style="color: var(--azul-principal); font-size: 1.5rem;"></i>
+            <div class="texto-marca" style="display: flex; flex-direction: column; line-height: 1.2;">
+                <strong style="color: var(--texto-oscuro); font-size: 1rem;">Centro Médico</strong>
+                <strong style="color: var(--texto-oscuro); font-size: 0.9rem;">R.A.S.A</strong>
+            </div>
         </div>
         
-    </div>
-    
-</nav>
+        <ul class="menu-principal">
+            <li><a href="/dashboard">Inicio</a></li>
+            <li><a href="/paciente/citas">Citas</a></li>
+            <li><a href="/paciente/historial">Citas</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Juan Pérez</strong> | Paciente</span>
+            </div>
+        </div>
+    </nav>
 
     <main class="contenedor-principal">
-        <div class="ancho-completo">
-            <div class="migas-pan">
-                Panel <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 4px;"></i> <span class="actual">Ajustes</span>
+        <!-- ESPACIO UNIFICADO (PUNTO MEDIO: 35px) -->
+        <div class="ancho-completo" style="width: 100%; max-width: 1100px; margin: 0px auto 0;">
+            
+            <div class="migas-pan" style="color: var(--texto-gris); font-size: 0.9rem; margin-bottom: 15px;">
+                Panel <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 6px;"></i> <span style="color: var(--azul-principal); font-weight: 600;">Ajustes</span>
             </div>
-            <h1 class="titulo-seccion">Configuración de la Cuenta</h1>
-            <p class="subtitulo-seccion">Administra tus preferencias de notificaciones y comunicación.</p>
+            
+            <h1 class="titulo-seccion" style="font-size: 1.8rem; color: var(--texto-oscuro); margin-bottom: 8px;">Configuración de la Cuenta</h1>
+            <p class="subtitulo-seccion" style="color: var(--texto-gris); font-size: 1rem; margin-bottom: 30px;">Administra tus preferencias de privacidad, notificaciones y comunicación.</p>
 
             <div class="layout-ajustes">
                 
-                <aside class="sidebar-ajustes tarjeta-base">
+                <aside class="tarjeta-sidebar">
                     <ul class="menu-ajustes-lista">
                         <li>
-                            <button class="btn-ajuste activo">
+                            <button class="btn-ajuste activo" onclick="cambiarVista('vista-notificaciones', this)">
                                 <i class="fa-regular fa-bell"></i> Notificaciones
                             </button>
                         </li>
                         <li>
-                            <button class="btn-ajuste">
-                                <i class="fa-solid fa-globe"></i> Idioma y Región
+                            <button class="btn-ajuste" onclick="cambiarVista('vista-privacidad', this)">
+                                <i class="fa-solid fa-shield-halved"></i> Privacidad
                             </button>
                         </li>
                     </ul>
@@ -61,57 +61,65 @@
 
                 <div class="contenido-ajustes">
                     
-                    <section class="tarjeta-base seccion-ajuste">
+                    <section id="vista-notificaciones" class="tarjeta-base seccion-ajuste">
                         <div class="cabecera-ajuste">
-                            <h3>Preferencias de Notificaciones</h3>
+                            <h3><i class="fa-regular fa-bell" style="color: var(--azul-principal);"></i> Preferencias de Notificaciones</h3>
                             <p>Elige cómo y cuándo quieres que te contactemos.</p>
                         </div>
                         
                         <div class="lista-opciones-switch">
-                            
                             <div class="item-switch">
                                 <div class="info-switch">
                                     <strong>Recordatorios de Citas</strong>
                                     <span>Recibe un mensaje 24 horas antes de tu consulta médica.</span>
                                 </div>
-                                <label class="interruptor">
-                                    <input type="checkbox" checked>
-                                    <span class="deslizador redondo"></span>
-                                </label>
+                                <label class="interruptor"><input type="checkbox" checked><span class="deslizador redondo"></span></label>
                             </div>
-
                             <div class="item-switch">
                                 <div class="info-switch">
                                     <strong>Resultados de Laboratorio</strong>
-                                    <span>Te avisaremos por correo cuando tus resultados estén listos.</span>
+                                    <span>Te avisaremos por correo electrónico cuando tus resultados estén listos.</span>
                                 </div>
-                                <label class="interruptor">
-                                    <input type="checkbox" checked>
-                                    <span class="deslizador redondo"></span>
-                                </label>
+                                <label class="interruptor"><input type="checkbox" checked><span class="deslizador redondo"></span></label>
                             </div>
-
-                            <div class="item-switch">
-                                <div class="info-switch">
-                                    <strong>Boletín de Salud y Promociones</strong>
-                                    <span>Información sobre campañas de vacunación y chequeos anuales.</span>
-                                </div>
-                                <label class="interruptor">
-                                    <input type="checkbox">
-                                    <span class="deslizador redondo"></span>
-                                </label>
-                            </div>
-
                             <div class="item-switch">
                                 <div class="info-switch">
                                     <strong>Alertas por SMS</strong>
-                                    <span>Recibir notificaciones urgentes o cambios de horario directo a tu teléfono.</span>
+                                    <span>Recibir notificaciones urgentes directo a tu teléfono.</span>
                                 </div>
-                                <label class="interruptor">
-                                    <input type="checkbox" checked>
-                                    <span class="deslizador redondo"></span>
-                                </label>
+                                <label class="interruptor"><input type="checkbox" checked><span class="deslizador redondo"></span></label>
                             </div>
+                        </div>
+
+                        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--borde); display: flex; justify-content: flex-end;">
+                            <button class="btn-guardar-ajustes" onclick="alert('Preferencias guardadas exitosamente')">Guardar Preferencias</button>
+                        </div>
+                    </section>
+
+                    <section id="vista-privacidad" class="tarjeta-base seccion-ajuste oculto">
+                        <div class="cabecera-ajuste">
+                            <h3><i class="fa-solid fa-shield-halved" style="color: var(--azul-principal);"></i> Privacidad y Datos</h3>
+                            <p>Controla quién tiene acceso a tu expediente.</p>
+                        </div>
+                        
+                        <div class="lista-opciones-switch">
+                            <div class="item-switch">
+                                <div class="info-switch">
+                                    <strong>Compartir expediente externamente</strong>
+                                    <span>Permite que médicos fuera del Centro R.A.S.A. soliciten acceso temporal.</span>
+                                </div>
+                                <label class="interruptor"><input type="checkbox"><span class="deslizador redondo"></span></label>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; padding: 20px; background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 8px;">
+                            <h4 style="color: #991b1b; margin-bottom: 5px; font-size: 1rem;">Descargar Datos</h4>
+                            <p style="font-size: 0.85rem; color: #7f1d1d; margin-bottom: 15px;">Solicita una copia en PDF de tu expediente.</p>
+                            <button style="background-color: white; border: 1px solid var(--borde); padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem;"><i class="fa-solid fa-download"></i> Descargar PDF</button>
+                        </div>
+
+                        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--borde); display: flex; justify-content: flex-end;">
+                            <button class="btn-guardar-ajustes" onclick="alert('Ajustes actualizados')">Guardar Privacidad</button>
                         </div>
                     </section>
 
@@ -120,5 +128,17 @@
         </div>
     </main>
 
+    <script>
+        function cambiarVista(idVista, btnActivado) {
+            const secciones = document.querySelectorAll('.seccion-ajuste');
+            secciones.forEach(seccion => seccion.classList.add('oculto'));
+
+            const botones = document.querySelectorAll('.btn-ajuste');
+            botones.forEach(btn => btn.classList.remove('activo'));
+
+            document.getElementById(idVista).classList.remove('oculto');
+            btnActivado.classList.add('activo');
+        }
+    </script>
 </body>
 </html>

@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Médico R.A.S.A - Consultas de Hoy</title>
+    <title>Agenda Médica - Centro Médico R.A.S.A</title>
+    <!-- CSS Universal Unificado -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_doctor.css') }}">
 </head>
 <body>
 
@@ -17,123 +16,160 @@
             <i class="fa-solid fa-stethoscope icono-marca"></i>
             <div class="texto-marca">
                 <strong>Centro Médico</strong>
-                <span>R.A.S.A</span>
+                <strong>R.A.S.A</strong>
             </div>
         </div>
         
         <ul class="menu-principal">
+            <!-- Recuerda mover la clase "activo" a la vista correspondiente -->
             <li><a href="/dashboard">Consultorio</a></li>
             <li><a href="/doctor/pacientes">Pacientes</a></li>
-            <li><a href="/doctor/agenda" class="activo">Agenda</a></li>
+            <li class="activo"><a href="/doctor/agenda">Agenda</a></li>
             <li><a href="/doctor/laboratorio">Laboratorio</a></li>
         </ul>
 
         <div class="perfil-usuario">
-            
             <div class="info-usuario-texto flat">
-                <span><strong>Dr. Roberto Sánchez</strong> | Cardiologo </span>
+                <span><strong>Dr. Roberto Sánchez</strong> | Cardiología</span>
             </div>
-            </div>
+        </div>
+        
     </nav>
 
-    <main class="contenedor-principal">
+    <!-- CONTENIDO PRINCIPAL CENTRADO -->
+    <main class="contenedor-principal" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
         
-        <header class="encabezado-pagina">
-            <div class="migas-pan">
-                Panel Principal > <strong>Consultas de Hoy</strong>
+        <header class="encabezado-pagina" style="margin-bottom: 25px;">
+            <div class="migas-pan" style="color: var(--texto-gris); font-size: 0.9rem;">
+                Portal <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 5px;"></i> <strong style="color: var(--texto-oscuro);">Agenda del Día</strong>
             </div>
-            
         </header>
 
-        <div class="seccion-titulo">
+        <div class="seccion-titulo" style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end;">
             <div>
-                <h1>Turno Matutino</h1>
-                <p>Tienes 8 pacientes programados para hoy. 3 ya están en sala de espera.</p>
+                <h1 style="font-size: 1.8rem; color: var(--texto-oscuro); margin-bottom: 5px;">Agenda: Martes, 28 de Abril</h1>
+                <p style="color: var(--texto-gris);">Turno Matutino (07:00 AM - 03:00 PM) • Bloques de 1 hora • Consultorio 104</p>
             </div>
-        </div>
-
-        <section class="cuadricula-metricas">
-            <div class="tarjeta-metrica">
-                <div class="icono-metrica fondo-azul-claro">👥</div>
-                <div class="info-metrica">
-                    <span>Citas Restantes</span>
-                    <h2>6</h2>
-                </div>
-            </div>
-            <div class="tarjeta-metrica">
-                <div class="icono-metrica fondo-naranja-claro">⏳</div>
-                <div class="info-metrica">
-                    <span>En Sala de Espera</span>
-                    <h2>3</h2>
-                </div>
-            </div>
-            <div class="tarjeta-metrica">
-                <div class="icono-metrica fondo-verde-claro">✅</div>
-                <div class="info-metrica">
-                    <span>Atendidos Hoy</span>
-                    <h2>2</h2>
-                </div>
-            </div>
-        </section>
-
-        <div class="cuadricula-contenido">
             
-            <section class="tarjeta-destacada">
-                <div class="encabezado-destacado">
-                    <span class="etiqueta-estado">EN TURNO / SIGUIENTE</span>
-                    <span class="hora-cita-grande">10:00 AM</span>
-                </div>
-                
-                <div class="perfil-paciente">
-                    <h2>María López</h2>
-                    <p>Mujer, 45 años | Tipo de Sangre: A+</p>
-                </div>
+            <!-- FILTRO DE FECHAS -->
+            <div class="barra-herramientas-agenda" style="display: flex; gap: 15px;">
+                <input type="date" class="input-fecha" value="2026-04-28" style="padding: 10px 15px; border-radius: 8px; border: 1px solid var(--borde); color: var(--texto-oscuro); font-family: inherit; outline: none;">
+                <button class="btn-secundario" style="background: white; border: 1px solid var(--borde); padding: 10px 20px; border-radius: 8px; font-weight: 500; cursor: pointer;">Hoy</button>
+            </div>
+        </div>
 
-                <div class="motivo-consulta">
-                    <span>🩺 <strong>Motivo principal:</strong> Paciente reporta cuadro de gripa severa y fiebre desde hace 3 días.</span>
+        <!-- CONTENEDOR DE LA LÍNEA DE TIEMPO -->
+        <div class="contenedor-agenda">
+            
+            <!-- 07:00 AM a 08:00 AM -->
+            <div class="item-agenda">
+                <div class="hora-agenda">07:00 AM</div>
+                <div class="estado-agenda"><span class="badge-agenda bg-verde">Atendida</span></div>
+                <div class="info-cita-agenda">
+                    <strong>Sofía Martínez Gómez</strong>
+                    <span>ID: P-10293 • Seguimiento de arritmia</span>
                 </div>
+                <div class="acciones-agenda">
+                    <a href="expediente.html" target="_blank" class="btn-icono-accion" title="Ver Expediente Clínico">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </a>
+                </div>
+            </div>
 
-                <div class="acciones-paciente">
-                    <button class="btn-secundario">Revisar Expediente</button>
-                    <button class="btn-primario ancho-completo">Iniciar Consulta</button>
+            <!-- 08:00 AM a 09:00 AM -->
+            <div class="item-agenda">
+                <div class="hora-agenda">08:00 AM</div>
+                <div class="estado-agenda"><span class="badge-agenda bg-naranja">En Sala</span></div>
+                <div class="info-cita-agenda">
+                    <strong>Carlos Ruiz</strong>
+                    <span>ID: P-44912 • Chequeo General</span>
                 </div>
-            </section>
+                <div class="acciones-agenda">
+                    <a href="expediente.html" target="_blank" class="btn-icono-accion" title="Ver Expediente Clínico">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </a>
+                    <button class="btn-iniciar-consulta-mini">Llamar a Consultorio</button>
+                </div>
+            </div>
 
-            <aside class="panel-lateral">
-                <div class="encabezado-panel">
-                    <h3>🪑 En Sala de Espera</h3>
-                    <span class="contador-espera">3 pacientes</span>
+            <!-- 09:00 AM a 10:00 AM -->
+            <div class="item-agenda libre">
+                <div class="hora-agenda">09:00 AM</div>
+                <div class="estado-agenda"><span class="badge-agenda bg-gris">Disponible</span></div>
+                <div class="info-cita-agenda">
+                    <span style="color: var(--texto-gris); font-style: italic;">Espacio sin agendar</span>
                 </div>
-                
-                <ul class="lista-espera">
-                    <li>
-                        <span class="tiempo-espera">15 min</span>
-                        <div class="datos-espera">
-                            <strong>Carlos Ruiz</strong>
-                            <span>10:30 AM (Chequeo General)</span>
-                        </div>
-                        <button class="btn-opciones">⋮</button>
-                    </li>
-                    <li>
-                        <span class="tiempo-espera poco-tiempo">5 min</span>
-                        <div class="datos-espera">
-                            <strong>Ana Torres</strong>
-                            <span>11:00 AM (Lectura de Lab)</span>
-                        </div>
-                        <button class="btn-opciones">⋮</button>
-                    </li>
-                    <li>
-                        <span class="tiempo-espera recien-llegado">Recién llegado</span>
-                        <div class="datos-espera">
-                            <strong>Luis Ramírez</strong>
-                            <span>11:30 AM (Seguimiento)</span>
-                        </div>
-                        <button class="btn-opciones">⋮</button>
-                    </li>
-                </ul>
-            </aside>
+                <div class="acciones-agenda"></div>
+            </div>
+
+            <!-- 10:00 AM a 11:00 AM -->
+            <div class="item-agenda destacada">
+                <div class="hora-agenda">10:00 AM</div>
+                <div class="estado-agenda"><span class="badge-agenda bg-azul">Confirmada</span></div>
+                <div class="info-cita-agenda">
+                    <strong>María López</strong>
+                    <span>ID: P-88210 • Revisión de presión arterial alta</span>
+                </div>
+                <div class="acciones-agenda">
+                    <a href="expediente.html" target="_blank" class="btn-icono-accion" title="Ver Expediente Clínico">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </a>
+                    <button class="btn-cancelar-solicitud" onclick="alert('Tu solicitud ha sido enviada a Recepción.')">Solicitar Cancelación</button>
+                </div>
+            </div>
+
+            <!-- 11:00 AM a 12:00 PM -->
+            <div class="item-agenda libre">
+                <div class="hora-agenda">11:00 AM</div>
+                <div class="estado-agenda"><span class="badge-agenda bg-gris">Disponible</span></div>
+                <div class="info-cita-agenda">
+                    <span style="color: var(--texto-gris); font-style: italic;">Espacio sin agendar</span>
+                </div>
+                <div class="acciones-agenda"></div>
+            </div>
+
+            <!-- 12:00 PM a 01:00 PM -->
+            <div class="item-agenda libre">
+                <div class="hora-agenda">12:00 PM</div>
+                <div class="estado-agenda"><span class="badge-agenda bg-gris">Disponible</span></div>
+                <div class="info-cita-agenda">
+                    <span style="color: var(--texto-gris); font-style: italic;">Espacio sin agendar</span>
+                </div>
+                <div class="acciones-agenda"></div>
+            </div>
+
+            <!-- 01:00 PM a 02:00 PM (HORA DE COMIDA) -->
+            <div class="item-agenda bloque-comida">
+                <div class="hora-agenda" style="color: var(--naranja-icono);">01:00 PM</div>
+                <div class="info-cita-agenda" style="text-align: center;">
+                    <i class="fa-solid fa-utensils"></i> <strong>Hora de Comida</strong>
+                    <span style="display: block; font-size: 0.8rem;">Bloqueo automático de sistema (60 min)</span>
+                </div>
+            </div>
+
+            <!-- 02:00 PM a 03:00 PM -->
+            <div class="item-agenda">
+                <div class="hora-agenda">02:00 PM</div>
+                <div class="estado-agenda"><span class="badge-agenda bg-azul">Confirmada</span></div>
+                <div class="info-cita-agenda">
+                    <strong>Luis Ramírez</strong>
+                    <span>ID: P-99122 • Lectura de Electrocardiograma</span>
+                </div>
+                <div class="acciones-agenda">
+                    <a href="expediente.html" target="_blank" class="btn-icono-accion" title="Ver Expediente Clínico">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </a>
+                    <button class="btn-cancelar-solicitud" onclick="alert('Tu solicitud ha sido enviada a Recepción.')">Solicitar Cancelación</button>
+                </div>
+            </div>
+
+            <!-- FIN DE TURNO -->
+            <div class="fin-turno">
+                <i class="fa-solid fa-flag-checkered"></i> 03:00 PM - Fin del Turno Matutino
+            </div>
 
         </div>
+
     </main>
 </body>
 </html>
