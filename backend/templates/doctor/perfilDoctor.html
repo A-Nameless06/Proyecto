@@ -6,164 +6,171 @@
     <title>Centro Médico R.A.S.A - Mi Perfil</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    
+    <!-- BARRA DE NAVEGACIÓN UNIVERSAL -->
     <nav class="barra-navegacion minimalista">
-        
         <div class="marca">
-            <i class="fa-solid fa-stethoscope icono-marca"></i>
+            <i class="fa-solid fa-briefcase-medical icono-marca"></i>
             <div class="texto-marca">
                 <strong>Centro Médico</strong>
-                <span>R.A.S.A</span>
+                <strong>R.A.S.A</strong>
             </div>
         </div>
         
         <ul class="menu-principal">
-            <li><a href="inicioDoctor.html">Consultorio</a></li>
-            <li><a href="pacientesDoctor.html">Pacientes</a></li>
-            <li><a href="agendaDoctor.html">Agenda</a></li>
-            <li><a href="resultadosLab.html">Laboratorio</a></li>
+            <li><a href="/dashboard">Consultorio</a></li>
+            <li><a href="/doctor/pacientes">Pacientes</a></li>
+            <li><a href="/doctor/agenda">Agenda</a></li>
+            <li><a href="/doctor/laboratorio">Laboratorio</a></li>
         </ul>
 
         <div class="perfil-usuario">
-            
             <div class="info-usuario-texto flat">
-                <span><strong>Dr. Roberto Sánchez</strong> | Cardiologo </span>
+                <span><strong>Dr. Roberto Sánchez</strong> | Cardiología</span>
             </div>
-            </div>
+        </div>
     </nav>
 
     <main class="contenedor-principal">
         
-        <header class="encabezado-pagina">
-            <div class="migas-pan">
-                Panel Principal > <strong>Configuración de Perfil</strong>
-            </div>
-        </header>
-
-        <div class="seccion-titulo">
-            <div>
-                <h1>Mi Perfil Profesional</h1>
-                <p>Gestiona tu información personal, credenciales médicas y preferencias del consultorio.</p>
-            </div>
-            <button class="btn-primario">💾 Guardar Cambios</button>
-        </div>
-
-        <div class="cuadricula-perfil">
+        <!-- Contenedor general al centro -->
+        <div class="ancho-completo" style="width: 100%; max-width: 1100px; margin: 25px auto 0;">
             
-            <aside class="tarjeta-fondo panel-resumen-perfil">
-                <div class="cabecera-avatar">
-                    <div class="avatar-grande fondo-azul">RS</div>
-                    <button class="btn-editar-foto">📷 Cambiar Foto</button>
+            <div class="migas-pan" style="color: var(--texto-gris); font-size: 0.9rem; margin-bottom: 15px;">
+                Panel Principal <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 6px;"></i> <strong style="color: var(--texto-oscuro);">Mi Perfil</strong>
+            </div>
+
+            <div class="cabecera-perfil-general">
+                <div>
+                    <h1 class="titulo-seccion" style="font-size: 1.8rem; color: var(--texto-oscuro); margin-bottom: 5px;">Mi Perfil Profesional</h1>
+                    <p class="subtitulo-seccion" style="color: var(--texto-gris); font-size: 1rem; margin-bottom: 30px;">Gestiona tu información personal, credenciales médicas y preferencias del consultorio.</p>
                 </div>
+                <button class="btn-guardar-ajustes"><i class="fa-solid fa-floppy-disk" style="margin-right: 8px;"></i> Guardar Cambios</button>
+            </div>
+
+            <!-- CUADRÍCULA DEL PERFIL -->
+            <div class="layout-perfil">
                 
-                <div class="info-central-perfil">
-                    <h2>Dr. Roberto Sánchez</h2>
-                    <span class="etiqueta-pill pill-estable">Cardiólogo Clínico</span>
-                    <p class="texto-gris mt-10">ID de Sistema: #MED-092</p>
-                </div>
-
-                <hr class="divisor-ligero">
-
-                <ul class="lista-contacto-perfil">
-                    <li>
-                        <span class="icono-contacto">📧</span>
-                        <div>
-                            <span class="etiqueta-pequena">Correo Institucional</span>
-                            <strong>r.sanchez@rasa-med.com</strong>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icono-contacto">📱</span>
-                        <div>
-                            <span class="etiqueta-pequena">Teléfono Directo</span>
-                            <strong>+52 55 1234 5678</strong>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="icono-contacto">📍</span>
-                        <div>
-                            <span class="etiqueta-pequena">Ubicación Asignada</span>
-                            <strong>Consultorio 4B, Ala Norte</strong>
-                        </div>
-                    </li>
-                </ul>
-            </aside>
-
-            <section class="tarjeta-fondo panel-edicion-perfil">
-                
-                <div class="pestanas-perfil">
-                    <button class="pestana-activa">Datos Generales</button>
+                <!-- COLUMNA IZQUIERDA: RESUMEN DEL DOCTOR -->
+                <aside class="tarjeta-base tarjeta-resumen-perfil">
+                    <div class="avatar-perfil-contenedor">
+                        <div class="avatar-gigante">RS</div>
+                        <button class="btn-editar-foto"><i class="fa-solid fa-camera"></i> Cambiar Foto</button>
                     </div>
-
-                <div class="contenido-formulario-perfil">
                     
-                    <h3 class="titulo-seccion-form">Información Personal</h3>
-                    <div class="grid-inputs-2">
-                        <div class="input-grupo">
-                            <label>Nombre(s)</label>
-                            <input type="text" class="input-form" value="Roberto" readonly>
-                            <span class="nota-input">* El nombre solo puede ser cambiado por RRHH.</span>
-                        </div>
-                        <div class="input-grupo">
-                            <label>Apellidos</label>
-                            <input type="text" class="input-form" value="Sánchez" readonly>
-                        </div>
-                        <div class="input-grupo">
-                            <label>Fecha de Nacimiento</label>
-                            <input type="date" class="input-form" value="1980-05-14">
-                        </div>
-                        <div class="input-grupo">
-                            <label>Teléfono Móvil (Personal)</label>
-                            <input type="tel" class="input-form" value="55 9876 5432">
-                        </div>
+                    <div class="info-central-perfil">
+                        <h2>Dr. Roberto Sánchez</h2>
+                        <span class="etiqueta-estado-paciente estable" style="margin-top: 5px; font-size: 0.8rem;">Cardiólogo Clínico</span>
+                        <p class="texto-gris" style="margin-top: 15px; font-size: 0.85rem; font-weight: 600;">ID de Sistema: #MED-092</p>
                     </div>
 
-                    <hr class="divisor-ligero">
+                    <div class="divisor-ligero"></div>
 
-                    <h3 class="titulo-seccion-form">Credenciales Médicas</h3>
-                    <div class="grid-inputs-2">
-                        <div class="input-grupo ancho-completo">
-                            <label>Universidad de Egreso</label>
-                            <input type="text" class="input-form" value="Universidad Nacional Autónoma de México (UNAM)">
-                        </div>
-                        <div class="input-grupo">
-                            <label>Cédula Profesional (Médico General)</label>
-                            <input type="text" class="input-form" value="8892314">
-                        </div>
-                        <div class="input-grupo">
-                            <label>Cédula de Especialidad (Cardiología)</label>
-                            <input type="text" class="input-form" value="ESP-455612">
-                        </div>
+                    <ul class="lista-contacto-perfil">
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <span>Correo Institucional</span>
+                                <strong>r.sanchez@rasa-med.com</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <span>Teléfono Directo</span>
+                                <strong>+52 55 1234 5678</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <span>Ubicación Asignada</span>
+                                <strong>Consultorio 4B, Ala Norte</strong>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- COLUMNA DERECHA: FORMULARIO DE DATOS -->
+                <section class="tarjeta-base tarjeta-edicion-perfil">
+                    
+                    <div class="pestanas-perfil">
+                        <button class="pestana-activa">Datos Generales</button>
                     </div>
 
-                    <hr class="divisor-ligero">
+                    <div class="contenido-formulario-perfil">
+                        
+                        <!-- SECCIÓN 1: PERSONAL -->
+                        <h3 class="titulo-seccion-form"><i class="fa-regular fa-id-card"></i> Información Personal</h3>
+                        <div class="grid-inputs-2">
+                            <div class="grupo-input">
+                                <label>Nombre(s)</label>
+                                <input type="text" class="input-form" value="Roberto" readonly style="background-color: var(--fondo-gris); color: var(--texto-gris);">
+                                <span style="font-size: 0.75rem; color: var(--texto-gris); margin-top: 4px;">* Cambio exclusivo en RRHH.</span>
+                            </div>
+                            <div class="grupo-input">
+                                <label>Apellidos</label>
+                                <input type="text" class="input-form" value="Sánchez" readonly style="background-color: var(--fondo-gris); color: var(--texto-gris);">
+                            </div>
+                            <div class="grupo-input">
+                                <label>Fecha de Nacimiento</label>
+                                <input type="date" class="input-form" value="1980-05-14">
+                            </div>
+                            <div class="grupo-input">
+                                <label>Teléfono Móvil (Personal)</label>
+                                <input type="tel" class="input-form" value="55 9876 5432">
+                            </div>
+                        </div>
 
-                    <h3 class="titulo-seccion-form">Configuración de Consultorio</h3>
-                    <div class="grid-inputs-2">
-                        <div class="input-grupo">
-                            <label>Duración estándar de consulta (minutos)</label>
-                            <select class="input-form">
-                                <option value="15">15 minutos</option>
-                                <option value="30" selected>30 minutos</option>
-                                <option value="45">45 minutos</option>
-                                <option value="60">1 hora</option>
-                            </select>
+                        <div class="divisor-ligero"></div>
+
+                        <!-- SECCIÓN 2: CREDENCIALES -->
+                        <h3 class="titulo-seccion-form"><i class="fa-solid fa-user-doctor"></i> Credenciales Médicas</h3>
+                        <div class="grid-inputs-2">
+                            <div class="grupo-input ancho-completo">
+                                <label>Universidad de Egreso</label>
+                                <input type="text" class="input-form" value="Universidad Nacional Autónoma de México (UNAM)">
+                            </div>
+                            <div class="grupo-input">
+                                <label>Cédula (Médico General)</label>
+                                <input type="text" class="input-form" value="8892314">
+                            </div>
+                            <div class="grupo-input">
+                                <label>Cédula Especialidad</label>
+                                <input type="text" class="input-form" value="ESP-455612">
+                            </div>
                         </div>
-                        <div class="input-grupo">
-                            <label>Costo Consulta Privada (MXN)</label>
-                            <input type="number" class="input-form" value="800">
+
+                        <div class="divisor-ligero"></div>
+
+                        <!-- SECCIÓN 3: CONSULTORIO -->
+                        <h3 class="titulo-seccion-form"><i class="fa-regular fa-clock"></i> Configuración de Consultorio</h3>
+                        <div class="grid-inputs-2">
+                            <div class="grupo-input">
+                                <label>Duración estándar de consulta</label>
+                                <select class="input-form">
+                                    <option value="15">15 minutos</option>
+                                    <option value="30" selected>30 minutos</option>
+                                    <option value="45">45 minutos</option>
+                                    <option value="60">1 hora</option>
+                                </select>
+                            </div>
+                            <div class="grupo-input">
+                                <label>Costo Consulta Privada (MXN)</label>
+                                <input type="number" class="input-form" value="800">
+                            </div>
+                            <div class="grupo-input ancho-completo">
+                                <label>Mensaje automatizado (Sala de Espera)</label>
+                                <textarea class="input-form" style="min-height: 60px; resize: vertical;">Hola, el Dr. Sánchez lo atenderá en breve. Por favor tenga su identificación a la mano.</textarea>
+                            </div>
                         </div>
-                        <div class="input-grupo ancho-completo">
-                            <label>Mensaje automatizado para pacientes en sala de espera</label>
-                            <textarea class="input-form textarea-form" style="min-height: 60px;">Hola, el Dr. Sánchez lo atenderá en breve. Por favor tenga su identificación a la mano.</textarea>
-                        </div>
+
                     </div>
+                </section>
 
-                </div>
-            </section>
-
+            </div>
         </div>
     </main>
 </body>

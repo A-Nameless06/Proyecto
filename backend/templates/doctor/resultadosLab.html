@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Médico R.A.S.A - Resultados de Lab</title>
+    <title>Resultados de Laboratorio - Centro Médico R.A.S.A</title>
     <link rel="stylesheet" href="style.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_doctor.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -17,139 +15,285 @@
             <i class="fa-solid fa-stethoscope icono-marca"></i>
             <div class="texto-marca">
                 <strong>Centro Médico</strong>
-                <span>R.A.S.A</span>
+                <strong>R.A.S.A</strong>
             </div>
         </div>
         
         <ul class="menu-principal">
+            <!-- Recuerda mover la clase "activo" a la vista correspondiente -->
             <li><a href="/dashboard">Consultorio</a></li>
             <li><a href="/doctor/pacientes">Pacientes</a></li>
             <li><a href="/doctor/agenda">Agenda</a></li>
-            <li><a href="/doctor/laboratorio" class="activo">Laboratorio</a></li>
+            <li class="activo"><a href="/doctor/laboratorio">Laboratorio</a></li>
         </ul>
 
         <div class="perfil-usuario">
-            
             <div class="info-usuario-texto flat">
-                <span><strong>Dr. Roberto Sánchez</strong> | Cardiologo</span>
+                <span><strong>Dr. Roberto Sánchez</strong> | Cardiología</span>
             </div>
-            
-            </div>
+        </div>
         
     </nav>
 
-    <main class="contenedor-principal">
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor-principal contenedor-lab">
         
-        <header class="encabezado-pagina">
+        <header class="encabezado-pagina mb-25">
             <div class="migas-pan">
-                Panel Principal > <strong>Resultados de Laboratorio</strong>
+                Portal <i class="fa-solid fa-chevron-right"></i> <strong style="color: var(--texto-oscuro);">Laboratorio</strong>
             </div>
         </header>
 
-        <div class="seccion-titulo">
-            <div>
-                <h1>Resultados de Laboratorio</h1>
-                <p>Busca a un paciente por nombre, ID o número de expediente para visualizar sus estudios médicos.</p>
+        <div class="seccion-titulo mb-30">
+            <h1>Resultados de Laboratorio</h1>
+            <p>Busca un expediente específico o revisa los últimos resultados clínicos recibidos en el sistema.</p>
+        </div>
+
+        <!-- BUSCADOR COMPACTO Y ELEGANTE -->
+        <div class="contenedor-buscador-centrado">
+            <div class="tarjeta-buscador-lab-compacta">
+                <i class="fa-solid fa-magnifying-glass icono-buscador"></i>
+                <input type="text" class="input-buscador" placeholder="Ingresa el nombre o ID del paciente...">
+                <button class="btn-buscar-compacto">Buscar</button>
             </div>
         </div>
 
-        <div class="tarjeta-fondo buscador-central">
-            <div class="grupo-busqueda-grande">
-                <span class="icono-busqueda-grande">🔍</span>
-                <input type="text" class="input-busqueda-grande" placeholder="Ingresa el nombre o ID del paciente..." value="Carlos Ruiz">
-                <button class="btn-primario btn-buscar">Buscar Expediente</button>
-            </div>
-        </div>
-
-        <div class="area-resultados">
-            <h3 class="titulo-resultados">Resultados para: "Carlos Ruiz"</h3>
+        <!-- ÁREA DE RESULTADOS RECIENTES -->
+        <div class="area-resultados-lab">
+            <h3 class="titulo-resultados-lab">
+                <i class="fa-solid fa-clock-rotate-left" style="color: var(--azul-principal); margin-right: 8px;"></i> 
+                Últimos 10 Estudios Recibidos
+            </h3>
             
-            <div class="tarjeta-fondo info-paciente-lab">
-                <div class="celda-perfil">
-                    <div class="avatar fondo-verde">CR</div>
-                    <div>
-                        <h2>Carlos Ruiz</h2>
-                        <span class="texto-gris">ID: #PAC-1093 | 32 años | Masculino | Tipo de Sangre: O+</span>
-                    </div>
-                </div>
-                <button class="btn-secundario">Ir al Expediente Completo</button>
-            </div>
-
-            <div class="contenedor-tabla tarjeta-fondo">
-                <table class="tabla-pacientes">
+            <!-- TABLA GENERAL DE ESTUDIOS -->
+            <!-- TABLA GENERAL DE ESTUDIOS -->
+            <div class="contenedor-tabla-pacientes">
+                <table class="tabla-directorio">
                     <thead>
                         <tr>
                             <th>Fecha</th>
+                            <th>Paciente</th>
                             <th>Tipo de Estudio</th>
-                            <th>Laboratorio / Clínica</th>
                             <th>Estado</th>
-                            <th>Documento</th>
+                            <th style="text-align: center;">Documento</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Fila 1 -->
                         <tr>
                             <td>
-                                <strong>28 Mar, 2026</strong>
-                                <br><span class="texto-gris">08:30 AM</span>
+                                <strong class="texto-principal-tabla">Hoy</strong>
+                                <br><span class="texto-secundario-tabla">08:30 AM</span>
                             </td>
                             <td>
-                                <strong>Biometría Hemática Completa</strong>
-                                <br><span class="texto-gris">Ordenado por: Dr. Roberto Sánchez</span>
+                                <strong class="texto-principal-tabla">Carlos Ruiz Mendieta</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-44912</span>
                             </td>
-                            <td class="texto-gris">Lab Central R.A.S.A</td>
-                            <td><span class="etiqueta-pill pill-estable">Listo</span></td>
                             <td>
-                                <button class="btn-documento-lab">📄 Ver PDF</button>
+                                <strong class="texto-principal-tabla">Biometría Hemática Completa</strong>
+                                <br><span class="texto-secundario-tabla">Lab Central R.A.S.A</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab listo">Listo</span></td>
+                            <td class="celda-acciones">
+                                <!-- AQUÍ ESTÁ EL TRUCO PARA "ROLEAR" LA IMPRESIÓN -->
+                                <button class="btn-documento-pdf" onclick="alert('Conectando con el servidor...\n\nGenerando documento PDF y enviando a la cola de impresión de tu consultorio.')">
+                                    <i class="fa-solid fa-print"></i> Imprimir PDF
+                                </button>
                             </td>
                         </tr>
 
+                        <!-- Fila 2 -->
                         <tr>
                             <td>
-                                <strong>28 Mar, 2026</strong>
-                                <br><span class="texto-gris">08:45 AM</span>
+                                <strong class="texto-principal-tabla">Hoy</strong>
+                                <br><span class="texto-secundario-tabla">07:15 AM</span>
                             </td>
                             <td>
-                                <strong>Química Sanguínea (27 elementos)</strong>
-                                <br><span class="texto-gris">Ordenado por: Dr. Roberto Sánchez</span>
+                                <strong class="texto-principal-tabla">Ana Torres</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-05510</span>
                             </td>
-                            <td class="texto-gris">Lab Central R.A.S.A</td>
-                            <td><span class="etiqueta-pill pill-estable">Listo</span></td>
                             <td>
-                                <button class="btn-documento-lab">📄 Ver PDF</button>
+                                <strong class="texto-principal-tabla">Examen General de Orina</strong>
+                                <br><span class="texto-secundario-tabla">Lab Externo (Biolab)</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab pendiente">Pendiente</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf deshabilitado" disabled><i class="fa-solid fa-hourglass-half"></i> En proceso</button>
                             </td>
                         </tr>
 
+                        <!-- Fila 3 -->
                         <tr>
                             <td>
-                                <strong>31 Mar, 2026</strong>
-                                <br><span class="texto-gris">09:00 AM</span>
+                                <strong class="texto-principal-tabla">Ayer</strong>
+                                <br><span class="texto-secundario-tabla">04:20 PM</span>
                             </td>
                             <td>
-                                <strong>Examen General de Orina</strong>
-                                <br><span class="texto-gris">Ordenado por: Dra. Elena Gómez</span>
+                                <strong class="texto-principal-tabla">Luis Ramírez</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-22041</span>
                             </td>
-                            <td class="texto-gris">Lab Externo (Biolab)</td>
-                            <td><span class="etiqueta-pill pill-alerta">Pendiente</span></td>
                             <td>
-                                <button class="btn-documento-lab deshabilitado" disabled>⏳ En proceso</button>
+                                <strong class="texto-principal-tabla">Química Sanguínea (27 elem.)</strong>
+                                <br><span class="texto-secundario-tabla">Lab Central R.A.S.A</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab listo">Listo</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf" onclick="alert('Conectando con el servidor...\n\nGenerando documento PDF y enviando a la cola de impresión de tu consultorio.')">
+                                    <i class="fa-solid fa-print"></i> Imprimir PDF
+                                </button>
                             </td>
                         </tr>
 
+                        <!-- Fila 4 -->
                         <tr>
                             <td>
-                                <strong>15 Nov, 2025</strong>
-                                <br><span class="texto-gris">11:20 AM</span>
+                                <strong class="texto-principal-tabla">Ayer</strong>
+                                <br><span class="texto-secundario-tabla">11:05 AM</span>
                             </td>
                             <td>
-                                <strong>Electrocardiograma en Reposo</strong>
-                                <br><span class="texto-gris">Ordenado por: Dr. Roberto Sánchez</span>
+                                <strong class="texto-principal-tabla">María López</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-88210</span>
                             </td>
-                            <td class="texto-gris">Cardiología R.A.S.A</td>
-                            <td><span class="etiqueta-pill pill-estable">Listo</span></td>
                             <td>
-                                <button class="btn-documento-lab">📄 Ver PDF</button>
+                                <strong class="texto-principal-tabla">Electrocardiograma en Reposo</strong>
+                                <br><span class="texto-secundario-tabla">Cardiología R.A.S.A</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab listo">Listo</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf" onclick="alert('Conectando con el servidor...\n\nGenerando documento PDF y enviando a la cola de impresión de tu consultorio.')">
+                                    <i class="fa-solid fa-print"></i> Imprimir PDF
+                                </button>
                             </td>
                         </tr>
+
+                        <!-- Fila 5 -->
+                        <tr>
+                            <td>
+                                <strong class="texto-principal-tabla">28 Abr, 2026</strong>
+                                <br><span class="texto-secundario-tabla">09:30 AM</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Elena Gómez</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-18332</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Perfil Tiroideo</strong>
+                                <br><span class="texto-secundario-tabla">Lab Externo (Biolab)</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab pendiente">Pendiente</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf deshabilitado" disabled><i class="fa-solid fa-hourglass-half"></i> En proceso</button>
+                            </td>
+                        </tr>
+
+                        <!-- Fila 6 -->
+                        <tr>
+                            <td>
+                                <strong class="texto-principal-tabla">27 Abr, 2026</strong>
+                                <br><span class="texto-secundario-tabla">01:15 PM</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Roberto Fernández</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-09215</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Cultivo Faríngeo</strong>
+                                <br><span class="texto-secundario-tabla">Lab Central R.A.S.A</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab listo">Listo</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf" onclick="alert('Conectando con el servidor...\n\nGenerando documento PDF y enviando a la cola de impresión de tu consultorio.')">
+                                    <i class="fa-solid fa-print"></i> Imprimir PDF
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Fila 7 -->
+                        <tr>
+                            <td>
+                                <strong class="texto-principal-tabla">26 Abr, 2026</strong>
+                                <br><span class="texto-secundario-tabla">10:45 AM</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Carmen Silva</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-31055</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Prueba de Glucosa (Ayunas)</strong>
+                                <br><span class="texto-secundario-tabla">Lab Central R.A.S.A</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab listo">Listo</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf" onclick="alert('Conectando con el servidor...\n\nGenerando documento PDF y enviando a la cola de impresión de tu consultorio.')">
+                                    <i class="fa-solid fa-print"></i> Imprimir PDF
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Fila 8 -->
+                        <tr>
+                            <td>
+                                <strong class="texto-principal-tabla">26 Abr, 2026</strong>
+                                <br><span class="texto-secundario-tabla">08:00 AM</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Diego Castro</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-11478</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Panel Viral (Influenza/COVID)</strong>
+                                <br><span class="texto-secundario-tabla">Lab Externo (Biolab)</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab listo">Listo</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf" onclick="alert('Conectando con el servidor...\n\nGenerando documento PDF y enviando a la cola de impresión de tu consultorio.')">
+                                    <i class="fa-solid fa-print"></i> Imprimir PDF
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Fila 9 -->
+                        <tr>
+                            <td>
+                                <strong class="texto-principal-tabla">25 Abr, 2026</strong>
+                                <br><span class="texto-secundario-tabla">12:30 PM</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Sofía Vargas</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-07321</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Perfil de Lípidos</strong>
+                                <br><span class="texto-secundario-tabla">Lab Central R.A.S.A</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab listo">Listo</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf" onclick="alert('Conectando con el servidor...\n\nGenerando documento PDF y enviando a la cola de impresión de tu consultorio.')">
+                                    <i class="fa-solid fa-print"></i> Imprimir PDF
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Fila 10 -->
+                        <tr>
+                            <td>
+                                <strong class="texto-principal-tabla">24 Abr, 2026</strong>
+                                <br><span class="texto-secundario-tabla">09:10 AM</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Javier Morales</strong>
+                                <br><span class="texto-secundario-tabla">ID: P-29504</span>
+                            </td>
+                            <td>
+                                <strong class="texto-principal-tabla">Ecocardiograma Doppler</strong>
+                                <br><span class="texto-secundario-tabla">Cardiología R.A.S.A</span>
+                            </td>
+                            <td><span class="etiqueta-estado-lab pendiente">Pendiente</span></td>
+                            <td class="celda-acciones">
+                                <button class="btn-documento-pdf deshabilitado" disabled><i class="fa-solid fa-hourglass-half"></i> En proceso</button>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
             </div>

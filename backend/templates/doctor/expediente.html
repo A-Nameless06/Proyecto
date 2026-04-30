@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expediente Clínico - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (Minimalista) -->
+    <nav class="barra-navegacion minimalista">
+        
+        <div class="marca">
+            <i class="fa-solid fa-stethoscope icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <!-- Recuerda mover la clase "activo" a la vista correspondiente -->
+            <li><a href="/dashboard">Consultorio</a></li>
+            <li class="activo"><a href="/doctor/pacientes">Pacientes</a></li>
+            <li><a href="/doctor/agenda">Agenda</a></li>
+            <li><a href="/doctor/laboratorio">Laboratorio</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Dr. Roberto Sánchez</strong> | Cardiología</span>
+            </div>
+        </div>
+        
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor-principal contenedor-expediente">
+        
+        <header class="encabezado-expediente">
+            <div class="migas-pan">
+                Pacientes <i class="fa-solid fa-chevron-right"></i> <strong>Expediente Clínico</strong>
+            </div>
+            <div class="acciones-rapidas">
+                <!-- BOTÓN DIRECTO A RECETAS -->
+                <a href="recetasDoctor.html" class="btn-accion-principal">
+                    <i class="fa-solid fa-prescription-bottle-medical"></i> Generar Nueva Receta
+                </a>
+            </div>
+        </header>
+
+        <!-- CABECERA DEL PACIENTE -->
+        <div class="tarjeta-destacada cabecera-paciente-expediente">
+            <div class="avatar-paciente">
+                CR
+            </div>
+            <div class="info-principal-paciente">
+                <h1>Carlos Ruiz Mendieta</h1>
+                <div class="metadatos-paciente">
+                    <span><i class="fa-regular fa-id-card"></i> <strong>ID Paciente:</strong> P-44912</span>
+                    <span><i class="fa-solid fa-folder-open"></i> <strong>ID Historial:</strong> HM-00582</span>
+                    <span><i class="fa-solid fa-calendar-days"></i> 34 años</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUADRÍCULA DE DATOS MÉDICOS -->
+        <div class="cuadricula-expediente">
+            
+            <!-- COLUMNA IZQUIERDA: Somatometría -->
+            <section class="tarjeta-expediente">
+                <h3 class="titulo-seccion-expediente">
+                    <i class="fa-solid fa-weight-scale"></i> Somatometría y Signos
+                </h3>
+                
+                <div class="grid-somatometria">
+                    <div class="dato-bloque-medico">
+                        <label>Tipo de Sangre</label>
+                        <div class="valor-destacado rojo">O+</div>
+                    </div>
+                    <div class="dato-bloque-medico">
+                        <label>Peso Actual</label>
+                        <div class="valor-destacado">78.5 kg</div>
+                    </div>
+                    <div class="dato-bloque-medico">
+                        <label>Estatura</label>
+                        <div class="valor-destacado">1.75 m</div>
+                    </div>
+                    <div class="dato-bloque-medico">
+                        <label>IMC (Calculado)</label>
+                        <div class="valor-destacado">25.6 (Sobrepeso)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUMNA DERECHA: Antecedentes -->
+            <section class="tarjeta-expediente">
+                <h3 class="titulo-seccion-expediente">
+                    <i class="fa-solid fa-notes-medical"></i> Antecedentes Clínicos
+                </h3>
+                
+                <div class="bloque-antecedentes">
+                    <label class="label-antecedentes">Alergias Registradas</label>
+                    <div class="contenedor-tags">
+                        <span class="tag-medico alergia"><i class="fa-solid fa-circle-exclamation"></i> Penicilina</span>
+                        <span class="tag-medico alergia"><i class="fa-solid fa-circle-exclamation"></i> Ácido Acetilsalicílico</span>
+                    </div>
+                </div>
+
+                <div class="bloque-antecedentes">
+                    <label class="label-antecedentes">Padecimientos Previos</label>
+                    <div class="contenedor-tags">
+                        <span class="tag-medico padecimiento">Hipertensión Arterial Sistémica</span>
+                        <span class="tag-medico padecimiento">Gastritis Crónica</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- SECCIÓN INFERIOR: Consultas Anteriores -->
+        <section class="tarjeta-expediente">
+            <div class="cabecera-consultas">
+                <h3 class="titulo-seccion-expediente">
+                    <i class="fa-regular fa-clipboard"></i> Últimas Consultas
+                </h3>
+            </div>
+            
+            <div class="lista-consultas">
+                <div class="item-consulta">
+                    <div class="cabecera-item-consulta">
+                        <strong>Chequeo Cardiológico de Rutina</strong>
+                        <span class="fecha-consulta">15 de Marzo, 2026</span>
+                    </div>
+                    <p class="detalle-consulta">Paciente estable. Presión arterial controlada (120/80). Se mantienen los medicamentos actuales. Próxima cita en 6 meses.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

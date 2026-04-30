@@ -6,63 +6,62 @@
     <title>Centro Médico R.A.S.A - Mis Pacientes</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_doctor.css') }}">
 </head>
 <body>
 
-   <nav class="barra-navegacion minimalista">
+    <nav class="barra-navegacion minimalista">
         
         <div class="marca">
             <i class="fa-solid fa-stethoscope icono-marca"></i>
             <div class="texto-marca">
                 <strong>Centro Médico</strong>
-                <span>R.A.S.A</span>
+                <strong>R.A.S.A</strong>
             </div>
         </div>
         
         <ul class="menu-principal">
+            <!-- Recuerda mover la clase "activo" a la vista correspondiente -->
             <li><a href="/dashboard">Consultorio</a></li>
-            <li><a href="/doctor/pacientes" class="activo">Pacientes</a></li>
+            <li class="activo"><a href="/doctor/pacientes">Pacientes</a></li>
             <li><a href="/doctor/agenda">Agenda</a></li>
             <li><a href="/doctor/laboratorio">Laboratorio</a></li>
         </ul>
 
         <div class="perfil-usuario">
-            
             <div class="info-usuario-texto flat">
-                <span><strong>Dr. Roberto Sánchez</strong> | Cardiologo </span>
+                <span><strong>Dr. Roberto Sánchez</strong> | Cardiología</span>
             </div>
-            </div>
+        </div>
+        
     </nav>
 
-    <main class="contenedor-principal">
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor-principal" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
         
-        <header class="encabezado-pagina">
-            <div class="migas-pan">
-                Panel Principal > <strong>Mis Pacientes</strong>
+        <header class="encabezado-pagina" style="margin-bottom: 25px;">
+            <div class="migas-pan" style="color: var(--texto-gris); font-size: 0.9rem;">
+                Portal <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 5px;"></i> <strong style="color: var(--texto-oscuro);">Mis Pacientes</strong>
             </div>
         </header>
 
-        <div class="seccion-titulo">
-            <div>
-                <h1>Directorio de Pacientes</h1>
-                <p>Consulta los expedientes y el historial clínico de tus 1,240 pacientes registrados.</p>
-            </div>
-            </div>
+        <div class="seccion-titulo" style="margin-bottom: 30px;">
+            <h1 style="font-size: 1.8rem; color: var(--texto-oscuro); margin-bottom: 5px;">Directorio de Pacientes</h1>
+            <p style="color: var(--texto-gris);">Consulta los expedientes y el historial clínico de tus pacientes registrados.</p>
+        </div>
 
-        <div class="barra-herramientas tarjeta-fondo">
+        <!-- BARRA DE HERRAMIENTAS Y FILTROS -->
+        <div class="barra-herramientas-tabla">
             <div class="grupo-busqueda">
-                <span class="icono-busqueda">🔍</span>
-                <input type="text" class="input-busqueda" placeholder="Buscar por nombre, ID o teléfono...">
+                <i class="fa-solid fa-magnifying-glass icono-busqueda"></i>
+                <input type="text" class="input-busqueda" placeholder="Buscar por nombre, ID o correo...">
             </div>
             
             <div class="grupo-filtros">
                 <select class="select-filtro">
                     <option value="">Estado de Salud</option>
                     <option value="estable">Estable</option>
-                    <option value="observacion">En Observación</option>
-                    <option value="critico">Atención Prioritaria</option>
+                    <option value="tratamiento">En Tratamiento</option> <!-- CORRECCIÓN AQUÍ -->
+                    <option value="critico">Prioritario</option>
                 </select>
                 
                 <select class="select-filtro">
@@ -72,222 +71,132 @@
                     <option value="365">Último año</option>
                 </select>
                 
-                <button class="btn-secundario btn-icono">⬇️ Exportar Lista</button>
+                <button class="btn-secundario-descarga"><i class="fa-solid fa-download"></i> Exportar</button>
             </div>
         </div>
 
-        <div class="contenedor-tabla tarjeta-fondo">
-            <table class="tabla-pacientes">
+        <!-- TABLA DE PACIENTES -->
+        <div class="contenedor-tabla-pacientes">
+            <table class="tabla-directorio">
                 <thead>
                     <tr>
                         <th>Paciente</th>
-                        <th>ID Expediente</th>
+                        <th>ID Historial</th>
                         <th>Edad / Sexo</th>
                         <th>Última Consulta</th>
                         <th>Estado</th>
+                        <th style="text-align: center;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Paciente 1 -->
                     <tr>
                         <td>
                             <div class="celda-perfil">
-                                <div class="avatar fondo-azul">ML</div>
-                                <div>
+                                <div class="avatar-iniciales fondo-azul">ML</div>
+                                <div class="info-texto-celda">
                                     <strong>María López</strong>
                                     <span>maria.l@email.com</span>
                                 </div>
                             </div>
                         </td>
-                        <td class="texto-gris">#PAC-0842</td>
-                        <td>45 años <br><span class="texto-gris">Femenino</span></td>
-                        <td>
-                            <strong>Hoy</strong>
-                            <br><span class="texto-gris">Cardiología</span>
+                        <td class="texto-secundario-tabla">HM-0842</td>
+                        <td class="texto-principal-tabla">45 años <br><span class="texto-secundario-tabla">Femenino</span></td>
+                        <td class="texto-principal-tabla">
+                            Hoy<br><span class="texto-secundario-tabla">Cardiología</span>
                         </td>
-                        <td><span class="etiqueta-pill pill-alerta">En Observación</span></td>
+                        <!-- CORRECCIÓN AQUÍ -->
+                        <td><span class="etiqueta-estado-paciente tratamiento">En Tratamiento</span></td>
+                        <td class="celda-acciones">
+                            <a href="expediente.html" class="btn-accion-tabla" title="Abrir Expediente Médico">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </a>
+                        </td>
                     </tr>
 
+                    <!-- Paciente 2 -->
                     <tr>
                         <td>
                             <div class="celda-perfil">
-                                <div class="avatar fondo-verde">CR</div>
-                                <div>
-                                    <strong>Carlos Ruiz</strong>
+                                <div class="avatar-iniciales fondo-verde">CR</div>
+                                <div class="info-texto-celda">
+                                    <strong>Carlos Ruiz Mendieta</strong>
                                     <span>cruiz99@email.com</span>
                                 </div>
                             </div>
                         </td>
-                        <td class="texto-gris">#PAC-1093</td>
-                        <td>32 años <br><span class="texto-gris">Masculino</span></td>
-                        <td>
-                            <strong>12 Feb, 2024</strong>
-                            <br><span class="texto-gris">Chequeo General</span>
+                        <td class="texto-secundario-tabla">HM-0582</td>
+                        <td class="texto-principal-tabla">34 años <br><span class="texto-secundario-tabla">Masculino</span></td>
+                        <td class="texto-principal-tabla">
+                            12 Feb, 2026<br><span class="texto-secundario-tabla">Chequeo General</span>
                         </td>
-                        <td><span class="etiqueta-pill pill-estable">Estable</span></td>
+                        <td><span class="etiqueta-estado-paciente estable">Estable</span></td>
+                        <td class="celda-acciones">
+                            <a href="expediente.html" class="btn-accion-tabla" title="Abrir Expediente Médico">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </a>
+                        </td>
                     </tr>
 
+                    <!-- Paciente 3 -->
                     <tr>
                         <td>
                             <div class="celda-perfil">
-                                <div class="avatar fondo-naranja">AT</div>
-                                <div>
+                                <div class="avatar-iniciales fondo-naranja">AT</div>
+                                <div class="info-texto-celda">
                                     <strong>Ana Torres</strong>
                                     <span>ana.torres.m@email.com</span>
                                 </div>
                             </div>
                         </td>
-                        <td class="texto-gris">#PAC-0551</td>
-                        <td>68 años <br><span class="texto-gris">Femenino</span></td>
-                        <td>
-                            <strong>05 Ene, 2024</strong>
-                            <br><span class="texto-gris">Laboratorios</span>
+                        <td class="texto-secundario-tabla">HM-0551</td>
+                        <td class="texto-principal-tabla">68 años <br><span class="texto-secundario-tabla">Femenino</span></td>
+                        <td class="texto-principal-tabla">
+                            05 Ene, 2026<br><span class="texto-secundario-tabla">Laboratorios</span>
                         </td>
-                        <td><span class="etiqueta-pill pill-critico">Prioritario</span></td>
+                        <td><span class="etiqueta-estado-paciente critico">Prioritario</span></td>
+                        <td class="celda-acciones">
+                            <a href="expediente.html" class="btn-accion-tabla" title="Abrir Expediente Médico">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </a>
+                        </td>
                     </tr>
 
+                    <!-- Paciente 4 -->
                     <tr>
                         <td>
                             <div class="celda-perfil">
-                                <div class="avatar fondo-gris">LR</div>
-                                <div>
+                                <div class="avatar-iniciales fondo-gris-avatar">LR</div>
+                                <div class="info-texto-celda">
                                     <strong>Luis Ramírez</strong>
                                     <span>luis_ram@email.com</span>
                                 </div>
                             </div>
                         </td>
-                        <td class="texto-gris">#PAC-2204</td>
-                        <td>29 años <br><span class="texto-gris">Masculino</span></td>
-                        <td>
-                            <strong>28 Nov, 2023</strong>
-                            <br><span class="texto-gris">Nutrición</span>
+                        <td class="texto-secundario-tabla">HM-2204</td>
+                        <td class="texto-principal-tabla">29 años <br><span class="texto-secundario-tabla">Masculino</span></td>
+                        <td class="texto-principal-tabla">
+                            28 Nov, 2025<br><span class="texto-secundario-tabla">Nutrición</span>
                         </td>
-                        <td><span class="etiqueta-pill pill-estable">Estable</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="celda-perfil">
-                                <div class="avatar fondo-azul">EG</div>
-                                <div>
-                                    <strong>Elena Gómez</strong>
-                                    <span>elena.gomez@email.com</span>
-                                </div>
-                            </div>
+                        <td><span class="etiqueta-estado-paciente estable">Estable</span></td>
+                        <td class="celda-acciones">
+                            <a href="expediente.html" class="btn-accion-tabla" title="Abrir Expediente Médico">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </a>
                         </td>
-                        <td class="texto-gris">#PAC-1833</td>
-                        <td>52 años <br><span class="texto-gris">Femenino</span></td>
-                        <td>
-                            <strong>15 Dic, 2023</strong>
-                            <br><span class="texto-gris">Cardiología</span>
-                        </td>
-                        <td><span class="etiqueta-pill pill-estable">Estable</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="celda-perfil">
-                                <div class="avatar fondo-naranja">RF</div>
-                                <div>
-                                    <strong>Roberto Fernández</strong>
-                                    <span>roberto.f@email.com</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="texto-gris">#PAC-0921</td>
-                        <td>61 años <br><span class="texto-gris">Masculino</span></td>
-                        <td>
-                            <strong>20 Feb, 2024</strong>
-                            <br><span class="texto-gris">Seguimiento P.A.</span>
-                        </td>
-                        <td><span class="etiqueta-pill pill-alerta">En Observación</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="celda-perfil">
-                                <div class="avatar fondo-verde">CS</div>
-                                <div>
-                                    <strong>Carmen Silva</strong>
-                                    <span>c.silva88@email.com</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="texto-gris">#PAC-3105</td>
-                        <td>38 años <br><span class="texto-gris">Femenino</span></td>
-                        <td>
-                            <strong>02 Mar, 2024</strong>
-                            <br><span class="texto-gris">Resultados Lab</span>
-                        </td>
-                        <td><span class="etiqueta-pill pill-estable">Estable</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="celda-perfil">
-                                <div class="avatar fondo-gris">DC</div>
-                                <div>
-                                    <strong>Diego Castro</strong>
-                                    <span>diego.castro@email.com</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="texto-gris">#PAC-1147</td>
-                        <td>55 años <br><span class="texto-gris">Masculino</span></td>
-                        <td>
-                            <strong>10 Ene, 2024</strong>
-                            <br><span class="texto-gris">Cardiología</span>
-                        </td>
-                        <td><span class="etiqueta-pill pill-critico">Prioritario</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="celda-perfil">
-                                <div class="avatar fondo-azul">SV</div>
-                                <div>
-                                    <strong>Sofía Vargas</strong>
-                                    <span>sofia.vargas@email.com</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="texto-gris">#PAC-0732</td>
-                        <td>24 años <br><span class="texto-gris">Femenino</span></td>
-                        <td>
-                            <strong>18 Ago, 2023</strong>
-                            <br><span class="texto-gris">Chequeo Anual</span>
-                        </td>
-                        <td><span class="etiqueta-pill pill-estable">Estable</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="celda-perfil">
-                                <div class="avatar fondo-naranja">JM</div>
-                                <div>
-                                    <strong>Javier Morales</strong>
-                                    <span>j.morales_71@email.com</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="texto-gris">#PAC-2950</td>
-                        <td>71 años <br><span class="texto-gris">Masculino</span></td>
-                        <td>
-                            <strong>25 Feb, 2024</strong>
-                            <br><span class="texto-gris">Cardiología</span>
-                        </td>
-                        <td><span class="etiqueta-pill pill-alerta">En Observación</span></td>
                     </tr>
                 </tbody>
             </table>
             
-            <div class="paginacion">
-                <span class="texto-gris">Mostrando 1 a 10 de 1,240 pacientes</span>
+            <!-- PAGINACIÓN -->
+            <div class="pie-tabla-paginacion">
+                <span class="texto-paginacion">Mostrando 1 a 4 de 1,240 pacientes</span>
                 <div class="controles-paginacion">
                     <button class="btn-paginacion deshabilitado">Anterior</button>
                     <button class="btn-paginacion activo">1</button>
                     <button class="btn-paginacion">2</button>
                     <button class="btn-paginacion">3</button>
-                    <span class="texto-gris">...</span>
+                    <span class="texto-paginacion">...</span>
                     <button class="btn-paginacion">Siguiente</button>
                 </div>
             </div>
