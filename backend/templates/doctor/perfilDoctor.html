@@ -62,7 +62,7 @@
                     
                     <div class="info-central-perfil">
                         <h2>Dr. Roberto Sánchez</h2>
-                        <span class="etiqueta-estado-paciente estable" style="margin-top: 5px; font-size: 0.8rem;">Cardiólogo Clínico</span>
+                        <span class="etiqueta-estado-paciente estable" style="margin-top: 5px; font-size: 0.8rem;">Cardiología</span>
                         <p class="texto-gris" style="margin-top: 15px; font-size: 0.85rem; font-weight: 600;">ID de Sistema: #MED-092</p>
                     </div>
 
@@ -87,7 +87,7 @@
                             <i class="fa-solid fa-location-dot"></i>
                             <div>
                                 <span>Ubicación Asignada</span>
-                                <strong>Consultorio 4B, Ala Norte</strong>
+                                <strong>Consultorio 101, Ala Norte</strong>
                             </div>
                         </li>
                     </ul>
@@ -102,17 +102,32 @@
 
                     <div class="contenido-formulario-perfil">
                         
+                        <!-- AVISO DE POLÍTICA DE DATOS SENSIBLES -->
+                        <div class="alerta-politica-roja" style="background-color: #f8fafc; border-left-color: #64748b; margin-bottom: 25px; padding: 12px; display: flex; align-items: flex-start; gap: 12px;">
+                            <i class="fa-solid fa-lock" style="color: #64748b; margin-top: 3px;"></i>
+                            <div>
+                                <strong style="color: #334155; font-size: 0.95rem; display: block; margin-bottom: 4px;">Protección de Datos Sensibles</strong>
+                                <p style="color: #475569; font-size: 0.85rem; margin: 0; line-height: 1.4;">Por políticas de seguridad, no es posible editar su Número de empleado, Cédulas Profesionales, CURP, Nombre ni Especialidad. Para correcciones, contacte a Recursos Humanos.</p>
+                            </div>
+                        </div>
+
                         <!-- SECCIÓN 1: PERSONAL -->
                         <h3 class="titulo-seccion-form"><i class="fa-regular fa-id-card"></i> Información Personal</h3>
                         <div class="grid-inputs-2">
+                            <!-- BLOQUEADO: Nombre -->
                             <div class="grupo-input">
                                 <label>Nombre(s)</label>
-                                <input type="text" class="input-form" value="Roberto" readonly style="background-color: var(--fondo-gris); color: var(--texto-gris);">
-                                <span style="font-size: 0.75rem; color: var(--texto-gris); margin-top: 4px;">* Cambio exclusivo en RRHH.</span>
+                                <input type="text" class="input-form" value="Roberto" readonly style="background-color: #f1f5f9; color: #94a3b8; cursor: not-allowed; border-color: #e2e8f0;">
                             </div>
+                            <!-- BLOQUEADO: Apellidos -->
                             <div class="grupo-input">
                                 <label>Apellidos</label>
-                                <input type="text" class="input-form" value="Sánchez" readonly style="background-color: var(--fondo-gris); color: var(--texto-gris);">
+                                <input type="text" class="input-form" value="Sánchez" readonly style="background-color: #f1f5f9; color: #94a3b8; cursor: not-allowed; border-color: #e2e8f0;">
+                            </div>
+                            <!-- BLOQUEADO: CURP -->
+                            <div class="grupo-input">
+                                <label>CURP</label>
+                                <input type="text" class="input-form" value="SAMR800514HDFXXXXX" readonly style="background-color: #f1f5f9; color: #94a3b8; cursor: not-allowed; border-color: #e2e8f0;">
                             </div>
                             <div class="grupo-input">
                                 <label>Fecha de Nacimiento</label>
@@ -129,17 +144,28 @@
                         <!-- SECCIÓN 2: CREDENCIALES -->
                         <h3 class="titulo-seccion-form"><i class="fa-solid fa-user-doctor"></i> Credenciales Médicas</h3>
                         <div class="grid-inputs-2">
+                            <!-- BLOQUEADO: Número de empleado -->
+                            <div class="grupo-input">
+                                <label>Número de Empleado</label>
+                                <input type="text" class="input-form" value="MED-092" readonly style="background-color: #f1f5f9; color: #94a3b8; cursor: not-allowed; border-color: #e2e8f0;">
+                            </div>
+                            <!-- BLOQUEADO: Especialidad -->
+                            <div class="grupo-input">
+                                <label>Especialidad Asignada</label>
+                                <input type="text" class="input-form" value="Cardiología" readonly style="background-color: #f1f5f9; color: #94a3b8; cursor: not-allowed; border-color: #e2e8f0;">
+                            </div>
+                            <!-- BLOQUEADO: Cédulas -->
+                            <div class="grupo-input">
+                                <label>Cédula Profesional (General)</label>
+                                <input type="text" class="input-form" value="8892314" readonly style="background-color: #f1f5f9; color: #94a3b8; cursor: not-allowed; border-color: #e2e8f0;">
+                            </div>
+                            <div class="grupo-input">
+                                <label>Cédula de Especialidad</label>
+                                <input type="text" class="input-form" value="ESP-455612" readonly style="background-color: #f1f5f9; color: #94a3b8; cursor: not-allowed; border-color: #e2e8f0;">
+                            </div>
                             <div class="grupo-input ancho-completo">
                                 <label>Universidad de Egreso</label>
                                 <input type="text" class="input-form" value="Universidad Nacional Autónoma de México (UNAM)">
-                            </div>
-                            <div class="grupo-input">
-                                <label>Cédula (Médico General)</label>
-                                <input type="text" class="input-form" value="8892314">
-                            </div>
-                            <div class="grupo-input">
-                                <label>Cédula Especialidad</label>
-                                <input type="text" class="input-form" value="ESP-455612">
                             </div>
                         </div>
 

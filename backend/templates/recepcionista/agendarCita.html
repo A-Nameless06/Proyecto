@@ -170,12 +170,12 @@
     </main>
 
     <!-- SCRIPT MULTIFUNCIÓN (FECHAS Y PRECIOS) -->
+    <!-- SCRIPT MULTIFUNCIÓN (FECHAS Y PRECIOS REVISADO) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             /* =========================================
                1. LÓGICA DE PRECIOS POR ESPECIALIDAD
                ========================================= */
-            // Lista de precios simulados (Puedes cambiar los números aquí)
             const preciosPorEspecialidad = {
                 'cardiologia': 1200,
                 'dermatologia': 1000,
@@ -192,48 +192,61 @@
             const especialidadSelect = document.getElementById('especialidadSelect');
             const costoDisplay = document.getElementById('costoConsulta');
 
-            especialidadSelect.addEventListener('change', function(e) {
-                const especialidadSeleccionada = e.target.value;
-                const precio = preciosPorEspecialidad[especialidadSeleccionada];
-                
-                if(precio) {
-                    // Formateamos el número para que se vea como dinero: $1,200.00 MXN
-                    costoDisplay.textContent = `$${precio.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN`;
-                } else {
-                    costoDisplay.textContent = '---';
-                }
-            });
+            if(especialidadSelect) {
+                especialidadSelect.addEventListener('change', function(e) {
+                    const especialidadSeleccionada = e.target.value;
+                    const precio = preciosPorEspecialidad[especialidadSeleccionada];
+                    
+                    if(precio) {
+                        costoDisplay.textContent = `$${precio.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN`;
+                    } else {
+                        costoDisplay.textContent = '---';
+                    }
+                });
+            }
 
             /* =========================================
-               2. LÓGICA DE BLOQUEO DE FECHAS
+               2. REGLAS ESTRICTAS DE FECHAS (48 HRS Y 3 MESES)
                ========================================= */
             const dateInput = document.getElementById('fechaCita');
             
-            let tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            
-            let maxDate = new Date();
-            maxDate.setDate(tomorrow.getDate() + 90);
-            
-            const formatDate = (dateObj) => {
-                let year = dateObj.getFullYear();
-                let month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                let day = String(dateObj.getDate()).padStart(2, '0');
-                return `${year}-${month}-${day}`;
-            };
-            
-            dateInput.min = formatDate(tomorrow);
-            dateInput.max = formatDate(maxDate);
-            
-            dateInput.addEventListener('change', function(e) {
-                const selectedDate = new Date(e.target.value + 'T00:00:00');
-                const dayOfWeek = selectedDate.getDay();
+            if(dateInput) {
+                // REGLA: Mínimo 48 horas de anticipación
+                let minDate = new Date();
+                minDate.setDate(minDate.getDate() + 2); // Suma 2 días
                 
-                if (dayOfWeek === 0 || dayOfWeek === 6) {
-                    alert('ACCESO DENEGADO: El Centro Médico R.A.S.A no agenda citas en fines de semana. Por favor, seleccione un día hábil (Lunes a Viernes).');
-                    e.target.value = ''; 
+                // REGLA: Máximo 3 meses
+                let maxDate = new Date();
+                maxDate.setMonth(maxDate.getMonth() + 3); // Suma exactamente 3 meses
+                
+                const formatDate = (dateObj) => {
+                    let year = dateObj.getFullYear();
+                    let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                    let day = String(dateObj.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}`;
+                };
+                
+                // Bloquear en el calendario de HTML los días no permitidos
+                dateInput.min = formatDate(minDate);
+                dateInput.max = formatDate(maxDate);
+                
+                // Actualizar el texto de ayuda visual para la recepcionista
+                const textoAyudaFecha = dateInput.nextElementSibling;
+                if(textoAyudaFecha) {
+                    textoAyudaFecha.innerHTML = '* Agendamiento con <b>mínimo 48 hrs</b> de anticipación. Máximo 3 meses.';
                 }
-            });
+                
+                // Bloquear fines de semana
+                dateInput.addEventListener('change', function(e) {
+                    const selectedDate = new Date(e.target.value + 'T00:00:00');
+                    const dayOfWeek = selectedDate.getDay();
+                    
+                    if (dayOfWeek === 0 || dayOfWeek === 6) {
+                        alert('ERROR: El doctor no labora en fines de semana. Seleccione una fecha de Lunes a Viernes.');
+                        e.target.value = ''; 
+                    }
+                });
+            }
         });
     </script>
 

@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
 </head>
 <body>
 
@@ -215,9 +215,9 @@
         const hoySimulado = new Date(); 
         hoySimulado.setHours(0, 0, 0, 0);
 
-        // Definimos "mañana" como el punto de inicio para las citas
-        const mañana = new Date(hoySimulado);
-        mañana.setDate(mañana.getDate() + 1);
+        // MODIFICACIÓN: Definimos el mínimo de 48 hrs (2 días) de anticipación
+        const fechaMinima = new Date(hoySimulado);
+        fechaMinima.setDate(fechaMinima.getDate() + 2);
         
         let fechaCalendario = new Date(hoySimulado.getFullYear(), hoySimulado.getMonth(), 1);
 
@@ -316,8 +316,8 @@
                 cuadricula.appendChild(divVacio);
             }
 
-            // El límite de tres meses ahora parte desde la fecha de mañana
-            let fechaLimite = new Date(mañana);
+            // El límite de tres meses ahora parte desde la fecha mínima (48hrs)
+            let fechaLimite = new Date(fechaMinima);
             fechaLimite.setMonth(fechaLimite.getMonth() + 3);
 
             for (let i = 1; i <= diasEnMes; i++) {
@@ -328,8 +328,8 @@
                 let fechaActualIteracion = new Date(anio, mes, i);
                 let diaSemana = fechaActualIteracion.getDay(); 
 
-                // Comparamos contra la constante 'mañana' para bloquear el día actual y pasados
-                if (fechaActualIteracion < mañana || fechaActualIteracion > fechaLimite || diaSemana === 0 || diaSemana === 6) {
+                // MODIFICACIÓN: Comparamos contra la variable 'fechaMinima'
+                if (fechaActualIteracion < fechaMinima || fechaActualIteracion > fechaLimite || diaSemana === 0 || diaSemana === 6) {
                     divDia.classList.add('inactivo');
                 } else {
                     divDia.addEventListener('click', function() {
@@ -387,6 +387,6 @@
             // Imprimimos el precio con formato
             document.getElementById('res-precio').innerText = `$${citaState.precio}.00 MXN`;
         }
-</script>
+    </script>
 </body>
 </html>
