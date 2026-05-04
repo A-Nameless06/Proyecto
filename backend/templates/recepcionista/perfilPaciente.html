@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Paciente - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li><a href="agendaCitas.html">Agenda y Citas</a></li>
+            <li><a href="directorioMedico.html">Directorio y Altas</a></li>
+            <li class="activo"><a href="pacientes.html">Pacientes</a></li>
+            <li><a href="/recepcion/caja">Módulo de Caja</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL CENTRADO -->
+    <main class="contenedor-principal">
+        
+        <div style="width: 100%; max-width: 1100px; margin: 40px auto 60px;">
+            
+            <div class="migas-pan">
+                Directorio <i class="fa-solid fa-chevron-right"></i> Pacientes <i class="fa-solid fa-chevron-right"></i> <strong>Perfil Administrativo</strong>
+            </div>
+
+            <div class="header-dashboard" style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h1>Ficha Administrativa del Paciente</h1>
+                    <p>Gestión de citas, cobranza y datos de contacto. (Expediente clínico oculto).</p>
+                </div>
+                <button class="btn-cancelar" onclick="window.history.back();"><i class="fa-solid fa-arrow-left"></i> Volver a Pacientes</button>
+            </div>
+
+            <!-- LAYOUT A DOS COLUMNAS -->
+            <div class="grid-perfil">
+                
+                <!-- COLUMNA IZQUIERDA: GAFETE / CONTACTO -->
+                <aside class="tarjeta-base tarjeta-perfil-lateral">
+                    <div class="avatar-grande" style="background-color: #f1f5f9; color: #94a3b8; border-color: #f8fafc;">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h2 class="nombre-doctor-perfil">Juan Pérez Gómez</h2>
+                    <span class="id-paciente" style="margin-bottom: 15px; font-size: 1rem;">#PAC-1021</span>
+                    
+                    <div class="status-actual">
+                        <span class="status-badge" style="font-size: 0.8rem; background-color: #d1fae5; color: #065f46;">CUENTA ACTIVA</span>
+                    </div>
+
+                    <div class="divisor-ligero" style="margin: 20px 0;"></div>
+
+                    <ul class="info-contacto-lista">
+                        <li>
+                            <div class="icono-lista"><i class="fa-solid fa-phone"></i></div>
+                            <div class="textos-lista">
+                                <span>Teléfono Móvil</span>
+                                <strong>55-1234-5678</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icono-lista"><i class="fa-regular fa-envelope"></i></div>
+                            <div class="textos-lista">
+                                <span>Correo Electrónico</span>
+                                <strong>jperez89@email.com</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icono-lista" style="background-color: #fef2f2; color: #ef4444;"><i class="fa-solid fa-truck-medical"></i></div>
+                            <div class="textos-lista">
+                                <span style="color: #ef4444;">Contacto de Emergencia</span>
+                                <strong>María Gómez (Madre)</strong>
+                                <strong>55-8765-4321</strong>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- COLUMNA DERECHA: CITAS Y ACCIONES -->
+                <section class="contenido-perfil-principal">
+                    
+                    <!-- ESTADO DE LA CITA ACTUAL (Diseño Mejorado tipo "Ticket") -->
+                    <div class="cita-hoy-banner">
+                        <div class="cita-hoy-header">
+                            <span><i class="fa-solid fa-bell" style="color: #f59e0b; margin-right: 5px;"></i> Cita Programada para Hoy</span>
+                            <span class="status-badge badge-naranja">EN ESPERA DE INGRESO</span>
+                        </div>
+                        <div class="cita-hoy-body">
+                            <!-- Recuadro de la hora -->
+                            <div class="cita-hora-bloque">
+                                <strong>08:30 AM</strong>
+                                <span>a 09:30 AM</span>
+                            </div>
+                            <!-- Detalles del doctor -->
+                            <div class="cita-detalles-bloque">
+                                <h4>Dr. Roberto Sánchez</h4>
+                                <p><i class="fa-solid fa-heart-pulse" style="color: #ef4444;"></i> Cardiología</p>
+                                <p><i class="fa-solid fa-door-open" style="color: var(--azul-principal);"></i> Consultorio 101 (Ala Norte)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HISTORIAL ADMINISTRATIVO DE CITAS -->
+                    <div class="tarjeta-base">
+                        <div class="cabecera-seccion-form" style="margin-bottom: 20px;">
+                            <div class="icono-seccion naranja"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                            <h3 style="margin: 0; font-size: 1.1rem;">Historial de Visitas (Administrativo)</h3>
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table class="tabla-agenda" style="width: 100%; min-width: 600px;">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha y Hora</th>
+                                        <th>Médico Atendió</th>
+                                        <th>Estatus Administrativo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong style="color: var(--texto-oscuro); display: block;">12 Mar 2026</strong>
+                                            <span style="color: var(--texto-gris); font-size: 0.85rem;">10:00 AM</span>
+                                        </td>
+                                        <td>Dr. Roberto Sánchez<br><span style="color: var(--texto-gris); font-size: 0.8rem;">Cardiología</span></td>
+                                        <td><span class="status-badge" style="background: #e2e8f0; color: #475569;">FINALIZADA (PAGADA)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong style="color: var(--texto-oscuro); display: block;">05 Feb 2026</strong>
+                                            <span style="color: var(--texto-gris); font-size: 0.85rem;">09:00 AM</span>
+                                        </td>
+                                        <td>Dr. Carlos Rivera<br><span style="color: var(--texto-gris); font-size: 0.8rem;">Medicina General</span></td>
+                                        <td><span class="status-badge" style="background: #e2e8f0; color: #475569;">FINALIZADA (PAGADA)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- RESTRICCIÓN DE SEGURIDAD (EXPEDIENTE CLÍNICO) -->
+                    <div class="alerta-politica-roja" style="margin-top: 25px; background-color: #f8fafc; border-left-color: #64748b;">
+                        <i class="fa-solid fa-lock" style="color: #64748b;"></i>
+                        <div>
+                            <strong style="color: #334155;">Expediente Médico Protegido</strong>
+                            <p style="color: #475569;">Por políticas de privacidad (Ley de Protección de Datos Personales), la recepción no tiene acceso al diagnóstico, recetas, ni notas de evolución del paciente. Solo el médico tratante puede abrir el expediente clínico.</p>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

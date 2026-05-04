@@ -2,26 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registrar Doctor - Centro Médico R.A.S.A</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta de Médico - Recepción R.A.S.A</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="barra-navegacion minimalista">
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
         <div class="marca">
             <i class="fa-solid fa-hospital-user icono-marca"></i>
             <div class="texto-marca">
-                <strong>Centro Médico</strong>
+                <strong>Recepción</strong>
                 <strong>R.A.S.A</strong>
             </div>
         </div>
         
         <ul class="menu-principal">
-            <li><a href="recepcion.html">Recepción</a></li>
-            <li><a href="#">Citas</a></li>
-            <li class="activo"><a href="#">Doctores</a></li>
-            <li><a href="#">Pacientes</a></li>
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li><a href="/recepcion/citas">Agenda y Citas</a></li>
+            <li class="activo"><a href="/recepcion/directorio">Directorio y Altas</a></li>
+            <li><a href="/recepcion/caja">Módulo de Caja</a></li>
         </ul>
 
         <div class="perfil-usuario">
@@ -31,90 +33,139 @@
         </div>
     </nav>
 
-    <!-- Usamos el nuevo contenedor amplio -->
-    <main class="contenedor-layout">
+    <!-- CONTENIDO PRINCIPAL CENTRADO -->
+    <main class="contenedor-principal">
         
-        <!-- Header con el botón Volver estilizado -->
-        <div class="header-pagina">
-            <div class="migas-pan">Recepción > Pacientes > <strong>Registrar Doctor</strong></div>
-            <a href="doctores.html" class="btn-volver-header">
-                <i class="fa-solid fa-arrow-left"></i> <u>Volver</u>
-            </a>
-        </div>
-
-        <!-- Tarjeta ancha moderna -->
-        <div class="tarjeta-formulario-ancha">
+        <!-- Contenedor ajustado a 1000px para que el formulario respire bien -->
+        <div style="width: 100%; max-width: 1000px; margin: 40px auto 60px;">
             
-            <div class="cabecera-tarjeta">
-                <h2 class="titulo-azul"><i class="fa-solid fa-user-doctor"></i> Registro de Personal Médico</h2>
-                <span class="subtitulo-gris">Complete todos los campos para dar de alta al especialista.</span>
+            <div class="migas-pan">
+                Directorio <i class="fa-solid fa-chevron-right"></i> <strong>Alta de Nuevo Especialista</strong>
             </div>
 
-            <form action="/guardar-doctor" method="POST">
+            <div class="header-dashboard" style="margin-bottom: 25px;">
+                <h1>Registro de Médico</h1>
+                <p>Ingreso de credenciales y datos para dar de alta a un nuevo doctor en el sistema.</p>
+            </div>
+
+            <!-- CONTENEDOR DEL FORMULARIO -->
+            <form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Doctor registrado exitosamente. Credenciales enviadas a su correo.');">
                 
-                <!-- El nuevo Grid -->
-                <div class="grid-formulario-2">
-                    
-                    <div class="grupo-campo">
-                        <label>NOMBRE COMPLETO</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-user"></i>
-                            <input type="text" id="nombre" name="nombre" placeholder="Ej. Dr. Roberto Sánchez" required>
-                        </div>
+                <!-- SECCIÓN 1: DATOS PERSONALES -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion azul"><i class="fa-regular fa-id-card"></i></div>
+                    <h3>Datos Personales</h3>
+                </div>
+                
+                <div class="grid-inputs-3">
+                    <div class="grupo-input">
+                        <label>Nombre(s)</label>
+                        <input type="text" class="input-form" placeholder="Ej. Roberto" required>
                     </div>
-
-                    <div class="grupo-campo">
-                        <label>NÚMERO DE EMPLEADO</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-id-card-clip"></i>
-                            <input type="text" id="num_empleado" name="num_empleado" placeholder="Ej. MED-2024-001" required>
-                        </div>
+                    <div class="grupo-input">
+                        <label>Apellido Paterno</label>
+                        <input type="text" class="input-form" placeholder="Sánchez" required>
                     </div>
-
-                    <div class="grupo-campo">
-                        <label>CURP</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-address-card"></i>
-                            <input type="text" id="curp" name="curp" placeholder="18 caracteres" required>
-                        </div>
+                    <div class="grupo-input">
+                        <label>Apellido Materno</label>
+                        <input type="text" class="input-form" placeholder="Pérez" required>
                     </div>
-
-                    <div class="grupo-campo">
-                        <label>CÉDULA PROFESIONAL</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <input type="text" id="cedula" name="cedula" placeholder="Número de cédula estatal/federal" required>
-                        </div>
+                    <div class="grupo-input">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" class="input-form" required>
                     </div>
-
-                    <!-- Usamos grid-column para que la especialidad ocupe todo el ancho -->
-                    <div class="grupo-campo" style="grid-column: 1 / -1;">
-                        <label>ESPECIALIDAD MÉDICA</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-stethoscope"></i>
-                            <select id="especialidad" name="especialidad" required>
-                                <option value="" disabled selected>Seleccione una especialidad</option>
-                                <option value="medicina_general">Medicina General</option>
-                                <option value="cardiologia">Cardiología</option>
-                                <option value="pediatria">Pediatría</option>
-                                <option value="ginecologia">Ginecología</option>
-                                <option value="dermatologia">Dermatología</option>
-                            </select>
-                        </div>
+                    <div class="grupo-input">
+                        <label>Género</label>
+                        <select class="input-form" required>
+                            <option value="" disabled selected>Seleccione</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="O">Otro</option>
+                        </select>
                     </div>
-
+                    <div class="grupo-input">
+                        <label>Teléfono Móvil</label>
+                        <input type="tel" class="input-form" placeholder="10 dígitos" required>
+                    </div>
                 </div>
 
-                <hr class="linea-divisora">
+                <div class="divisor-ligero"></div>
 
-                <!-- Botones finales actualizados -->
-                <div class="fila-botones-form">
-                    <button type="reset" class="btn-limpiar">Limpiar Formulario</button>
-                    <button type="submit" class="btn-guardar">
-                        <i class="fa-solid fa-floppy-disk"></i> Guardar Médico
+                <!-- SECCIÓN 2: PERFIL PROFESIONAL -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion naranja"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h3>Perfil Profesional y Credenciales</h3>
+                </div>
+
+                <div class="grid-inputs-2">
+                    <div class="grupo-input">
+                        <label>Especialidad Médica</label>
+                        <select class="input-form" required>
+                            <option value="" disabled selected>Seleccione la especialidad</option>
+                            <option value="Medicina General">Medicina General</option>
+                            <option value="Cardiologia">Cardiología</option>
+                            <option value="Pediatria">Pediatría</option>
+                            <option value="Dermatologia">Dermatología</option>
+                            <option value="Neurologia">Neurología</option>
+                            <option value="Traumatologia">Traumatología y Ortopedia</option>
+                        </select>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Universidad de Egreso</label>
+                        <input type="text" class="input-form" placeholder="Ej. IPN, UNAM..." required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Cédula Profesional</label>
+                        <input type="text" class="input-form" placeholder="Número de 7 u 8 dígitos" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Cédula de Especialidad (Opcional)</label>
+                        <input type="text" class="input-form" placeholder="Si aplica">
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN 3: ASIGNACIÓN EN CLÍNICA -->
+<div class="cabecera-seccion-form">
+    <div class="icono-seccion" style="background: #d1fae5; color: var(--verde-exito);"><i class="fa-solid fa-hospital"></i></div>
+    <h3>Asignación Interna (R.A.S.A)</h3>
+</div>
+
+<div class="grid-inputs-2">
+    <!-- NUEVO CAMPO DE TURNO (Mismos horarios) -->
+    <div class="grupo-input">
+        <label>Turno Asignado</label>
+        <select class="input-form" required>
+            <option value="" disabled selected>Seleccione el turno</option>
+            <option value="matutino">Matutino (07:00 - 15:00)</option>
+            <option value="vespertino">Vespertino (13:00 - 21:00)</option>
+        </select>
+    </div>
+
+    <div class="grupo-input">
+        <label>Consultorio Asignado</label>
+        <input type="text" class="input-form" placeholder="Ej. Consultorio 4B, Ala Norte" required>
+    </div>
+    
+    <!-- Correo a ancho completo para no romper la cuadrícula -->
+    <div class="grupo-input ancho-completo">
+        <label>Generar Correo Institucional</label>
+        <div class="input-compuesto">
+            <input type="text" class="entrada-dominio" placeholder="inicial.apellido" required>
+            <span class="texto-dominio">@rasa-med.com</span>
+        </div>
+    </div>
+</div>
+
+                <!-- ÁREA DE BOTONES -->
+                <div class="acciones-formulario">
+                    <button type="button" class="btn-cancelar" onclick="window.history.back();">Cancelar</button>
+                    <button type="submit" class="btn-accion-principal">
+                        <i class="fa-solid fa-user-plus"></i> Generar Alta Médica
                     </button>
                 </div>
-                
+
             </form>
         </div>
     </main>

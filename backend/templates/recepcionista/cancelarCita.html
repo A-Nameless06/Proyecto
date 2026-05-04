@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancelar Cita - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li class="activo"><a href="/recepcion/citas">Agenda y Citas</a></li>
+            <li><a href="/recepcion/directorio">Directorio y Altas</a></li>
+            <li><a href="/recepcion/caja">Módulo de Caja</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor-principal">
+        
+        <div style="width: 100%; max-width: 800px; margin: 40px auto 60px;">
+            
+            <div class="migas-pan">
+                Agenda <i class="fa-solid fa-chevron-right"></i> <strong>Cancelación de Cita</strong>
+            </div>
+
+            <div class="header-dashboard" style="margin-bottom: 25px;">
+                <h1>Confirmar Cancelación</h1>
+                <p>Módulo de cancelación de citas por solicitud estricta del personal médico.</p>
+            </div>
+
+            <!-- ALERTA DE POLÍTICA DEL HOSPITAL -->
+            <div class="alerta-politica-roja">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <div>
+                    <strong>Política de Cancelación R.A.S.A:</strong>
+                    <p>Por reglas del sistema, usted solo tiene permitido cancelar esta cita si fue una <b>solicitud directa del médico titular</b>. Quedará un registro de esta acción bajo su usuario.</p>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR DEL FORMULARIO DE CANCELACIÓN -->
+            <!-- CONTENEDOR DEL FORMULARIO DE CANCELACIÓN -->
+<form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Cita cancelada exitosamente. Se ha notificado al paciente y guardado en la bitácora.'); window.location.href='agendaCita.html';">
+                
+                <!-- SECCIÓN 1: DATOS DE LA CITA (Solo lectura) -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion azul"><i class="fa-regular fa-calendar-xmark"></i></div>
+                    <h3>Detalles de la Cita a Cancelar</h3>
+                </div>
+                
+                <div class="bloque-solo-lectura">
+                    <div class="dato-lectura">
+                        <span>Paciente</span>
+                        <strong>Carlos Mendoza Soto (P-10294)</strong>
+                    </div>
+                    <div class="dato-lectura">
+                        <span>Médico Titular</span>
+                        <strong>Dr. Roberto Sánchez (Cardiología)</strong>
+                    </div>
+                    <div class="dato-lectura">
+                        <span>Fecha y Horario</span>
+                        <strong>Lunes 04 de Mayo, 2026 • 07:00 AM - 08:00 AM</strong>
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN 2: AUTORIZACIÓN DEL MÉDICO -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion rojo"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3>Motivo y Autorización Médica</h3>
+                </div>
+
+                <div class="grid-inputs-1">
+                    <div class="grupo-input">
+                        <label>Tipo de Autorización</label>
+                        <!-- Selector bloqueado en "Solicitud del médico" para reforzar la regla -->
+                        <select class="input-form" style="background-color: var(--fondo-gris); pointer-events: none;">
+                            <option selected>Cancelación solicitada por el Médico Titular</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label>Motivo reportado por el doctor (Requerido)</label>
+                        <textarea class="input-form area-texto" placeholder="Ej. El Dr. Sánchez reportó una emergencia en quirófano y solicitó reagendar sus citas de la mañana..." required></textarea>
+                    </div>
+
+                    <label class="checkbox-confirmacion">
+                        <input type="checkbox" required>
+                        <span>Confirmo que el <b>Dr. Roberto Sánchez</b> me solicitó explícitamente cancelar este bloque de horario.</span>
+                    </label>
+                </div>
+
+                <!-- ÁREA DE BOTONES -->
+                <div class="acciones-formulario">
+                    <button type="button" class="btn-cancelar" onclick="window.history.back();">Conservar Cita</button>
+                    <!-- Botón destructivo en rojo -->
+                    <button type="submit" class="btn-accion-principal btn-peligro">
+                        <i class="fa-solid fa-trash-can"></i> Ejecutar Cancelación
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Nueva Cita - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li class="activo"><a href="/recepcion/citas">Agenda y Citas</a></li>
+            <li><a href="/recepcion/directorio">Directorio y Altas</a></li>
+            <li><a href="/recepcion/caja">Módulo de Caja</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL CENTRADO -->
+    <main class="contenedor-principal">
+        
+        <div style="width: 100%; max-width: 1000px; margin: 40px auto 60px;">
+            
+            <div class="migas-pan">
+                Agenda y Citas <i class="fa-solid fa-chevron-right"></i> <strong>Agendar Nueva Cita</strong>
+            </div>
+
+            <div class="header-dashboard" style="margin-bottom: 25px;">
+                <h1>Agendar Cita Médica</h1>
+                <p>Reserva de bloques de horario y cobro de consulta según especialidad.</p>
+            </div>
+
+            <!-- CONTENEDOR DEL FORMULARIO -->
+            <form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Cita agendada exitosamente y pago registrado. El bloque de horario ha sido reservado.'); window.location.href='inicioRecepcion.html';">
+                
+                <!-- SECCIÓN 1: SELECCIÓN DE PACIENTE -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion azul"><i class="fa-solid fa-hospital-user"></i></div>
+                    <h3>Datos del Paciente</h3>
+                </div>
+                
+                <div class="grid-inputs-2">
+                    <div class="grupo-input ancho-completo">
+                        <label>Buscar Paciente (Nombre, Apellidos o Folio)</label>
+                        <input type="text" class="input-form" placeholder="Ej. Carlos Mendoza Soto..." required>
+                        <span style="font-size: 0.75rem; color: var(--texto-gris); margin-top: 4px;">
+                            * Si el paciente es nuevo, primero debe realizar su <a href="altaPaciente.html" style="color: var(--azul-principal); text-decoration: underline;">Alta en el Directorio</a>.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN 2: ESPECIALIDAD Y MÉDICO -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion naranja"><i class="fa-solid fa-stethoscope"></i></div>
+                    <h3>Especialidad y Médico Titular</h3>
+                </div>
+
+                <div class="grid-inputs-3">
+                    <div class="grupo-input">
+                        <label>Especialidad Requerida</label>
+                        <!-- Agregamos el ID para que el script sepa cuándo cambia -->
+                        <select class="input-form" id="especialidadSelect" required>
+                            <option value="" disabled selected>Seleccione la especialidad</option>
+                            <option value="cardiologia">Cardiología</option>
+                            <option value="dermatologia">Dermatología</option>
+                            <option value="ginecologia">Ginecología</option>
+                            <option value="medicina_general">Medicina General</option>
+                            <option value="nefrologia">Nefrología</option>
+                            <option value="nutriologia">Nutriología</option>
+                            <option value="oftalmologia">Oftalmología</option>
+                            <option value="oncologia">Oncología</option>
+                            <option value="ortopedia">Ortopedia</option>
+                            <option value="pediatria">Pediatría</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grupo-input">
+                        <label>Médico Disponible</label>
+                        <select class="input-form" required>
+                            <option value="" disabled selected>Seleccione al doctor</option>
+                            <option value="dr_roberto">Dr. Roberto Sánchez (Matutino)</option>
+                            <option value="dra_ana">Dra. Ana Valdez (Matutino)</option>
+                            <option value="dr_luis">Dr. Luis Torres (Vespertino)</option>
+                            <option value="dra_carmen">Dra. Carmen Ríos (Vespertino)</option>
+                        </select>
+                    </div>
+
+                    <!-- AQUÍ APARECE EL PRECIO DINÁMICO -->
+                    <div class="grupo-input">
+                        <label>Costo de la Consulta</label>
+                        <div class="input-form" style="background-color: #eff6ff; border-color: #93c5fd; color: var(--azul-principal); font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; padding: 0 16px;">
+                            <span id="costoConsulta">---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN 3: FECHA Y BLOQUE DE HORARIO -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion" style="background: #d1fae5; color: var(--verde-exito);"><i class="fa-regular fa-calendar-check"></i></div>
+                    <h3>Fecha y Bloque de Horario</h3>
+                </div>
+
+                <div class="grid-inputs-2">
+                    <div class="grupo-input">
+                        <label>Fecha de la Cita (Lunes a Viernes)</label>
+                        <input type="date" class="input-form" id="fechaCita" required>
+                        <span style="font-size: 0.75rem; color: var(--naranja-icono); margin-top: 4px;">
+                            * Agendamiento a partir de mañana. Máximo 90 días.
+                        </span>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Bloques Disponibles (1 Hora)</label>
+                        <select class="input-form" required>
+                            <option value="" disabled selected>Seleccione un horario disponible</option>
+                            <optgroup label="Turno Matutino">
+                                <option value="07:00">07:00 AM - 08:00 AM (Disponible)</option>
+                                <option value="08:00">08:00 AM - 09:00 AM (Disponible)</option>
+                                <option value="10:00">10:00 AM - 11:00 AM (Disponible)</option>
+                                <option value="11:00">11:00 AM - 12:00 PM (Disponible)</option>
+                                <option value="12:00">12:00 PM - 01:00 PM (Disponible)</option>
+                                <option value="13:00">01:00 PM - 02:00 PM (Disponible)</option>
+                                <option value="14:00">02:00 PM - 03:00 PM (Disponible)</option>
+                            </optgroup>
+                            <optgroup label="Turno Vespertino">
+                                <option value="13:00">01:00 PM - 02:00 PM (Disponible)</option>
+                                <option value="14:00">02:00 PM - 03:00 PM (Disponible)</option>
+                                <option value="15:00">03:00 PM - 04:00 PM (Disponible)</option>
+                                <option value="16:00">04:00 PM - 05:00 PM (Disponible)</option>
+                                <option value="17:00">05:00 PM - 06:00 PM (Disponible)</option>
+                                <option value="18:00">06:00 PM - 07:00 PM (Disponible)</option>
+                                <option value="19:00">07:00 PM - 08:00 PM (Disponible)</option>
+                                <option value="20:00">08:00 PM - 09:00 PM (Disponible)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE BOTONES -->
+                <div class="acciones-formulario" style="display: flex; justify-content: flex-end; align-items: center; gap: 20px;">
+                    <button type="button" class="btn-cancelar" onclick="window.history.back();">Cancelar</button>
+                    <!-- BOTÓN ACTUALIZADO -->
+                    <button type="submit" class="btn-accion-principal" style="background: var(--verde-exito); font-size: 1rem; padding: 14px 28px;">
+                        <i class="fa-solid fa-cash-register"></i> Agendar cita y aceptar pago
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- SCRIPT MULTIFUNCIÓN (FECHAS Y PRECIOS) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            /* =========================================
+               1. LÓGICA DE PRECIOS POR ESPECIALIDAD
+               ========================================= */
+            // Lista de precios simulados (Puedes cambiar los números aquí)
+            const preciosPorEspecialidad = {
+                'cardiologia': 1200,
+                'dermatologia': 1000,
+                'ginecologia': 1100,
+                'medicina_general': 500,
+                'nefrologia': 1300,
+                'nutriologia': 800,
+                'oftalmologia': 1000,
+                'oncologia': 1500,
+                'ortopedia': 1100,
+                'pediatria': 900
+            };
+
+            const especialidadSelect = document.getElementById('especialidadSelect');
+            const costoDisplay = document.getElementById('costoConsulta');
+
+            especialidadSelect.addEventListener('change', function(e) {
+                const especialidadSeleccionada = e.target.value;
+                const precio = preciosPorEspecialidad[especialidadSeleccionada];
+                
+                if(precio) {
+                    // Formateamos el número para que se vea como dinero: $1,200.00 MXN
+                    costoDisplay.textContent = `$${precio.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN`;
+                } else {
+                    costoDisplay.textContent = '---';
+                }
+            });
+
+            /* =========================================
+               2. LÓGICA DE BLOQUEO DE FECHAS
+               ========================================= */
+            const dateInput = document.getElementById('fechaCita');
+            
+            let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            let maxDate = new Date();
+            maxDate.setDate(tomorrow.getDate() + 90);
+            
+            const formatDate = (dateObj) => {
+                let year = dateObj.getFullYear();
+                let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                let day = String(dateObj.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            
+            dateInput.min = formatDate(tomorrow);
+            dateInput.max = formatDate(maxDate);
+            
+            dateInput.addEventListener('change', function(e) {
+                const selectedDate = new Date(e.target.value + 'T00:00:00');
+                const dayOfWeek = selectedDate.getDay();
+                
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    alert('ACCESO DENEGADO: El Centro Médico R.A.S.A no agenda citas en fines de semana. Por favor, seleccione un día hábil (Lunes a Viernes).');
+                    e.target.value = ''; 
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

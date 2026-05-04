@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta de Médico - Centro Médico R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN UNIVERSAL (VISTA ADMINISTRADOR / RRHH) -->
+    <nav class="barra-navegacion minimalista sticky">
+        
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Centro Médico</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/admin/dashboard">Inicio</a></li>
+            <li class="activo"><a href="/admin/doctores">Directorio Médico</a></li>
+            <li><a href="/admin/pacientes">Pacientes</a></li>
+            <li><a href="/admin/rrhh">Recursos Humanos</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Admin Sistema</strong> | RRHH</span>
+            </div>
+        </div>
+        
+    </nav>
+
+    <main class="contenedor-principal">
+        
+        <!-- Formulario centrado, más estrecho para facilitar la lectura -->
+        <div class="ancho-completo" style="width: 100%; max-width: 900px; margin: 25px auto 50px;">
+            
+            <div class="migas-pan" style="color: var(--texto-gris); font-size: 0.9rem; margin-bottom: 15px;">
+                Directorio Médico <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem; margin: 0 6px;"></i> <strong style="color: var(--azul-principal); font-weight: 600;">Alta de Nuevo Especialista</strong>
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <h1 class="titulo-seccion" style="font-size: 1.8rem; color: var(--texto-oscuro); margin-bottom: 8px;">Registrar Nuevo Médico</h1>
+                <p class="subtitulo-seccion" style="color: var(--texto-gris); font-size: 1rem;">Completa el formulario oficial para dar de alta a un especialista y generarle sus credenciales de acceso al sistema.</p>
+            </div>
+
+            <!-- CONTENEDOR DEL FORMULARIO -->
+            <form class="tarjeta-base" style="padding: 40px;" onsubmit="event.preventDefault(); alert('Doctor registrado exitosamente en el sistema.');">
+                
+                <!-- SECCIÓN 1: DATOS PERSONALES -->
+                <h3 class="titulo-seccion-form" style="margin-bottom: 20px;"><i class="fa-regular fa-id-card"></i> Datos Personales</h3>
+                <div class="grid-inputs-2">
+                    <div class="grupo-input">
+                        <label>Nombre(s)</label>
+                        <input type="text" class="input-form" placeholder="Ej. Roberto" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Apellidos</label>
+                        <input type="text" class="input-form" placeholder="Ej. Sánchez Pérez" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" class="input-form" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Género</label>
+                        <select class="input-form" required>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="O">Otro</option>
+                        </select>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Teléfono Móvil</label>
+                        <input type="tel" class="input-form" placeholder="10 dígitos" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Correo Electrónico Personal</label>
+                        <input type="email" class="input-form" placeholder="correo@ejemplo.com" required>
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN 2: DATOS PROFESIONALES -->
+                <h3 class="titulo-seccion-form" style="margin-bottom: 20px;"><i class="fa-solid fa-user-doctor"></i> Perfil Profesional y Credenciales</h3>
+                <div class="grid-inputs-2">
+                    <div class="grupo-input">
+                        <label>Especialidad Médica</label>
+                        <select class="input-form" required>
+                            <option value="" disabled selected>Seleccione la especialidad</option>
+                            <option value="Medicina General">Medicina General</option>
+                            <option value="Cardiologia">Cardiología</option>
+                            <option value="Pediatria">Pediatría</option>
+                            <option value="Dermatologia">Dermatología</option>
+                            <option value="Neurologia">Neurología</option>
+                            <option value="Traumatologia">Traumatología y Ortopedia</option>
+                        </select>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Universidad de Egreso</label>
+                        <input type="text" class="input-form" placeholder="Ej. UNAM, IPN..." required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Cédula Profesional</label>
+                        <input type="text" class="input-form" placeholder="Número de 7 u 8 dígitos" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Cédula de Especialidad (Opcional)</label>
+                        <input type="text" class="input-form" placeholder="Si aplica">
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN 3: ASIGNACIÓN EN CLÍNICA -->
+                <h3 class="titulo-seccion-form" style="margin-bottom: 20px;"><i class="fa-solid fa-hospital"></i> Asignación Interna (R.A.S.A)</h3>
+                <div class="grid-inputs-2">
+                    <div class="grupo-input">
+                        <label>Consultorio Asignado</label>
+                        <input type="text" class="input-form" placeholder="Ej. Consultorio 4B, Ala Norte" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Correo Institucional a Generar</label>
+                        <div style="display: flex; align-items: center; border: 1px solid var(--borde); border-radius: 8px; overflow: hidden; background: var(--fondo-gris);">
+                            <input type="text" style="flex: 1; border: none; padding: 12px 16px; outline: none; background: transparent; font-family: inherit; font-size: 0.95rem;" placeholder="inicial.apellido" required>
+                            <span style="padding: 0 15px; color: var(--texto-gris); font-size: 0.9rem; font-weight: 500;">@rasa-med.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE BOTONES (ACCIONES) -->
+                <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 40px; padding-top: 25px; border-top: 1px solid var(--borde);">
+                    <button type="button" class="btn-secundario" style="background: white; border: 1px solid var(--borde); padding: 12px 24px; border-radius: 8px; color: var(--texto-oscuro); font-weight: 600; cursor: pointer;" onclick="window.history.back();">Cancelar</button>
+                    
+                    <button type="submit" class="btn-guardar-ajustes" style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-user-plus"></i> Generar Alta Médica
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Citas - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li class="activo"><a href="agendaCitas.html">Agenda y Citas</a></li>
+            <li><a href="horarios.html">Horarios</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+            <li><a href="caja.html">Módulo de Caja</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor-principal">
+        
+        <div style="width: 100%; max-width: 1200px; margin: 40px auto 60px;">
+            
+            <div class="migas-pan">
+                Recepción <i class="fa-solid fa-chevron-right"></i> <strong>Agenda y Control de Citas</strong>
+            </div>
+
+            <div class="header-dashboard" style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <h1>Agenda General</h1>
+                    <p>Gestión de horarios por bloques de 1 hora, confirmaciones, check-in y cancelaciones.</p>
+                </div>
+                <a href="agendarCita.html" class="btn-accion-principal" style="background: var(--verde-exito); text-decoration: none;">
+                    <i class="fa-regular fa-calendar-plus"></i> Agendar Nueva Cita
+                </a>
+            </div>
+
+            <!-- BARRA DE FILTROS -->
+            <div class="tarjeta-base filtros-agenda">
+                <div class="grupo-input">
+                    <label>Fecha</label>
+                    <input type="date" class="input-form" value="2026-05-04">
+                </div>
+                <div class="grupo-input" style="flex: 2;">
+                    <label>Filtrar por Especialidad o Doctor</label>
+                    <select class="input-form">
+                        <option value="todos">Todos los doctores en turno</option>
+                        <option value="cardio">Cardiología - Dr. Roberto Sánchez</option>
+                        <option value="derma">Dermatología - Dra. Laura Gómez</option>
+                        <option value="pediatria">Pediatría - Dra. Mariana Casos</option>
+                    </select>
+                </div>
+                <div class="grupo-input">
+                    <label>Estado</label>
+                    <select class="input-form">
+                        <option value="todos">Todas las citas</option>
+                        <option value="programada">Programadas</option>
+                        <option value="espera">En Espera</option>
+                    </select>
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button class="btn-accion-principal" style="height: 46px;"><i class="fa-solid fa-filter"></i> Filtrar</button>
+                </div>
+            </div>
+
+            <!-- TABLA DE LA AGENDA (BLOQUES DE 1 HORA) -->
+            <div class="tarjeta-base" style="padding: 0; overflow: hidden;">
+                <table class="tabla-agenda">
+                    <thead>
+                        <tr>
+                            <th>Bloque de Horario</th>
+                            <th>Paciente</th>
+                            <th>Doctor y Especialidad</th>
+                            <th>Estado</th>
+                            <th>Acciones (Recepción)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- BLOQUE 07:00 AM - 08:00 AM (Apenas va a llegar) -->
+                        <tr>
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--texto-oscuro); font-size: 1.05rem;">07:00 AM</strong>
+                                    <span style="color: var(--texto-gris); font-size: 0.8rem; font-weight: 600;">a 08:00 AM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="info-paciente-tabla">
+                                    <strong>Carlos Mendoza Soto</strong>
+                                    <span>Folio: P-10294</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="info-doctor-tabla">
+                                    <strong>Dr. Roberto Sánchez</strong>
+                                    <span>Cardiología</span>
+                                </div>
+                            </td>
+                            <td><span class="status-badge badge-gris">PROGRAMADA</span></td>
+                            <td>
+                                <!-- NUEVO BOTÓN DE CHECK-IN -->
+                                <div style="display: flex; gap: 8px;">
+                                    <a href="checkin.html" class="btn-checkin">
+                                        <i class="fa-solid fa-clipboard-user"></i> Check-in
+                                    </a>
+                                    <a href="cancelarCita.html" class="btn-cancelar-cita" style="text-decoration: none;">
+                                        <i class="fa-solid fa-ban"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- BLOQUE 08:00 AM - 09:00 AM (Ya hizo check-in, está esperando) -->
+                        <tr>
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--texto-oscuro); font-size: 1.05rem;">08:00 AM</strong>
+                                    <span style="color: var(--texto-gris); font-size: 0.8rem; font-weight: 600;">a 09:00 AM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="info-paciente-tabla">
+                                    <strong>Lucía Fernández Gómez</strong>
+                                    <span>Folio: P-09821</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="info-doctor-tabla">
+                                    <strong>Dra. Laura Gómez</strong>
+                                    <span>Dermatología</span>
+                                </div>
+                            </td>
+                            <td><span class="status-badge badge-naranja">EN ESPERA</span></td>
+                            <td>
+                                <!-- Como ya está en espera, solo queda la opción de cancelar si algo sale mal -->
+                                <a href="cancelarCita.html" class="btn-cancelar-cita" style="text-decoration: none;">
+                                    <i class="fa-solid fa-ban"></i> Cancelar
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- BLOQUE 09:00 AM - 10:00 AM (Ya pasó con el doc) -->
+                        <tr>
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--texto-oscuro); font-size: 1.05rem;">09:00 AM</strong>
+                                    <span style="color: var(--texto-gris); font-size: 0.8rem; font-weight: 600;">a 10:00 AM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="info-paciente-tabla">
+                                    <strong>Santiago Ruiz Pérez</strong>
+                                    <span>Folio: P-11203</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="info-doctor-tabla">
+                                    <strong>Dra. Mariana Casos</strong>
+                                    <span>Pediatría</span>
+                                </div>
+                            </td>
+                            <td><span class="status-badge badge-verde">EN CONSULTA</span></td>
+                            <td>
+                                <span style="color: var(--texto-gris); font-size: 0.85rem; font-style: italic;">Sin acciones</span>
+                            </td>
+                        </tr>
+
+                        <!-- BLOQUE 10:00 AM - 11:00 AM (Cancelada) -->
+                        <tr style="background-color: #f8fafc; opacity: 0.7;">
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--texto-gris); font-size: 1.05rem; text-decoration: line-through;">10:00 AM</strong>
+                                    <span style="color: var(--texto-gris); font-size: 0.8rem; font-weight: 600; text-decoration: line-through;">a 11:00 AM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="info-paciente-tabla">
+                                    <strong>Miguel Ángel Torres</strong>
+                                    <span>Folio: P-08372</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="info-doctor-tabla">
+                                    <strong>Dr. Roberto Sánchez</strong>
+                                    <span>Cardiología</span>
+                                </div>
+                            </td>
+                            <td><span class="status-badge" style="background: #fee2e2; color: #991b1b;">CANCELADA</span></td>
+                            <td>
+                                <span style="color: var(--rojo-alerta); font-size: 0.8rem; font-weight: 700;">Canceló: Doctor</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

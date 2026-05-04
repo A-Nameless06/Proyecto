@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Paciente - R.A.S.A</title>
+    <title>Alta de Paciente - Recepción R.A.S.A</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- NAVBAR IGUAL A LA IMAGEN -->
-    <nav class="barra-navegacion minimalista">
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
         <div class="marca">
             <i class="fa-solid fa-hospital-user icono-marca"></i>
             <div class="texto-marca">
-                <strong>Centro Médico R.A.S.A</strong>
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
             </div>
         </div>
         
         <ul class="menu-principal">
-            <li><a href="#">Recepción</a></li>
-            <li><a href="#">Citas</a></li>
-            <li><a href="doctores.html">Doctores</a></li>
-            <li class="activo"><a href="pacientes.html">Pacientes</a></li>
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li><a href="/recepcion/citas">Agenda y Citas</a></li>
+            <li class="activo"><a href="/recepcion/directorio">Directorio y Altas</a></li>
+            <li><a href="/recepcion/caja">Módulo de Caja</a></li>
         </ul>
 
         <div class="perfil-usuario">
@@ -32,88 +33,134 @@
         </div>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="contenedor-layout">
+    <!-- CONTENIDO PRINCIPAL CENTRADO -->
+    <main class="contenedor-principal">
         
-        <!-- HEADER DE PÁGINA (Migas y botón volver) -->
-        <div class="header-pagina">
-            <div class="migas-pan">
-                Recepción > Pacientes > <strong>Registrar Paciente</strong>
-            </div>
-            <a href="pacientes.html" class="btn-volver-header">
-                <i class="fa-solid fa-arrow-left"></i> <u>Volver</u>
-            </a>
-        </div>
-
-        <!-- TARJETA DEL FORMULARIO (Estilo ancho) -->
-        <div class="tarjeta-formulario-ancha">
+        <!-- Contenedor ajustado a 1000px para que el formulario respire bien -->
+        <div style="width: 100%; max-width: 1000px; margin: 40px auto 60px;">
             
-            <!-- Cabecera interna de la tarjeta -->
-            <div class="cabecera-tarjeta">
-                <h2 class="titulo-azul"><i class="fa-solid fa-user-injured"></i> Registro de Paciente</h2>
-                <span class="subtitulo-gris">Complete la información inicial para crear el expediente médico.</span>
+            <div class="migas-pan">
+                Directorio <i class="fa-solid fa-chevron-right"></i> <strong>Alta de Nuevo Paciente</strong>
             </div>
 
-            <!-- Formulario -->
-            <form action="#" method="POST">
+            <div class="header-dashboard" style="margin-bottom: 25px;">
+                <h1>Registro de Paciente</h1>
+                <p>Ingreso de datos administrativos para apertura de expediente general.</p>
+            </div>
+
+            <!-- CONTENEDOR DEL FORMULARIO -->
+            <form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Paciente registrado exitosamente. Folio generado.');">
                 
-                <div class="grid-formulario-2">
-                    
-                    <div class="grupo-campo">
-                        <label>NOMBRE COMPLETO</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-user"></i>
-                            <input type="text" placeholder="Ej. Juan Pérez García" required>
-                        </div>
+                <!-- SECCIÓN 1: DATOS PERSONALES -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion azul"><i class="fa-regular fa-id-card"></i></div>
+                    <h3>Datos Personales</h3>
+                </div>
+                
+                <div class="grid-inputs-3">
+                    <div class="grupo-input">
+                        <label>Nombre(s)</label>
+                        <input type="text" class="input-form" placeholder="Ej. Juan Carlos" required>
                     </div>
-
-                    <div class="grupo-campo">
-                        <label>TELÉFONO DE CONTACTO</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-phone"></i>
-                            <input type="tel" placeholder="Ej. 55-1234-5678" required>
-                        </div>
+                    <div class="grupo-input">
+                        <label>Apellido Paterno</label>
+                        <input type="text" class="input-form" placeholder="Pérez" required>
                     </div>
-
-                    <div class="grupo-campo">
-                        <label>CURP</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-id-card"></i>
-                            <input type="text" placeholder="18 caracteres">
-                        </div>
+                    <div class="grupo-input">
+                        <label>Apellido Materno</label>
+                        <input type="text" class="input-form" placeholder="Gómez" required>
                     </div>
-
-                    <div class="grupo-campo">
-                        <label>FECHA DE NACIMIENTO</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-calendar-day"></i>
-                            <input type="date">
-                        </div>
+                    <div class="grupo-input">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" class="input-form" required>
                     </div>
-
-                    <div class="grupo-campo">
-                        <label>TIPO DE SANGRE</label>
-                        <div class="input-con-icono">
-                            <i class="fa-solid fa-droplet"></i>
-                            <select>
-                                <option value="" disabled selected>Seleccione grupo sanguíneo</option>
-                                <option value="O+">O+</option>
-                                <option value="A+">A+</option>
-                                <option value="B+">B+</option>
-                                <option value="AB+">AB+</option>
-                                <option value="Desconocido">Desconocido</option>
-                            </select>
-                        </div>
+                    <div class="grupo-input">
+                        <label>Género</label>
+                        <select class="input-form" required>
+                            <option value="" disabled selected>Seleccione</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="O">Otro</option>
+                        </select>
                     </div>
-
+                    <div class="grupo-input">
+                        <label>Estado Civil</label>
+                        <select class="input-form">
+                            <option value="soltero">Soltero/a</option>
+                            <option value="casado">Casado/a</option>
+                            <option value="divorciado">Divorciado/a</option>
+                            <option value="viudo">Viudo/a</option>
+                        </select>
+                    </div>
                 </div>
 
-                <hr class="linea-divisora">
+                <div class="divisor-ligero"></div>
 
-                <!-- Botones finales (Alineados a la derecha como en la foto) -->
-                <div class="fila-botones-form">
-                    <button type="reset" class="btn-limpiar">Limpiar Formulario</button>
-                    <button type="submit" class="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar Paciente</button>
+                <!-- SECCIÓN 2: CONTACTO Y DOMICILIO -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion naranja"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3>Contacto y Domicilio</h3>
+                </div>
+
+                <div class="grid-inputs-2">
+                    <div class="grupo-input">
+                        <label>Teléfono Móvil</label>
+                        <input type="tel" class="input-form" placeholder="10 dígitos" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Correo Electrónico</label>
+                        <input type="email" class="input-form" placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="grupo-input ancho-completo">
+                        <label>Dirección Completa (Calle, Número, Colonia)</label>
+                        <input type="text" class="input-form" placeholder="Ej. Av. Insurgentes Sur 123, Col. Roma" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Código Postal</label>
+                        <input type="text" class="input-form" placeholder="Ej. 06700" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Ciudad / Municipio</label>
+                        <input type="text" class="input-form" placeholder="Ej. Cuauhtémoc" required>
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN 3: CONTACTO DE EMERGENCIA -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion rojo"><i class="fa-solid fa-truck-medical"></i></div>
+                    <h3>En Caso de Emergencia</h3>
+                </div>
+
+                <div class="grid-inputs-3">
+                    <div class="grupo-input ancho-completo-grid-3">
+                        <label>Nombre del Contacto</label>
+                        <input type="text" class="input-form" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Parentesco</label>
+                        <select class="input-form" required>
+                            <option value="" disabled selected>Seleccione</option>
+                            <option value="padres">Padre / Madre</option>
+                            <option value="conyuge">Cónyuge</option>
+                            <option value="hijos">Hijo / Hija</option>
+                            <option value="hermanos">Hermano / Hermana</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Teléfono de Emergencia</label>
+                        <input type="tel" class="input-form" placeholder="10 dígitos" required>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE BOTONES -->
+                <div class="acciones-formulario">
+                    <button type="button" class="btn-cancelar" onclick="window.history.back();">Cancelar</button>
+                    <button type="submit" class="btn-accion-principal">
+                        <i class="fa-solid fa-user-check"></i> Registrar Paciente
+                    </button>
                 </div>
 
             </form>

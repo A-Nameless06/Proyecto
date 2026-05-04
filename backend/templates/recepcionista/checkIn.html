@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in de Paciente - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR MINIMALISTA -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        <ul class="menu-principal">
+            <li><a href="recepcion.html">Inicio</a></li>
+            <li class="activo"><a href="agendaCitas.html">Agenda</a></li>
+            <li><a href="horarios.html">Horarios</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+        </ul>
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        <div style="width: 100%; max-width: 900px; margin: 40px auto 60px;">
+            
+            <div class="migas-pan">
+                Agenda <i class="fa-solid fa-chevron-right"></i> <strong>Check-in de Entrada</strong>
+            </div>
+
+            <header class="header-dashboard" style="margin-bottom: 25px;">
+                <h1>Registro de Signos y Somatometría</h1>
+                <p>Al guardar, el paciente será movido automáticamente a la lista de espera del doctor.</p>
+            </header>
+
+            <form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Datos registrados. Paciente enviado a Sala de Espera.'); window.location.href='agendaCitas.html';">
+                
+                <!-- INFORMACIÓN DE LA CITA -->
+                <div class="cita-hoy-banner" style="margin-bottom: 30px; padding: 15px 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="icono-seccion azul" style="margin: 0;"><i class="fa-solid fa-user-clock"></i></div>
+                        <div>
+                            <strong style="font-size: 1.1rem; color: var(--texto-oscuro);">Juan Pérez Gómez</strong>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--texto-gris);">Cita: 08:00 AM | Dr. Roberto Sánchez (Cardiología)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN: SIGNOS VITALES -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion azul"><i class="fa-solid fa-weight-scale"></i></div>
+                    <h3>Somatometría Básica</h3>
+                </div>
+
+                <div class="grid-inputs-3">
+                    <div class="grupo-input">
+                        <label>Peso (kg)</label>
+                        <input type="number" step="0.1" class="input-form" placeholder="0.0" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Estatura (cm)</label>
+                        <input type="number" class="input-form" placeholder="0" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Temperatura (°C)</label>
+                        <input type="number" step="0.1" class="input-form" placeholder="36.5" required>
+                    </div>
+                </div>
+
+                <div class="grid-inputs-2" style="margin-top: 15px;">
+                    <div class="grupo-input">
+                        <label>Presión Arterial (mmHg)</label>
+                        <input type="text" class="input-form" placeholder="120/80">
+                    </div>
+                    <div class="grupo-input">
+                        <label>Frecuencia Cardíaca (lpm)</label>
+                        <input type="number" class="input-form" placeholder="70">
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN: MOTIVO -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion naranja"><i class="fa-solid fa-comment-medical"></i></div>
+                    <h3>Motivo de la Cita</h3>
+                </div>
+
+                <div class="grupo-input">
+                    <label>Breve descripción del síntoma o motivo (Reportado por el paciente)</label>
+                    <textarea class="input-form area-texto" placeholder="Escriba aquí el motivo principal..." required></textarea>
+                </div>
+
+                <!-- BOTONES DE ACCIÓN -->
+                <div class="acciones-formulario" style="margin-top: 30px;">
+                    <button type="button" class="btn-cancelar" onclick="window.history.back();">Regresar</button>
+                    <button type="submit" class="btn-accion-principal" style="background: var(--verde-exito);">
+                        <i class="fa-solid fa-share-from-square"></i> Finalizar Check-in
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
