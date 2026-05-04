@@ -77,7 +77,6 @@
                 <div class="grid-inputs-3">
                     <div class="grupo-input">
                         <label>Especialidad Requerida</label>
-                        <!-- Agregamos el ID para que el script sepa cuándo cambia -->
                         <select class="input-form" id="especialidadSelect" required>
                             <option value="" disabled selected>Seleccione la especialidad</option>
                             <option value="cardiologia">Cardiología</option>
@@ -95,12 +94,9 @@
                     
                     <div class="grupo-input">
                         <label>Médico Disponible</label>
-                        <select class="input-form" required>
-                            <option value="" disabled selected>Seleccione al doctor</option>
-                            <option value="dr_roberto">Dr. Roberto Sánchez (Matutino)</option>
-                            <option value="dra_ana">Dra. Ana Valdez (Matutino)</option>
-                            <option value="dr_luis">Dr. Luis Torres (Vespertino)</option>
-                            <option value="dra_carmen">Dra. Carmen Ríos (Vespertino)</option>
+                        <!-- Empieza deshabilitado hasta que se elija una especialidad -->
+                        <select class="input-form" id="medicoSelect" required disabled>
+                            <option value="" disabled selected>Primero elija especialidad</option>
                         </select>
                     </div>
 
@@ -131,27 +127,9 @@
                     </div>
                     <div class="grupo-input">
                         <label>Bloques Disponibles (1 Hora)</label>
-                        <select class="input-form" required>
-                            <option value="" disabled selected>Seleccione un horario disponible</option>
-                            <optgroup label="Turno Matutino">
-                                <option value="07:00">07:00 AM - 08:00 AM (Disponible)</option>
-                                <option value="08:00">08:00 AM - 09:00 AM (Disponible)</option>
-                                <option value="10:00">10:00 AM - 11:00 AM (Disponible)</option>
-                                <option value="11:00">11:00 AM - 12:00 PM (Disponible)</option>
-                                <option value="12:00">12:00 PM - 01:00 PM (Disponible)</option>
-                                <option value="13:00">01:00 PM - 02:00 PM (Disponible)</option>
-                                <option value="14:00">02:00 PM - 03:00 PM (Disponible)</option>
-                            </optgroup>
-                            <optgroup label="Turno Vespertino">
-                                <option value="13:00">01:00 PM - 02:00 PM (Disponible)</option>
-                                <option value="14:00">02:00 PM - 03:00 PM (Disponible)</option>
-                                <option value="15:00">03:00 PM - 04:00 PM (Disponible)</option>
-                                <option value="16:00">04:00 PM - 05:00 PM (Disponible)</option>
-                                <option value="17:00">05:00 PM - 06:00 PM (Disponible)</option>
-                                <option value="18:00">06:00 PM - 07:00 PM (Disponible)</option>
-                                <option value="19:00">07:00 PM - 08:00 PM (Disponible)</option>
-                                <option value="20:00">08:00 PM - 09:00 PM (Disponible)</option>
-                            </optgroup>
+                        <!-- El select de horarios ahora es manejado dinámicamente -->
+                        <select class="input-form" id="horarioSelect" required disabled>
+                            <option value="" disabled selected>Seleccione primero al médico</option>
                         </select>
                     </div>
                 </div>
@@ -169,51 +147,186 @@
         </div>
     </main>
 
-    <!-- SCRIPT MULTIFUNCIÓN (FECHAS Y PRECIOS) -->
-    <!-- SCRIPT MULTIFUNCIÓN (FECHAS Y PRECIOS REVISADO) -->
+    <!-- SCRIPT MULTIFUNCIÓN -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            
             /* =========================================
-               1. LÓGICA DE PRECIOS POR ESPECIALIDAD
+               1. DICCIONARIO DE DOCTORES POR ESPECIALIDAD (CON TURNOS)
+               ========================================= */
+            const doctoresPorEspecialidad = {
+                'cardiologia': [
+                    { id: 'dr_roberto_sanchez', nombre: 'Dr. Roberto Sánchez (Matutino)', turno: 'matutino' },
+                    { id: 'dra_ana_valdez', nombre: 'Dra. Ana Valdez (Matutino)', turno: 'matutino' },
+                    { id: 'dr_luis_torres', nombre: 'Dr. Luis Torres (Vespertino)', turno: 'vespertino' },
+                    { id: 'dra_carmen_rios', nombre: 'Dra. Carmen Ríos (Vespertino)', turno: 'vespertino' }
+                ],
+                'dermatologia': [
+                    { id: 'dra_laura_gomez', nombre: 'Dra. Laura Gómez (Matutino)', turno: 'matutino' },
+                    { id: 'dr_pedro_ruiz', nombre: 'Dr. Pedro Ruiz (Matutino)', turno: 'matutino' },
+                    { id: 'dra_elena_paz', nombre: 'Dra. Elena Paz (Vespertino)', turno: 'vespertino' },
+                    { id: 'dr_diego_silva', nombre: 'Dr. Diego Silva (Vespertino)', turno: 'vespertino' }
+                ],
+                'ginecologia': [
+                    { id: 'dra_patricia_luna', nombre: 'Dra. Patricia Luna (Matutino)', turno: 'matutino' },
+                    { id: 'dra_mariana_castro', nombre: 'Dra. Mariana Castro (Matutino)', turno: 'matutino' },
+                    { id: 'dra_silvia_pinal', nombre: 'Dra. Silvia Pinal (Vespertino)', turno: 'vespertino' },
+                    { id: 'dra_blanca_diaz', nombre: 'Dra. Blanca Díaz (Vespertino)', turno: 'vespertino' }
+                ],
+                'medicina_general': [
+                    { id: 'dr_carlos_rivera', nombre: 'Dr. Carlos Rivera (Matutino)', turno: 'matutino' },
+                    { id: 'dr_hugo_montes', nombre: 'Dr. Hugo Montes (Matutino)', turno: 'matutino' },
+                    { id: 'dra_rosa_lima', nombre: 'Dra. Rosa Lima (Vespertino)', turno: 'vespertino' },
+                    { id: 'dr_tomas_herrera', nombre: 'Dr. Tomás Herrera (Vespertino)', turno: 'vespertino' }
+                ],
+                'nefrologia': [
+                    { id: 'dr_sergio_pena', nombre: 'Dr. Sergio Peña (Matutino)', turno: 'matutino' },
+                    { id: 'dra_ines_cruz', nombre: 'Dra. Inés Cruz (Matutino)', turno: 'matutino' },
+                    { id: 'dr_fernando_rey', nombre: 'Dr. Fernando Rey (Vespertino)', turno: 'vespertino' },
+                    { id: 'dra_alicia_cano', nombre: 'Dra. Alicia Cano (Vespertino)', turno: 'vespertino' }
+                ],
+                'nutriologia': [
+                    { id: 'lic_daniela_solis', nombre: 'Lic. Daniela Solís (Matutino)', turno: 'matutino' },
+                    { id: 'lic_jorge_vaca', nombre: 'Lic. Jorge Vaca (Matutino)', turno: 'matutino' },
+                    { id: 'lic_monica_gil', nombre: 'Lic. Mónica Gil (Vespertino)', turno: 'vespertino' },
+                    { id: 'lic_ramon_ortiz', nombre: 'Lic. Ramón Ortiz (Vespertino)', turno: 'vespertino' }
+                ],
+                'oftalmologia': [
+                    { id: 'dr_miguel_rey', nombre: 'Dr. Miguel Ángel Rey (Matutino)', turno: 'matutino' },
+                    { id: 'dra_sara_pinto', nombre: 'Dra. Sara Pinto (Matutino)', turno: 'matutino' },
+                    { id: 'dr_omar_rios', nombre: 'Dr. Omar Ríos (Vespertino)', turno: 'vespertino' },
+                    { id: 'dra_diana_mora', nombre: 'Dra. Diana Mora (Vespertino)', turno: 'vespertino' }
+                ],
+                'oncologia': [
+                    { id: 'dra_sofia_torres', nombre: 'Dra. Sofía Torres (Matutino)', turno: 'matutino' },
+                    { id: 'dr_andres_vega', nombre: 'Dr. Andrés Vega (Matutino)', turno: 'matutino' },
+                    { id: 'dra_beatriz_sol', nombre: 'Dra. Beatriz Sol (Vespertino)', turno: 'vespertino' },
+                    { id: 'dr_victor_rivas', nombre: 'Dr. Víctor Rivas (Vespertino)', turno: 'vespertino' }
+                ],
+                'ortopedia': [
+                    { id: 'dr_fernando_soto', nombre: 'Dr. Fernando Soto (Matutino)', turno: 'matutino' },
+                    { id: 'dr_julio_blanco', nombre: 'Dr. Julio Blanco (Matutino)', turno: 'matutino' },
+                    { id: 'dra_teresa_cota', nombre: 'Dra. Teresa Cota (Vespertino)', turno: 'vespertino' },
+                    { id: 'dr_raul_parra', nombre: 'Dr. Raúl Parra (Vespertino)', turno: 'vespertino' }
+                ],
+                'pediatria': [
+                    { id: 'dra_mariana_casos', nombre: 'Dra. Mariana Casos (Matutino)', turno: 'matutino' },
+                    { id: 'dr_javier_pena', nombre: 'Dr. Javier Peña (Matutino)', turno: 'matutino' },
+                    { id: 'dra_lourdes_ruiz', nombre: 'Dra. Lourdes Ruiz (Vespertino)', turno: 'vespertino' },
+                    { id: 'dr_esteban_flores', nombre: 'Dr. Esteban Flores (Vespertino)', turno: 'vespertino' }
+                ]
+            };
+
+            /* =========================================
+               2. LÓGICA DE PRECIOS Y FILTRADO DE DOCTORES
                ========================================= */
             const preciosPorEspecialidad = {
-                'cardiologia': 1200,
-                'dermatologia': 1000,
-                'ginecologia': 1100,
-                'medicina_general': 500,
-                'nefrologia': 1300,
-                'nutriologia': 800,
-                'oftalmologia': 1000,
-                'oncologia': 1500,
-                'ortopedia': 1100,
-                'pediatria': 900
+                'cardiologia': 1500,
+                'dermatologia': 1300,
+                'ginecologia': 800,
+                'medicina_general': 120,
+                'nefrologia': 800,
+                'nutriologia': 500,
+                'oftalmologia': 500,
+                'oncologia': 1200,
+                'ortopedia': 300,
+                'pediatria': 700
             };
 
             const especialidadSelect = document.getElementById('especialidadSelect');
+            const medicoSelect = document.getElementById('medicoSelect');
             const costoDisplay = document.getElementById('costoConsulta');
+            const horarioSelect = document.getElementById('horarioSelect');
 
             if(especialidadSelect) {
                 especialidadSelect.addEventListener('change', function(e) {
                     const especialidadSeleccionada = e.target.value;
                     const precio = preciosPorEspecialidad[especialidadSeleccionada];
+                    const doctores = doctoresPorEspecialidad[especialidadSeleccionada];
                     
+                    // Actualizar Precio
                     if(precio) {
                         costoDisplay.textContent = `$${precio.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN`;
                     } else {
                         costoDisplay.textContent = '---';
                     }
+
+                    // Actualizar Lista de Doctores
+                    medicoSelect.innerHTML = '<option value="" disabled selected>Seleccione al doctor</option>';
+                    horarioSelect.innerHTML = '<option value="" disabled selected>Seleccione primero al médico</option>';
+                    horarioSelect.disabled = true;
+                    
+                    if(doctores) {
+                        doctores.forEach(doc => {
+                            const option = document.createElement('option');
+                            option.value = doc.id;
+                            option.textContent = doc.nombre;
+                            option.dataset.turno = doc.turno; // Guardamos el turno en la opción
+                            medicoSelect.appendChild(option);
+                        });
+                        medicoSelect.disabled = false; // Habilitar el select de doctores
+                    } else {
+                        medicoSelect.disabled = true; // Mantener deshabilitado si no hay doctores
+                    }
                 });
             }
 
+            // Detectar cambio de médico para generar horas
+            if(medicoSelect) {
+                medicoSelect.addEventListener('change', function() {
+                    generarHorasDinamicamente(this.options[this.selectedIndex].dataset.turno);
+                });
+            }
+
+            // Función para generar las opciones de hora dinámicamente según el turno
+            function generarHorasDinamicamente(turno) {
+                horarioSelect.innerHTML = '<option value="" disabled selected>Seleccione un horario disponible</option>';
+                
+                let horaInicio = 7;
+                let horaFin = 14; // Bloque matutino por defecto (hasta las 2:00 PM - 3:00 PM)
+
+                if (turno === 'vespertino') {
+                    horaInicio = 13; // 1:00 PM
+                    horaFin = 20;    // 8:00 PM (hasta las 9:00 PM)
+                }
+
+                // Generar las opciones
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = turno === 'matutino' ? 'Turno Matutino' : 'Turno Vespertino';
+
+                for (let hora = horaInicio; hora <= horaFin; hora++) {
+                    let ampmInicio = hora >= 12 ? 'PM' : 'AM';
+                    let ampmFin = (hora + 1) >= 12 ? 'PM' : 'AM';
+                    
+                    let horaFmtInicio = hora > 12 ? hora - 12 : hora;
+                    let horaFmtFin = (hora + 1) > 12 ? (hora + 1) - 12 : (hora + 1);
+                    
+                    // Excepción para el mediodía
+                    if (horaFmtInicio === 0) horaFmtInicio = 12;
+                    if (horaFmtFin === 0) horaFmtFin = 12;
+
+                    let textoHora = `${String(hora).padStart(2, '0')}:00`; // Valor interno (ej. "13:00")
+                    let textoVisual = `${horaFmtInicio}:00 ${ampmInicio} - ${horaFmtFin}:00 ${ampmFin} (Disponible)`;
+
+                    let option = document.createElement('option');
+                    option.value = textoHora;
+                    option.textContent = textoVisual;
+                    optgroup.appendChild(option);
+                }
+
+                horarioSelect.appendChild(optgroup);
+                horarioSelect.disabled = false;
+            }
+
             /* =========================================
-               2. REGLAS ESTRICTAS DE FECHAS (48 HRS Y 3 MESES)
+               3. REGLAS ESTRICTAS DE FECHAS (48 HRS Y 3 MESES)
                ========================================= */
             const dateInput = document.getElementById('fechaCita');
             
             if(dateInput) {
                 // REGLA: Mínimo 48 horas de anticipación
                 let minDate = new Date();
-                minDate.setDate(minDate.getDate() + 2); // Suma 2 días
+                minDate.setDate(minDate.getDate() + 3); // Suma 3 días
                 
                 // REGLA: Máximo 3 meses
                 let maxDate = new Date();
