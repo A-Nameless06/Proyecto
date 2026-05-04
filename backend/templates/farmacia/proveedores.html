@@ -53,7 +53,8 @@
                     </button>
                 </div>
                 
-                <form action="pedidoExito.html" method="GET">
+                <!-- EL FORMULARIO AHORA ES POST PARA QUE PYTHON LO RECIBA SEGURO -->
+                <form action="/farmacia/procesar_pedido" method="POST">
                     <table class="tabla-admin" id="tabla-pedidos">
                         <thead>
                             <tr>
@@ -197,11 +198,18 @@
                     </table>
 
                     <div class="contenedor-boton-centrado">
-                        <button type="submit" class="btn-primario"> <!--agregar con javaScript-->
+                        <!-- EL INPUT OCULTO DONDE VIAJARÁ EL JSON PARA PYTHON -->
+                        <input type="hidden" name="datos_pedido_json" id="datos_pedido_json">
+                        
+                        <button type="submit" class="btn-primario"> 
                             <i class="fa-solid fa-paper-plane"></i> Confirmar y Enviar Pedido
                         </button>
                     </div>
                 </form>
+
+            </div>
+        </div>
+    </main>
 
 <script>
     function filtrarTabla(tipoFiltro) {
@@ -242,7 +250,7 @@
         filas.forEach(fila => {
             const nombre = fila.cells[0].innerText;
             const inputCantidad = fila.querySelector('.input-cantidad').value;
-            const cantidad = parseInt(inputCantidad) || 0; // Aseguramos que si está vacío cuente como 0
+            const cantidad = parseInt(inputCantidad) || 0; 
             const precioStr = fila.getAttribute('data-precio');
             const precio = parseFloat(precioStr);
 
@@ -258,16 +266,17 @@
             }
         });
 
-        // ==========================================
-        // NUEVA VALIDACIÓN: Si el pedido está vacío
-        // ==========================================
+        // VALIDACIÓN: Evitar que se envíe un formulario vacío al backend
         if (pedido.length === 0) {
-            e.preventDefault(); // Esto cancela el envío a la página de éxito
+            e.preventDefault(); 
             alert("⚠️ No puedes enviar un pedido vacío. Agrega al menos un artículo con cantidad mayor a 0.");
-            return; // Detenemos la función aquí
+            return; 
         }
 
-        // Si todo está bien, guardamos en memoria y el formulario sigue su camino natural
+        // SE INYECTA EL JSON AL INPUT OCULTO PARA PYTHON
+        document.getElementById('datos_pedido_json').value = JSON.stringify(pedido);
+
+        // Opcional: Se queda guardado en localStorage por si otra vista JS lo ocupa
         localStorage.setItem('ultimoPedido', JSON.stringify(pedido));
     });
 </script>
