@@ -11,7 +11,7 @@ from routes.recepcionista import recepcion_bp
 from routes.soporte import soporte_bp
 from routes.farmacia import farmacia_bp
 from routes.ajustes import ajuste_bp
-
+from routes.cancelacion import cancelacion_bp
 
 def create_app():
     app = Flask(__name__)
@@ -28,6 +28,7 @@ def create_app():
     app.register_blueprint(soporte_bp)
     app.register_blueprint(farmacia_bp)
     app.register_blueprint(ajuste_bp)
+    app.register_blueprint(cancelacion_bp)
 
     @app.route("/")
     def index():

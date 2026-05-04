@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles de la Cita - Centro Médico R.A.S.A</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
 </head>
 <body>
 
@@ -71,7 +72,7 @@
                             <i class="fa-regular fa-clock"></i>
                             <div>
                                 <span class="etiqueta-dato">HORARIO</span>
-                                <p class="valor-dato">10:30 AM <span class="duracion-cita">(45 min)</span></p>
+                                <p class="valor-dato">10:00 AM <span class="duracion-cita">(45 min)</span></p>
                             </div>
                         </div>
                         <div class="bloque-detalle">
@@ -88,7 +89,7 @@
                     <div class="fila-paciente-pago">
                         <div>
                             <span class="etiqueta-dato">PACIENTE</span>
-                            <p class="valor-dato" style="font-size: 1rem;">Juan Pérez (ID: P-99824021)</p>
+                            <p class="valor-dato" style="font-size: 1rem;">Juan Pérez</p>
                         </div>
                         <div style="text-align: right;">
                             <span class="etiqueta-dato">ESTADO DE PAGO</span>
@@ -109,11 +110,11 @@
             </div>
 
             <div class="acciones-detalle-cita">
-                <a href="citasPaciente.html" class="btn-contorno"><i class="fa-solid fa-arrow-left"></i> Volver a Citas</a>
+                <a href="/paciente/citas" class="btn-contorno"><i class="fa-solid fa-arrow-left"></i> Volver a Citas</a>
                 
                 <div class="botones-derecha">
-                    <a href="comprobanteCita.html" class="btn-contorno"><i class="fa-solid fa-file-pdf"></i> Ver Recibo</a>
-                    <a href="cancelarCita.html" class="btn-peligro-contorno">Cancelar Cita</a>
+                    <a href="/paciente/comprobante" class="btn-contorno"><i class="fa-solid fa-file-pdf"></i> Ver Recibo</a>
+                    <a href="/cancelacion" class="btn-peligro-contorno">Cancelar Cita</a>
                 </div>
             </div>
 

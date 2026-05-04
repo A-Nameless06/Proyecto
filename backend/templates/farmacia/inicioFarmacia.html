@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/farmacia.css') }}">
     
 </head>
 <body>
@@ -21,7 +22,7 @@
         
     <nav class="navegacion-principal">
 
-        <a href="inicioFarmacia.html" class="item-menu activo">
+        <a href="/dashboard" class="item-menu activo">
             <i class="fa-solid fa-user-nurse"></i> Inicio
         </a>
 
@@ -29,7 +30,7 @@
             <i class="fa-solid fa-file-prescription"></i> Validación Recetas
         </a>
 
-        <a href="venta.html" class="item-menu">
+        <a href="/farmacia/ventas" class="item-menu">
             <i class="fa-solid fa-truck"></i> Venta
         </a>
 
@@ -37,14 +38,14 @@
             <i class="fa-solid fa-clock-rotate-left"></i> Historial    
         </a>
 
-        <a href="proveedores.html" class="item-menu">
+        <a href="/farmacia/proveedores" class="item-menu">
             <i class="fa-solid fa-truck-ramp-box"></i> Proveedores
         </a>
             
         <div class="separador"></div>
-            
+            <!--quitar este a-->
         <a href="/ajustes" class="item-menu">
-            <i class="fa-solid fa-gear"></i> Configuración
+            <i class="fa-solid fa-gear"></i> Configuración 
         </a>
     </nav>
 
@@ -53,7 +54,7 @@
             <strong>Elena Rivas</strong>
             <span>Farmacéutico</span>
         </div>
-        <button class="btn-cerrar">
+        <button class="btn-cerrar" onclick="cerrarSesion()">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
     </div>
@@ -153,6 +154,6 @@
 
         </div>
     </main>
-
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>

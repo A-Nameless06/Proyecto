@@ -13,5 +13,23 @@ def farmaciaValidacion():
 @farmacia_bp.route("/historialVentas")
 @login_requerido
 @rol_requerido("Farmaceutico")
-def farmaciaVentas():
+def farmaciaHistorialVentas():
     return render_template("farmacia/historial.html")
+
+@farmacia_bp.route("/ventas")
+@login_requerido
+@rol_requerido("Farmaceutico")
+def farmaciaVender():
+    return render_template("farmacia/venta.html")
+
+@farmacia_bp.route("/proveedores")
+@login_requerido
+@rol_requerido("Farmaceutico")
+def proveedores():
+    return render_template("farmacia/proveedores.html")
+
+@farmacia_bp.route("/exito")
+@login_requerido
+@rol_requerido("Farmaceutico")
+def pedidoExitoso():
+    return render_template("farmacia/pedidoExito.html")

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/farmacia.css') }}">
 </head>
 <body>
 
@@ -19,9 +20,9 @@
         <ul class="menu-principal">
             <li><a href="inicioFarmacia.html">Inicio</a></li>
             <li><a href="/farmacia/validacion">Validar Receta</a></li>
-            <li><a href="venta.html">Venta</a></li>
-            <li><a href="historial.html">Historial</a></li>
-            <li class="activo"><a href="proveedores.html">Proveedores</a></li>
+            <li><a href="/farmacia/ventas">Venta</a></li>
+            <li><a href="/farmacia/historialVentas">Historial</a></li>
+            <li class="activo"><a href="/farmacia/proveedores">Proveedores</a></li>
         </ul>
 
         <div class="perfil-usuario">

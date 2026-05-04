@@ -33,3 +33,9 @@ def laboratorio():
 @rol_requerido("Doctor")
 def crearReceta():
     return render_template("doctor/recetasDoctor.html")
+
+@doctor_bp.route("/perfil")
+@login_requerido
+@rol_requerido("Doctor")
+def perfil():
+    return render_template("doctor/perfilDoctor.html")

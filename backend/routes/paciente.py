@@ -30,3 +30,14 @@ def citas():
 def perfil():
     return render_template("paciente/perfilPaciente.html")
 
+@paciente_bp.route("/comprobante")
+@login_requerido
+@rol_requerido("Paciente")
+def comprobante():
+    return render_template("paciente/comprobanteCita.html")
+
+@paciente_bp.route("/detalles")
+@login_requerido
+@rol_requerido("Paciente")
+def detalles_citas():
+    return render_template("paciente/detallesCita.html")
