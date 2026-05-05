@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Médico - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li><a href="agendaCitas.html">Agenda y Citas</a></li>
+            <li><a href="directorioMedico.html">Directorio y Altas</a></li>
+            <li class="activo"><a href="mapaConsultorios.html">Consultorios</a></li>
+            <li><a href="/recepcion/caja">Módulo de Caja</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL CENTRADO -->
+    <main class="contenedor-principal">
+        
+        <div style="width: 100%; max-width: 1100px; margin: 40px auto 60px;">
+            
+            <div class="migas-pan">
+                Directorio <i class="fa-solid fa-chevron-right"></i> Consultorios <i class="fa-solid fa-chevron-right"></i> <strong>Perfil Médico</strong>
+            </div>
+
+            <div class="header-dashboard" style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h1>Ficha Administrativa del Médico</h1>
+                    <p>Vista de recepción (Acceso clínico y expedientes bloqueados por seguridad).</p>
+                </div>
+                <button class="btn-cancelar" onclick="window.history.back();"><i class="fa-solid fa-arrow-left"></i> Volver al Mapa</button>
+            </div>
+
+            <!-- LAYOUT A DOS COLUMNAS -->
+            <div class="grid-perfil">
+                
+                <!-- COLUMNA IZQUIERDA: GAFETE / CONTACTO -->
+                <aside class="tarjeta-base tarjeta-perfil-lateral">
+                    <div class="avatar-grande">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h2 class="nombre-doctor-perfil">Dr. Roberto Sánchez</h2>
+                    <span class="especialidad-badge"><i class="fa-solid fa-heart-pulse"></i> Cardiología</span>
+                    
+                    <div class="status-actual">
+                        <span class="status-badge en-servicio" style="font-size: 0.8rem;">EN SERVICIO ACTUALMENTE</span>
+                    </div>
+
+                    <div class="divisor-ligero" style="margin: 20px 0;"></div>
+
+                    <ul class="info-contacto-lista">
+                        <li>
+                            <div class="icono-lista"><i class="fa-solid fa-door-open"></i></div>
+                            <div class="textos-lista">
+                                <span>Ubicación Asignada</span>
+                                <strong>Consultorio 101 (Ala Norte)</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icono-lista"><i class="fa-solid fa-phone"></i></div>
+                            <div class="textos-lista">
+                                <span>Teléfono Interno / Extensión</span>
+                                <strong>Ext. 1010</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icono-lista"><i class="fa-regular fa-envelope"></i></div>
+                            <div class="textos-lista">
+                                <span>Correo Institucional</span>
+                                <strong>r.sanchez@rasa-med.com</strong>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- COLUMNA DERECHA: HORARIOS Y ACCIONES -->
+                <section class="contenido-perfil-principal">
+                    
+                    <!-- BLOQUE DE ACCIONES RÁPIDAS -->
+                    <div class="tarjeta-base" style="margin-bottom: 25px;">
+                        <div class="cabecera-seccion-form" style="margin-bottom: 15px;">
+                            <div class="icono-seccion azul"><i class="fa-solid fa-bolt"></i></div>
+                            <h3 style="margin: 0; font-size: 1.1rem;">Acciones Rápidas de Recepción</h3>
+                        </div>
+                        <div style="display: flex; gap: 15px;">
+                            
+                            <a href="agendaCitas.html" class="btn-accion-principal" style="flex: 1; text-align: center; text-decoration: none;">
+                                <i class="fa-regular fa-calendar-check"></i> Ver su Agenda del Día
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE DE HORARIOS -->
+                    <div class="tarjeta-base">
+                        <div class="cabecera-seccion-form" style="margin-bottom: 20px;">
+                            <div class="icono-seccion naranja"><i class="fa-regular fa-clock"></i></div>
+                            <h3 style="margin: 0; font-size: 1.1rem;">Esquema de Trabajo</h3>
+                        </div>
+
+                        <div class="grid-inputs-2" style="margin-bottom: 20px;">
+                            <div class="grupo-input">
+                                <label>Turno Asignado</label>
+                                <div class="input-form bloque-solo-lectura-mini">Matutino</div>
+                            </div>
+                            <div class="grupo-input">
+                                <label>Días Laborables</label>
+                                <div class="input-form bloque-solo-lectura-mini">Lunes a Viernes</div>
+                            </div>
+                        </div>
+
+                        <label>Bloques de Horario de Consulta (1 Hora)</label>
+                        <div class="cuadricula-horarios">
+                            <div class="bloque-hora">07:00 AM - 08:00 AM</div>
+                            <div class="bloque-hora">08:00 AM - 09:00 AM</div>
+                            <div class="bloque-hora">09:00 AM - 10:00 AM</div>
+                            <div class="bloque-hora">10:00 AM - 11:00 AM</div>
+                            <div class="bloque-hora">11:00 AM - 12:00 PM</div>
+                            <div class="bloque-hora">12:00 PM - 01:00 PM</div>
+                            <div class="bloque-hora">01:00 PM - 02:00 PM</div>
+                            <div class="bloque-hora">02:00 PM - 03:00 PM</div>
+                        </div>
+                    </div>
+
+                    <!-- RESTRICCIÓN DE SEGURIDAD -->
+                    <div class="alerta-politica-roja" style="margin-top: 25px; background-color: #f8fafc; border-left-color: #64748b;">
+                        <i class="fa-solid fa-lock" style="color: #64748b;"></i>
+                        <div>
+                            <strong style="color: #334155;">Área Clínica Bloqueada</strong>
+                            <p style="color: #475569;">El acceso al historial de recetas, expedientes médicos y notas de evolución de este doctor está restringido únicamente a su cuenta personal y a la Dirección Médica.</p>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

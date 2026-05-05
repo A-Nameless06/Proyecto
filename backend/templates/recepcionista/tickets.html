@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de Caja - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR MINIMALISTA -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        <ul class="menu-principal">
+            <li><a href="recepcion.html">Inicio</a></li>
+            <li><a href="agendaCitas.html">Agenda</a></li>
+            <li><a href="horarios.html">Horarios</a></li>
+            <li class="activo"><a href="caja.html">Módulo de Caja</a></li>
+        </ul>
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        <div style="width: 100%; max-width: 1100px; margin: 40px auto 60px;">
+            
+            <div class="migas-pan">Recepción > <strong>Cobranza y Tickets</strong></div>
+
+            <div class="grid-perfil">
+                
+                <!-- COLUMNA IZQUIERDA: BUSCADOR Y PAGO -->
+                <section>
+                    <div class="tarjeta-base" style="margin-bottom: 25px;">
+                        <div class="cabecera-seccion-form">
+                            <div class="icono-seccion azul"><i class="fa-solid fa-magnifying-glass-dollar"></i></div>
+                            <h3>Buscar Cita para Cobro</h3>
+                        </div>
+                        <div class="grupo-input">
+                            <label>Ingrese Folio de Cita o Nombre del Paciente</label>
+                            <div class="input-compuesto">
+                                <input type="text" class="input-form" placeholder="Ej. CIT-8829 o Juan Pérez...">
+                                <button class="btn-accion-principal">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-base">
+                        <div class="cabecera-seccion-form">
+                            <div class="icono-seccion verde"><i class="fa-solid fa-credit-card"></i></div>
+                            <h3>Método de Pago</h3>
+                        </div>
+                        <div class="grid-metodos-pago">
+                            <label class="metodo-pago-item">
+                                <input type="radio" name="pago" checked>
+                                <div class="pago-content"><i class="fa-solid fa-money-bill-wave"></i><span>Efectivo</span></div>
+                            </label>
+                            <label class="metodo-pago-item">
+                                <input type="radio" name="pago">
+                                <div class="pago-content"><i class="fa-solid fa-credit-card"></i><span>Tarjeta</span></div>
+                            </label>
+                            <label class="metodo-pago-item">
+                                <input type="radio" name="pago">
+                                <div class="pago-content"><i class="fa-solid fa-building-columns"></i><span>Transferencia</span></div>
+                            </label>
+                        </div>
+
+                        <div class="divisor-ligero" style="margin: 25px 0;"></div>
+
+                        <div class="resumen-cobro">
+                            <div class="fila-resumen"><span>Subtotal:</span><strong>$1,200.00</strong></div>
+                            <div class="fila-resumen"><span>IVA (16%):</span><strong>$192.00</strong></div>
+                            <div class="fila-resumen total"><span>TOTAL A COBRAR:</span><strong>$1,392.00</strong></div>
+                        </div>
+
+                        <button class="btn-accion-principal btn-block" style="background: var(--verde-exito); margin-top: 20px; width: 100%;" onclick="alert('Pago Procesado con Éxito. Generando Ticket...');">
+                            <i class="fa-solid fa-print"></i> Procesar Pago e Imprimir Ticket
+                        </button>
+                    </div>
+                </section>
+
+                <!-- COLUMNA DERECHA: VISTA PREVIA DEL TICKET -->
+                <aside class="contenedor-ticket-preview">
+                    <div class="ticket-fisico">
+                        <div class="ticket-header">
+                            <i class="fa-solid fa-hospital-user"></i>
+                            <h4>CENTRO MÉDICO R.A.S.A</h4>
+                            <p>Av. Politécnico Nacional No. 123<br>CDMX, México</p>
+                        </div>
+                        
+                        <div class="ticket-info">
+                            <p><strong>FECHA:</strong> 04/05/2026</p>
+                            <p><strong>FOLIO:</strong> CIT-8829</p>
+                            <p><strong>CAJERO:</strong> Ana Martínez</p>
+                        </div>
+
+                        <div class="ticket-divisor"></div>
+
+                        <div class="ticket-detalle">
+                            <p><strong>PACIENTE:</strong><br>Juan Pérez Gómez</p>
+                            <p><strong>SERVICIO:</strong><br>Consulta de Cardiología</p>
+                            <p><strong>MÉDICO:</strong><br>Dr. Roberto Sánchez</p>
+                        </div>
+
+                        <div class="ticket-divisor"></div>
+
+                        <div class="ticket-precios">
+                            <div class="ticket-fila"><span>CONSULTA ESP.</span><span>$1,200.00</span></div>
+                            <div class="ticket-fila"><span>IVA 16%</span><span>$192.00</span></div>
+                            <div class="ticket-fila total"><span>TOTAL</span><span>$1,392.00</span></div>
+                        </div>
+
+                        <div class="ticket-footer">
+                            <p>¡Gracias por su confianza!<br>Conserve este ticket para cualquier aclaración.</p>
+                            <div class="barcode">|||| || ||||| ||| | ||</div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -4,73 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Centro Médico R.A.S.A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-<div class="contenedor-principal">
-    <div class="tarjeta-login">
-
-        <h1>Crear cuenta</h1>
-        <p class="subtitulo">Completa los datos para registrarte</p>
-
-        <form method="POST" action="/auth/registro">
-
-            <div class="grupo-entrada">
-                <label>Nombre completo</label>
-                <input
-                    type="text"
-                    class="campo-texto"
-                    name="nombre"
-                    required>
+    <div class="contenedor-principal">
+        <div class="tarjeta-login">
+            
+            <div class="icono-encabezado">
+                <i class="fa-solid fa-user-plus"></i>
             </div>
 
-            <div class="grupo-entrada">
-                <label>Correo electrónico</label>
-                <input
-                    type="email"
-                    class="campo-texto"
-                    name="usuario"
-                    required>
-            </div>
+            <h1>Crear cuenta</h1>
+            <p class="subtitulo">Completa tus datos personales para registrarte</p>
 
-            <div class="grupo-entrada">
-                <label>Contraseña</label>
-                <input
-                    type="password"
-                    id="campoPassword"
-                    class="campo-texto"
-                    name="password"
-                    placeholder="********"
-                    required>
-                <i class="fa-solid fa-eye icono-ojo" id="iconoAlternar"></i>
-            </div>
+            <form method="POST" action="/auth/registro">
 
-            <div class="grupo-entrada">
-                <label>Rol</label>
-                <select class="selector-rol" name="rol" required>
-                    <option value="Paciente">Paciente</option>
-                </select>
-            </div>
+                <!-- Campo oculto para mandar el rol al backend sin que el usuario lo vea -->
+                <input type="hidden" name="rol" value="Paciente">
 
-            <button type="submit" class="boton-ingresar">
-                Registrarse
-            </button>
-        </form>
+                <!-- Campo Nombre -->
+                <div class="grupo-entrada">
+                    <label>
+                        <i class="fa-solid fa-user"></i> Nombre completo
+                    </label>
+                    <input
+                        type="text"
+                        class="campo-texto"
+                        name="nombre"
+                        placeholder="ej. Juan Pérez"
+                        required>
+                </div>
 
-        {% if error %}
-            <p style="color:red;">{{ error }}</p>
-        {% endif %}
+                <!-- Campo Correo -->
+                <div class="grupo-entrada">
+                    <label>
+                        <i class="fa-solid fa-envelope"></i> Correo electrónico
+                    </label>
+                    <input
+                        type="email"
+                        class="campo-texto"
+                        name="usuario"
+                        placeholder="ej. j.perez@gmail.com"
+                        required>
+                </div>
 
-        <p class="enlace-registro">
-            ¿Ya tienes cuenta? <a href="/auth/login">Iniciar sesión</a>
-        </p>
+                <!-- Campo Contraseña -->
+                <div class="grupo-entrada">
+                    <label>
+                        <i class="fa-solid fa-key"></i> Contraseña
+                    </label>
+                    <div class="contenedor-password">
+                        <input
+                            type="password"
+                            id="campoPassword"
+                            class="campo-texto"
+                            name="password"
+                            placeholder="********"
+                            required>
+                        <i class="fa-solid fa-eye icono-ojo" id="btnAlternarPassword"></i>
+                    </div>
+                </div>
+
+                <br>
+                <button type="submit" class="boton-ingresar">
+                    Registrarse <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <!-- Mensaje de Error estandarizado -->
+            {% if error %}
+                <p class="mensaje-error" style="color: #dc3545; font-size: 13px; font-weight: 500; margin-top: 15px;">
+                    <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+                </p>
+            {% endif %}
+
+            <p class="enlace-registro">
+                ¿Ya tienes cuenta? <a href="/auth/login">Iniciar sesión</a>
+            </p>
+        </div>
+
+        <div class="pie-seguridad" style="text-align: center; margin-top: 20px; font-size: 11px; color: #6c757d; font-weight: 600; letter-spacing: 1px;">
+            <i class="fa-solid fa-shield-halved" style="color: #007bff; margin-right: 5px;"></i>
+            ENCRIPTACIÓN SEGURA DE GRADO MÉDICO
+        </div>
     </div>
-    <div class="pie-seguridad">
-        <i class="fa-solid fa-shield-halved"></i>
-        ENCRIPTACIÓN SEGURA DE GRADO MÉDICO
-    </div>
-</div>
 
+    <!-- Script para alternar la visibilidad de la contraseña -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const campoPassword = document.getElementById('campoPassword');
+            const btnAlternar = document.getElementById('btnAlternarPassword');
+
+            if (btnAlternar && campoPassword) {
+                btnAlternar.addEventListener('click', function() {
+                    if (campoPassword.type === 'password') {
+                        campoPassword.type = 'text';
+                        btnAlternar.classList.remove('fa-eye');
+                        btnAlternar.classList.add('fa-eye-slash');
+                    } else {
+                        campoPassword.type = 'password';
+                        btnAlternar.classList.remove('fa-eye-slash');
+                        btnAlternar.classList.add('fa-eye');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

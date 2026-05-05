@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Consultorios - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li><a href="/recepcion/citas">Agenda y Citas</a></li>
+            <li><a href="/recepcion/directorio">Directorio y Altas</a></li>
+            <li class="activo"><a href="/recepcion/consultorios">Consultorios</a></li>
+            <li><a href="/recepcion/caja">Módulo de Caja</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        <div class="area-trabajo-directorio">
+            
+            <div class="migas-pan">
+                Recepción <i class="fa-solid fa-chevron-right"></i> <strong>Mapa de Consultorios y Asignaciones</strong>
+            </div>
+
+            <header class="cabecera-directorio">
+                <div class="textos-cabecera">
+                    <h1 class="titulo-seccion">Directorio de Consultorios</h1>
+                    <p class="subtitulo-seccion">Ubicación física asignada a cada especialista médico. Haz clic en un consultorio para ver el perfil del doctor.</p>
+                </div>
+                <div class="acciones-directorio">
+                    <div class="input-busqueda-con-icono">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="input-form" placeholder="Buscar por doctor o consultorio...">
+                    </div>
+                </div>
+            </header>
+
+            <section class="contenedor-especialidades">
+                
+                <!-- 1. CARDIOLOGÍA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-heart-pulse"></i> Cardiología (Ala Norte - Piso 1)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>101</strong></div><div class="info-consultorio"><strong>Dr. Roberto Sánchez</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>102</strong></div><div class="info-consultorio"><strong>Dra. Ana Valdez</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>103</strong></div><div class="info-consultorio"><strong>Dr. Luis Torres</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>104</strong></div><div class="info-consultorio"><strong>Dra. Carmen Ríos</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 2. DERMATOLOGÍA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-hand-dots"></i> Dermatología (Ala Sur - Piso 2)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>201</strong></div><div class="info-consultorio"><strong>Dra. Laura Gómez</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>202</strong></div><div class="info-consultorio"><strong>Dr. Pedro Ruiz</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>203</strong></div><div class="info-consultorio"><strong>Dra. Elena Paz</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>204</strong></div><div class="info-consultorio"><strong>Dr. Diego Silva</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 3. GINECOLOGÍA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-venus"></i> Ginecología (Ala Este - Piso 3)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>301</strong></div><div class="info-consultorio"><strong>Dra. Patricia Luna</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>302</strong></div><div class="info-consultorio"><strong>Dra. Mariana Castro</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>303</strong></div><div class="info-consultorio"><strong>Dra. Silvia Pinal</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>304</strong></div><div class="info-consultorio"><strong>Dra. Blanca Díaz</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 4. MEDICINA GENERAL -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-stethoscope"></i> Medicina General (Planta Baja - Central)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #e0f2fe; color: #0284c7;"><span>Cons</span><strong>PB-1</strong></div><div class="info-consultorio"><strong>Dr. Carlos Rivera</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #e0f2fe; color: #0284c7;"><span>Cons</span><strong>PB-2</strong></div><div class="info-consultorio"><strong>Dr. Hugo Montes</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #e0f2fe; color: #0284c7;"><span>Cons</span><strong>PB-3</strong></div><div class="info-consultorio"><strong>Dra. Rosa Lima</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #e0f2fe; color: #0284c7;"><span>Cons</span><strong>PB-4</strong></div><div class="info-consultorio"><strong>Dr. Tomás Herrera</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 5. NEFROLOGÍA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-kit-medical"></i> Nefrología (Ala Oeste - Piso 4)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>401</strong></div><div class="info-consultorio"><strong>Dr. Sergio Peña</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>402</strong></div><div class="info-consultorio"><strong>Dra. Inés Cruz</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>403</strong></div><div class="info-consultorio"><strong>Dr. Fernando Rey</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>404</strong></div><div class="info-consultorio"><strong>Dra. Alicia Cano</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 6. NUTRIOLOGÍA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-apple-whole"></i> Nutriología (Ala Norte - Piso 5)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>501</strong></div><div class="info-consultorio"><strong>Lic. Daniela Solís</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>502</strong></div><div class="info-consultorio"><strong>Lic. Jorge Vaca</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>503</strong></div><div class="info-consultorio"><strong>Lic. Mónica Gil</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>504</strong></div><div class="info-consultorio"><strong>Lic. Ramón Ortiz</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 7. OFTALMOLOGÍA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-eye"></i> Oftalmología (Ala Sur - Piso 6)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>601</strong></div><div class="info-consultorio"><strong>Dr. Miguel Ángel Rey</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>602</strong></div><div class="info-consultorio"><strong>Dra. Sara Pinto</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>603</strong></div><div class="info-consultorio"><strong>Dr. Omar Ríos</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>604</strong></div><div class="info-consultorio"><strong>Dra. Diana Mora</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 8. ONCOLOGÍA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-ribbon"></i> Oncología (Ala Especial - Piso 7)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #fdf2f8; color: #db2777; border-color: #fbcfe8;"><span>Cons</span><strong>701</strong></div><div class="info-consultorio"><strong>Dra. Sofía Torres</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #fdf2f8; color: #db2777; border-color: #fbcfe8;"><span>Cons</span><strong>702</strong></div><div class="info-consultorio"><strong>Dr. Andrés Vega</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #fdf2f8; color: #db2777; border-color: #fbcfe8;"><span>Cons</span><strong>703</strong></div><div class="info-consultorio"><strong>Dra. Beatriz Sol</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #fdf2f8; color: #db2777; border-color: #fbcfe8;"><span>Cons</span><strong>704</strong></div><div class="info-consultorio"><strong>Dr. Víctor Rivas</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 9. ORTOPEDIA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-bone"></i> Ortopedia (Ala Este - Piso 8)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>801</strong></div><div class="info-consultorio"><strong>Dr. Fernando Soto</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>802</strong></div><div class="info-consultorio"><strong>Dr. Julio Blanco</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>803</strong></div><div class="info-consultorio"><strong>Dra. Teresa Cota</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero"><span>Cons</span><strong>804</strong></div><div class="info-consultorio"><strong>Dr. Raúl Parra</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 10. PEDIATRÍA -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-baby"></i> Pediatría (Ala Infantil - Piso 2)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #fef3c7; color: #d97706; border-color: #fde68a;"><span>Cons</span><strong>P-01</strong></div><div class="info-consultorio"><strong>Dra. Mariana Casos</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #fef3c7; color: #d97706; border-color: #fde68a;"><span>Cons</span><strong>P-02</strong></div><div class="info-consultorio"><strong>Dr. Javier Peña</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Matutino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #fef3c7; color: #d97706; border-color: #fde68a;"><span>Cons</span><strong>P-03</strong></div><div class="info-consultorio"><strong>Dra. Lourdes Ruiz</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio"><div class="bloque-numero" style="background: #fef3c7; color: #d97706; border-color: #fde68a;"><span>Cons</span><strong>P-04</strong></div><div class="info-consultorio"><strong>Dr. Esteban Flores</strong><p><i class="fa-solid fa-user-doctor"></i> Titular Vespertino</p></div></a>
+                    </div>
+                </div>
+
+                <!-- 11. LABORATORIO CLÍNICO -->
+                <div class="bloque-especialidad laboratorio" style="background: #eff6ff; border: 1px dashed #bfdbfe;">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-flask-vial"></i> Laboratorio Clínico (Sótano)</h3>
+                    <div class="grid-personal">
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio">
+                            <div class="bloque-numero" style="background: #dbeafe; color: #1e3a8a; border-color: #bfdbfe;"><span>Sala</span><strong>EXT-A</strong></div>
+                            <div class="info-consultorio"><strong>Q.B.P. Ricardo Lara</strong><p><i class="fa-solid fa-microscope"></i> Extracción Matutina</p></div>
+                        </a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio">
+                            <div class="bloque-numero" style="background: #dbeafe; color: #1e3a8a; border-color: #bfdbfe;"><span>Sala</span><strong>EXT-B</strong></div>
+                            <div class="info-consultorio"><strong>Téc. Irma Ruiz</strong><p><i class="fa-solid fa-microscope"></i> Extracción Matutina</p></div>
+                        </a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio">
+                            <div class="bloque-numero" style="background: #dbeafe; color: #1e3a8a; border-color: #bfdbfe;"><span>Sala</span><strong>EXT-C</strong></div>
+                            <div class="info-consultorio"><strong>Q.B.P. Oscar Meza</strong><p><i class="fa-solid fa-microscope"></i> Extracción Vespertina</p></div>
+                        </a>
+                        <a href="perfilDoctor.html" class="tarjeta-consultorio">
+                            <div class="bloque-numero" style="background: #dbeafe; color: #1e3a8a; border-color: #bfdbfe;"><span>Sala</span><strong>EXT-D</strong></div>
+                            <div class="info-consultorio"><strong>Téc. Elena Cruz</strong><p><i class="fa-solid fa-microscope"></i> Extracción Vespertina</p></div>
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>

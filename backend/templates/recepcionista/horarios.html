@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Horarios - Recepción R.A.S.A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR MINIMALISTA -->
+    <nav class="barra-navegacion minimalista sticky">
+        <div class="marca">
+            <i class="fa-solid fa-hospital-user icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Recepción</strong>
+                <strong>R.A.S.A</strong>
+            </div>
+        </div>
+        <ul class="menu-principal">
+            <li><a href="recepcion.html">Inicio</a></li>
+            <li><a href="agendaCitas.html">Agenda</a></li>
+            <li class="activo"><a href="horarios.html">Horarios</a></li>
+            <li><a href="directorioMedico.html">Doctores</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+        </ul>
+        <div class="perfil-usuario">
+            <div class="info-usuario-texto flat">
+                <span><strong>Ana Martínez</strong> | Recepción</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        <div style="width: 100%; max-width: 1200px; margin: 40px auto 60px;">
+            
+            <div class="migas-pan">Recepción > <strong>Gestión de Horarios y Turnos</strong></div>
+
+            <header class="header-dashboard" style="margin-bottom: 30px;">
+                <h1>Panel de Turnos Operativos</h1>
+                <p>Visualización de los 44 especialistas del Centro Médico R.A.S.A por bloque horario.</p>
+            </header>
+
+            <div class="grid-horarios-turnos">
+                
+                <!-- BLOQUE TURNO MATUTINO (07:00 AM - 03:00 PM) -->
+                <section class="tarjeta-base bloque-turno">
+                    <div class="header-turno matutino">
+                        <i class="fa-solid fa-sun"></i>
+                        <div>
+                            <h3>Turno Matutino</h3>
+                            <span>07:00 AM - 03:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="cuerpo-turno">
+                        <table class="tabla-simple">
+                            <thead>
+                                <tr><th>Especialidad</th><th>Médicos en Turno</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Cardiología</strong></td><td>Dr. Roberto Sánchez, Dra. Ana Valdez</td></tr>
+                                <tr><td><strong>Dermatología</strong></td><td>Dra. Laura Gómez, Dr. Pedro Ruiz</td></tr>
+                                <tr><td><strong>Ginecología</strong></td><td>Dra. Patricia Luna, Dra. Mariana Castro</td></tr>
+                                <tr><td><strong>Medicina General</strong></td><td>Dr. Carlos Rivera, Dr. Hugo Montes</td></tr>
+                                <tr><td><strong>Nefrología</strong></td><td>Dr. Sergio Peña, Dra. Inés Cruz</td></tr>
+                                <tr><td><strong>Nutriología</strong></td><td>Lic. Daniela Solís, Lic. Jorge Vaca</td></tr>
+                                <tr><td><strong>Oftalmología</strong></td><td>Dr. Miguel Ángel Rey, Dra. Sara Pinto</td></tr>
+                                <tr><td><strong>Oncología</strong></td><td>Dra. Sofía Torres, Dr. Andrés Vega</td></tr>
+                                <tr><td><strong>Ortopedia</strong></td><td>Dr. Fernando Soto, Dr. Julio Blanco</td></tr>
+                                <tr><td><strong>Pediatría</strong></td><td>Dra. Mariana Casos, Dr. Javier Peña</td></tr>
+                                <tr><td><strong>Laboratorio</strong></td><td>Q.B.P. Ricardo Lara, Téc. Irma Ruiz</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- BLOQUE TURNO VESPERTINO (01:00 PM - 09:00 PM) -->
+                <section class="tarjeta-base bloque-turno">
+                    <div class="header-turno vespertino">
+                        <i class="fa-solid fa-moon"></i>
+                        <div>
+                            <h3>Turno Vespertino</h3>
+                            <span>01:00 PM - 09:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="cuerpo-turno">
+                        <table class="tabla-simple">
+                            <thead>
+                                <tr><th>Especialidad</th><th>Médicos en Turno</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Cardiología</strong></td><td>Dr. Luis Torres, Dra. Carmen Ríos</td></tr>
+                                <tr><td><strong>Dermatología</strong></td><td>Dra. Elena Paz, Dr. Diego Silva</td></tr>
+                                <tr><td><strong>Ginecología</strong></td><td>Dra. Silvia Pinal, Dra. Blanca Díaz</td></tr>
+                                <tr><td><strong>Medicina General</strong></td><td>Dra. Rosa Lima, Dr. Tomás Herrera</td></tr>
+                                <tr><td><strong>Nefrología</strong></td><td>Dr. Fernando Rey, Dra. Alicia Cano</td></tr>
+                                <tr><td><strong>Nutriología</strong></td><td>Lic. Mónica Gil, Lic. Ramón Ortiz</td></tr>
+                                <tr><td><strong>Oftalmología</strong></td><td>Dr. Omar Ríos, Dra. Diana Mora</td></tr>
+                                <tr><td><strong>Oncología</strong></td><td>Dra. Beatriz Sol, Dr. Víctor Rivas</td></tr>
+                                <tr><td><strong>Ortopedia</strong></td><td>Dra. Teresa Cota, Dr. Raúl Parra</td></tr>
+                                <tr><td><strong>Pediatría</strong></td><td>Dra. Lourdes Ruiz, Dr. Esteban Flores</td></tr>
+                                <tr><td><strong>Laboratorio</strong></td><td>Q.B.P. Oscar Meza, Téc. Elena Cruz</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- RECORDATORIO DE TRASLAPE -->
+            <div class="alerta-politica-roja" style="margin-top: 30px; border-left-color: #3b82f6; background: #eff6ff;">
+                <i class="fa-solid fa-clock-rotate-left" style="color: #3b82f6;"></i>
+                <div style="color: #1e40af;">
+                    <strong>Periodo de Entrega de Guardia:</strong>
+                    <p>De <b>01:00 PM a 03:00 PM</b>, el hospital cuenta con el 100% del personal (44 especialistas) para asegurar la continuidad de la atención.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

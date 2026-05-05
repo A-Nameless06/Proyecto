@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_paciente.css') }}">
 </head>
 <body>
 
@@ -67,49 +67,59 @@
                 </div>
                 
                 <div class="rejilla-especialidades">
-                    <div class="tarjeta-especialidad" data-esp="Cardiología" data-precio="800">
+                    <div class="tarjeta-especialidad" data-esp="Cardiología" data-precio="1500">
                         <i class="fa-solid fa-heart-pulse"></i> <span>Cardiología</span>
+                        <div class="etiqueta-precio">$1500 MXN</div>
+                    </div>
+                    <div class="tarjeta-especialidad" data-esp="Dermatología" data-precio="1300">
+                        <i class="fa-solid fa-hand-dots"></i> <span>Dermatología</span>
+                        <div class="etiqueta-precio">$1300 MXN</div>
+                    </div>
+                    <div class="tarjeta-especialidad" data-esp="Ginecología" data-precio="800">
+                        <i class="fa-solid fa-venus"></i> <span>Ginecología</span>
                         <div class="etiqueta-precio">$800 MXN</div>
                     </div>
-                    <div class="tarjeta-especialidad" data-esp="Dermatología" data-precio="700">
-                        <i class="fa-solid fa-hand-dots"></i> <span>Dermatología</span>
-                        <div class="etiqueta-precio">$700 MXN</div>
-                    </div>
-                    <div class="tarjeta-especialidad" data-esp="Ginecología" data-precio="750">
-                        <i class="fa-solid fa-venus"></i> <span>Ginecología</span>
-                        <div class="etiqueta-precio">$750 MXN</div>
-                    </div>
-                    <div class="tarjeta-especialidad" data-esp="Medicina General" data-precio="400">
+                    <div class="tarjeta-especialidad" data-esp="Medicina General" data-precio="120">
                         <i class="fa-solid fa-stethoscope"></i> <span>Medicina General</span>
-                        <div class="etiqueta-precio">$400 MXN</div>
+                        <div class="etiqueta-precio">$120 MXN</div>
                     </div>
-                    <div class="tarjeta-especialidad" data-esp="Nefrología" data-precio="850">
+                    <div class="tarjeta-especialidad" data-esp="Nefrología" data-precio="800">
                         <i class="fa-solid fa-kit-medical"></i> <span>Nefrología</span>
-                        <div class="etiqueta-precio">$850 MXN</div>
+                        <div class="etiqueta-precio">$800 MXN</div>
                     </div>
                     <div class="tarjeta-especialidad" data-esp="Nutriología" data-precio="500">
                         <i class="fa-solid fa-apple-whole"></i> <span>Nutriología</span>
                         <div class="etiqueta-precio">$500 MXN</div>
                     </div>
-                    <div class="tarjeta-especialidad" data-esp="Oftalmología" data-precio="600">
+                    <div class="tarjeta-especialidad" data-esp="Oftalmología" data-precio="500">
                         <i class="fa-solid fa-eye"></i> <span>Oftalmología</span>
-                        <div class="etiqueta-precio">$600 MXN</div>
+                        <div class="etiqueta-precio">$500 MXN</div>
                     </div>
-                    <div class="tarjeta-especialidad" data-esp="Oncología" data-precio="1000">
+                    <div class="tarjeta-especialidad" data-esp="Oncología" data-precio="1200">
                         <i class="fa-solid fa-ribbon"></i> <span>Oncología</span>
-                        <div class="etiqueta-precio">$1000 MXN</div>
+                        <div class="etiqueta-precio">$1200 MXN</div>
                     </div>
-                    <div class="tarjeta-especialidad" data-esp="Ortopedia" data-precio="800">
+                    <div class="tarjeta-especialidad" data-esp="Ortopedia" data-precio="300">
                         <i class="fa-solid fa-bone"></i> <span>Ortopedia</span>
-                        <div class="etiqueta-precio">$800 MXN</div>
+                        <div class="etiqueta-precio">$300 MXN</div>
                     </div>
-                    <div class="tarjeta-especialidad" data-esp="Pediatría" data-precio="650">
+                    <div class="tarjeta-especialidad" data-esp="Pediatría" data-precio="700">
                         <i class="fa-solid fa-child-reaching"></i> <span>Pediatría</span>
-                        <div class="etiqueta-precio">$650 MXN</div>
+                        <div class="etiqueta-precio">$700 MXN</div>
                     </div>
                 </div>
 
-                <div class="contenedor-boton-continuar">
+                <!-- NUEVA SECCIÓN: Selección del Doctor (Aparece tras elegir especialidad) -->
+                <div id="seccion-medico" class="oculto" style="max-width: 400px; margin: 30px auto 0; text-align: left;">
+                    <label style="display: block; font-weight: 600; color: #334155; margin-bottom: 8px;">
+                        <i class="fa-solid fa-user-doctor" style="color: #2563eb; margin-right: 5px;"></i> Médico de Preferencia
+                    </label>
+                    <select id="medicoSelect" class="input-form" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit;">
+                        <option value="" disabled selected>Seleccione al doctor</option>
+                    </select>
+                </div>
+
+                <div class="contenedor-boton-continuar" style="margin-top: 25px;">
                     <button class="btn-continuar oculto" id="btn-continuar-1">Continuar a Horario <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
@@ -137,7 +147,7 @@
 
                     <div class="tarjeta-horarios">
                         <h3 class="titulo-horarios">Horarios (<span id="fecha-seleccionada-texto">Selecciona un día</span>)</h3>
-                        <p class="subtitulo-horarios" style="margin-bottom: 15px;">Turnos de 1 hora (7 AM - 9 PM)</p>
+                        <p class="subtitulo-horarios" style="margin-bottom: 15px;">Turnos disponibles según el médico seleccionado</p>
                         <div class="leyenda-colores">
                             <span class="punto-verde"></span> Disponible
                             <span class="punto-rojo"></span> Ocupado
@@ -182,6 +192,10 @@
                             <strong id="res-especialidad">-</strong>
                         </div>
                         <div class="detalle-resumen">
+                            <span>Médico Asignado</span>
+                            <strong id="res-doctor">-</strong>
+                        </div>
+                        <div class="detalle-resumen">
                             <span>Fecha</span>
                             <strong id="res-fecha">-</strong>
                         </div>
@@ -211,19 +225,87 @@
     </main>
 
     <script>
-        // Fecha actual de la computadora
+        /* =========================================
+           DICCIONARIO DE DOCTORES (CON TURNO INCLUIDO)
+           ========================================= */
+        const doctoresPorEspecialidad = {
+            'Cardiología': [
+                { id: 'dr_roberto_sanchez', nombre: 'Dr. Roberto Sánchez (Matutino)', turno: 'matutino' },
+                { id: 'dra_ana_valdez', nombre: 'Dra. Ana Valdez (Matutino)', turno: 'matutino' },
+                { id: 'dr_luis_torres', nombre: 'Dr. Luis Torres (Vespertino)', turno: 'vespertino' },
+                { id: 'dra_carmen_rios', nombre: 'Dra. Carmen Ríos (Vespertino)', turno: 'vespertino' }
+            ],
+            'Dermatología': [
+                { id: 'dra_laura_gomez', nombre: 'Dra. Laura Gómez (Matutino)', turno: 'matutino' },
+                { id: 'dr_pedro_ruiz', nombre: 'Dr. Pedro Ruiz (Matutino)', turno: 'matutino' },
+                { id: 'dra_elena_paz', nombre: 'Dra. Elena Paz (Vespertino)', turno: 'vespertino' },
+                { id: 'dr_diego_silva', nombre: 'Dr. Diego Silva (Vespertino)', turno: 'vespertino' }
+            ],
+            'Ginecología': [
+                { id: 'dra_patricia_luna', nombre: 'Dra. Patricia Luna (Matutino)', turno: 'matutino' },
+                { id: 'dra_mariana_castro', nombre: 'Dra. Mariana Castro (Matutino)', turno: 'matutino' },
+                { id: 'dra_silvia_pinal', nombre: 'Dra. Silvia Pinal (Vespertino)', turno: 'vespertino' },
+                { id: 'dra_blanca_diaz', nombre: 'Dra. Blanca Díaz (Vespertino)', turno: 'vespertino' }
+            ],
+            'Medicina General': [
+                { id: 'dr_carlos_rivera', nombre: 'Dr. Carlos Rivera (Matutino)', turno: 'matutino' },
+                { id: 'dr_hugo_montes', nombre: 'Dr. Hugo Montes (Matutino)', turno: 'matutino' },
+                { id: 'dra_rosa_lima', nombre: 'Dra. Rosa Lima (Vespertino)', turno: 'vespertino' },
+                { id: 'dr_tomas_herrera', nombre: 'Dr. Tomás Herrera (Vespertino)', turno: 'vespertino' }
+            ],
+            'Nefrología': [
+                { id: 'dr_sergio_pena', nombre: 'Dr. Sergio Peña (Matutino)', turno: 'matutino' },
+                { id: 'dra_ines_cruz', nombre: 'Dra. Inés Cruz (Matutino)', turno: 'matutino' },
+                { id: 'dr_fernando_rey', nombre: 'Dr. Fernando Rey (Vespertino)', turno: 'vespertino' },
+                { id: 'dra_alicia_cano', nombre: 'Dra. Alicia Cano (Vespertino)', turno: 'vespertino' }
+            ],
+            'Nutriología': [
+                { id: 'lic_daniela_solis', nombre: 'Lic. Daniela Solís (Matutino)', turno: 'matutino' },
+                { id: 'lic_jorge_vaca', nombre: 'Lic. Jorge Vaca (Matutino)', turno: 'matutino' },
+                { id: 'lic_monica_gil', nombre: 'Lic. Mónica Gil (Vespertino)', turno: 'vespertino' },
+                { id: 'lic_ramon_ortiz', nombre: 'Lic. Ramón Ortiz (Vespertino)', turno: 'vespertino' }
+            ],
+            'Oftalmología': [
+                { id: 'dr_miguel_rey', nombre: 'Dr. Miguel Ángel Rey (Matutino)', turno: 'matutino' },
+                { id: 'dra_sara_pinto', nombre: 'Dra. Sara Pinto (Matutino)', turno: 'matutino' },
+                { id: 'dr_omar_rios', nombre: 'Dr. Omar Ríos (Vespertino)', turno: 'vespertino' },
+                { id: 'dra_diana_mora', nombre: 'Dra. Diana Mora (Vespertino)', turno: 'vespertino' }
+            ],
+            'Oncología': [
+                { id: 'dra_sofia_torres', nombre: 'Dra. Sofía Torres (Matutino)', turno: 'matutino' },
+                { id: 'dr_andres_vega', nombre: 'Dr. Andrés Vega (Matutino)', turno: 'matutino' },
+                { id: 'dra_beatriz_sol', nombre: 'Dra. Beatriz Sol (Vespertino)', turno: 'vespertino' },
+                { id: 'dr_victor_rivas', nombre: 'Dr. Víctor Rivas (Vespertino)', turno: 'vespertino' }
+            ],
+            'Ortopedia': [
+                { id: 'dr_fernando_soto', nombre: 'Dr. Fernando Soto (Matutino)', turno: 'matutino' },
+                { id: 'dr_julio_blanco', nombre: 'Dr. Julio Blanco (Matutino)', turno: 'matutino' },
+                { id: 'dra_teresa_cota', nombre: 'Dra. Teresa Cota (Vespertino)', turno: 'vespertino' },
+                { id: 'dr_raul_parra', nombre: 'Dr. Raúl Parra (Vespertino)', turno: 'vespertino' }
+            ],
+            'Pediatría': [
+                { id: 'dra_mariana_casos', nombre: 'Dra. Mariana Casos (Matutino)', turno: 'matutino' },
+                { id: 'dr_javier_pena', nombre: 'Dr. Javier Peña (Matutino)', turno: 'matutino' },
+                { id: 'dra_lourdes_ruiz', nombre: 'Dra. Lourdes Ruiz (Vespertino)', turno: 'vespertino' },
+                { id: 'dr_esteban_flores', nombre: 'Dr. Esteban Flores (Vespertino)', turno: 'vespertino' }
+            ]
+        };
+
+        // Fecha actual
         const hoySimulado = new Date(); 
         hoySimulado.setHours(0, 0, 0, 0);
 
-        // Definimos "mañana" como el punto de inicio para las citas
-        const mañana = new Date(hoySimulado);
-        mañana.setDate(mañana.getDate() + 1);
+        // REGLA 48 HORAS CORRECTA: Sumamos 3 días para garantizar que el Lunes brinque al Jueves
+        const fechaMinima = new Date(hoySimulado);
+        fechaMinima.setDate(fechaMinima.getDate() + 3);
         
         let fechaCalendario = new Date(hoySimulado.getFullYear(), hoySimulado.getMonth(), 1);
 
-        // Agregamos la variable de precio al estado
+        // ESTADO DE LA CITA
         let citaState = {
             especialidad: null,
+            doctor: null,
+            turno: null,
             precio: null,
             fechaStr: null,
             horaStr: null
@@ -238,6 +320,14 @@
             document.getElementById('btn-continuar-2').addEventListener('click', () => {
                 actualizarResumen();
                 irAPaso(3);
+            });
+
+            // Lógica cuando el paciente escoge un doctor
+            document.getElementById('medicoSelect').addEventListener('change', function() {
+                citaState.doctor = this.options[this.selectedIndex].text;
+                // Guardamos también el turno que asignamos en el dataset
+                citaState.turno = this.options[this.selectedIndex].dataset.turno; 
+                document.getElementById('btn-continuar-1').classList.remove('oculto');
             });
         });
 
@@ -269,17 +359,36 @@
         function initPaso1() {
             const tarjetas = document.querySelectorAll('.tarjeta-especialidad');
             const btnCont1 = document.getElementById('btn-continuar-1');
+            const seccionMedico = document.getElementById('seccion-medico');
+            const selectMedico = document.getElementById('medicoSelect');
 
             tarjetas.forEach(tarjeta => {
                 tarjeta.addEventListener('click', function() {
                     tarjetas.forEach(t => t.classList.remove('seleccionada'));
                     this.classList.add('seleccionada');
                     
-                    // Guardamos especialidad y precio
                     citaState.especialidad = this.getAttribute('data-esp');
                     citaState.precio = this.getAttribute('data-precio');
                     
-                    btnCont1.classList.remove('oculto');
+                    btnCont1.classList.add('oculto');
+                    citaState.doctor = null;
+                    citaState.turno = null;
+
+                    selectMedico.innerHTML = '<option value="" disabled selected>Seleccione al doctor</option>';
+                    const doctores = doctoresPorEspecialidad[citaState.especialidad];
+                    
+                    if(doctores) {
+                        doctores.forEach(doc => {
+                            const option = document.createElement('option');
+                            option.value = doc.id;
+                            option.textContent = doc.nombre;
+                            // Se inyecta el turno como data-attribute
+                            option.dataset.turno = doc.turno; 
+                            selectMedico.appendChild(option);
+                        });
+                    }
+
+                    seccionMedico.classList.remove('oculto');
                 });
             });
         }
@@ -316,8 +425,7 @@
                 cuadricula.appendChild(divVacio);
             }
 
-            // El límite de tres meses ahora parte desde la fecha de mañana
-            let fechaLimite = new Date(mañana);
+            let fechaLimite = new Date(fechaMinima);
             fechaLimite.setMonth(fechaLimite.getMonth() + 3);
 
             for (let i = 1; i <= diasEnMes; i++) {
@@ -328,8 +436,7 @@
                 let fechaActualIteracion = new Date(anio, mes, i);
                 let diaSemana = fechaActualIteracion.getDay(); 
 
-                // Comparamos contra la constante 'mañana' para bloquear el día actual y pasados
-                if (fechaActualIteracion < mañana || fechaActualIteracion > fechaLimite || diaSemana === 0 || diaSemana === 6) {
+                if (fechaActualIteracion < fechaMinima || fechaActualIteracion > fechaLimite || diaSemana === 0 || diaSemana === 6) {
                     divDia.classList.add('inactivo');
                 } else {
                     divDia.addEventListener('click', function() {
@@ -352,9 +459,25 @@
             citaState.horaStr = null; 
             document.getElementById('btn-continuar-2').classList.add('oculto');
 
-            for (let hora = 7; hora <= 21; hora++) {
+            // LIMITAMOS LAS HORAS SEGÚN EL TURNO DEL DOCTOR
+            let horaInicio = 7;
+            let horaFin = 20;
+
+            if (citaState.turno === 'matutino') {
+                horaInicio = 7; // Desde 7:00 AM
+                horaFin = 14;   // Hasta el bloque de 2:00 PM - 3:00 PM
+            } else if (citaState.turno === 'vespertino') {
+                horaInicio = 13; // Desde 1:00 PM
+                horaFin = 20;    // Hasta el bloque de 8:00 PM - 9:00 PM
+            }
+
+            for (let hora = horaInicio; hora <= horaFin; hora++) {
                 let ampm = hora >= 12 ? 'PM' : 'AM';
                 let horaFormato = hora > 12 ? hora - 12 : hora;
+                
+                // Excepción para el mediodía
+                if (hora === 12) horaFormato = 12;
+
                 let textoHora = `${horaFormato}:00 ${ampm}`;
 
                 let btnHora = document.createElement('button');
@@ -382,11 +505,11 @@
 
         function actualizarResumen() {
             document.getElementById('res-especialidad').innerText = citaState.especialidad;
+            document.getElementById('res-doctor').innerText = citaState.doctor;
             document.getElementById('res-fecha').innerText = citaState.fechaStr;
             document.getElementById('res-hora').innerText = citaState.horaStr;
-            // Imprimimos el precio con formato
             document.getElementById('res-precio').innerText = `$${citaState.precio}.00 MXN`;
         }
-</script>
+    </script>
 </body>
 </html>

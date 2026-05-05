@@ -2,27 +2,31 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Pacientes - Centro Médico R.A.S.A</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio de Pacientes - Recepción R.A.S.A</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- NAVBAR MINIMALISTA RECEPCIÓN -->
-    <nav class="barra-navegacion minimalista">
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
+    <nav class="barra-navegacion minimalista sticky">
         <div class="marca">
             <i class="fa-solid fa-hospital-user icono-marca"></i>
             <div class="texto-marca">
-                <strong>Centro Médico</strong>
+                <strong>Recepción</strong>
                 <strong>R.A.S.A</strong>
             </div>
         </div>
+        
         <ul class="menu-principal">
-            <li><a href="recepcion.html">Recepción</a></li>
-            <li><a href="citas.html">Citas</a></li>
-            <li><a href="doctores.html">Doctores</a></li>
-            <li class="activo"><a href="#">Pacientes</a></li>
+            <li><a href="/recepcion/inicio">Inicio</a></li>
+            <li><a href="agendaCitas.html">Agenda y Citas</a></li>
+            <li><a href="directorioMedico.html">Directorio y Altas</a></li>
+            <li class="activo"><a href="pacientes.html">Pacientes</a></li>
+            <li><a href="/recepcion/caja">Módulo de Caja</a></li>
         </ul>
+
         <div class="perfil-usuario">
             <div class="info-usuario-texto flat">
                 <span><strong>Ana Martínez</strong> | Recepción</span>
@@ -30,99 +34,121 @@
         </div>
     </nav>
 
-    <main class="contenido-principal">
-        
-        <!-- CABECERA: Título, Buscador y Botón de Nuevo Paciente -->
-        <header class="fila-acciones" style="flex-wrap: wrap; gap: 15px;">
-            <div class="migas-pan">Recepción > <strong>Pacientes</strong></div>
+    <main class="contenedor-principal">
+        <div class="area-trabajo-directorio">
             
-            <div class="contenedor-buscador">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar por nombre, ID o teléfono..." class="input-buscar">
+            <!-- CABECERA: Título, Buscador y Botón -->
+            <div class="migas-pan">
+                Recepción <i class="fa-solid fa-chevron-right"></i> <strong>Directorio de Pacientes</strong>
             </div>
 
-            <a href="nuevoPaciente.html" class="btn-accion-principal">
-                <i class="fa-solid fa-user-plus"></i> Registrar Nuevo Paciente
-            </a>
-        </header>
-
-        <section class="contenedor-especialidades">
-            
-            <!-- SECCIÓN 1: PACIENTES CON CITA HOY (Prioridad Alta) -->
-            <div class="bloque-especialidad" style="border-left: 4px solid #3b82f6; background-color: #eff6ff;">
-                <h3 class="titulo-esp"><i class="fa-solid fa-calendar-day" style="color: #3b82f6;"></i> Tienen Cita Hoy</h3>
-                <div class="grid-personal">
-                    <!-- Paciente 1 -->
-                    <div class="tarjeta-personal">
-                        <div class="status-badge en-consulta">08:30 AM</div>
-                        <div class="info-p">
-                            <strong>Juan Pérez Gómez</strong>
-                            <p>ID: #PAC-1021</p>
-                            <p style="margin-top: 5px; color: #0f172a;"><i class="fa-solid fa-user-doctor"></i> Dr. Roberto Sánchez</p>
-                            <p><i class="fa-solid fa-phone"></i> 55-1234-5678</p>
-                        </div>
+            <header class="cabecera-directorio">
+                <div class="textos-cabecera">
+                    <h1 class="titulo-seccion">Pacientes Registrados</h1>
+                    <p class="subtitulo-seccion">Gestión de expedientes administrativos y búsqueda rápida.</p>
+                </div>
+                
+                <div class="acciones-directorio">
+                    <div class="input-busqueda-con-icono">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="input-form" placeholder="Buscar por nombre, ID o teléfono...">
                     </div>
-                    <!-- Paciente 2 -->
-                    <div class="tarjeta-personal">
-                        <div class="status-badge en-consulta">11:00 AM</div>
-                        <div class="info-p">
-                            <strong>María López Díaz</strong>
-                            <p>ID: #PAC-1022</p>
-                            <p style="margin-top: 5px; color: #0f172a;"><i class="fa-solid fa-user-doctor"></i> Dra. Laura Gómez</p>
-                            <p><i class="fa-solid fa-phone"></i> 55-8765-4321</p>
+                    <a href="altaPaciente.html" class="btn-accion-principal">
+                        <i class="fa-solid fa-user-plus"></i> Registrar Paciente
+                    </a>
+                </div>
+            </header>
+
+            <section class="contenedor-especialidades">
+                
+                <!-- SECCIÓN 1: PACIENTES CON CITA HOY (Destacado) -->
+                <div class="bloque-especialidad pacientes-hoy">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-calendar-day"></i> Tienen Cita Hoy</h3>
+                    <div class="grid-personal">
+                        <!-- Paciente 1 -->
+                        <div class="tarjeta-personal">
+                            <div class="cabecera-tarjeta-personal">
+                                <span class="status-badge en-consulta"><i class="fa-regular fa-clock"></i> 08:30 AM</span>
+                                <span class="id-paciente">#PAC-1021</span>
+                            </div>
+                            <div class="info-p">
+                                <strong>Juan Pérez Gómez</strong>
+                                <p class="doctor-asignado"><i class="fa-solid fa-user-doctor"></i> Dr. Roberto Sánchez</p>
+                                <p><i class="fa-solid fa-phone"></i> 55-1234-5678</p>
+                            </div>
+                        </div>
+                        <!-- Paciente 2 -->
+                        <div class="tarjeta-personal">
+                            <div class="cabecera-tarjeta-personal">
+                                <span class="status-badge en-consulta"><i class="fa-regular fa-clock"></i> 11:00 AM</span>
+                                <span class="id-paciente">#PAC-1022</span>
+                            </div>
+                            <div class="info-p">
+                                <strong>María López Díaz</strong>
+                                <p class="doctor-asignado"><i class="fa-solid fa-user-doctor"></i> Dra. Laura Gómez</p>
+                                <p><i class="fa-solid fa-phone"></i> 55-8765-4321</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- SECCIÓN 2: TODOS LOS DEMÁS PACIENTES (Sin cita hoy) -->
-            <div class="bloque-especialidad">
-                <h3 class="titulo-esp"><i class="fa-solid fa-users"></i> Directorio General</h3>
-                <div class="grid-personal">
-                    <!-- Paciente General 1 -->
-                    <div class="tarjeta-personal">
-                        <div class="status-badge atendido">Sin Cita</div>
-                        <div class="info-p">
-                            <strong>Carlos Ruiz Soto</strong>
-                            <p>ID: #PAC-0984</p>
-                            <p style="margin-top: 5px; color: #64748b;"><i class="fa-regular fa-calendar-check"></i> Última visita: 12 Mar 2026</p>
-                            <p><i class="fa-solid fa-phone"></i> 55-9988-7766</p>
+                <!-- SECCIÓN 2: TODOS LOS DEMÁS PACIENTES -->
+                <div class="bloque-especialidad">
+                    <h3 class="titulo-esp"><i class="fa-solid fa-users"></i> Directorio General</h3>
+                    <div class="grid-personal">
+                        <!-- Paciente General 1 -->
+                        <div class="tarjeta-personal">
+                            <div class="cabecera-tarjeta-personal">
+                                <span class="status-badge atendido">Sin Cita Hoy</span>
+                                <span class="id-paciente">#PAC-0984</span>
+                            </div>
+                            <div class="info-p">
+                                <strong>Carlos Ruiz Soto</strong>
+                                <p class="ultima-visita"><i class="fa-regular fa-calendar-check"></i> Últ. visita: 12 Mar 2026</p>
+                                <p><i class="fa-solid fa-phone"></i> 55-9988-7766</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Paciente General 2 -->
-                    <div class="tarjeta-personal">
-                        <div class="status-badge atendido">Sin Cita</div>
-                        <div class="info-p">
-                            <strong>Lucía Méndez Castro</strong>
-                            <p>ID: #PAC-0875</p>
-                            <p style="margin-top: 5px; color: #64748b;"><i class="fa-regular fa-calendar-check"></i> Última visita: 05 Feb 2026</p>
-                            <p><i class="fa-solid fa-phone"></i> 55-1122-3344</p>
+                        <!-- Paciente General 2 -->
+                        <div class="tarjeta-personal">
+                            <div class="cabecera-tarjeta-personal">
+                                <span class="status-badge atendido">Sin Cita Hoy</span>
+                                <span class="id-paciente">#PAC-0875</span>
+                            </div>
+                            <div class="info-p">
+                                <strong>Lucía Méndez Castro</strong>
+                                <p class="ultima-visita"><i class="fa-regular fa-calendar-check"></i> Últ. visita: 05 Feb 2026</p>
+                                <p><i class="fa-solid fa-phone"></i> 55-1122-3344</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Paciente General 3 -->
-                    <div class="tarjeta-personal">
-                        <div class="status-badge atendido">Sin Cita</div>
-                        <div class="info-p">
-                            <strong>Roberto Vaca Gil</strong>
-                            <p>ID: #PAC-0901</p>
-                            <p style="margin-top: 5px; color: #64748b;"><i class="fa-regular fa-calendar-check"></i> Última visita: 28 Nov 2025</p>
-                            <p><i class="fa-solid fa-phone"></i> 55-4455-6677</p>
+                        <!-- Paciente General 3 -->
+                        <div class="tarjeta-personal">
+                            <div class="cabecera-tarjeta-personal">
+                                <span class="status-badge atendido">Sin Cita Hoy</span>
+                                <span class="id-paciente">#PAC-0901</span>
+                            </div>
+                            <div class="info-p">
+                                <strong>Roberto Vaca Gil</strong>
+                                <p class="ultima-visita"><i class="fa-regular fa-calendar-check"></i> Últ. visita: 28 Nov 2025</p>
+                                <p><i class="fa-solid fa-phone"></i> 55-4455-6677</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Paciente General 4 -->
-                    <div class="tarjeta-personal">
-                        <div class="status-badge atendido">Sin Cita</div>
-                        <div class="info-p">
-                            <strong>Teresa Blanco Ruiz</strong>
-                            <p>ID: #PAC-0762</p>
-                            <p style="margin-top: 5px; color: #64748b;"><i class="fa-regular fa-calendar-check"></i> Última visita: 15 Oct 2025</p>
-                            <p><i class="fa-solid fa-phone"></i> 55-2233-4455</p>
+                        <!-- Paciente General 4 -->
+                        <div class="tarjeta-personal">
+                            <div class="cabecera-tarjeta-personal">
+                                <span class="status-badge atendido">Sin Cita Hoy</span>
+                                <span class="id-paciente">#PAC-0762</span>
+                            </div>
+                            <div class="info-p">
+                                <strong>Teresa Blanco Ruiz</strong>
+                                <p class="ultima-visita"><i class="fa-regular fa-calendar-check"></i> Últ. visita: 15 Oct 2025</p>
+                                <p><i class="fa-solid fa-phone"></i> 55-2233-4455</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </section>
+            </section>
+        </div>
     </main>
 
 </body>
