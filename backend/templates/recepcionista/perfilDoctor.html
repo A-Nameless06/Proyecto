@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil del Médico - Recepción R.A.S.A</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_recepcion.css') }}">
 </head>
 <body>
 
@@ -20,13 +20,13 @@
         </div>
         
         <ul class="menu-principal">
-            <li><a href="/recepcion/inicio">Inicio</a></li>
-            <li><a href="agendaCitas.html">Agenda</a></li>
-            <li><a href="caja.html">Caja</a></li>
-            <li><a href="horarios.html">Horarios</a></li>
-            <li><a href="pacientes.html">Pacientes</a></li>
-            <li><a href="consultorios.html">Consultorios</a></li>
-            <li class="activo"><a href="mapaConsultorios.html">Doctores</a></li>
+            <li><a href="/recepcion">Inicio</a></li>
+            <li><a href="/recepcion/agenda">Agenda</a></li>
+            <li><a href="/recepcion/caja">Caja</a></li>
+            <li><a href="/recepcion/horarios">Horarios</a></li>
+            <li><a href="/recepcion/pacientes">Pacientes</a></li>
+            <li><a href="/recepcion/consultorios">Consultorios</a></li>
+            <li class="activo"><a href="/recepcion/doctores">Doctores</a></li>
         </ul>
 
         <div class="perfil-usuario">
@@ -106,7 +106,7 @@
                         </div>
                         <div style="display: flex; gap: 15px;">
                             
-                            <a href="agendaCitas.html" class="btn-accion-principal" style="flex: 1; text-align: center; text-decoration: none;">
+                            <a href="/recepcion/agenda" class="btn-accion-principal" style="flex: 1; text-align: center; text-decoration: none;">
                                 <i class="fa-regular fa-calendar-check"></i> Ver su Agenda del Día
                             </a>
                         </div>
