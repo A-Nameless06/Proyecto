@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administrativo - R.A.S.A</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_recepcion.css') }}">
+
 </head>
 <body class="layout-con-sidebar">
 
@@ -19,31 +20,31 @@
         </div>
         
         <nav class="navegacion-principal">
-    <a href="inicioRecepcion.html" class="item-menu activo">
+    <a href="/dashboard" class="item-menu activo">
         <i class="fa-solid fa-desktop"></i> Inicio
     </a>
 
-    <a href="agendaCita.html" class="item-menu">
+    <a href="/recepcion/agenda" class="item-menu">
         <i class="fa-solid fa-calendar-check"></i> Agenda
     </a>
 
-    <a href="tickets.html" class="item-menu">
+    <a href="/recepcion/caja" class="item-menu">
         <i class="fa-solid fa-cash-register"></i> Caja
     </a>
 
-    <a href="horarios.html" class="item-menu">
+    <a href="/recepcion/horarios" class="item-menu">
         <i class="fa-solid fa-clock"></i> Horarios
     </a>
 
-    <a href="pacientes.html" class="item-menu">
+    <a href="/recepcion/pacientes" class="item-menu">
         <i class="fa-solid fa-user-injured"></i> Pacientes
     </a>
 
-    <a href="consultorios.html" class="item-menu">
+    <a href="/recepcion/consultorios" class="item-menu">
         <i class="fa-solid fa-hospital"></i> Consultorios
     </a>
 
-    <a href="consultorios.html" class="item-menu">
+    <a href="/recepcion/doctores" class="item-menu">
         <i class="fa-solid fa-user-doctor"></i> Doctores
     </a>
 
@@ -55,7 +56,9 @@
                 <strong>Ana Martínez</strong>
                 <span>Recepción</span>
             </div>
-            <button class="btn-cerrar"><i class="fa-solid fa-right-from-bracket"></i></button>
+            <button class="btn-cerrar" onclick="cerrarSesion()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
         </div>
     </aside>
 
@@ -214,6 +217,6 @@
             
         </div>
     </main>
-
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
