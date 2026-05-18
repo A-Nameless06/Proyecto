@@ -6,7 +6,6 @@
     <title>Agendar Nueva Cita - Recepción R.A.S.A</title>
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='hospital.svg') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style_recepcion.css') }}">
 </head>
 <body>
@@ -22,13 +21,13 @@
         </div>
         
         <ul class="menu-principal">
-            <li><a href="/recepcion/inicio">Inicio</a></li>
-            <li class="activo"><a href="/recepcion/citas">Agenda</a></li>
+            <li><a href="/dashboard">Inicio</a></li>
+            <li class="activo"><a href="/recepcion/agenda">Agenda</a></li>
             <li><a href="/recepcion/caja">Caja</a></li>
-            <li><a href="horarios.html">Horarios</a></li>
-            <li><a href="pacientes.html">Pacientes</a></li>
-            <li><a href="consultorios.html">Consultorios</a></li>
-            <li><a href="doctores.html">Doctores</a></li>
+            <li><a href="/recepcion/horarios">Horarios</a></li>
+            <li><a href="/recepcion/pacientes">Pacientes</a></li>
+            <li><a href="/recepcion/consultorios">Consultorios</a></li>
+            <li><a href="/recepcion/doctores">Doctores</a></li>
         </ul>
 
         <div class="perfil-usuario">
@@ -53,7 +52,7 @@
             </div>
 
             <!-- CONTENEDOR DEL FORMULARIO -->
-            <form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Cita agendada exitosamente y pago registrado. El bloque de horario ha sido reservado.'); window.location.href='inicioRecepcion.html';">
+            <form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Cita agendada exitosamente y pago registrado. El bloque de horario ha sido reservado.'); window.location.href='/dashboard';">
                 
                 <!-- SECCIÓN 1: SELECCIÓN DE PACIENTE -->
                 <div class="cabecera-seccion-form">
