@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácoras y Auditoría - R.A.S.A</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='hospital.svg') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+    <div class="marca">
+        <i class="fa-solid fa-server icono-marca"></i>
+        <div class="texto-marca">
+            <strong>Admin. Sistema</strong>
+        </div>
+    </div>
+    
+    <ul class="menu-principal">
+        <li><a href="inicioAdmin.html">Inicio</a></li>
+        <li class="activo"><a href="bitacorasAdmin.html">Bitácoras</a></li>
+        <li><a href="doctores.html">Doctores</a></li>
+        <li><a href="recepcion.html">Recepcion</a></li>
+        <li><a href="farmacia.html">Farmacia</a></li>
+        <li><a href="catalogos.html">Catalogos</a></li>
+        <li><a href="especialidades.html">Especialidades</a></li>
+    </ul>
+
+    <div class="perfil-usuario">
+        <span>Super Admin | IT & Control</span>
+    </div>
+</nav>
+
+    <main class="contenedor-principal" style="padding: 40px;">
+        
+        <div style="max-width: 1400px; margin: 0 auto;">
+            
+            <header class="header-dashboard-admin" style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <h1 style="color: var(--texto-oscuro); margin: 0; font-size: 1.8rem;">
+                        <i class="fa-solid fa-shield-halved" style="color: var(--azul-principal); margin-right: 10px;"></i>
+                        Bitácoras del Sistema
+                    </h1>
+                    <p style="color: var(--texto-gris); margin: 5px 0 0; font-size: 0.95rem;">Registros de seguridad inalterables. Solo permisos de lectura habilitados.</p>
+                </div>
+                
+                <div class="buscador-logs" style="position: relative;">
+                    <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--texto-gris);"></i>
+                    <input type="text" placeholder="Buscar por Folio, Usuario o IP..." style="padding: 10px 15px 10px 40px; border-radius: 8px; border: 1px solid var(--borde); width: 300px; font-family: inherit;">
+                </div>
+            </header>
+
+            <div class="contenedor-tabs-bitacora">
+                <div class="tabs-header">
+                    <button class="btn-tab activo" onclick="abrirTab('tab-estatus')">
+                        <i class="fa-solid fa-money-check-dollar"></i> Bitácora Estatus Cita
+                    </button>
+                    <button class="btn-tab" onclick="abrirTab('tab-historial')">
+                        <i class="fa-solid fa-users-viewfinder"></i> Historial Médico-Paciente
+                    </button>
+                </div>
+
+                <div id="tab-estatus" class="tab-content activo">
+                    <div class="tarjeta-tabla">
+                        <table class="tabla-logs">
+                            <thead>
+                                <tr>
+                                    <th>Folio Cita</th>
+                                    <th>Fecha Movimiento</th>
+                                    <th>Estatus Aplicado</th>
+                                    <th>Fecha de la Cita</th>
+                                    <th>ID Especialidad</th>
+                                    <th>Costo Base</th>
+                                    <th>Política Aplicada</th>
+                                    <th>Monto Devuelto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>HOSP-2026-8842</strong></td>
+                                    <td class="txt-gris">04/05/2026 14:30:12</td>
+                                    <td><span class="badge-rojo">Cancelada Paciente</span></td>
+                                    <td>14/05/2026</td>
+                                    <td>1 (Cardiología)</td>
+                                    <td>$1,500.00</td>
+                                    <td>Cancelación < 48 hrs</td>
+                                    <td class="txt-verde"><strong>$750.00 (50%)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>HOSP-2026-8843</strong></td>
+                                    <td class="txt-gris">04/05/2026 12:15:00</td>
+                                    <td><span class="badge-verde">Pagada (Pendiente)</span></td>
+                                    <td>16/05/2026</td>
+                                    <td>2 (Dermatología)</td>
+                                    <td>$1,300.00</td>
+                                    <td class="txt-gris">N/A</td>
+                                    <td>$0.00</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>HOSP-2026-8830</strong></td>
+                                    <td class="txt-gris">03/05/2026 09:00:22</td>
+                                    <td><span class="badge-naranja">Cancelada Falta Pago</span></td>
+                                    <td>08/05/2026</td>
+                                    <td>3 (Ginecología)</td>
+                                    <td>$800.00</td>
+                                    <td>Expiración 8 hrs</td>
+                                    <td>$0.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="tab-historial" class="tab-content">
+                    <div class="tarjeta-tabla">
+                        <div style="overflow-x: auto;">
+                            <table class="tabla-logs">
+                                <thead>
+                                    <tr>
+                                        <th>ID Log</th>
+                                        <th>Usuario (Autor)</th>
+                                        <th>Rol</th>
+                                        <th>Máquina / IP</th>
+                                        <th>Folio Cita</th>
+                                        <th>Folio Receta</th>
+                                        <th>ID Paciente</th>
+                                        <th>Especialidad / Consultorio</th>
+                                        <th>ID Doctor</th>
+                                        <th>Estatus Consulta</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="txt-gris">#LOG-9921</td>
+                                        <td><strong>a.martinez@rasa.com</strong></td>
+                                        <td><span class="badge-azul">Recepcionista</span></td>
+                                        <td class="txt-gris">192.168.1.104</td>
+                                        <td>HOSP-2026-8842</td>
+                                        <td class="txt-gris">N/A</td>
+                                        <td>1</td>
+                                        <td>Cardiología / Cons. 101</td>
+                                        <td>MED-092</td>
+                                        <td><span class="badge-verde">Agendada</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="txt-gris">#LOG-9922</td>
+                                        <td><strong>j.perez@gmail.com</strong></td>
+                                        <td><span class="badge-gris">Paciente</span></td>
+                                        <td class="txt-gris">189.200.45.12</td>
+                                        <td>HOSP-2026-8842</td>
+                                        <td class="txt-gris">N/A</td>
+                                        <td>1</td>
+                                        <td>Cardiología / Cons. 101</td>
+                                        <td>MED-092</td>
+                                        <td><span class="badge-rojo">Cancelada</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="txt-gris">#LOG-9923</td>
+                                        <td><strong>r.sanchez@rasa.com</strong></td>
+                                        <td><span class="badge-morado">Doctor</span></td>
+                                        <td class="txt-gris">192.168.1.150</td>
+                                        <td>HOSP-2026-8800</td>
+                                        <td><strong>FOL-2026-0921</strong></td>
+                                        <td>14</td>
+                                        <td>Cardiología / Cons. 101</td>
+                                        <td>MED-092</td>
+                                        <td><span class="badge-verde">Atendida</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function abrirTab(idTab) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('activo');
+            });
+            // Quitar clase activa de los botones
+            document.querySelectorAll('.btn-tab').forEach(btn => {
+                btn.classList.remove('activo');
+            });
+
+            // Mostrar el seleccionado
+            document.getElementById(idTab).classList.add('activo');
+            event.currentTarget.classList.add('activo');
+        }
+    </script>
+</body>
+</html>

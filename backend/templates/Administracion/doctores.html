@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Doctores - Admin R.A.S.A</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='hospital.svg') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-server icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Admin. Sistema</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="inicioAdmin.html">Inicio</a></li>
+            <li><a href="bitacorasAdmin.html">Bitácoras</a></li>
+            <li class="activo"><a href="doctores.html">Doctores</a></li>
+            <li><a href="recepcion.html">Recepcion</a></li>
+            <li><a href="farmacia.html">Farmacia</a></li>
+            <li><a href="catalogos.html">Catalogos</a></li>
+            <li><a href="especialidades.html">Especialidades</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <span class="info-usuario-texto flat">Super Admin | IT & Control</span>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        
+        <div class="migas-pan">
+            <a href="inicioAdmin.html" class="btn-texto"><i class="fa-solid fa-arrow-left"></i> Volver al Panel</a>
+            <span class="separador-migas">|</span>
+            <span class="texto-migas">Gestión RR.HH > Directorio Médico</span>
+        </div>
+        
+        <header class="header-dashboard-admin" style="margin-top: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+                <h1>Gestión de Personal Médico</h1>
+                <p>Administración de cuentas, asignación de consultorios y turnos del sistema.</p>
+            </div>
+            
+            <div style="display: flex; gap: 15px;">
+                <div class="barra-busqueda-global">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar por nombre o cédula...">
+                </div>
+                <button class="btn-primario" onclick="prepararModalNuevo()">
+                    <i class="fa-solid fa-plus"></i> Nuevo Médico
+                </button>
+            </div>
+        </header>
+
+        <div class="tarjeta-admin" style="padding: 0; overflow: hidden;">
+            <table class="tabla-datos">
+                <thead style="background-color: var(--fondo-gris);">
+                    <tr>
+                        <th>Cédula Prof.</th>
+                        <th>Nombre del Médico</th>
+                        <th>Especialidad</th>
+                        <th>Turno</th>
+                        <th>Consultorio</th>
+                        <th>Estatus de Cuenta</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">CED-884210</td>
+                        <td><strong>Dr. Roberto Sánchez</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">roberto.sanchez@rasa.com</span></td>
+                        <td>Cardiología</td>
+                        <td><span class="badge-azul">Matutino</span></td>
+                        <td>Cons. 101</td>
+                        <td class="col-estatus"><span class="badge-verde">Activa</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar" onclick="editarMedico('Dr. Roberto Sánchez', 'CED-884210', 'roberto.sanchez@rasa.com', 'Cardiología', 'Matutino (07:00 AM - 03:00 PM)', 'Cons. 101')"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto btn-toggle-estatus" style="color: var(--rojo-error); margin-left: 10px;" title="Suspender" onclick="cambiarEstatus(this)"><i class="fa-solid fa-ban"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">CED-992314</td>
+                        <td><strong>Dra. Ana Valdez</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">ana.valdez@rasa.com</span></td>
+                        <td>Cardiología</td>
+                        <td><span class="badge-azul">Matutino</span></td>
+                        <td>Cons. 102</td>
+                        <td class="col-estatus"><span class="badge-verde">Activa</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar" onclick="editarMedico('Dra. Ana Valdez', 'CED-992314', 'ana.valdez@rasa.com', 'Cardiología', 'Matutino (07:00 AM - 03:00 PM)', 'Cons. 102')"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto btn-toggle-estatus" style="color: var(--rojo-error); margin-left: 10px;" title="Suspender" onclick="cambiarEstatus(this)"><i class="fa-solid fa-ban"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">CED-551239</td>
+                        <td><strong>Dr. Luis Torres</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">luis.torres@rasa.com</span></td>
+                        <td>Cardiología</td>
+                        <td><span class="badge-morado">Vespertino</span></td>
+                        <td>Cons. 101</td>
+                        <td class="col-estatus"><span class="badge-rojo">Inactiva</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar" onclick="editarMedico('Dr. Luis Torres', 'CED-551239', 'luis.torres@rasa.com', 'Cardiología', 'Vespertino (01:00 PM - 09:00 PM)', 'Cons. 101')"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto btn-toggle-estatus" style="color: var(--texto-gris); margin-left: 10px;" title="Reactivar" onclick="cambiarEstatus(this)"><i class="fa-solid fa-rotate-left"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">CED-773412</td>
+                        <td><strong>Dra. Laura Gómez</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">laura.gomez@rasa.com</span></td>
+                        <td>Dermatología</td>
+                        <td><span class="badge-azul">Matutino</span></td>
+                        <td>Cons. 201</td>
+                        <td class="col-estatus"><span class="badge-verde">Activa</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar" onclick="editarMedico('Dra. Laura Gómez', 'CED-773412', 'laura.gomez@rasa.com', 'Dermatología', 'Matutino (07:00 AM - 03:00 PM)', 'Cons. 201')"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto btn-toggle-estatus" style="color: var(--rojo-error); margin-left: 10px;" title="Suspender" onclick="cambiarEstatus(this)"><i class="fa-solid fa-ban"></i></button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+            <div style="padding: 15px 20px; border-top: 1px solid var(--borde); display: flex; justify-content: space-between; align-items: center; background: #fff;">
+                <span id="texto-paginacion" style="font-size: 0.85rem; color: var(--texto-gris);">Mostrando 1-6 de 40 médicos registrados.</span>
+                <div style="display: flex; gap: 10px;">
+                    <button id="btn-anterior" class="btn-accion-secundario" onclick="cambiarPagina(-1)" disabled>Anterior</button>
+                    <button id="btn-siguiente" class="btn-accion-secundario" onclick="cambiarPagina(1)">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modal-medico">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2 id="titulo-modal"><i class="fa-solid fa-user-doctor" style="color: var(--azul-principal);"></i> Registrar Nuevo Médico</h2>
+                <button class="btn-cerrar-modal" onclick="cerrarModal('modal-medico')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div class="grupo-input-modal">
+                            <label>Nombre Completo</label>
+                            <input type="text" id="input-nombre" placeholder="Ej. Dr. Carlos Rivera">
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Cédula Profesional</label>
+                            <input type="text" id="input-cedula" placeholder="CED-XXXXXX">
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Correo Electrónico</label>
+                            <input type="email" id="input-correo" placeholder="usuario@rasa.com">
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div class="grupo-input-modal">
+                            <label>Especialidad</label>
+                            <select id="input-especialidad" style="width: 100%; padding: 12px; border: 1px solid var(--borde); border-radius: 8px; font-family: 'Inter';">
+                                <option>Cardiología</option>
+                                <option>Dermatología</option>
+                                <option>Ginecología</option>
+                                <option>Medicina General</option>
+                                <option>Nefrología</option>
+                                <option>Nutriología</option>
+                                <option>Oftalmología</option>
+                                <option>Oncología</option>
+                                <option>Ortopedia</option>
+                                <option>Pediatría</option>
+                            </select>
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Turno Asignado</label>
+                            <select id="input-turno" style="width: 100%; padding: 12px; border: 1px solid var(--borde); border-radius: 8px; font-family: 'Inter';">
+                                <option>Matutino (07:00 AM - 03:00 PM)</option>
+                                <option>Vespertino (01:00 PM - 09:00 PM)</option>
+                            </select>
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Consultorio</label>
+                            <input type="text" id="input-consultorio" placeholder="Ej. Cons. 101">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mensaje-modal" style="margin-top: 20px; padding: 12px; background: #e8f0fe; border-left: 4px solid var(--azul-principal); font-size: 0.85rem; color: #155724;">
+                    <i class="fa-solid fa-circle-info"></i> Al guardar, se enviará un correo automático con los datos de acceso.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-accion-secundario" onclick="cerrarModal('modal-medico')">Cancelar</button>
+                <button class="btn-primario" onclick="cerrarModal('modal-medico')">Guardar Registro</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal(id) {
+            document.getElementById(id).classList.add('activo');
+        }
+        function cerrarModal(id) {
+            document.getElementById(id).classList.remove('activo');
+        }
+
+        /* --- FUNCIONALIDAD: NUEVO Y EDITAR MÉDICO --- */
+        function prepararModalNuevo() {
+            document.getElementById('titulo-modal').innerHTML = '<i class="fa-solid fa-user-doctor" style="color: var(--azul-principal);"></i> Registrar Nuevo Médico';
+            document.getElementById('mensaje-modal').innerHTML = '<i class="fa-solid fa-circle-info"></i> Al guardar, se enviará un correo automático con la contraseña temporal.';
+            
+            // Limpiar campos
+            document.getElementById('input-nombre').value = '';
+            document.getElementById('input-cedula').value = '';
+            document.getElementById('input-correo').value = '';
+            document.getElementById('input-consultorio').value = '';
+            
+            abrirModal('modal-medico');
+        }
+
+        function editarMedico(nombre, cedula, correo, especialidad, turno, consultorio) {
+            document.getElementById('titulo-modal').innerHTML = '<i class="fa-solid fa-pen-to-square" style="color: var(--naranja-alerta);"></i> Editar Datos del Médico';
+            document.getElementById('mensaje-modal').innerHTML = '<i class="fa-solid fa-circle-info"></i> Los cambios se actualizarán inmediatamente en la base de datos de R.A.S.A.';
+            
+            // Llenar campos con los datos de la tabla
+            document.getElementById('input-nombre').value = nombre;
+            document.getElementById('input-cedula').value = cedula;
+            document.getElementById('input-correo').value = correo;
+            document.getElementById('input-especialidad').value = especialidad;
+            document.getElementById('input-turno').value = turno;
+            document.getElementById('input-consultorio').value = consultorio;
+
+            abrirModal('modal-medico');
+        }
+
+        /* --- FUNCIONALIDAD: SUSPENDER / REACTIVAR CUENTA --- */
+        function cambiarEstatus(boton) {
+            const fila = boton.closest('tr');
+            const celdaEstatus = fila.querySelector('.col-estatus');
+            
+            // Si está activo (tiene el botón de banear)
+            if (boton.innerHTML.includes('fa-ban')) {
+                // Cambiar a suspendido
+                celdaEstatus.innerHTML = '<span class="badge-rojo">Suspendida</span>';
+                boton.innerHTML = '<i class="fa-solid fa-rotate-left"></i>';
+                boton.style.color = 'var(--texto-gris)';
+                boton.title = 'Reactivar';
+            } else {
+                // Cambiar a activo
+                celdaEstatus.innerHTML = '<span class="badge-verde">Activa</span>';
+                boton.innerHTML = '<i class="fa-solid fa-ban"></i>';
+                boton.style.color = 'var(--rojo-error)';
+                boton.title = 'Suspender';
+            }
+        }
+
+        /* --- FUNCIONALIDAD: PAGINACIÓN --- */
+        let paginaActual = 1;
+        const totalPaginas = 7; // Suponiendo 40 médicos / 6 por página
+
+        function cambiarPagina(direccion) {
+            paginaActual += direccion;
+            const btnAnterior = document.getElementById('btn-anterior');
+            const btnSiguiente = document.getElementById('btn-siguiente');
+            const textoPaginacion = document.getElementById('texto-paginacion');
+
+            // Habilitar o deshabilitar botones según la página
+            btnAnterior.disabled = (paginaActual === 1);
+            btnSiguiente.disabled = (paginaActual === totalPaginas);
+
+            // Calcular rango mostrado (Matemáticas simples para simular)
+            let inicio = ((paginaActual - 1) * 6) + 1;
+            let fin = paginaActual * 6;
+            if (fin > 40) fin = 40;
+
+            textoPaginacion.innerText = `Mostrando ${inicio}-${fin} de 40 médicos registrados.`;
+        }
+    </script>
+
+</body>
+</html>

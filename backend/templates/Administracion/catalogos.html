@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogos - Administración R.A.S.A</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='hospital.svg') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+    <div class="marca">
+        <i class="fa-solid fa-server icono-marca"></i>
+        <div class="texto-marca">
+            <strong>Admin. Sistema</strong>
+        </div>
+    </div>
+    
+    <ul class="menu-principal">
+        <li><a href="inicioAdmin.html">Inicio</a></li>
+        <li><a href="bitacorasAdmin.html">Bitácoras</a></li>
+        <li><a href="doctores.html">Doctores</a></li>
+        <li><a href="recepcion.html">Recepcion</a></li>
+        <li><a href="farmacia.html">Farmacia</a></li>
+        <li class="activo"><a href="catalogos.html">Catalogos</a></li>
+        <li><a href="especialidades.html">Especialidades</a></li>
+    </ul>
+
+    <div class="perfil-usuario">
+        <span>Super Admin | IT & Control</span>
+    </div>
+</nav>
+
+    <main class="contenedor-principal">
+        <div class="cuerpo-admin">
+            <header class="header-seccion">
+                <h1>Catálogos Operativos</h1>
+                <p>Gestión centralizada de especialidades, consultorios y personal médico asignado.</p>
+            </header>
+
+            <section class="tarjeta-admin">
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>Especialidad / Ubicación</th>
+                            <th>Consultorio</th>
+                            <th>Médico Titular</th>
+                            <th>Turno</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Cardiología</strong> (Ala Norte - Piso 1)</td><td>Cons101</td><td>Dr. Roberto Sánchez</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons102</td><td>Dra. Ana Valdez</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons103</td><td>Dr. Luis Torres</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>Cons104</td><td>Dra. Carmen Ríos</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        
+                        <tr><td><strong>Dermatología</strong> (Ala Sur - Piso 2)</td><td>Cons201</td><td>Dra. Laura Gómez</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons202</td><td>Dr. Pedro Ruiz</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons203</td><td>Dra. Elena Paz</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>Cons204</td><td>Dr. Diego Silva</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Ginecología</strong> (Ala Este - Piso 3)</td><td>Cons301</td><td>Dra. Patricia Luna</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons302</td><td>Dra. Mariana Castro</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons303</td><td>Dra. Silvia Pinal</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>Cons304</td><td>Dra. Blanca Díaz</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Medicina General</strong> (P.B. Central)</td><td>ConsPB-1</td><td>Dr. Carlos Rivera</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>ConsPB-2</td><td>Dr. Hugo Montes</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>ConsPB-3</td><td>Dra. Rosa Lima</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>ConsPB-4</td><td>Dr. Tomás Herrera</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Nefrología</strong> (Ala Oeste - Piso 4)</td><td>Cons401</td><td>Dr. Sergio Peña</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons402</td><td>Dra. Inés Cruz</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons403</td><td>Dr. Fernando Rey</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>Cons404</td><td>Dra. Alicia Cano</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Nutriología</strong> (Ala Norte - Piso 5)</td><td>Cons501</td><td>Lic. Daniela Solís</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons502</td><td>Lic. Jorge Vaca</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons503</td><td>Lic. Mónica Gil</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>Cons504</td><td>Lic. Ramón Ortiz</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Oftalmología</strong> (Ala Sur - Piso 6)</td><td>Cons601</td><td>Dr. Miguel Ángel Rey</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons602</td><td>Dra. Sara Pinto</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons603</td><td>Dr. Omar Ríos</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>Cons604</td><td>Dra. Diana Mora</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Oncología</strong> (Ala Especial - Piso 7)</td><td>Cons701</td><td>Dra. Sofía Torres</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons702</td><td>Dr. Andrés Vega</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons703</td><td>Dra. Beatriz Sol</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>Cons704</td><td>Dr. Víctor Rivas</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Ortopedia</strong> (Ala Este - Piso 8)</td><td>Cons801</td><td>Dr. Fernando Soto</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons802</td><td>Dr. Julio Blanco</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>Cons803</td><td>Dra. Teresa Cota</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>Cons804</td><td>Dr. Raúl Parra</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Pediatría</strong> (Ala Infantil - Piso 2)</td><td>ConsP-01</td><td>Dra. Mariana Casos</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>ConsP-02</td><td>Dr. Javier Peña</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>ConsP-03</td><td>Dra. Lourdes Ruiz</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>ConsP-04</td><td>Dr. Esteban Flores</td><td><span class="badge-morado">Vespertino</span></td></tr>
+
+                        <tr><td><strong>Laboratorio Clínico</strong> (Sótano)</td><td>SalaEXT-A</td><td>Q.B.P. Ricardo Lara</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>SalaEXT-B</td><td>Téc. Irma Ruiz</td><td><span class="badge-azul">Matutino</span></td></tr>
+                        <tr><td></td><td>SalaEXT-C</td><td>Q.B.P. Oscar Meza</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                        <tr><td></td><td>SalaEXT-D</td><td>Téc. Elena Cruz</td><td><span class="badge-morado">Vespertino</span></td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

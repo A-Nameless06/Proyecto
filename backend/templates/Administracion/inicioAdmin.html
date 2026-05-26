@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - R.A.S.A</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='hospital.svg') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="contenedor-app">
+        <aside class="barra-lateral">
+            <div class="logo">
+                <i class="fa-solid fa-server"></i>
+                <div>Portal Admin<br><span>R.A.S.A Core</span></div>
+            </div>
+
+            <nav class="navegacion-principal">
+                <a href="inicioAdmin.html" class="item-menu activo"><i class="fa-solid fa-gauge-high"></i> Inicio</a>
+                <a href="bitacorasAdmin.html" class="item-menu"><i class="fa-solid fa-money-check-dollar"></i> Bitacoras</a>
+                <a href="doctores.html" class="item-menu"><i class="fa-solid fa-user-doctor"></i> Doctores</a>
+                <a href="recepcion.html" class="item-menu"><i class="fa-solid fa-users-gear"></i> Recepción</a>
+                <a href="farmacia.html" class="item-menu"><i class="fa-solid fa-pills"></i> Farmacia</a>
+                <a href="especialidades.html" class="item-menu"><i class="fa-solid fa-list-check"></i> Especialidades</a>
+            </nav>
+
+            <div class="perfil-usuario-inferior">
+                <div class="info-user">
+                    <strong>Super Admin</strong>
+                    <span>IT & Control</span>
+                </div>
+                <a href="/auth/logout" class="btn-salir-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        </aside>
+
+        <main class="contenido-principal-sidebar">
+            <header class="header-dashboard-admin">
+                <div>
+                    <h1>Centro de Mando General</h1>
+                    <p>Resumen en tiempo real de operaciones del sistema R.A.S.A.</p>
+                </div>
+                <div class="fecha-sistema">Viernes, 22 de Mayo de 2026</div>
+            </header>
+
+            <div class="kpi-grid">
+                <div class="tarjeta-kpi">
+                    <div class="kpi-info"><p>CITAS HOY</p><h3>42</h3></div>
+                    <i class="fa-solid fa-calendar-check kpi-icono"></i>
+                </div>
+                <div class="tarjeta-kpi verde">
+                    <div class="kpi-info"><p>INGRESOS</p><h3>$24,500</h3></div>
+                    <i class="fa-solid fa-money-bill-trend-up kpi-icono"></i>
+                </div>
+                <div class="tarjeta-kpi rojo">
+                    <div class="kpi-info"><p>CANCELACIONES</p><h3>3</h3></div>
+                    <i class="fa-solid fa-user-xmark kpi-icono"></i>
+                </div>
+                <div class="tarjeta-kpi naranja">
+                    <div class="kpi-info"><p>PACIENTES</p><h3>1,284</h3></div>
+                    <i class="fa-solid fa-hospital-user kpi-icono"></i>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                
+                <div class="tarjeta-admin-panel">
+                    <h2><i class="fa-solid fa-bolt"></i> Acciones Rápidas</h2>
+                    <p>Gestión directa de personal y catálogos del sistema.</p>
+                    
+                    <div class="grid-enlaces">
+                        <a href="/admin/doctores/nuevo" class="enlace-tarjeta">
+                            <strong><i class="fa-solid fa-user-doctor"></i> Alta de Médico</strong>
+                            <br><small>Registrar nueva cédula y acceso</small>
+                        </a>
+                        <a href="/admin/recepcion/nuevo" class="enlace-tarjeta">
+                            <strong><i class="fa-solid fa-users-gear"></i> Alta de Recepción</strong>
+                            <br><small>Crear cuenta administrativa</small>
+                        </a>
+                        <a href="/admin/consultorios" class="enlace-tarjeta">
+                            <strong><i class="fa-solid fa-door-open"></i> Consultorios</strong>
+                            <br><small>Asignar áreas y turnos</small>
+                        </a>
+                        <a href="especialidades.html" class="enlace-tarjeta">
+                            <strong><i class="fa-solid fa-list-check"></i> Especialidades</strong>
+                            <br><small>Ajustar precios base de consulta</small>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tarjeta-admin-panel">
+                    <h2><i class="fa-solid fa-list-check"></i> Actividad Reciente de Usuarios</h2>
+                    
+                    <div class="grid-enlaces" style="display: flex; flex-direction: column;">
+                        <div class="enlace-tarjeta">
+                            <strong><i class="fa-solid fa-right-to-bracket"></i> Inicio de sesión ROOT</strong><br>
+                            <small>IP: 192.168.1.104 - Hace 5 min</small>
+                        </div>
+                        <div class="enlace-tarjeta">
+                            <strong><i class="fa-solid fa-ban"></i> Cita cancelada (Folio 8842)</strong><br>
+                            <small>Recepción - Hace 12 min</small>
+                        </div>
+                        <div class="enlace-tarjeta">
+                            <strong><i class="fa-solid fa-check-double"></i> Receta emitida (Cons. 101)</strong><br>
+                            <small>Dr. Roberto Sánchez - Hace 25 min</small>
+                        </div>
+                        <div class="enlace-tarjeta">
+                            <strong><i class="fa-solid fa-user-plus"></i> Nuevo paciente registrado</strong><br>
+                            <small>Recepción - Hace 40 min</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

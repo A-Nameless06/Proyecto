@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Farmacia - Admin R.A.S.A</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='hospital.svg') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="barra-navegacion minimalista">
+        <div class="marca">
+            <i class="fa-solid fa-server icono-marca"></i>
+            <div class="texto-marca">
+                <strong>Admin. Sistema</strong>
+            </div>
+        </div>
+        
+        <ul class="menu-principal">
+            <li><a href="inicioAdmin.html">Inicio</a></li>
+            <li><a href="bitacorasAdmin.html">Bitácoras</a></li>
+            <li><a href="doctores.html">Doctores</a></li>
+            <li><a href="recepcion.html">Recepcion</a></li>
+            <li class="activo"><a href="farmacia.html">Farmacia</a></li>
+            <li><a href="catalogos.html">Catalogos</a></li>
+            <li><a href="especialidades.html">Especialidades</a></li>
+        </ul>
+
+        <div class="perfil-usuario">
+            <span class="info-usuario-texto flat">Super Admin | IT & Control</span>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+        
+        <div class="migas-pan">
+            <a href="inicioAdmin.html" class="btn-texto"><i class="fa-solid fa-arrow-left"></i> Volver al Panel</a>
+            <span class="separador-migas">|</span>
+            <span class="texto-migas">Catálogos > Inventario de Farmacia</span>
+        </div>
+        
+        <header class="header-dashboard-admin" style="margin-top: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+                <h1>Control de Inventario - Farmacia</h1>
+                <p>Gestión de medicamentos, niveles de stock, categorías y precios al público.</p>
+            </div>
+            
+            <div style="display: flex; gap: 15px;">
+                <div class="barra-busqueda-global">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar por código o nombre...">
+                </div>
+                <button class="btn-primario" onclick="prepararModalNuevo()">
+                    <i class="fa-solid fa-plus"></i> Nuevo Medicamento
+                </button>
+            </div>
+        </header>
+
+        <div class="tarjeta-admin" style="padding: 0; overflow: hidden;">
+            <table class="tabla-datos">
+                <thead style="background-color: var(--fondo-gris);">
+                    <tr>
+                        <th>Código / SKU</th>
+                        <th>Nombre del Medicamento</th>
+                        <th>Categoría</th>
+                        <th>Precio (MXN)</th>
+                        <th>Stock Actual</th>
+                        <th>Estatus</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-farmacia-body">
+                    
+                    <tr class="fila-medicamento">
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">MED-1001</td>
+                        <td><strong>Paracetamol 500mg</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">Caja con 20 tabletas</span></td>
+                        <td>Analgésico</td>
+                        <td style="font-weight: 600;">$ 45.00</td>
+                        <td>124 Cajas</td>
+                        <td><span class="badge-verde">Óptimo</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto" style="color: var(--rojo-error); margin-left: 10px;" title="Dar de baja"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr class="fila-medicamento">
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">MED-1045</td>
+                        <td><strong>Amoxicilina 500mg</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">Caja con 12 cápsulas</span></td>
+                        <td>Antibiótico</td>
+                        <td style="font-weight: 600;">$ 120.00</td>
+                        <td>85 Cajas</td>
+                        <td><span class="badge-verde">Óptimo</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto" style="color: var(--rojo-error); margin-left: 10px;" title="Dar de baja"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr class="fila-medicamento">
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">MED-2033</td>
+                        <td><strong>Ketorolaco 10mg</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">Caja con 10 tabletas sublinguales</span></td>
+                        <td>Analgésico</td>
+                        <td style="font-weight: 600;">$ 65.00</td>
+                        <td style="color: #6d28d9; font-weight: 700;">12 Cajas</td>
+                        <td><span class="badge-morado">Stock Bajo</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto" style="color: var(--rojo-error); margin-left: 10px;" title="Dar de baja"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr class="fila-medicamento">
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">MED-3091</td>
+                        <td><strong>Loratadina 10mg</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">Caja con 20 tabletas</span></td>
+                        <td>Antihistamínico</td>
+                        <td style="font-weight: 600;">$ 35.00</td>
+                        <td style="color: var(--rojo-error); font-weight: 700;">0 Cajas</td>
+                        <td><span class="badge-rojo">Agotado</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto" style="color: var(--rojo-error); margin-left: 10px;" title="Dar de baja"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr class="fila-medicamento">
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">MED-4102</td>
+                        <td><strong>Omeprazol 20mg</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">Frasco con 14 cápsulas</span></td>
+                        <td>Antiácido</td>
+                        <td style="font-weight: 600;">$ 80.00</td>
+                        <td>56 Frascos</td>
+                        <td><span class="badge-verde">Óptimo</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto" style="color: var(--rojo-error); margin-left: 10px;" title="Dar de baja"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr class="fila-medicamento">
+                        <td style="font-family: monospace; font-weight: 600; color: var(--texto-gris);">MED-5011</td>
+                        <td><strong>Ibuprofeno 400mg</strong><br><span style="font-size: 0.8rem; color: var(--texto-gris);">Caja con 10 tabletas</span></td>
+                        <td>Antiinflamatorio</td>
+                        <td style="font-weight: 600;">$ 55.00</td>
+                        <td>92 Cajas</td>
+                        <td><span class="badge-verde">Óptimo</span></td>
+                        <td style="text-align: center;">
+                            <button class="btn-texto" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-texto" style="color: var(--rojo-error); margin-left: 10px;" title="Dar de baja"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+            <div style="padding: 15px 20px; border-top: 1px solid var(--borde); display: flex; justify-content: space-between; align-items: center; background: #fff;">
+                <span id="texto-paginacion" style="font-size: 0.85rem; color: var(--texto-gris);">Mostrando 1-6 de 142 medicamentos registrados.</span>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-accion-secundario" disabled>Anterior</button>
+                    <button class="btn-accion-secundario">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modal-medicamento">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-pills" style="color: var(--azul-principal);"></i> Registrar Nuevo Medicamento</h2>
+                <button class="btn-cerrar-modal" onclick="cerrarModal('modal-medicamento')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div class="grupo-input-modal">
+                            <label>Nombre del Medicamento</label>
+                            <input type="text" placeholder="Ej. Naproxeno 250mg">
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Código / SKU</label>
+                            <input type="text" placeholder="MED-XXXX">
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Presentación</label>
+                            <input type="text" placeholder="Ej. Caja con 20 tabletas">
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div class="grupo-input-modal">
+                            <label>Categoría Terapéutica</label>
+                            <select style="width: 100%; padding: 12px; border: 1px solid var(--borde); border-radius: 8px; font-family: 'Inter';">
+                                <option>Analgésico</option>
+                                <option>Antibiótico</option>
+                                <option>Antiácido</option>
+                                <option>Antihistamínico</option>
+                                <option>Antiinflamatorio</option>
+                                <option>Material Curación</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Precio de Venta (MXN)</label>
+                            <input type="number" placeholder="$ 0.00">
+                        </div>
+                        <div class="grupo-input-modal">
+                            <label>Stock Inicial (Cantidad)</label>
+                            <input type="number" placeholder="Ej. 50">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; padding: 12px; background: #e8f0fe; border-left: 4px solid var(--azul-principal); font-size: 0.85rem; color: #155724;">
+                    <i class="fa-solid fa-circle-info"></i> El medicamento estará disponible inmediatamente para ser recetado por los doctores y vendido en farmacia.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-accion-secundario" onclick="cerrarModal('modal-medicamento')">Cancelar</button>
+                <button class="btn-primario" onclick="cerrarModal('modal-medicamento')">Guardar Medicamento</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal(id) {
+            document.getElementById(id).classList.add('activo');
+        }
+        function cerrarModal(id) {
+            document.getElementById(id).classList.remove('activo');
+        }
+
+        // Abre el modal para agregar un medicamento nuevo
+        function prepararModalNuevo() {
+            abrirModal('modal-medicamento');
+        }
+    </script>
+
+</body>
+</html>
