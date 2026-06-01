@@ -304,12 +304,6 @@ textarea.campo-texto {
     font-family: var(--fuente-principal);
 }
 
-/* Pantallas grandes: pasa a 2 columnas */
-@media (min-width: 600px) {
-    .grid-formulario {
-        grid-template-columns: 1fr 1fr;
-    }
-}
 
 /* Error 404 */
 

@@ -409,16 +409,16 @@ GO
 
 -- 4.1 Insertar Especialidades
 INSERT INTO ESPECIALIDAD (Nombre, Costo_Consulta, Descripcion) VALUES
-('Cardiología', 800.00, 'Especialidad médica del corazón'),
-('Dermatología', 650.00, 'Especialidad de la piel'),
-('Ginecología', 750.00, 'Salud de la mujer'),
-('Medicina General', 500.00, 'Atención primaria'),
-('Nefrología', 850.00, 'Especialidad de los riñones'),
-('Nutriología', 600.00, 'Nutrición y dietética'),
-('Oftalmología', 700.00, 'Especialidad de los ojos'),
-('Oncología', 950.00, 'Tratamiento del cáncer'),
-('Ortopedia', 780.00, 'Huesos y articulaciones'),
-('Pediatría', 600.00, 'Atención infantil'),
+('Cardiología', 1500.00, 'Especialidad médica del corazón'),
+('Dermatología', 1300.00, 'Especialidad de la piel'),
+('Ginecología', 800.00, 'Salud de la mujer'),
+('Medicina General', 120.00, 'Atención primaria'),
+('Nefrología', 800.00, 'Especialidad de los riñones'),
+('Nutriología', 500.00, 'Nutrición y dietética'),
+('Oftalmología', 500.00, 'Especialidad de los ojos'),
+('Oncología', 1200.00, 'Tratamiento del cáncer'),
+('Ortopedia', 300.00, 'Huesos y articulaciones'),
+('Pediatría', 700.00, 'Atención infantil'),
 ('Laboratorio Clínico', 400.00, 'Análisis clínicos');
 GO
 
