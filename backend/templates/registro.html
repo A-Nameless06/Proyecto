@@ -15,11 +15,16 @@
         <div class="tarjeta-login">
             
             <div class="icono-encabezado">
-                <a href="/"><i class="fa-solid fa-user-plus"></i></a>
+                <a href="/" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; text-decoration: none; color: var(--azul-primario);">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="35" height="35" fill="currentColor">
+                        <path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/>
+                    </svg>
+                </a>
             </div>
 
-            <h1>Crear cuenta</h1>
-            <p class="subtitulo">Completa tus datos personales para registrarte</p>
+
+            <h1>Bienvenido</h1>
+            <p class="subtitulo">Completa tus datos personales para registrarte en el sistema</p>
 
             <form method="POST" action="/auth/registro">
 
@@ -101,18 +106,26 @@
                         </div>
                     </div>
 
-                </div> <br>
+                </div>
+
+                <br>
                 <button type="submit" class="boton-ingresar">
                     Registrarse <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </form>
+
+            {% if error %}
+                <p class="mensaje-error" style="color: #dc3545; font-size: 13px; font-weight: 500; margin-top: 15px;">
+                    <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+                </p>
+            {% endif %}
 
             <p class="enlace-registro">
                 ¿Ya tienes cuenta? <a href="/auth/login">Iniciar sesión</a>
             </p>
         </div>
 
-        <div class="pie-seguridad">
+        <div class="pie-seguridad" style="text-align: center; margin-top: 20px; font-size: 11px; color: #6c757d; font-weight: 600; letter-spacing: 1px;">
             <i class="fa-solid fa-shield-halved" style="color: #007bff; margin-right: 5px;"></i>
             ENCRIPTACIÓN SEGURA DE GRADO MÉDICO
         </div>

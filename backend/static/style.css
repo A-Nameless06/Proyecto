@@ -21,11 +21,14 @@ body {
     font-family: var(--fuente-principal);
     background-color: var(--azul-fondo);
     background-image: radial-gradient(#d1e9ff 1px, transparent 1px);
-    background-size: 20px 20px; /* Textura sutil de fondo */
-    height: 100vh;
+    background-size: 20px 20px;
+    
+    /* Las modificaciones para arreglar el scroll: */
+    min-height: 100vh; /* Cambiamos height por min-height */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Cambiamos center por flex-start para que no corte arriba */
+    padding: 40px 20px; /* Le damos espacio para que respire al hacer scroll */
     color: var(--gris-texto);
 }
 
