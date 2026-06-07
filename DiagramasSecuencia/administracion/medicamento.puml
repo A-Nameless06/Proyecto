@@ -1,0 +1,47 @@
+@startuml alta_medicamento_global
+skinparam style strictuml
+autonumber
+
+actor Administrador
+participant "Frontend\n(Modal Medicamento)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+Administrador -> UI: Da clic en "Agregar Nuevo Fármaco"
+UI --> Administrador: Abre modal-medicamento
+
+Administrador -> UI: Llena Nombre, Sustancia, Categoría, Precio y Stock Inicial
+Administrador -> UI: Clic en "Guardar Medicamento"
+activate UI
+
+UI -> Flask: POST /api/admin/medicamentos/nuevo\n(JSON con datos del fármaco)
+activate Flask
+
+' Validación de duplicados
+Flask -> BD: SELECT id FROM catalogo_medicamentos WHERE nombre = ? OR codigo_barras = ?
+activate BD
+BD --> Flask: Retorna Null (No existe)
+
+' Inserción en dos tablas
+note right of Flask
+  **Transacción Dual:**
+  1. Registra el medicamento en el catálogo maestro.
+  2. Le inyecta el inventario inicial a la Farmacia.
+end note
+
+Flask -> BD: BEGIN TRANSACTION
+Flask -> BD: INSERT INTO catalogo_medicamentos (nombre, sustancia, precio_base...)
+BD --> Flask: Retorna nuevo medicamento_id
+Flask -> BD: INSERT INTO inventario_farmacia (medicamento_id, stock_actual) VALUES (?, ?)
+Flask -> BD: INSERT INTO bitacora_sistema (accion, detalle)
+BD --> Flask: COMMIT exitoso
+deactivate BD
+
+Flask --> UI: 201 Created
+deactivate Flask
+
+UI -> UI: Cierra el modal y refresca la tabla
+UI --> Administrador: Alerta: "El medicamento está disponible para ser recetado."
+deactivate UI
+
+@enduml

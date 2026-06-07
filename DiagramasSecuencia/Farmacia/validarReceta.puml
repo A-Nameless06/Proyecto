@@ -1,0 +1,55 @@
+@startuml surtir_receta
+skinparam style strictuml
+autonumber
+
+actor Farmacéutico
+participant "Frontend\n(Validación UI)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+' Búsqueda de la receta
+Farmacéutico -> UI: Ingresa Folio (Ej. FOL-2026-0921) y da clic en "Buscar"
+activate UI
+UI -> Flask: GET /api/receta/{folio}
+activate Flask
+Flask -> BD: SELECT * FROM consultas c JOIN recetas r ON c.id = r.consulta_id WHERE folio = ?
+activate BD
+BD --> Flask: Retorna datos de paciente, médico y medicamentos
+deactivate BD
+
+' Verificación de Stock
+Flask -> BD: SELECT stock FROM inventario WHERE medicamento_id IN (...)
+activate BD
+BD --> Flask: Retorna disponibilidad de almacén
+deactivate BD
+
+Flask --> UI: 200 OK (Datos de receta + Estado de inventario)
+deactivate Flask
+UI --> Farmacéutico: Muestra hoja de receta y panel lateral con stock validado
+
+' Surtido y descuento
+Farmacéutico -> UI: Clic en "Surtir y Descontar"
+UI -> Flask: POST /api/surtir_receta\n(JSON: folio, items_surtidos)
+activate Flask
+
+note right of Flask
+  **Transacción de Surtido:**
+  Se actualiza el inventario y se 
+  invalida el folio para evitar 
+  que la receta se surta dos veces.
+end note
+
+Flask -> BD: BEGIN TRANSACTION
+activate BD
+Flask -> BD: UPDATE inventario SET stock = stock - ? WHERE id = ?
+Flask -> BD: UPDATE recetas SET estado = 'Surtida' WHERE folio = ?
+Flask -> BD: INSERT INTO historial_movimientos (tipo, medicamento, cantidad)
+BD --> Flask: COMMIT exitoso
+deactivate BD
+
+Flask --> UI: 200 OK
+deactivate Flask
+UI --> Farmacéutico: Alerta de éxito y limpia la pantalla
+deactivate UI
+
+@enduml

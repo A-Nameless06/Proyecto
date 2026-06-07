@@ -1,0 +1,36 @@
+@startuml suspension_personal
+skinparam style strictuml
+autonumber
+
+actor Administrador
+participant "Frontend\n(Panel Admin)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+Administrador -> UI: Busca empleado y da clic en "Suspender" (Ícono fa-ban)
+activate UI
+
+UI -> Flask: POST /api/admin/empleados/{id_empleado}/estatus\n(JSON: nuevo_estatus = 'Suspendido')
+activate Flask
+
+' Seguridad Crítica
+Flask -> Flask: Valida que el Admin tenga permisos ROOT
+
+Flask -> BD: BEGIN TRANSACTION
+activate BD
+' Soft Delete y revocación de sesión
+Flask -> BD: UPDATE usuarios SET estatus = 'Suspendido' WHERE id = ?
+Flask -> BD: DELETE FROM sesiones_activas WHERE usuario_id = ?
+Flask -> BD: INSERT INTO bitacora_sistema (accion, usuario_afectado, admin_id)
+BD --> Flask: COMMIT exitoso
+deactivate BD
+
+Flask --> UI: 200 OK
+deactivate Flask
+
+UI -> UI: Ejecuta cambiarEstatus(boton) en JS
+UI -> UI: Cambia badge a "Suspendida" (rojo) y actualiza ícono
+UI --> Administrador: Muestra alerta de actualización exitosa
+deactivate UI
+
+@enduml

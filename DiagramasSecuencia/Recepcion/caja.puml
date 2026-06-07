@@ -1,0 +1,51 @@
+@startuml modulo_caja
+skinparam style strictuml
+autonumber
+
+actor Recepcionista
+participant "Frontend\n(caja.html)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+' Búsqueda de la Cita
+Recepcionista -> UI: Ingresa Folio (Ej. CIT-8829) y clic en "Buscar"
+activate UI
+UI -> Flask: GET /api/caja/cita/{folio}
+activate Flask
+
+Flask -> BD: SELECT p.nombre, c.costo, m.nombre \nFROM citas c JOIN pacientes p JOIN medicos m \nWHERE c.folio = ? AND c.estado_pago = 'Pendiente'
+activate BD
+BD --> Flask: Retorna datos de cobro
+deactivate BD
+
+Flask -> Flask: Calcula Subtotal, IVA (16%) y Total
+Flask --> UI: 200 OK (Datos y Desglose Financiero)
+deactivate Flask
+
+UI --> Recepcionista: Renderiza desglose y vista previa del ticket
+
+' Procesamiento de Pago
+Recepcionista -> UI: Selecciona Método de Pago (Ej. Tarjeta)
+Recepcionista -> UI: Clic en "Procesar Pago e Imprimir Ticket"
+
+UI -> Flask: POST /api/caja/pagar\n(JSON: folio, metodo_pago, total_cobrado)
+activate Flask
+
+' Transacción SQL
+Flask -> BD: BEGIN TRANSACTION
+activate BD
+Flask -> BD: INSERT INTO pagos (cita_id, metodo, subtotal, iva, total, cajero_id)
+Flask -> BD: UPDATE citas SET estado_pago = 'Pagado' WHERE folio = ?
+BD --> Flask: COMMIT exitoso
+deactivate BD
+
+' Generación del Recibo Final
+Flask -> Flask: Genera Ticket en formato PDF
+Flask --> UI: 201 Created + URL del Ticket PDF
+deactivate Flask
+
+UI -> UI: Abre el PDF en nueva pestaña (window.print)
+UI --> Recepcionista: Alerta "Pago Procesado con Éxito"
+deactivate UI
+
+@enduml

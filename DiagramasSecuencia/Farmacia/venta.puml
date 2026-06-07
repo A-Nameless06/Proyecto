@@ -1,0 +1,50 @@
+@startuml punto_de_venta
+skinparam style strictuml
+autonumber
+
+actor Farmacéutico
+participant "Frontend\n(Venta)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+' Lógica local del Carrito (Frontend)
+Farmacéutico -> UI: Busca producto y da clic en "Añadir"
+activate UI
+UI -> UI: agregarAlCarrito(nombre, precio, ocupaReceta)
+UI -> UI: Calcula subtotales y total
+
+alt Producto requiere receta (Ej. Antibiótico)
+    UI -> UI: Cambia bandera requiereReceta = true
+    UI --> Farmacéutico: Despliega input rojo exigiendo "Folio de Receta"
+end
+
+' Procesamiento de Venta
+Farmacéutico -> UI: Clic en "Cobrar y Emitir Ticket"
+UI -> Flask: POST /api/procesar_venta\n(JSON: carrito, folio_receta, total)
+activate Flask
+
+' Validación en servidor
+alt Se envió un folio
+    Flask -> BD: SELECT estado FROM recetas WHERE folio = ?
+    activate BD
+    BD --> Flask: Retorna validación del folio
+    deactivate BD
+end
+
+' Transacción SQL de Venta
+Flask -> BD: BEGIN TRANSACTION
+activate BD
+Flask -> BD: INSERT INTO ventas (total, fecha, cajero)
+Flask -> BD: UPDATE inventario SET stock = stock - cantidad
+Flask -> BD: INSERT INTO historial_movimientos (tipo = 'salida_sin_receta'/'salida_con_receta')
+BD --> Flask: COMMIT exitoso
+deactivate BD
+
+Flask -> Flask: Genera Ticket PDF
+Flask --> UI: 201 Created + URL del Ticket
+deactivate Flask
+UI -> UI: Vacía el arreglo carrito[]
+UI --> Farmacéutico: Alerta "Venta registrada" e imprime ticket
+deactivate UI
+
+@enduml

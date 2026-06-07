@@ -1,0 +1,48 @@
+@startuml pedido_proveedores
+skinparam style strictuml
+autonumber
+
+actor Farmacéutico
+participant "Frontend\n(proveedores.js)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+Farmacéutico -> UI: Usa botón "Filtrar Bajo Stock"
+activate UI
+UI -> UI: Oculta filas con stock >= 15 y auto-calcula cantidad a pedir
+UI --> Farmacéutico: Muestra tabla filtrada
+
+Farmacéutico -> UI: Ajusta cantidades manualmente y clic en "Confirmar y Enviar Pedido"
+
+' Lógica de intercepción de formulario
+UI -> UI: JS previene envío vacío (valida cantidades > 0)
+UI -> UI: Genera arreglo JSON con el pedido
+UI -> UI: Inyecta el JSON en input hidden (datos_pedido_json)
+UI -> UI: Guarda el arreglo en localStorage ('ultimoPedido')
+
+' Envío real al servidor
+UI -> Flask: POST /farmacia/procesar_pedido\n(Form Data con el JSON)
+activate Flask
+
+Flask -> Flask: Parsea el JSON del input oculto
+Flask -> BD: INSERT INTO ordenes_proveedor (estado, total, datos_json)
+activate BD
+BD --> Flask: Retorna ID de la orden
+deactivate BD
+
+' Redirección a pantalla de éxito
+Flask --> UI: 302 Redirect a /farmacia/pedido_exito
+deactivate Flask
+
+' Carga de la vista final
+UI -> UI: Carga pedidoExito.html
+UI -> UI: Lee 'ultimoPedido' de localStorage
+UI -> UI: Renderiza lista de resumen e inyecta Gran Total
+UI --> Farmacéutico: Muestra pantalla de éxito ("¡Pedido enviado!")
+
+' Animación final
+UI -> UI: Espera 10 segundos (setTimeout)
+UI -> UI: Cambia estado visual a "PEDIDO APROBADO"
+deactivate UI
+
+@enduml

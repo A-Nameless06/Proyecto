@@ -1,0 +1,51 @@
+@startuml alta_usuarios
+skinparam style strictuml
+autonumber
+
+actor "Admin / Recepción" as Admin
+participant "Frontend\n(nuevoUsuario.html)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+Admin -> UI: Llena formulario (Datos, Especialidad, Turno)
+Admin -> UI: Clic en "Generar Alta"
+activate UI
+
+UI -> Flask: POST /api/usuarios/alta\n(JSON: datos_completos, rol)
+activate Flask
+
+' Validaciones de negocio
+Flask -> BD: SELECT id FROM usuarios WHERE correo_institucional = ? OR curp = ?
+activate BD
+BD --> Flask: Retorna Null (No existe duplicado)
+deactivate BD
+
+' Lógica de credenciales (Seguridad)
+note right of Flask
+  **Seguridad y Accesos:**
+  El sistema genera una contraseña
+  temporal, la cifra (Bcrypt) y asigna
+  el rol (Ej. 'doctor' o 'recepcion').
+end note
+
+Flask -> Flask: Genera contraseña temporal (Ej. "RASA2026_temp")
+Flask -> Flask: Cifra contraseña (generate_password_hash)
+
+' Inserción SQL
+Flask -> BD: BEGIN TRANSACTION
+activate BD
+Flask -> BD: INSERT INTO usuarios (nombre, correo, password_hash, rol)
+Flask -> BD: INSERT INTO detalles_medicos/detalles_pacientes (usuario_id, especialidad, turno...)
+BD --> Flask: COMMIT exitoso
+deactivate BD
+
+' Envío de credenciales
+Flask -> Flask: Dispara evento de envío de correo (SMTP) con credenciales temporales
+Flask --> UI: 201 Created
+deactivate Flask
+
+UI --> Admin: Alerta "Usuario registrado exitosamente. Credenciales enviadas."
+UI -> UI: Limpia el formulario
+deactivate UI
+
+@enduml

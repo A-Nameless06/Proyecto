@@ -1,0 +1,45 @@
+@startuml proceso_checkin
+skinparam style strictuml
+autonumber
+
+actor Recepcionista
+participant "Frontend\n(checkIn.html)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+' El usuario llega a la pantalla desde la Agenda
+Recepcionista -> UI: Ingresa Signos Vitales (Peso, T.A, Temp.) y Motivo
+Recepcionista -> UI: Clic en "Finalizar Check-in"
+activate UI
+
+UI -> Flask: POST /api/citas/{id}/checkin\n(JSON: signos_vitales, motivo)
+activate Flask
+
+' Validación de seguridad
+Flask -> BD: SELECT estado FROM citas WHERE id = ?
+activate BD
+BD --> Flask: Confirma que estado es 'Programada' o 'Pagada'
+
+' Transacción de actualización
+note right of Flask
+  **Check-In Médico:**
+  1. Guarda somatometría inicial.
+  2. Pasa cita a "En Espera".
+  3. Ahora aparecerá en el dashboard
+     del doctor asignado.
+end note
+
+Flask -> BD: BEGIN TRANSACTION
+Flask -> BD: INSERT INTO somatometria_previa (cita_id, peso, presion, temperatura...)
+Flask -> BD: UPDATE citas SET estado = 'En Espera', motivo_reportado = ? WHERE id = ?
+BD --> Flask: COMMIT exitoso
+deactivate BD
+
+Flask --> UI: 200 OK
+deactivate Flask
+
+UI -> UI: Redirige a agendaCita.html (window.location.href)
+UI --> Recepcionista: Alerta "Paciente enviado a Sala de Espera"
+deactivate UI
+
+@enduml

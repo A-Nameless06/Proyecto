@@ -1,0 +1,41 @@
+@startuml actualizar_precio_especialidad
+skinparam style strictuml
+autonumber
+
+actor Administrador
+participant "Frontend\n(Modal Especialidades)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+Administrador -> UI: Clic en "Editar Precio" de una especialidad (Ej. Cardiología)
+UI -> UI: Ejecuta abrirPrecio(especialidad, precioActual)
+UI --> Administrador: Muestra modal con input de nuevo precio
+
+Administrador -> UI: Ingresa nuevo costo (Ej. $1,500.00) y da clic en Guardar
+activate UI
+
+UI -> Flask: PUT /api/admin/especialidades/{id}/precio\n(JSON: nuevo_precio)
+activate Flask
+
+Flask -> BD: BEGIN TRANSACTION
+activate BD
+Flask -> BD: UPDATE especialidades SET costo_consulta = ? WHERE id = ?
+' Se guarda rastro en la bitácora financiera
+Flask -> BD: INSERT INTO bitacora_financiera (accion, precio_anterior, precio_nuevo)
+BD --> Flask: COMMIT exitoso
+deactivate BD
+
+note over Flask, BD
+  A partir de este momento, cuando 
+  Recepción agende una nueva cita, el
+  sistema extraerá este nuevo costo.
+end note
+
+Flask --> UI: 200 OK
+deactivate Flask
+
+UI -> UI: Cierra el modal y actualiza el valor en la tarjeta
+UI --> Administrador: Muestra notificación de éxito
+deactivate UI
+
+@enduml
