@@ -1,0 +1,66 @@
+@startuml agendar_cita_paciente
+skinparam style strictuml
+autonumber
+
+actor Paciente
+participant "Frontend\n(R.A.S.A. JS/HTML)" as UI
+participant "Backend\n(Flask)" as Flask
+database "Base de Datos\n(SQL)" as BD
+
+' PASO 1: Especialidad y Médico
+Paciente -> UI: Selecciona Especialidad (ej. Cardiología)
+activate UI
+UI -> UI: Carga lista de médicos desde doctoresPorEspecialidad
+UI --> Paciente: Muestra menú de médicos disponibles
+Paciente -> UI: Selecciona Médico y da clic en "Continuar"
+
+' PASO 2: Fecha y Horario (RESTRICCIÓN EN FRONTEND)
+note over UI
+  **Lógica de Fechas (JS):**
+  Calcula min: Hoy + 48 hrs
+  Calcula max: min + 3 meses
+end note
+
+UI -> UI: Bloquea días fuera del rango permitido en el calendario
+UI --> Paciente: Muestra Calendario interactivo
+Paciente -> UI: Selecciona un día válido en el calendario
+UI -> UI: generarHoras() filtrando por turno del médico
+UI --> Paciente: Muestra horas disponibles
+Paciente -> UI: Selecciona una hora y da clic en "Continuar"
+
+' PASO 3: Resumen y Confirmación
+UI -> UI: actualizarResumen() inyectando datos en pantalla
+UI --> Paciente: Muestra vista "¡Cita Lista!" con el resumen
+Paciente -> UI: Clic en "Generar Comprobante"
+
+' INTERACCIÓN CON EL BACKEND Y VALIDACIÓN SQL
+UI -> Flask: POST /api/agendar_cita\n(JSON con citaState)
+activate Flask
+
+' VALIDACIÓN BACKEND: Cita pendiente con el mismo doctor
+Flask -> BD: SELECT id FROM citas WHERE paciente_id = ? \nAND doctor = ? AND estado = 'Pendiente'
+activate BD
+
+alt Ya tiene cita pendiente con el mismo doctor
+    BD --> Flask: Retorna ID de cita existente
+    Flask --> UI: Error 409: "Ya tienes una cita programada con este médico"
+    UI --> Paciente: Muestra alerta y sugiere modificar la cita actual
+
+else No tiene citas pendientes
+    BD --> Flask: Retorna Null
+    
+    ' INSERCIÓN EXITOSA
+    Flask -> BD: INSERT INTO citas (paciente_id, doctor, fecha, hora, estado)
+    BD --> Flask: Confirma creación exitosa en BD
+    deactivate BD
+    
+    Flask -> Flask: Genera comprobante PDF / Renderiza vista
+    Flask --> UI: 201 Created + URL del Comprobante
+    
+    UI --> Paciente: Abre comprobante en nueva pestaña (window.open)
+end
+
+deactivate Flask
+deactivate UI
+
+@enduml
