@@ -72,9 +72,6 @@ CREATE PROCEDURE sp_CrearEmpleado
     @Tipo_empleo        VARCHAR(20)  = NULL,
     @Fecha_contratacion DATE         = NULL,
     @Id_especialidad    INT          = NULL,  -- Solo para Doctor
-    @Id_Horario         INT          = NULL,  -- Solo para Doctor
-    @Hora_Inicio        TIME         = NULL,  -- Solo para Recepcionista
-    @Hora_Fin           TIME         = NULL   -- Solo para Recepcionista
 AS
 BEGIN
     SET NOCOUNT ON;

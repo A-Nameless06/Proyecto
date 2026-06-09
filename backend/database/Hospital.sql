@@ -69,6 +69,7 @@ CREATE TABLE HORARIO (
     Dia                VARCHAR(20)
 );
 
+
 -- Tabla: EMPLEADO (con autenticación unificada)
 CREATE TABLE EMPLEADO (
     Id_empleado        INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
@@ -90,6 +91,15 @@ CREATE TABLE DOCTOR (
     Id_especialidad    INT NOT NULL,
     Id_Horario         INT NOT NULL,
     Consultorio_asignado INT NULL
+);
+
+-- Tabla: Horario Empleado
+CREATE TABLE EMPLEADO_HORARIO (
+    Id_empleado INT,
+    Id_Horario INT,
+    PRIMARY KEY (Id_empleado, Id_Horario),
+    FOREIGN KEY (Id_empleado) REFERENCES EMPLEADO(Id_empleado),
+    FOREIGN KEY (Id_Horario) REFERENCES HORARIO(Id_Horario)
 );
 
 -- Tabla: RECEPCIONISTA

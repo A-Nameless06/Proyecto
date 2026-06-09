@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
     <nav class="barra-navegacion minimalista sticky">
         <div class="marca">
             <i class="fa-solid fa-hospital-user icono-marca"></i>
@@ -19,150 +18,168 @@
                 <strong>R.A.S.A</strong>
             </div>
         </div>
-        
         <ul class="menu-principal">
             <li><a href="/dashboard">Inicio</a></li>
             <li><a href="/recepcion/agenda">Agenda</a></li>
             <li><a href="/recepcion/caja">Caja</a></li>
-            <li><a href="/recepcion/horarios">Horarios</a></li>
             <li><a href="/recepcion/pacientes">Pacientes</a></li>
-            <li><a href="/recepcion/consultorios">Consultorios</a></li>
             <li><a href="/recepcion/doctores">Doctores</a></li>
         </ul>
-
         <div class="perfil-usuario">
             <div class="info-usuario-texto flat">
-                <span><strong>Ana Martínez</strong> | Recepción</span>
+                <span><strong>{{ session.get('nombre', 'Recepción') }}</strong> | Recepción</span>
             </div>
         </div>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL CENTRADO -->
     <main class="contenedor-principal">
-        
-        <!-- Contenedor ajustado a 1000px para que el formulario respire bien -->
-        <div style="width: 100%; max-width: 1000px; margin: 40px auto 60px;">
-            
+        <div style="width:100%;max-width:1000px;margin:40px auto 60px;">
+
             <div class="migas-pan">
-                Directorio <i class="fa-solid fa-chevron-right"></i> <strong>Alta de Nuevo Paciente</strong>
+                Directorio <i class="fa-solid fa-chevron-right"></i>
+                <strong>Alta de Nuevo Paciente</strong>
             </div>
 
-            <div class="header-dashboard" style="margin-bottom: 25px;">
+            <div class="header-dashboard" style="margin-bottom:25px;">
                 <h1>Registro de Paciente</h1>
                 <p>Ingreso de datos administrativos para apertura de expediente general.</p>
             </div>
 
-            <!-- CONTENEDOR DEL FORMULARIO -->
-            <form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Paciente registrado exitosamente. Folio generado.');">
-                
+            <!-- Mensajes de error/éxito del servidor -->
+            {% if error %}
+            <div style="padding:12px 16px;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;
+                        color:#dc2626;margin-bottom:20px;">
+                <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+            </div>
+            {% endif %}
+
+            <div id="msgData"
+                 data-error="{{ error or '' }}"
+                 data-success="{{ success or '' }}"
+                 hidden></div>
+
+            <!--
+                El paciente se registra con sp_CrearPaciente (no sp_CrearEmpleado).
+                Este form apunta a /auth/registro que ya tienes implementado.
+            -->
+            <form class="tarjeta-base formulario-registro"
+                  method="POST"
+                  action="/auth/registro">
+
+                <!-- Rol fijo -->
+                <input type="hidden" name="rol" value="Paciente">
+
                 <!-- SECCIÓN 1: DATOS PERSONALES -->
                 <div class="cabecera-seccion-form">
                     <div class="icono-seccion azul"><i class="fa-regular fa-id-card"></i></div>
                     <h3>Datos Personales</h3>
                 </div>
-                
+
                 <div class="grid-inputs-3">
                     <div class="grupo-input">
                         <label>Nombre(s)</label>
-                        <input type="text" class="input-form" placeholder="Ej. Juan Carlos" required>
+                        <input type="text" name="nombre" class="input-form"
+                               placeholder="Ej. Juan Carlos" required>
                     </div>
                     <div class="grupo-input">
                         <label>Apellido Paterno</label>
-                        <input type="text" class="input-form" placeholder="Pérez" required>
+                        <input type="text" name="apellido_paterno" class="input-form"
+                               placeholder="Pérez" required>
                     </div>
                     <div class="grupo-input">
                         <label>Apellido Materno</label>
-                        <input type="text" class="input-form" placeholder="Gómez" required>
+                        <input type="text" name="apellido_materno" class="input-form"
+                               placeholder="Gómez">
+                    </div>
+                    <div class="grupo-input">
+                        <label>CURP</label>
+                        <input type="text" name="curp" class="input-form"
+                               placeholder="18 caracteres" maxlength="18"
+                               style="text-transform:uppercase;" required>
                     </div>
                     <div class="grupo-input">
                         <label>Fecha de Nacimiento</label>
-                        <input type="date" class="input-form" required>
+                        <input type="date" name="fecha_nacimiento" class="input-form" required>
                     </div>
                     <div class="grupo-input">
-                        <label>Género</label>
-                        <select class="input-form" required>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
-                            <option value="O">Otro</option>
-                        </select>
-                    </div>
-                    <div class="grupo-input">
-                        <label>Estado Civil</label>
-                        <select class="input-form">
-                            <option value="soltero">Soltero/a</option>
-                            <option value="casado">Casado/a</option>
-                            <option value="divorciado">Divorciado/a</option>
-                            <option value="viudo">Viudo/a</option>
+                        <label>Tipo de Sangre</label>
+                        <select name="tipo_sangre" class="input-form" required>
+                            <option value="" disabled selected>Selecciona</option>
+                            <option>A+</option><option>A-</option>
+                            <option>B+</option><option>B-</option>
+                            <option>AB+</option><option>AB-</option>
+                            <option>O+</option><option>O-</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="divisor-ligero"></div>
 
-                <!-- SECCIÓN 2: CONTACTO Y DOMICILIO -->
+                <!-- SECCIÓN 2: CONTACTO -->
                 <div class="cabecera-seccion-form">
                     <div class="icono-seccion naranja"><i class="fa-solid fa-map-location-dot"></i></div>
-                    <h3>Contacto y Domicilio</h3>
+                    <h3>Contacto</h3>
                 </div>
 
                 <div class="grid-inputs-2">
                     <div class="grupo-input">
                         <label>Teléfono Móvil</label>
-                        <input type="tel" class="input-form" placeholder="10 dígitos" required>
+                        <input type="tel" name="telefono" class="input-form"
+                               placeholder="10 dígitos" maxlength="10" required>
                     </div>
                     <div class="grupo-input">
                         <label>Correo Electrónico</label>
-                        <input type="email" class="input-form" placeholder="correo@ejemplo.com">
+                        <input type="email" name="correo" class="input-form"
+                               placeholder="correo@ejemplo.com">
                     </div>
                     <div class="grupo-input ancho-completo">
-                        <label>Dirección Completa (Calle, Número, Colonia)</label>
-                        <input type="text" class="input-form" placeholder="Ej. Av. Insurgentes Sur 123, Col. Roma" required>
-                    </div>
-                    <div class="grupo-input">
-                        <label>Código Postal</label>
-                        <input type="text" class="input-form" placeholder="Ej. 06700" required>
-                    </div>
-                    <div class="grupo-input">
-                        <label>Ciudad / Municipio</label>
-                        <input type="text" class="input-form" placeholder="Ej. Cuauhtémoc" required>
+                        <label>Alergias (si aplica)</label>
+                        <textarea name="alergias" class="input-form" rows="2"
+                                  placeholder="Especifica alergias a medicamentos o alimentos (opcional)"
+                                  style="resize:vertical;"></textarea>
                     </div>
                 </div>
 
                 <div class="divisor-ligero"></div>
 
-                <!-- SECCIÓN 3: CONTACTO DE EMERGENCIA -->
+                <!-- SECCIÓN 3: CREDENCIALES -->
                 <div class="cabecera-seccion-form">
-                    <div class="icono-seccion rojo"><i class="fa-solid fa-truck-medical"></i></div>
-                    <h3>En Caso de Emergencia</h3>
+                    <div class="icono-seccion" style="background:#d1fae5;color:var(--verde-exito);">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <h3>Credenciales de Acceso</h3>
                 </div>
 
-                <div class="grid-inputs-3">
-                    <div class="grupo-input ancho-completo-grid-3">
-                        <label>Nombre del Contacto</label>
-                        <input type="text" class="input-form" placeholder="Nombre completo" required>
+                <div class="grid-inputs-2">
+                    <div class="grupo-input">
+                        <label>Nombre de Usuario</label>
+                        <input type="text" name="usuario" class="input-form"
+                               placeholder="Crea un usuario" required>
                     </div>
                     <div class="grupo-input">
-                        <label>Parentesco</label>
-                        <select class="input-form" required>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option value="padres">Padre / Madre</option>
-                            <option value="conyuge">Cónyuge</option>
-                            <option value="hijos">Hijo / Hija</option>
-                            <option value="hermanos">Hermano / Hermana</option>
-                            <option value="otro">Otro</option>
-                        </select>
+                        <label>Contraseña Temporal</label>
+                        <div class="input-compuesto">
+                            <input type="password" name="password" id="pwd1"
+                                   class="input-form entrada-dominio" placeholder="Mínimo 6 caracteres" required>
+                            <i class="fa-solid fa-eye texto-dominio" style="cursor:pointer;padding:0 12px;"
+                               onclick="togglePwd('pwd1',this)"></i>
+                        </div>
                     </div>
                     <div class="grupo-input">
-                        <label>Teléfono de Emergencia</label>
-                        <input type="tel" class="input-form" placeholder="10 dígitos" required>
+                        <label>Confirmar Contraseña</label>
+                        <div class="input-compuesto">
+                            <input type="password" name="confirmar_password" id="pwd2"
+                                   class="input-form entrada-dominio" placeholder="Repite la contraseña" required>
+                            <i class="fa-solid fa-eye texto-dominio" style="cursor:pointer;padding:0 12px;"
+                               onclick="togglePwd('pwd2',this)"></i>
+                        </div>
                     </div>
                 </div>
 
-                <!-- ÁREA DE BOTONES -->
                 <div class="acciones-formulario">
-                    <button type="button" class="btn-cancelar" onclick="window.history.back();">Cancelar</button>
-                    <button type="submit" class="btn-accion-principal">
+                    <button type="button" class="btn-cancelar"
+                            onclick="window.history.back();">Cancelar</button>
+                    <button type="submit" class="btn-accion-principal" id="btnSubmit">
                         <i class="fa-solid fa-user-check"></i> Registrar Paciente
                     </button>
                 </div>
@@ -171,5 +188,27 @@
         </div>
     </main>
 
+    <script>
+    function togglePwd(id, iconEl) {
+        const campo = document.getElementById(id);
+        const esPassword = campo.type === 'password';
+        campo.type = esPassword ? 'text' : 'password';
+        iconEl.classList.toggle('fa-eye',      !esPassword);
+        iconEl.classList.toggle('fa-eye-slash', esPassword);
+    }
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const p1 = document.getElementById('pwd1').value;
+        const p2 = document.getElementById('pwd2').value;
+        if (p1 !== p2) {
+            e.preventDefault();
+            alert('Las contraseñas no coinciden.');
+            return;
+        }
+        const btn = document.getElementById('btnSubmit');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
+    });
+    </script>
 </body>
 </html>

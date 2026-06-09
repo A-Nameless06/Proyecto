@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR (MINIMALISTA) -->
     <nav class="barra-navegacion minimalista sticky">
         <div class="marca">
             <i class="fa-solid fa-hospital-user icono-marca"></i>
@@ -19,130 +18,173 @@
                 <strong>R.A.S.A</strong>
             </div>
         </div>
-        
         <ul class="menu-principal">
             <li><a href="/dashboard">Inicio</a></li>
             <li><a href="/recepcion/agenda">Agenda</a></li>
             <li><a href="/recepcion/caja">Caja</a></li>
-            <li><a href="/recepcion/horarios">Horarios</a></li>
             <li><a href="/recepcion/pacientes">Pacientes</a></li>
-            <li><a href="/recepcion/consultorios">Consultorios</a></li>
             <li><a href="/recepcion/doctores">Doctores</a></li>
         </ul>
-
         <div class="perfil-usuario">
             <div class="info-usuario-texto flat">
-                <span><strong>Ana Martínez</strong> | Recepción</span>
+                <span><strong>{{ session.get('nombre', 'Recepción') }}</strong> | Recepción</span>
             </div>
         </div>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL CENTRADO -->
     <main class="contenedor-principal">
-        
-        <div style="width: 100%; max-width: 1000px; margin: 40px auto 60px;">
-            
+        <div style="width:100%;max-width:1000px;margin:40px auto 60px;">
+
             <div class="migas-pan">
-                Directorio <i class="fa-solid fa-chevron-right"></i> <strong>Alta de Nuevo Personal (Recepción)</strong>
+                Directorio <i class="fa-solid fa-chevron-right"></i>
+                <strong>Alta de Nuevo Personal (Recepción)</strong>
             </div>
 
-            <div class="header-dashboard" style="margin-bottom: 25px;">
+            <div class="header-dashboard" style="margin-bottom:25px;">
                 <h1>Registro de Recepcionista</h1>
                 <p>Ingreso de datos y generación de credenciales para nuevo personal administrativo.</p>
             </div>
 
-            <!-- CONTENEDOR DEL FORMULARIO -->
-            <form class="tarjeta-base formulario-registro" onsubmit="event.preventDefault(); alert('Personal de recepción registrado exitosamente. Credenciales generadas.');">
-                
+            {% if error %}
+            <div style="padding:12px 16px;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;
+                        color:#dc2626;margin-bottom:20px;">
+                <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+            </div>
+            {% endif %}
+
+            <div id="msgData"
+                 data-error="{{ error or '' }}"
+                 data-success="{{ success or '' }}"
+                 hidden></div>
+
+            <form class="tarjeta-base formulario-registro"
+                  method="POST"
+                  action="/auth/registro-empleado">
+
+                <!-- Rol fijo -->
+                <input type="hidden" name="rol" value="Recepcionista">
+
                 <!-- SECCIÓN 1: DATOS PERSONALES -->
                 <div class="cabecera-seccion-form">
                     <div class="icono-seccion azul"><i class="fa-regular fa-id-card"></i></div>
                     <h3>Datos Personales</h3>
                 </div>
-                
+
                 <div class="grid-inputs-3">
                     <div class="grupo-input">
                         <label>Nombre(s)</label>
-                        <input type="text" class="input-form" placeholder="Ej. Mariana" required>
+                        <input type="text" name="nombre" class="input-form"
+                               placeholder="Ej. Mariana" required>
                     </div>
                     <div class="grupo-input">
                         <label>Apellido Paterno</label>
-                        <input type="text" class="input-form" placeholder="López" required>
+                        <input type="text" name="apellido_paterno" class="input-form"
+                               placeholder="López" required>
                     </div>
                     <div class="grupo-input">
                         <label>Apellido Materno</label>
-                        <input type="text" class="input-form" placeholder="García" required>
+                        <input type="text" name="apellido_materno" class="input-form"
+                               placeholder="García">
                     </div>
                     <div class="grupo-input">
-                        <label>Fecha de Nacimiento</label>
-                        <input type="date" class="input-form" required>
+                        <label>CURP</label>
+                        <input type="text" name="curp" class="input-form"
+                               placeholder="18 caracteres" maxlength="18"
+                               style="text-transform:uppercase;" required>
                     </div>
                     <div class="grupo-input">
-                        <label>Género</label>
-                        <select class="input-form" required>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
-                            <option value="O">Otro</option>
-                        </select>
+                        <label>Fecha de Contratación</label>
+                        <input type="date" name="fecha_contratacion" class="input-form" required>
                     </div>
                     <div class="grupo-input">
                         <label>Teléfono Móvil</label>
-                        <input type="tel" class="input-form" placeholder="10 dígitos" required>
+                        <input type="tel" name="telefono" class="input-form"
+                               placeholder="10 dígitos" maxlength="10">
                     </div>
                 </div>
 
                 <div class="divisor-ligero"></div>
 
-                <!-- SECCIÓN 2: DATOS LABORALES -->
-<div class="cabecera-seccion-form">
-    <div class="icono-seccion naranja"><i class="fa-solid fa-briefcase"></i></div>
-    <h3>Asignación Laboral</h3>
-</div>
-
-<div class="grid-inputs-2">
-    <div class="grupo-input">
-        <label>Turno Asignado</label>
-        <select class="input-form" required>
-            <option value="" disabled selected>Seleccione el turno</option>
-            <!-- Turno de 7am a 3pm -->
-            <option value="matutino">Matutino (07:00 - 15:00)</option>
-            <!-- Turno de 1pm a 9pm -->
-            <option value="vespertino">Vespertino (13:00 - 21:00)</option>
-        </select>
-    </div>
-    <div class="grupo-input">
-        <label>Área de Recepción</label>
-        <select class="input-form" required>
-            <option value="" disabled selected>Seleccione el área</option>
-            <option value="general">Recepción General (Planta Baja)</option>
-            <option value="urgencias">Urgencias</option>
-            <option value="especialidades">Ala de Especialidades</option>
-            <option value="laboratorio">Recepción de Laboratorio</option>
-        </select>
-    </div>
-</div>
-
-                <!-- SECCIÓN 3: CREDENCIALES DE ACCESO -->
+                <!-- SECCIÓN 2: ASIGNACIÓN LABORAL -->
                 <div class="cabecera-seccion-form">
-                    <div class="icono-seccion" style="background: #d1fae5; color: var(--verde-exito);"><i class="fa-solid fa-key"></i></div>
+                    <div class="icono-seccion naranja"><i class="fa-solid fa-briefcase"></i></div>
+                    <h3>Asignación Laboral</h3>
+                </div>
+
+                <div class="grid-inputs-2">
+                    <!--
+                        El SP usa @Hora_Inicio y @Hora_Fin para RECEPCIONISTA.
+                        Mapeamos el select de turno a horas reales con JS,
+                        o directamente con dos inputs ocultos.
+                    -->
+                    <div class="grupo-input">
+                        <label>Turno Asignado</label>
+                        <select class="input-form" id="selectTurno" onchange="aplicarTurno()"
+                                required>
+                            <option value="" disabled selected>Seleccione el turno</option>
+                            <option value="07:00:00|15:00:00">Matutino (07:00 - 15:00)</option>
+                            <option value="13:00:00|21:00:00">Vespertino (13:00 - 21:00)</option>
+                        </select>
+                        <!-- Campos ocultos que el form envía realmente -->
+                        <input type="hidden" name="hora_inicio" id="horaInicio" value="08:00:00">
+                        <input type="hidden" name="hora_fin"    id="horaFin"    value="16:00:00">
+                    </div>
+                    <div class="grupo-input">
+                        <label>Área de Recepción</label>
+                        <select name="tipo_empleo" class="input-form" required>
+                            <option value="" disabled selected>Seleccione el área</option>
+                            <option value="Recepción General">Recepción General (Planta Baja)</option>
+                            <option value="Urgencias">Urgencias</option>
+                            <option value="Especialidades">Ala de Especialidades</option>
+                            <option value="Laboratorio">Recepción de Laboratorio</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="divisor-ligero"></div>
+
+                <!-- SECCIÓN 3: CREDENCIALES -->
+                <div class="cabecera-seccion-form">
+                    <div class="icono-seccion" style="background:#d1fae5;color:var(--verde-exito);">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
                     <h3>Credenciales de Acceso al Sistema</h3>
                 </div>
 
                 <div class="grid-inputs-2">
-                    <div class="grupo-input ancho-completo">
-                        <label>Generar Correo Institucional</label>
+                    <div class="grupo-input">
+                        <label>Nombre de Usuario</label>
+                        <input type="text" name="usuario" class="input-form"
+                               placeholder="Ej. recep.lopez" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>Correo Institucional</label>
                         <div class="input-compuesto">
-                            <input type="text" class="entrada-dominio" placeholder="inicial.apellido" required>
+                            <input type="text" id="dominioInput" class="entrada-dominio"
+                                   placeholder="inicial.apellido"
+                                   oninput="actualizarCorreo()"
+                                   required>
                             <span class="texto-dominio">@rasa-med.com</span>
+                        </div>
+                        <!-- El correo completo se envía en este campo oculto -->
+                        <input type="hidden" name="correo" id="correoCompleto">
+                    </div>
+                    <div class="grupo-input">
+                        <label>Contraseña Temporal</label>
+                        <div class="input-compuesto">
+                            <input type="password" name="password" id="pwd1"
+                                   class="input-form entrada-dominio"
+                                   placeholder="Mínimo 6 caracteres" required>
+                            <i class="fa-solid fa-eye texto-dominio" style="cursor:pointer;padding:0 12px;"
+                               onclick="togglePwd('pwd1',this)"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- ÁREA DE BOTONES -->
                 <div class="acciones-formulario">
-                    <button type="button" class="btn-cancelar" onclick="window.history.back();">Cancelar</button>
-                    <button type="submit" class="btn-accion-principal">
+                    <button type="button" class="btn-cancelar"
+                            onclick="window.history.back();">Cancelar</button>
+                    <button type="submit" class="btn-accion-principal" id="btnSubmit">
                         <i class="fa-solid fa-id-badge"></i> Registrar Recepcionista
                     </button>
                 </div>
@@ -151,5 +193,45 @@
         </div>
     </main>
 
+    <script>
+    function togglePwd(id, iconEl) {
+        const campo = document.getElementById(id);
+        campo.type = campo.type === 'password' ? 'text' : 'password';
+        iconEl.classList.toggle('fa-eye');
+        iconEl.classList.toggle('fa-eye-slash');
+    }
+
+    // Sync turno → campos ocultos hora_inicio / hora_fin
+    function aplicarTurno() {
+        const val = document.getElementById('selectTurno').value;
+        if (!val) return;
+        const [ini, fin] = val.split('|');
+        document.getElementById('horaInicio').value = ini;
+        document.getElementById('horaFin').value    = fin;
+    }
+
+    // Armar correo completo antes de enviar
+    function actualizarCorreo() {
+        const prefijo = document.getElementById('dominioInput').value.trim();
+        document.getElementById('correoCompleto').value = prefijo
+            ? `${prefijo}@rasa-med.com` : '';
+    }
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+        // Forzar actualización del correo
+        actualizarCorreo();
+
+        const correo = document.getElementById('correoCompleto').value;
+        if (!correo) {
+            e.preventDefault();
+            alert('El correo institucional es obligatorio.');
+            return;
+        }
+
+        const btn = document.getElementById('btnSubmit');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
+    });
+    </script>
 </body>
 </html>

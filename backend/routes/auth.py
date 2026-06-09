@@ -279,71 +279,101 @@ def registro_form():
     
 
 # ── Registro de empleados ──────────────────────────────
-@auth_bp.route("/registro-empleado", methods=["GET", "POST"])
-def register_empleado():
-    # Verificar que solo administradores puedan crear empleados
-    #if session.get("rol") not in ("Administrador", "Recepcionista"):
-    #    return redirect("/auth/login")
-    
+@auth_bp.route("/registro-empleado/<rol>", methods=["GET", "POST"])
+def registro_empleado(rol):
+
+    rol_url = rol.lower()
+
+    if session.get("rol") not in ("Administrador", "Recepcionista"):
+        return redirect("/auth/login")
+
     if request.method == "GET":
-        # Obtener especialidades para el select (si es doctor)
-        try:
+
+        if rol_url == "doctor":
             with get_coneccion() as conn:
                 cursor = conn.cursor()
-                cursor.execute("SELECT Id_especialidad, Nombre FROM ESPECIALIDAD ORDER BY Nombre")
+                cursor.execute("SELECT Id_especialidad, Nombre FROM ESPECIALIDAD")
                 especialidades = cursor.fetchall()
-                cursor.execute("SELECT Id_Horario, Dia, Hora_Inicio, Hora_Fin FROM HORARIO ORDER BY Dia, Hora_Inicio")
+                cursor.execute("SELECT Id_Horario, Dia, Hora_Inicio, Hora_Fin FROM HORARIO")
                 horarios = cursor.fetchall()
-            return render_template("nuevaRecepcion.html", especialidades=especialidades, horarios=horarios)
-        except pyodbc.Error as e:
-            return render_template("registroEmpleado.html", error=f"Error: {str(e)}")
-    
-    # Obtener datos del formulario
+
+            return render_template(
+                "recepcionista/nuevoDoctor.html",
+                especialidades=especialidades,
+                horarios=horarios
+            )
+
+        elif rol_url == "recepcionista":
+            return render_template("recepcionista/nuevaRecepcion.html")
+
+        elif rol_url == "paciente":
+            return render_template("recepcionista/nuevoPaciente.html")
+        
+    id_horarios = request.form.getlist("id_horario")
     usuario = request.form.get("usuario")
     password = request.form.get("password")
-    rol = request.form.get("rol")
+    rol_form = request.form.get("rol")  
     nombre = request.form.get("nombre")
     apellido_paterno = request.form.get("apellido_paterno")
     apellido_materno = request.form.get("apellido_materno")
     curp = request.form.get("curp")
     correo = request.form.get("correo")
     telefono = request.form.get("telefono")
-    tipo_empleo = request.form.get("tipo_empleo", rol)
+    tipo_empleo = request.form.get("tipo_empleo", rol_form)
     fecha_contratacion = request.form.get("fecha_contratacion")
-    
-    # Validaciones
-    if not all([usuario, password, rol, nombre, apellido_paterno, curp, correo, fecha_contratacion]):
-        return render_template("registroEmpleado.html", error="Todos los campos obligatorios deben ser llenados")
-    
+
+    # Campos por rol
+    id_especialidad = None
+    id_horario = None
+    hora_inicio = None
+    hora_fin = None
+
+    if rol_url == "doctor":
+        id_especialidad = request.form.get("id_especialidad")
+        id_horario = request.form.get("id_horario")
+
+    elif rol_url == "recepcionista":
+        hora_inicio = request.form.get("hora_inicio")
+        hora_fin = request.form.get("hora_fin")
+
+    # VALIDACIONES
+    if not all([usuario, password, rol_form, nombre, apellido_paterno, curp, correo, fecha_contratacion]):
+        return render_template(
+            "recepcionista/nuevoDoctor.html",
+            error="Todos los campos obligatorios deben ser llenados"
+        )
+
     try:
         with get_coneccion() as conn:
             cursor = conn.cursor()
-            
-            # Verificar si el usuario ya existe
+
+            # Validaciones únicas
             cursor.execute("SELECT 1 FROM USUARIO WHERE usuario = ?", usuario)
             if cursor.fetchone():
-                return render_template("registroEmpleado.html", error="El nombre de usuario ya existe")
-            
-            # Verificar si el correo ya existe
+                return render_template(
+                    "recepcionista/nuevoDoctor.html",
+                    error="El nombre de usuario ya existe"
+                )
+
             cursor.execute("SELECT 1 FROM EMPLEADO WHERE Correo = ?", correo)
             if cursor.fetchone():
-                return render_template("registroEmpleado.html", error="El correo ya está registrado")
-            
-            # Verificar si la CURP ya existe
+                return render_template(
+                    "recepcionista/nuevoDoctor.html",
+                    error="El correo ya está registrado"
+                )
+
             cursor.execute("SELECT 1 FROM EMPLEADO WHERE Curp = ?", curp)
             if cursor.fetchone():
-                return render_template("registroEmpleado.html", error="La CURP ya está registrada")
-            
-            # Generar hash de contraseña
+                return render_template(
+                    "recepcionista/nuevoDoctor.html",
+                    error="La CURP ya está registrada"
+                )
+
+            # Hash password
             password_hash = generate_password_hash(password)
-            
-            # Parámetros adicionales para doctores
-            id_especialidad = request.form.get("id_especialidad") if rol == "Doctor" else None
-            id_horario = request.form.get("id_horario") if rol == "Doctor" else None
-            
-            # Usar el procedimiento almacenado para crear empleado
-            cursor.execute(
-                """
+
+            # Ejecutar SP
+            cursor.execute("""
                 EXEC sp_CrearEmpleado
                     @usuario = ?,
                     @password_hash = ?,
@@ -357,20 +387,33 @@ def register_empleado():
                     @Tipo_empleo = ?,
                     @Fecha_contratacion = ?,
                     @Id_especialidad = ?,
-                    @Id_Horario = ?
-                """,
-                usuario, password_hash, rol, nombre, apellido_paterno, apellido_materno,
-                curp, correo, telefono, tipo_empleo, fecha_contratacion,
-                id_especialidad, id_horario
+                    @Id_Horario = ?,
+                    @Hora_Inicio = ?,
+                    @Hora_Fin = ?
+            """,
+            usuario, password_hash, rol_form, nombre, apellido_paterno, apellido_materno,
+            curp, correo, telefono, tipo_empleo, fecha_contratacion,
+            id_especialidad, id_horario,
+            hora_inicio, hora_fin
             )
-            
+            result = cursor.fetchone()
+            id_empleado = result.Id_empleado
+            for h in id_horarios:
+                cursor.execute("""
+                    INSERT INTO EMPLEADO_HORARIO (Id_empleado, Id_Horario)
+                    VALUES (?, ?)
+                """, id_empleado, h)
+
             conn.commit()
-            
-            registrar_evento(usuario, "REGISTRO", f"Nuevo empleado registrado - Rol: {rol}")
+
+            registrar_evento(usuario, "REGISTRO", f"Nuevo empleado registrado - Rol: {rol_form}")
             return redirect("/dashboard")
-            
+
     except pyodbc.Error as e:
-        return render_template("registroEmpleado.html", error=f"Error de base de datos: {str(e)}")
+        return render_template(
+            "recepcionista/nuevoDoctor.html",
+            error=f"Error de base de datos: {str(e)}"
+        )
 
 
 #ruta a desactivar 
@@ -404,6 +447,7 @@ def register_recepcionista_admin():
             fecha_contratacion = request.form.get("fecha_contratacion")
             usuario = request.form.get("usuario")
             password = request.form.get("password")  # Puede ser opcional
+            
             
             # Validar campos obligatorios
             if not all([usuario, nombre, apellido_paterno, curp, correo, rol]):

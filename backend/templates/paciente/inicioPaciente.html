@@ -30,7 +30,7 @@
 
             <div class="perfil-usuario-inferior">
                 <div class="info-user">
-                    <strong>Juan Pérez</strong>
+                    <strong>{{ ficha.Nombre }} {{ ficha.Apellido_Paterno }}</strong>
                     <span>Paciente</span>
                 </div>
                 <button class="btn-cerrar" type="button" onclick="cerrarSesion()">
@@ -96,8 +96,8 @@
             <section class="seccion-bienvenida">
                 <div class="texto-saludo">
                     <!-- Simulando la variable session de Jinja -->
-                    <h1>Bienvenido, Juan Pérez</h1>
-                    <p>Tienes 3 citas programadas para esta semana. ¡Cuida tu salud!</p>
+                    <h1>Bienvenido, {{ nombre_completo }}</h1>
+                    <p>Tienes {{ (contadores.confirmadas or 0) + (contadores.pendientes or 0) }} citas programadas.</p>
                 </div>
                 <a href="/paciente/citas" style="text-decoration: none;">
                     <button class="btn-agendar-cita">
@@ -112,15 +112,15 @@
                     <div class="fila-resumen">
                         <div class="tarjeta-contador">
                             <i class="fa-solid fa-check-circle azul"></i>
-                            <div><span>Confirmadas</span> <strong>2</strong></div>
+                            <div><span>Próximas</span>   <strong>{{ contadores.confirmadas or 0 }}</strong></div>
                         </div>
                         <div class="tarjeta-contador">
                             <i class="fa-solid fa-clock naranja"></i>
-                            <div><span>Pendientes</span> <strong>1</strong></div>
+                            <div><span>Canceladas</span> <strong>{{ contadores.canceladas  or 0 }}</strong></div>
                         </div>
                         <div class="tarjeta-contador">
                             <i class="fa-solid fa-circle-check verde"></i>
-                            <div><span>Completadas</span> <strong>15</strong></div>
+                            <div><span>Completadas</span><strong>{{ contadores.completadas or 0 }}</strong></div>
                         </div>
                     </div>
                     <div class="bloque-citas">
@@ -128,23 +128,27 @@
                             <h3>Próximas Citas</h3>
                             <a href="/paciente/historial">Ver todas</a>
                         </div>
+                        {% for cita in citas %}
                         <div class="tarjeta-cita-detalle">
                             <div class="cabecera-cita">
                                 <div class="doctor-meta">
-                                    <strong>Dra. Sarah Smith</strong>
-                                    <span>CARDIOLOGÍA</span>
+                                    <strong>{{ cita.nombre_doctor }}</strong>
+                                    <span>{{ cita.especialidad | upper }}</span>
                                 </div>
-                                <span class="etiqueta-estado confirmada">CONFIRMADA</span>
+                                <span class="etiqueta-estado {{ cita.Estado | lower }}">{{ 'Activa' if cita.Estatus == 1 else 'Cancelada' | upper }}</span>
                             </div>
                             <div class="info-cita">
-                                <p><i class="fa-solid fa-calendar"></i> 12 de Octubre, 2026</p>
-                                <p><i class="fa-solid fa-clock"></i> 10:00 AM (45 min)</p>
+                                <p><i class="fa-solid fa-calendar"></i> {{ cita.Fecha.strftime('%d de %B, %Y') }}</p>
+                                <p><i class="fa-solid fa-clock"></i> {{ cita.hora_cita }} ({{ cita.Duracion_min }} min)</p>
                             </div>
                             <div class="acciones-cita">
-                                <a href="/paciente/cancelacion" class="btn-cancelar" style="text-decoration: none; display: inline-block;">Cancelar</a>
-                                <a href="/paciente/detalles" class="btn-detalles" style="text-decoration: none; display: inline-block;">Detalles</a>
+                                <a href="/paciente/cancelacion/{{ cita.Id_cita }}" class="btn-cancelar">Cancelar</a>
+                                <a href="/paciente/detalles/{{ cita.Id_cita }}"    class="btn-detalles">Detalles</a>
                             </div>
                         </div>
+                        {% else %}
+                            <p style="padding: 20px; color: var(--texto-gris);">No tienes citas próximas.</p>
+                        {% endfor %}
                     </div>
                 </div>
                 <aside class="columna-derecha">
@@ -154,20 +158,20 @@
                             <i class="fa-solid fa-circle-info"></i>
                         </div>
                         <div class="stats-ficha">
-                            <div class="stat"><span>Tipo Sangre</span><strong>O+</strong></div>
-                            <div class="stat"><span>Peso</span><strong>72 kg</strong></div>
-                            <div class="stat"><span>Edad</span><strong>26</strong></div>
+                            <div><span>Tipo Sangre</span><strong>{{ ficha.Tipo_sangre or '—' }}</strong></div>
+                            <div class="stat"><span>Peso</span><strong>{{ ficha.Peso or '—' }}</strong></div>
+                            <div class="stat"><span>Edad</span><strong>{{ ficha.Edad or '—' }}</strong></div>
                         </div>
                     </div>
                     <div class="tarjeta-datos-personales">
                         <h3>Datos Personales</h3>
                         <div class="dato-item">
                             <i class="fa-solid fa-user"></i>
-                            <div><span>NOMBRE COMPLETO</span><strong>Juan Pérez Gómez</strong></div>
+                            <div><span>NOMBRE COMPLETO</span><strong>{{ ficha.Nombre }} {{ ficha.Apellido_Paterno }} {{ ficha.Apellido_Materno }}</strong></div>
                         </div>
                         <div class="dato-item">
                             <i class="fa-solid fa-envelope"></i>
-                            <div><span>CORREO ELECTRÓNICO</span><strong>juan.perez@email.com</strong></div>
+                            <div><span>CORREO ELECTRÓNICO</span><strong>{{ ficha.Correo or '—' }}</strong></div>
                         </div>
                         <a href="/paciente/perfil">
                             <button class="btn-editar-perfil" style="width: 100%;">Ir a Mi Perfil</button>
