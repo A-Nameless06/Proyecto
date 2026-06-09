@@ -138,8 +138,9 @@
                                 <span class="etiqueta-estado {{ cita.Estado | lower }}">{{ 'Activa' if cita.Estatus == 1 else 'Cancelada' | upper }}</span>
                             </div>
                             <div class="info-cita">
-                                <p><i class="fa-solid fa-calendar"></i> {{ cita.Fecha.strftime('%d de %B, %Y') }}</p>
-                                <p><i class="fa-solid fa-clock"></i> {{ cita.hora_cita }} ({{ cita.Duracion_min }} min)</p>
+                                <p><i class="fa-solid fa-calendar"></i> {{ cita.Fecha_cita.strftime('%d de %B, %Y') }}</p>
+                                <p><i class="fa-solid fa-clock"></i> {{ cita.hora_cita }} - {{ cita.Hora_Fin }}</p>
+                                <span class="etiqueta-estado {{ 'activa' if cita.Estatus == 1 else 'cancelada' }}">
                             </div>
                             <div class="acciones-cita">
                                 <a href="/paciente/cancelacion/{{ cita.Id_cita }}" class="btn-cancelar">Cancelar</a>

@@ -450,17 +450,28 @@
         try {
             const res = await fetch('/citas/agendar', {
                 method:  'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify({
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                credentials: 'same-origin',
+                body: JSON.stringify({
                     id_doctor: citaState.id_doctor,
                     fecha:     citaState.fechaISO,
                     hora:      citaState.horaISO,
                 }),
             });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error);
 
-            // Redirigir al comprobante con el id_cita real devuelto por el backend
+            // Flask puede devolver HTML de login (redirect 302 seguido de 200 HTML)
+            // si la sesión expiró — lo detectamos antes de parsear JSON
+            const contentType = res.headers.get('Content-Type') || '';
+            if (!contentType.includes('application/json')) {
+                throw new Error('La sesión expiró. Recarga la página e inicia sesión nuevamente.');
+            }
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Error al agendar la cita');
+
             window.location.href = `/citas/comprobante/${data.id_cita}`;
 
         } catch(err) {

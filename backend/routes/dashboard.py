@@ -24,9 +24,6 @@ def dashboard():
     return redirect("/auth/login")
 
 
-# ─────────────────────────────────────────────
-# PACIENTE
-# ─────────────────────────────────────────────
 def _dashboard_paciente():
     id_paciente = session.get("id_entidad")
 
@@ -103,9 +100,6 @@ def _dashboard_paciente():
     )
 
 
-# ─────────────────────────────────────────────
-# DOCTOR
-# ─────────────────────────────────────────────
 def _dashboard_doctor():
     id_empleado = session.get("id_entidad")
 
@@ -182,9 +176,6 @@ def _dashboard_doctor():
     )
 
 
-# ─────────────────────────────────────────────
-# RECEPCIÓN
-# ─────────────────────────────────────────────
 def _dashboard_recepcion():
     with get_coneccion() as conn:
         cursor = conn.cursor()
@@ -229,9 +220,6 @@ def _dashboard_recepcion():
     )
 
 
-# ─────────────────────────────────────────────
-# FARMACIA
-# ─────────────────────────────────────────────
 def _dashboard_farmacia():
     with get_coneccion() as conn:
         cursor = conn.cursor()

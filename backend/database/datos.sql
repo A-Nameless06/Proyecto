@@ -29,3 +29,27 @@ INSERT INTO HORARIO (Hora_Inicio, Hora_Fin, Dia) VALUES
 
 ('08:00:00', '14:00:00', 'Sábado'),
 ('09:00:00', '13:00:00', 'Domingo');
+
+INSERT INTO HORARIO (Hora_Inicio, Hora_Fin, Dia) VALUES
+('07:00:00', '15:00:00', 'Lunes'),
+('07:00:00', '15:00:00', 'Martes'),
+('07:00:00', '15:00:00', 'Miércoles'),
+('07:00:00', '15:00:00', 'Jueves'),
+('07:00:00', '15:00:00', 'Viernes'),
+
+('13:00:00', '21:00:00', 'Lunes'),
+('13:00:00', '21:00:00', 'Martes'),
+('13:00:00', '21:00:00', 'Miércoles'),
+('13:00:00', '21:00:00', 'Jueves'),
+('13:00:00', '21:00:00', 'Viernes');
+
+INSERT INTO CONSULTORIO (Id_Doctor, Numero, Piso, Descripcion)
+VALUES 
+(
+    (SELECT Id_doctor FROM DOCTOR WHERE Id_empleado = 6),
+    201, 2, 'Consultorio de Cardiología'
+),
+(
+    (SELECT Id_doctor FROM DOCTOR WHERE Id_empleado = 8),
+    301, 3, 'Consultorio de Ginecología'
+);

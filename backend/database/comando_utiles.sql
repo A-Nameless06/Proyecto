@@ -8,3 +8,9 @@ SELECT * FROM HORARIO;
 
 SELECT * FROM DOCTOR ORDER BY Id_doctor DESC;
 
+SELECT Id_usuario FROM EMPLEADO WHERE Id_empleado = 9;
+
+DELETE FROM USUARIO 
+WHERE usuario = 'dr.raulito';
+SELECT * FROM USUARIO WHERE usuario = 'dr.raulito';
+
