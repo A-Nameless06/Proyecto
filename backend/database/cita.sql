@@ -123,6 +123,19 @@ BEGIN
         RAISERROR('El doctor ya tiene una cita en esa fecha y hora.', 16, 8);
         RETURN;
     END
+        
+    -- ======= Paciente sin traslape en esa fecha/hora ===================
+    IF EXISTS (
+        SELECT 1 FROM CITA
+        WHERE Id_paciente  = @Id_paciente
+          AND Fecha_cita = @Fecha_cita
+          AND hora_cita  = @Hora_cita
+          AND Estatus    = 1
+    )       
+    BEGIN
+        RAISERROR('El paciente ya tiene una cita en esa fecha y hora.', 16, 8);
+        RETURN;
+    END
 
     -- Cita valida
     INSERT INTO CITA (
