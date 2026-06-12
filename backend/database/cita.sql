@@ -123,7 +123,7 @@ BEGIN
         RAISERROR('El doctor ya tiene una cita en esa fecha y hora.', 16, 8);
         RETURN;
     END
-        
+
     -- ======= Paciente sin traslape en esa fecha/hora ===================
     IF EXISTS (
         SELECT 1 FROM CITA
@@ -131,17 +131,15 @@ BEGIN
           AND Fecha_cita = @Fecha_cita
           AND hora_cita  = @Hora_cita
           AND Estatus    = 1
-    )       
+    )
     BEGIN
         RAISERROR('El paciente ya tiene una cita en esa fecha y hora.', 16, 8);
         RETURN;
     END
 
     -- Cita valida
-    INSERT INTO CITA (
-    Id_paciente, Id_doctor, Id_consultorio, Id_receta,
-    Fecha_cita, hora_cita, Dia, Mes, Estatus, Diagnostico, Tratamiento, Hora_Fin
-    )
+    INSERT INTO CITA (Id_paciente, Id_doctor, Id_consultorio, Id_receta,
+    Fecha_cita, hora_cita, Dia, Mes, Estatus, Hora_Fin)
     VALUES (
         @Id_paciente,
         @Id_doctor,
@@ -152,8 +150,6 @@ BEGIN
         @Dia,
         @Mes,
         1,
-        NULL,           -- Diagnostico: lo llena el doctor en consulta
-        NULL,           -- Tratamiento: lo llena el doctor en consulta
         @Hora_Fin
     );
 
@@ -165,7 +161,7 @@ GO
 --Detalle de Citas del Paciente
 CREATE VIEW VW_Detalle_Cita_Paciente
 AS
-SELECT
+SELECT DISTINCT
     C.Id_cita,
     P.Nombre + ' ' + P.Apellido_Paterno + ' ' + P.Apellido_Materno AS Paciente,
     C.Fecha_cita,
@@ -189,6 +185,10 @@ INNER JOIN ESPECIALIDAD ES
 INNER JOIN CONSULTORIO CO
     ON C.Id_consultorio = CO.Id_consultorio;
 
+
+SELECT * FROM VW_Detalle_Cita_Paciente
+
+
 --Historial Médico del Paciente
 CREATE VIEW VW_Historial_Medico
 AS
@@ -205,6 +205,8 @@ SELECT
 FROM PACIENTE P
 INNER JOIN HISTORIA_MEDICO HM
     ON P.Id_paciente = HM.Id_paciente;
+
+SELECT * FROM VW_Historial_Medico;
 
 --Detalle de Pagos
 CREATE VIEW VW_Detalle_Pagos
@@ -228,6 +230,8 @@ INNER JOIN DOCTOR D
 INNER JOIN EMPLEADO E
     ON D.Id_empleado = E.Id_empleado;
 
+SELECT * FROM VW_Detalle_Pagos;
+
 --Actividad de Doctores
 CREATE VIEW VW_Actividad_Doctor
 AS
@@ -247,3 +251,5 @@ GROUP BY
     D.Id_doctor,
     E.Nombre,
     ES.Nombre;
+
+SELECT * FROM VW_Actividad_Doctor;
