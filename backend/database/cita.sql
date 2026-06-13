@@ -220,7 +220,7 @@ BEGIN
     -- Cita valida
     INSERT INTO CITA (
     Id_paciente, Id_doctor, Id_consultorio, Id_receta,
-    Fecha_cita, hora_cita, Dia, Mes, Estatus, Diagnostico, Tratamiento, Hora_Fin
+    Fecha_cita, hora_cita, Dia, Mes, Estatus, Hora_Fin
     )
     VALUES (
         @Id_paciente,
