@@ -2,6 +2,78 @@ USE CentroMedicoRASA;
 GO
 
 --========================================================
+--Funcion:Calcula el total usando la cantidad y el costo real del servicio.
+--========================================================
+CREATE FUNCTION FN_TotalServicios
+(
+    @IdCita INT
+)
+RETURNS DECIMAL(10,2)
+AS
+BEGIN
+    DECLARE @ResultVar DECIMAL(10,2);
+
+    SELECT @ResultVar =
+        SUM(CS.Cantidad * S.Costo)
+    FROM CITA_SERVICIO CS
+    INNER JOIN SERVICIO S
+        ON CS.Id_servicio = S.Id_servicio
+    WHERE CS.Id_cita = @IdCita;
+
+    RETURN ISNULL(@ResultVar,0);
+END;
+GO
+
+SELECT dbo.FN_TotalServicios(1) AS TotalServicios;
+
+--========================================================
+--Funcion: Obtiene la cantidad total de medicamentos prescritos en una receta.
+--========================================================
+CREATE FUNCTION FN_TotalMedicamentosReceta
+(
+    @IdReceta INT
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @ResultVar INT;
+
+    SELECT @ResultVar =
+        SUM(Cantidad)
+    FROM RECETA_MEDICINA
+    WHERE Id_receta = @IdReceta;
+
+    RETURN ISNULL(@ResultVar,0);
+END;
+GO
+
+SELECT dbo.FN_TotalMedicamentosReceta(1) AS TotalMedicamentos;
+
+--========================================================
+--Funcion: Cuenta cuántos pacientes diferentes ha atendido un doctor mediante las citas activas.
+--========================================================
+CREATE FUNCTION FN_PacientesAtendidosDoctor
+(
+    @IdDoctor INT
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @ResultVar INT;
+
+    SELECT @ResultVar =
+        COUNT(DISTINCT Id_paciente)
+    FROM CITA
+    WHERE Id_doctor = @IdDoctor
+      AND Estatus = 1;
+
+    RETURN ISNULL(@ResultVar,0);
+END;
+GO
+
+SELECT dbo.FN_PacientesAtendidosDoctor(2) AS PacientesAtendidos;
+
+--========================================================
 --Funcion: Verifica si la cita es en el horario del doctor.
 --========================================================
 CREATE FUNCTION fn_DoctorDisponible
@@ -42,6 +114,14 @@ BEGIN
     RETURN @Disponible;
 END;
 GO
+
+
+SELECT dbo.fn_DoctorDisponible(
+    1,
+    '2026-06-19',
+    '10:00:00'
+) AS Disponible
+
 
 -- ============================================
 -- Procedimiento: Agendar cita
@@ -138,8 +218,10 @@ BEGIN
     END
 
     -- Cita valida
-    INSERT INTO CITA (Id_paciente, Id_doctor, Id_consultorio, Id_receta,
-    Fecha_cita, hora_cita, Dia, Mes, Estatus, Hora_Fin)
+    INSERT INTO CITA (
+    Id_paciente, Id_doctor, Id_consultorio, Id_receta,
+    Fecha_cita, hora_cita, Dia, Mes, Estatus, Diagnostico, Tratamiento, Hora_Fin
+    )
     VALUES (
         @Id_paciente,
         @Id_doctor,
@@ -188,7 +270,7 @@ INNER JOIN CONSULTORIO CO
 
 SELECT * FROM VW_Detalle_Cita_Paciente
 
-
+SELECT * FROM CITA
 --Historial Médico del Paciente
 CREATE VIEW VW_Historial_Medico
 AS
@@ -206,7 +288,7 @@ FROM PACIENTE P
 INNER JOIN HISTORIA_MEDICO HM
     ON P.Id_paciente = HM.Id_paciente;
 
-SELECT * FROM VW_Historial_Medico;
+    SELECT * FROM VW_Historial_Medico
 
 --Detalle de Pagos
 CREATE VIEW VW_Detalle_Pagos
@@ -230,7 +312,7 @@ INNER JOIN DOCTOR D
 INNER JOIN EMPLEADO E
     ON D.Id_empleado = E.Id_empleado;
 
-SELECT * FROM VW_Detalle_Pagos;
+    SELECT * FROM VW_Detalle_Pagos
 
 --Actividad de Doctores
 CREATE VIEW VW_Actividad_Doctor
@@ -252,4 +334,4 @@ GROUP BY
     E.Nombre,
     ES.Nombre;
 
-SELECT * FROM VW_Actividad_Doctor;
+    SELECT * FROM VW_Actividad_Doctor
